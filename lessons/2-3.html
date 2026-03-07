@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：分享与互评 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .review-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .rules-table th {
+            background: #1e293b;
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .rules-table th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .rules-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .rules-table td {
+            padding: 16px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        .rules-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #22c55e;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .peer-review-card {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 30px;
+        }
+
+        .peer-review-card h3 {
+            color: #92400e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-form {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .review-form h4 {
+            color: #0f172a;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .rating-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .highlight-section {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 30px;
+        }
+
+        .highlight-section h3 {
+            color: #166534;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .story-display {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .story-display textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .story-display textarea:focus {
+            border-color: #22c55e;
+        }
+
+        .annotation-tools {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .annotation-btn {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .annotation-btn.desire {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-color: #3b82f6;
+        }
+
+        .annotation-btn.conflict {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #ef4444;
+        }
+
+        .annotation-btn.action {
+            background: #fef3c7;
+            color: #d97706;
+            border-color: #f59e0b;
+        }
+
+        .annotation-btn.result {
+            background: #dcfce7;
+            color: #16a34a;
+            border-color: #22c55e;
+        }
+
+        .annotation-btn.active {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-green {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+        }
+        .btn-green:hover { background: #16a34a; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .rating-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="2-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            实战演练
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程二</span>
+            <div class="lesson-subtitle">一句话故事——快速构建故事骨架</div>
+        </div>
+        <a href="2-4.html" style="color: #22c55e;">
+            总结与作业
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-green">环节三：分享与互评</span>
+            <h1>同桌交换，互相点评</h1>
+        </div>
+
+        <div class="review-section">
+            <h3 style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v5a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2zm9 12a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                互评规则
+            </h3>
+
+            <table class="rules-table">
+                <thead>
+                    <tr>
+                        <th>步骤</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="step-number">1</span></td>
+                        <td>同桌交换，朗读对方的故事</td>
+                    </tr>
+                    <tr>
+                        <td><span class="step-number">2</span></td>
+                        <td>用红笔圈出"欲望、冲突、行动/结果"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="step-number">3</span></td>
+                        <td>如果缺了某项，给同桌提建议怎么加</td>
+                    </tr>
+                    <tr>
+                        <td><span class="step-number">4</span></td>
+                        <td>每组推荐一个最精彩的，全班分享</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="peer-review-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    互评表（同桌填写）
+                </h3>
+
+                <div class="review-form">
+                    <h4>同桌的故事：</h4>
+                    <div class="form-group">
+                        <label>故事内容（可复制粘贴或手写记录）：</label>
+                        <textarea id="partner-story" placeholder="把同桌的故事写在这里……"></textarea>
+                    </div>
+
+                    <h4 style="margin-top: 24px;">评价项目：</h4>
+
+                    <div class="form-group">
+                        <label>1. 有明确的"想要"（欲望）吗？</label>
+                        <div class="rating-group">
+                            <label class="rating-item">
+                                <input type="radio" name="q1" value="yes"> 是
+                            </label>
+                            <label class="rating-item">
+                                <input type="radio" name="q1" value="no"> 否
+                            </label>
+                        </div>
+                        <textarea id="suggestion1" placeholder="如果有，是什么？如果没有，建议加什么？" style="margin-top: 8px; min-height: 60px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>2. 有具体的"冲突"（阻碍）吗？</label>
+                        <div class="rating-group">
+                            <label class="rating-item">
+                                <input type="radio" name="q2" value="yes"> 是
+                            </label>
+                            <label class="rating-item">
+                                <input type="radio" name="q2" value="no"> 否
+                            </label>
+                        </div>
+                        <textarea id="suggestion2" placeholder="如果有，是什么？如果没有，建议加什么？" style="margin-top: 8px; min-height: 60px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>3. 有清晰的"行动/结果"吗？</label>
+                        <div class="rating-group">
+                            <label class="rating-item">
+                                <input type="radio" name="q3" value="yes"> 是
+                            </label>
+                            <label class="rating-item">
+                                <input type="radio" name="q3" value="no"> 否
+                            </label>
+                        </div>
+                        <textarea id="suggestion3" placeholder="如果有，是什么？" style="margin-top: 8px; min-height: 60px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>4. 整体读起来有意思吗？</label>
+                        <div class="rating-group">
+                            <label class="rating-item">
+                                <input type="radio" name="q4" value="yes"> 是
+                            </label>
+                            <label class="rating-item">
+                                <input type="radio" name="q4" value="no"> 一般
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    推荐全班分享的故事
+                </h3>
+                <p style="color: #15803d; margin-bottom: 16px;">
+                    如果同桌的故事很精彩，推荐到全班分享！
+                </p>
+
+                <div class="story-display">
+                    <div class="form-group">
+                        <label>推荐的故事：</label>
+                        <textarea id="recommend-story" placeholder="写下你推荐的故事……"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>推荐理由：</label>
+                        <textarea id="recommend-reason" placeholder="为什么推荐这个故事？哪里最打动你？" style="min-height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="2-2.html" class="btn btn-green">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：实战演练
+            </a>
+            <a href="2-4.html" class="btn btn-green">
+                下一步：总结与作业
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function saveReview() {
+            const review = {
+                partnerStory: document.getElementById('partner-story').value,
+                suggestion1: document.getElementById('suggestion1').value,
+                suggestion2: document.getElementById('suggestion2').value,
+                suggestion3: document.getElementById('suggestion3').value,
+                recommendStory: document.getElementById('recommend-story').value,
+                recommendReason: document.getElementById('recommend-reason').value
+            };
+
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+
+            if (q1) review.q1 = q1.value;
+            if (q2) review.q2 = q2.value;
+            if (q3) review.q3 = q3.value;
+            if (q4) review.q4 = q4.value;
+
+            localStorage.setItem('lesson2_review', JSON.stringify(review));
+            alert('互评已保存！');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson2_review');
+            if (saved) {
+                const review = JSON.parse(saved);
+                if (review.partnerStory) document.getElementById('partner-story').value = review.partnerStory;
+                if (review.suggestion1) document.getElementById('suggestion1').value = review.suggestion1;
+                if (review.suggestion2) document.getElementById('suggestion2').value = review.suggestion2;
+                if (review.suggestion3) document.getElementById('suggestion3').value = review.suggestion3;
+                if (review.recommendStory) document.getElementById('recommend-story').value = review.recommendStory;
+                if (review.recommendReason) document.getElementById('recommend-reason').value = review.recommendReason;
+
+                if (review.q1) {
+                    const q1Radio = document.querySelector(`input[name="q1"][value="${review.q1}"]`);
+                    if (q1Radio) q1Radio.checked = true;
+                }
+                if (review.q2) {
+                    const q2Radio = document.querySelector(`input[name="q2"][value="${review.q2}"]`);
+                    if (q2Radio) q2Radio.checked = true;
+                }
+                if (review.q3) {
+                    const q3Radio = document.querySelector(`input[name="q3"][value="${review.q3}"]`);
+                    if (q3Radio) q3Radio.checked = true;
+                }
+                if (review.q4) {
+                    const q4Radio = document.querySelector(`input[name="q4"][value="${review.q4}"]`);
+                    if (q4Radio) q4Radio.checked = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

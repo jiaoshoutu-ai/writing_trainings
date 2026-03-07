@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节四：总结与作业 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-orange { background: #ffedd5; color: #ea580c; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .summary-section {
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .summary-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .summary-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .summary-content h3 {
+            font-size: 15px;
+            color: #fb923c;
+            margin-bottom: 6px;
+        }
+
+        .summary-content p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .homework-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .homework-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .homework-intro {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .homework-intro p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .daily-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .daily-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            transition: all 0.3s;
+        }
+
+        .daily-card:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .daily-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .daily-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .day-badge {
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .day-blue { background: #dbeafe; color: #1d4ed8; }
+        .day-red { background: #fee2e2; color: #dc2626; }
+        .day-amber { background: #fef3c7; color: #d97706; }
+        .day-green { background: #dcfce7; color: #16a34a; }
+        .day-purple { background: #f3e8ff; color: #9333ea; }
+
+        .daily-card p {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .daily-hint {
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .daily-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+            margin-top: 12px;
+        }
+
+        .daily-textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .weekend-section {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 30px;
+        }
+
+        .weekend-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .weekend-section p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .weekend-requirements {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .weekend-requirements h4 {
+            font-size: 13px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .weekend-requirements ul {
+            font-size: 13px;
+            padding-left: 20px;
+            line-height: 2;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .progress-section h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .progress-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="2-3.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            分享互评
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程二</span>
+            <div class="lesson-subtitle">一句话故事——快速构建故事骨架</div>
+        </div>
+        <a href="../index.html" style="color: #3b82f6;">
+            返回首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-blue">环节四：总结与作业</span>
+            <h1>课堂总结与一周作业</h1>
+        </div>
+
+        <div class="summary-section">
+            <h2>
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                核心要点
+            </h2>
+
+            <div class="summary-card">
+                <div class="summary-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                </div>
+                <div class="summary-content">
+                    <h3>一句话故事是作文的"种子"</h3>
+                    <p>以后写作文前，先用一句话搭好骨架，再填充细节。</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon" style="background: #ef4444;">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                </div>
+                <div class="summary-content">
+                    <h3>公式牢记</h3>
+                    <p>因为……（想要什么）但是……（遇到冲突）所以……（做出行动）结果……（最终怎样）</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon" style="background: #22c55e;">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <div class="summary-content">
+                    <h3>三个检查点</h3>
+                    <p>欲望是否具体？冲突是否真实？行动/结果是否清晰？</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="homework-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                一周每日小练
+            </h2>
+
+            <div class="homework-intro">
+                <p>
+                    <strong>要求：</strong>每篇必须用"因为……但是……所以……"句式（可灵活变化），字数不限，但故事必须完整。<br>
+                    <strong>检查：</strong>每天到校后同桌互查，教师随机抽查。
+                </p>
+            </div>
+
+            <div class="daily-grid">
+                <!-- 周一 -->
+                <div class="daily-card">
+                    <div class="daily-header">
+                        <span class="daily-title">
+                            <span class="day-badge day-blue">周一</span>
+                            一次尴尬的瞬间
+                        </span>
+                    </div>
+                    <p>当时你最想怎样？遇到了什么麻烦？</p>
+                    <textarea class="daily-textarea" id="monday" placeholder="我的尴尬瞬间：
+
+因为（我想……）：
+____________________
+
+但是（没想到……）：
+____________________
+
+所以（我……）：
+____________________
+
+结果（最后……）：
+____________________"></textarea>
+                </div>
+
+                <!-- 周二 -->
+                <div class="daily-card">
+                    <div class="daily-header">
+                        <span class="daily-title">
+                            <span class="day-badge day-red">周二</span>
+                            一次意外的帮助
+                        </span>
+                    </div>
+                    <p>谁帮了你？为什么说"意外"？</p>
+                    <textarea class="daily-textarea" id="tuesday" placeholder="意外的帮助：
+
+因为（我需要……）：
+____________________
+
+但是（没想到……）：
+____________________
+
+所以（TA……）：
+____________________
+
+结果（最后……）：
+____________________"></textarea>
+                </div>
+
+                <!-- 周三 -->
+                <div class="daily-card">
+                    <div class="daily-header">
+                        <span class="daily-title">
+                            <span class="day-badge day-amber">周三</span>
+                            和家人的一次争吵
+                        </span>
+                    </div>
+                    <p>你想要什么？家人想要什么？</p>
+                    <textarea class="daily-textarea" id="wednesday" placeholder="和家人的争吵：
+
+因为（我想要……）：
+____________________
+
+但是（家人认为……）：
+____________________
+
+所以（我/家人……）：
+____________________
+
+结果（最后……）：
+____________________"></textarea>
+                </div>
+
+                <!-- 周四 -->
+                <div class="daily-card">
+                    <div class="daily-header">
+                        <span class="daily-title">
+                            <span class="day-badge day-green">周四</span>
+                            课堂上的一次走神
+                        </span>
+                    </div>
+                    <p>走神时想什么？被发现了吗？</p>
+                    <textarea class="daily-textarea" id="thursday" placeholder="课堂走神：
+
+因为（我在想……）：
+____________________
+
+但是（突然……）：
+____________________
+
+所以（我……）：
+____________________
+
+结果（最后……）：
+____________________"></textarea>
+                </div>
+
+                <!-- 周五 -->
+                <div class="daily-card">
+                    <div class="daily-header">
+                        <span class="daily-title">
+                            <span class="day-badge day-purple">周五</span>
+                            放学后的一个小插曲
+                        </span>
+                    </div>
+                    <p>发生了什么意想不到的事？</p>
+                    <textarea class="daily-textarea" id="friday" placeholder="放学小插曲：
+
+因为（我准备……）：
+____________________
+
+但是（没想到……）：
+____________________
+
+所以（我……）：
+____________________
+
+结果（最后……）：
+____________________"></textarea>
+                </div>
+            </div>
+
+            <div class="weekend-section">
+                <h3>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                    周末作业：扩展成文
+                </h3>
+                <p>从 5 个一句话故事中选一个，扩展成 300-400 字的完整作文。</p>
+
+                <div class="weekend-requirements">
+                    <h4>尝试加入：</h4>
+                    <ul>
+                        <li>1-2 处<strong>细节描写</strong>（比如人物动作、表情）</li>
+                        <li>1 句<strong>对话</strong></li>
+                        <li>用上课程一学的<strong>连续动词</strong>技巧</li>
+                    </ul>
+                </div>
+
+                <textarea class="daily-textarea" id="weekend" style="margin-top: 16px; min-height: 200px; background: rgba(255,255,255,0.9);" placeholder="我选择的题目：_______________
+
+我的作文：
+
+_____________________________________
+_____________________________________
+_____________________________________
+_____________________________________
+_____________________________________
+_____________________________________"></textarea>
+            </div>
+
+            <div class="progress-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    完成进度
+                </h3>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-mon">
+                    <span>周一：尴尬的瞬间</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-tue">
+                    <span>周二：意外的帮助</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-wed">
+                    <span>周三：和家人的争吵</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-thu">
+                    <span>周四：课堂走神</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-fri">
+                    <span>周五：放学小插曲</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check-weekend">
+                    <span>周末：扩展成文</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="2-3.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：分享互评
+            </a>
+            <a href="../index.html" class="btn btn-blue">
+                返回首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 保存每日练习
+        function saveDaily() {
+            const daily = {
+                monday: document.getElementById('monday').value,
+                tuesday: document.getElementById('tuesday').value,
+                wednesday: document.getElementById('wednesday').value,
+                thursday: document.getElementById('thursday').value,
+                friday: document.getElementById('friday').value,
+                weekend: document.getElementById('weekend').value,
+                checks: {
+                    mon: document.getElementById('check-mon').checked,
+                    tue: document.getElementById('check-tue').checked,
+                    wed: document.getElementById('check-wed').checked,
+                    thu: document.getElementById('check-thu').checked,
+                    fri: document.getElementById('check-fri').checked,
+                    weekend: document.getElementById('check-weekend').checked
+                }
+            };
+            localStorage.setItem('lesson2_homework', JSON.stringify(daily));
+            alert('作业已保存！');
+        }
+
+        // 自动保存监听
+        document.querySelectorAll('.daily-textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(saveDaily, 2000);
+            });
+        });
+
+        // 复选框监听
+        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+            box.addEventListener('change', saveDaily);
+        });
+
+        // 页面加载时恢复
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson2_homework');
+            if (saved) {
+                const daily = JSON.parse(saved);
+                if (daily.monday) document.getElementById('monday').value = daily.monday;
+                if (daily.tuesday) document.getElementById('tuesday').value = daily.tuesday;
+                if (daily.wednesday) document.getElementById('wednesday').value = daily.wednesday;
+                if (daily.thursday) document.getElementById('thursday').value = daily.thursday;
+                if (daily.friday) document.getElementById('friday').value = daily.friday;
+                if (daily.weekend) document.getElementById('weekend').value = daily.weekend;
+                if (daily.checks) {
+                    document.getElementById('check-mon').checked = daily.checks.mon;
+                    document.getElementById('check-tue').checked = daily.checks.tue;
+                    document.getElementById('check-wed').checked = daily.checks.wed;
+                    document.getElementById('check-thu').checked = daily.checks.thu;
+                    document.getElementById('check-fri').checked = daily.checks.fri;
+                    document.getElementById('check-weekend').checked = daily.checks.weekend;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

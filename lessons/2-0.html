@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：复习导入 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .review-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .review-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .review-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 28px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .formula-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .formula-line:last-child { margin-bottom: 0; }
+
+        .formula-tag {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-weight: bold;
+            font-size: 14px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .tag-blue { background: #3b82f6; }
+        .tag-red { background: #ef4444; }
+        .tag-amber { background: #f59e0b; }
+        .tag-green { background: #22c55e; }
+
+        .verb-chains {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .verb-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .verb-card h4 {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .verb-list {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .verb-item {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .share-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 30px;
+        }
+
+        .share-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #166534;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .share-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .share-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            border-left: 4px solid #22c55e;
+        }
+
+        .share-card h4 {
+            font-size: 14px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .share-card p {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-green {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+        }
+        .btn-green:hover { background: #16a34a; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .student-input-area {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+
+        .student-input-area textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .student-input-area textarea:focus {
+            border-color: #22c55e;
+        }
+
+        .input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .word-count {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .save-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-btn:hover { background: #16a34a; }
+
+        @media (max-width: 768px) {
+            .verb-chains, .share-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="1-4.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            课程一
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程二</span>
+            <div class="lesson-subtitle">一句话故事——快速构建故事骨架</div>
+        </div>
+        <a href="2-1.html" style="color: #22c55e;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-green">环节零：复习导入</span>
+            <h1>分享昨天的发现</h1>
+        </div>
+
+        <div class="review-section">
+            <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                故事骨架公式回顾
+            </h3>
+
+            <div class="formula-box">
+                <div class="formula-line">
+                    <span class="formula-tag tag-blue">因为</span>
+                    <span>想要什么（欲望）</span>
+                </div>
+                <div class="formula-line">
+                    <span class="formula-tag tag-red">但是</span>
+                    <span>遇到冲突（阻碍）</span>
+                </div>
+                <div class="formula-line">
+                    <span class="formula-tag tag-amber">所以</span>
+                    <span>做出行动（行动）</span>
+                </div>
+                <div class="formula-line">
+                    <span class="formula-tag tag-green">结果</span>
+                    <span>最终怎样（结局）</span>
+                </div>
+            </div>
+
+            <h3 style="display: flex; align-items: center; gap: 10px; margin: 24px 0 16px;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                连续动词技巧回顾
+            </h3>
+
+            <div class="review-card">
+                <p style="color: #64748b; margin-bottom: 16px;">
+                    把一个大动作拆成 3-5 个小动作，就像慢镜头回放一样，让画面更生动。
+                </p>
+                <div class="verb-chains">
+                    <div class="verb-card">
+                        <h4>《背影》爬月台</h4>
+                        <div class="verb-list">
+                            <span class="verb-item">探</span>
+                            <span class="verb-item">攀</span>
+                            <span class="verb-item">缩</span>
+                            <span class="verb-item">倾</span>
+                        </div>
+                    </div>
+                    <div class="verb-card">
+                        <h4>系鞋带</h4>
+                        <div class="verb-list">
+                            <span class="verb-item">蹲</span>
+                            <span class="verb-item">捏</span>
+                            <span class="verb-item">拉</span>
+                            <span class="verb-item">绕</span>
+                            <span class="verb-item">抽</span>
+                        </div>
+                    </div>
+                    <div class="verb-card">
+                        <h4>够高处的书</h4>
+                        <div class="verb-list">
+                            <span class="verb-item">踮</span>
+                            <span class="verb-item">伸</span>
+                            <span class="verb-item">触</span>
+                            <span class="verb-item">拨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    分享你的观察日记
+                </h3>
+                <p style="color: #15803d; margin-bottom: 16px;">
+                    请写下你昨天观察到的身边故事，用公式分析"欲望"和"冲突"。
+                </p>
+
+                <div class="student-input-area">
+                    <textarea id="share-input" placeholder="我的观察故事：
+
+观察对象：_______________
+发生的事情：_______________
+
+因为（TA 想要什么）：
+_________________________
+
+但是（遇到了什么困难）：
+_________________________
+
+所以（TA 怎么做的）：
+_________________________
+
+结果（最后怎样）：
+_________________________"></textarea>
+                    <div class="input-footer">
+                        <p class="word-count">当前字数：<strong id="char-count">0</strong></p>
+                        <button class="save-btn" onclick="saveShare()">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            保存分享
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="1-4.html" class="btn btn-green">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一课
+            </a>
+            <a href="2-1.html" class="btn btn-green">
+                下一步：一句话故事是什么
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('share-input');
+        const charCount = document.getElementById('char-count');
+
+        if (textarea && charCount) {
+            textarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+            });
+        }
+
+        function saveShare() {
+            const content = textarea.value;
+            if (content.trim().length === 0) {
+                alert('请先填写你的观察故事！');
+                return;
+            }
+            localStorage.setItem('lesson2_share', content);
+            alert('分享已保存！准备好在课堂上和其他同学交流吧！');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson2_share');
+            if (saved && textarea) {
+                textarea.value = saved;
+                charCount.textContent = saved.length;
+            }
+        });
+    </script>
+</body>
+</html>
