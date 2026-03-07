@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节一：案例对比 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* 主内容区 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* 环节样式 */
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* 故事对比 */
+        .story-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 30px 0;
+        }
+        .story-card {
+            padding: 28px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .story-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .story-card.selected-a {
+            border-color: #cbd5e1;
+            background: white;
+        }
+        .story-card.selected-b {
+            border-color: #3b82f6;
+            background: white;
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(59,130,246,0.2);
+        }
+
+        .story-a { background: #f8fafc; }
+        .story-b { background: #fff; }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+        .story-a .story-header { color: #64748b; }
+        .story-b .story-header { color: #3b82f6; }
+
+        .story-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #475569;
+        }
+        .story-content.deleted {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        .highlight {
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .highlight-blue {
+            background: #eff6ff;
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        .highlight-blue.revealed {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .highlight-green.revealed {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .highlight-purple.revealed {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
+        .teacher-comment {
+            margin-top: 16px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            font-size: 14px;
+            color: #64748b;
+            display: flex;
+            gap: 8px;
+            font-style: italic;
+        }
+
+        /* 揭秘提示 */
+        .secret-tip {
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            animation: slideIn 0.3s;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .secret-tip h4 {
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .secret-tip p {
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+        /* 结论区域 */
+        .conclusion {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+        }
+        .conclusion-box {
+            background: white;
+            border: 4px solid #fb923c;
+            padding: 32px;
+            border-radius: 24px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .conclusion-box h3 {
+            font-size: 1.3em;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .formula {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #ea580c;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+        .quote {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 15px rgba(249,115,22,0.4);
+        }
+        .btn-primary:hover { background: #ea580c; transform: scale(1.05); }
+        .btn-primary:disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .story-compare {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+            .formula { font-size: 1.4em; }
+            #conclusion-content > div:not(.conclusion-box) {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            返回首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程一</span>
+            <div class="lesson-subtitle">故事是什么？——告别流水账</div>
+        </div>
+        <a href="1-2.html">
+            环节二
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-blue">环节一：案例对比</span>
+            <h1>两个生日，哪个更动人？</h1>
+        </div>
+
+        <div class="story-compare">
+            <div class="story-card story-a" id="card-a" onclick="selectVersion('A')">
+                <div class="story-header">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span>片段 A（流水账）</span>
+                </div>
+                <p class="story-content deleted">今天是我生日，早上妈妈给我煮了面，中午爸爸带我去吃肯德基，下午同学来我家玩，我们吃了蛋糕，晚上我还收到了很多礼物，很开心。</p>
+                <div class="teacher-comment" id="comment-a" style="display: none;">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    老师点评：只有"记录"，没有"波动"。
+                </div>
+            </div>
+
+            <div class="story-card story-b" id="card-b" onclick="selectVersion('B')">
+                <div class="story-header">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    <span>片段 B（故事版）</span>
+                </div>
+                <p style="font-size: 13px; color: #f59e0b; margin-bottom: 12px;">
+                    <strong>💡 发现亮点：</strong>文中有 <strong>3 个蓝色高亮</strong> 部分，点击看看有什么特别？
+                </p>
+                <div class="story-content">
+                    <p style="margin-bottom: 12px;">生日那天早上，我以为会像往年一样平淡。没想到妈妈端来面时，<span class="highlight highlight-blue" id="hl-egg" onclick="revealSecret('egg')">碗底藏着一个荷包蛋</span>——我随口说过一次"想要双黄蛋"，她居然记住了。</p>
+                    <p style="margin-bottom: 12px;">中午爸爸神秘兮兮地带我出门，我以为又是肯德基，结果他<span class="highlight highlight-blue" id="hl-picnic" onclick="revealSecret('picnic')">开到了郊外</span>，指着草地上的野餐垫说："今年换个花样。"</p>
+                    <p>同学来的时候，蛋糕上插着16根蜡烛，我刚要吹，<span class="highlight highlight-blue" id="hl-blackout" onclick="revealSecret('blackout')">停电了……</span>大家愣了一秒，然后一起唱起生日歌，那烛光里的脸，我一辈子忘不了。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="secret-display"></div>
+
+        <div class="conclusion">
+            <button class="btn btn-primary" id="show-conclusion" disabled onclick="showConclusion()">
+                揭秘：好故事的底层逻辑
+            </button>
+            <div id="conclusion-content" style="display: none;">
+                <div class="conclusion-box">
+                    <h3>名师板书：什么是好故事？</h3>
+                    <div class="formula">好故事 = 一个人 + 想要什么 + 遇到麻烦 + 结局怎样</div>
+                    <p class="quote">"没有冲突，就没有戏。"</p>
+                </div>
+
+                <!-- 三个例子 -->
+                <div style="margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 16px; border: 2px solid #fcd34d;">
+                        <h4 style="color: #92400e; margin-bottom: 12px; font-size: 14px;">📖《背影》</h4>
+                        <ul style="font-size: 13px; color: #78350f; line-height: 2; margin: 0; padding-left: 20px;">
+                            <li><strong>一个人：</strong>父亲</li>
+                            <li><strong>想要什么：</strong>给儿子买橘子</li>
+                            <li><strong>遇到麻烦：</strong>月台高、身体胖</li>
+                            <li><strong>结局怎样：</strong>艰难爬过月台，儿子流泪</li>
+                        </ul>
+                    </div>
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 16px; border: 2px solid #93c5fd;">
+                        <h4 style="color: #1e40af; margin-bottom: 12px; font-size: 14px;">🎂片段 B</h4>
+                        <ul style="font-size: 13px; color: #1e3a8a; line-height: 2; margin: 0; padding-left: 20px;">
+                            <li><strong>一个人：</strong>过生日的我</li>
+                            <li><strong>想要什么：</strong>过一个特别的生日</li>
+                            <li><strong>遇到麻烦：</strong>蜡烛刚要吹，突然停电了</li>
+                            <li><strong>结局怎样：</strong>烛光中合唱，终生难忘</li>
+                        </ul>
+                    </div>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 16px; border: 2px solid #86efac;">
+                        <h4 style="color: #166534; margin-bottom: 12px; font-size: 14px;">🍜螺蛳粉广告</h4>
+                        <ul style="font-size: 13px; color: #14532d; line-height: 2; margin: 0; padding-left: 20px;">
+                            <li><strong>一个人：</strong>饥饿的乞丐</li>
+                            <li><strong>想要什么：</strong>得到食物</li>
+                            <li><strong>遇到麻烦：</strong>被人冷漠对待</li>
+                            <li><strong>结局怎样：</strong>反转——竟是温暖广告</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 解释段落 -->
+                <div style="margin-top: 32px; background: white; padding: 24px; border-radius: 16px; border-left: 4px solid #f97316;">
+                    <h4 style="color: #ea580c; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        公式解读
+                    </h4>
+                    <p style="font-size: 15px; color: #475569; line-height: 1.8; margin: 0;">
+                        好故事不是流水账，而是<strong>欲望与阻碍的碰撞</strong>。当一个人强烈"想要什么"时，读者就会期待；当"麻烦"出现时，读者就会紧张；当结局揭晓时，读者就会满足。这个公式适用于所有动人的故事——从经典课文到电影大片，从广告短片到你的亲身经历。<strong>记住：没有麻烦，就没有故事。</strong>只有顺利，那是说明书；有了波折，才是好故事。
+                    </p>
+                </div>
+
+                <a href="1-2.html" class="btn btn-blue" style="margin-top: 24px;">
+                    下一步：学习故事骨架公式
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="nav-buttons">
+            <a href="1-0.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：视频导入
+            </a>
+            <a href="1-2.html" class="btn btn-blue">
+                下一步：故事骨架
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let selectedVersion = null;
+        let unlockedSecrets = [];
+
+        function selectVersion(version) {
+            selectedVersion = version;
+            document.getElementById('card-a').classList.remove('selected-a');
+            document.getElementById('card-b').classList.remove('selected-b');
+            document.getElementById('comment-a').style.display = 'none';
+
+            if (version === 'A') {
+                document.getElementById('card-a').classList.add('selected-a');
+                document.getElementById('comment-a').style.display = 'flex';
+            } else {
+                document.getElementById('card-b').classList.add('selected-b');
+            }
+        }
+
+        function revealSecret(id) {
+            const el = document.getElementById('hl-' + id);
+            if (!el.classList.contains('revealed')) {
+                el.classList.add('revealed');
+                if (id === 'egg') el.classList.add('highlight-blue', 'revealed');
+                if (id === 'picnic') el.classList.add('highlight-green', 'revealed');
+                if (id === 'blackout') el.classList.add('highlight-purple', 'revealed');
+
+                if (!unlockedSecrets.includes(id)) {
+                    unlockedSecrets.push(id);
+                }
+
+                // 显示提示
+                const secrets = {
+                    egg: { title: '细节描写', content: '细节是故事的血肉。不是简单的"吃面"，而是通过"随口一说"被记住，写出了情感的流动。' },
+                    picnic: { title: '打破预期', content: '故事需要"没想到"。如果一切都在意料之中，读者就会打瞌睡。' },
+                    blackout: { title: '制造冲突', content: '"麻烦"是故事的发动机。正要吹蜡烛却停电，这种意外让平淡的生日瞬间有了戏剧张力。' }
+                };
+
+                const secret = secrets[id];
+                const display = document.getElementById('secret-display');
+                display.innerHTML = `
+                    <div class="secret-tip">
+                        <h4>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            ${secret.title}
+                        </h4>
+                        <p>${secret.content}</p>
+                    </div>
+                `;
+
+                // 检查是否全部解锁
+                if (unlockedSecrets.length === 3) {
+                    document.getElementById('show-conclusion').disabled = false;
+                }
+            }
+        }
+
+        function showConclusion() {
+            document.getElementById('show-conclusion').style.display = 'none';
+            document.getElementById('conclusion-content').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

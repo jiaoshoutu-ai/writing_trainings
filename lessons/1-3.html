@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：互动练习 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* 主内容区 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* 环节样式 */
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+        .tag-orange { background: #ffedd5; color: #ea580c; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* 互动练习部分 */
+        .interactive-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .interactive-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+        .section-time {
+            font-size: 12px;
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 999px;
+            color: #64748b;
+            font-weight: normal;
+        }
+
+        /* 关键点强调 */
+        .key-points-section {
+            background: linear-gradient(135deg, #fefce8 0%, #fffbeb 100%);
+            border: 2px solid #facc15;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        .key-points-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #92400e;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .key-points-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .key-point-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid;
+        }
+        .key-point-card.desire {
+            border-color: #3b82f6;
+        }
+        .key-point-card.conflict {
+            border-color: #ef4444;
+        }
+        .key-point-card h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .key-point-card.desire h4 { color: #1e40af; }
+        .key-point-card.conflict h4 { color: #991b1b; }
+        .key-point-card ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .key-point-card.desire li { color: #1e3a8a; }
+        .key-point-card.conflict li { color: #7f1d1d; }
+        .key-point-card .wrong {
+            color: #94a3b8;
+            text-decoration: line-through;
+            font-size: 12px;
+        }
+        .key-point-card .right {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .practice-subsection {
+            margin-bottom: 32px;
+        }
+        .subsection-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .subsection-tag {
+            font-size: 12px;
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-weight: bold;
+        }
+        .subsection-tag.orange { background: #f97316; }
+
+        .exercise-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid #3b82f6;
+        }
+        .exercise-card h4 {
+            font-size: 14px;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+        .exercise-item {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .exercise-item:last-child { margin-bottom: 0; }
+        .exercise-statement {
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .exercise-input-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .exercise-input-line label {
+            min-width: 80px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .exercise-input-line label.desire { color: #3b82f6; }
+        .exercise-input-line label.conflict { color: #ef4444; }
+        .exercise-input-line input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .exercise-input-line input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .rewrite-section {
+            background: #fff7ed;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        .rewrite-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c2410c;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        .topic-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .topic-pill {
+            background: white;
+            color: #9a3412;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 2px solid #fed7aa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .topic-pill:hover { border-color: #f97316; }
+        .topic-pill.active {
+            background: #f97316;
+            color: white;
+            border-color: #f97316;
+        }
+
+        .guide-questions {
+            background: #f0fdf4;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .guide-questions h5 {
+            color: #166534;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .guide-questions ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #15803d;
+            font-size: 13px;
+        }
+        .guide-questions li {
+            margin-bottom: 6px;
+        }
+
+        .example-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .example-card {
+            padding: 20px;
+            border-radius: 16px;
+        }
+        .example-card.before {
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+        }
+        .example-card.after {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+        }
+        .example-card h5 {
+            font-size: 13px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .example-card.before h5 { color: #991b1b; }
+        .example-card.after h5 { color: #166534; }
+        .example-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        /* 写作输入框 */
+        .writing-input-area {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            border: 2px solid #f97316;
+        }
+        .writing-input-area h5 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c2410c;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        .writing-input-area textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .writing-input-area textarea:focus {
+            border-color: #f97316;
+        }
+        .writing-input-area .hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+        .writing-input-area .hint strong {
+            color: #f97316;
+        }
+
+        /* 按钮 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .key-points-grid, .example-comparison {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav-header">
+        <a href="1-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            环节二
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程一</span>
+            <div class="lesson-subtitle">故事是什么？——告别流水账</div>
+        </div>
+        <a href="1-4.html" style="color: #3b82f6;">
+            环节四
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- 环节三：互动练习 -->
+        <div class="interactive-section">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span class="section-tag tag-purple">环节三：互动练习</span>
+                <h2>补全"欲望"和"冲突" <span class="section-time">15 分钟</span></h2>
+            </div>
+
+            <!-- 关键点强调 -->
+            <div class="key-points-section">
+                <h3>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    关键点强调
+                </h3>
+                <div class="key-points-grid">
+                    <div class="key-point-card desire">
+                        <h4>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            欲望要具体
+                        </h4>
+                        <ul>
+                            <li>不是<span class="wrong">"想做好"</span>，而是：</li>
+                            <li class="right">"想证明自己"</li>
+                            <li class="right">"想让妈妈高兴"</li>
+                            <li class="right">"想拿到那个奖品"</li>
+                        </ul>
+                    </div>
+                    <div class="key-point-card conflict">
+                        <h4>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            冲突要真实
+                        </h4>
+                        <ul>
+                            <li>小冲突也是冲突：</li>
+                            <li class="right">"想喝水但杯子太烫"</li>
+                            <li class="right">"想说话但老师盯着我"</li>
+                            <li class="right">"想帮忙却越帮越忙"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习 1：全班口头回答 -->
+            <div class="practice-subsection">
+                <div class="subsection-header">
+                    <span class="subsection-tag">练习 1</span>
+                    <h3 style="font-size: 16px;">全班口头回答 <span style="color: #64748b; font-weight: normal; font-size: 13px;">（5 分钟）</span></h3>
+                </div>
+                <p style="color: #64748b; margin-bottom: 16px;">下面三个句子，学生快速补充"想要"和"但是"：</p>
+
+                <div class="exercise-card">
+                    <div class="exercise-item">
+                        <p class="exercise-statement">1. 今天早上我迟到了。</p>
+                        <div class="exercise-input-line">
+                            <label class="desire">想要：</label>
+                            <input type="text" placeholder="例如：想躲过教导主任的检查">
+                        </div>
+                        <div class="exercise-input-line">
+                            <label class="conflict">但是：</label>
+                            <input type="text" placeholder="例如：校门关上了，只能翻墙">
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <p class="exercise-statement">2. 妈妈批评了我。</p>
+                        <div class="exercise-input-line">
+                            <label class="desire">想要：</label>
+                            <input type="text" placeholder="例如：希望妈妈理解我">
+                        </div>
+                        <div class="exercise-input-line">
+                            <label class="conflict">但是：</label>
+                            <input type="text" placeholder="例如：她一开口就提别人家的孩子">
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <p class="exercise-statement">3. 我们班输了篮球赛。</p>
+                        <div class="exercise-input-line">
+                            <label class="desire">想要：</label>
+                            <input type="text" placeholder="例如：想为班级争光">
+                        </div>
+                        <div class="exercise-input-line">
+                            <label class="conflict">但是：</label>
+                            <input type="text" placeholder="例如：最后时刻主力受伤">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习 2：小组改写 PK -->
+            <div class="practice-subsection">
+                <div class="subsection-header">
+                    <span class="subsection-tag orange">练习 2</span>
+                    <h3 style="font-size: 16px;">小组改写 PK <span style="color: #64748b; font-weight: normal; font-size: 13px;">（10 分钟）</span></h3>
+                </div>
+
+                <div class="rewrite-section">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        任务：把"流水账"改写成有故事性的版本
+                    </h4>
+                    <p style="color: #9a3412; font-size: 14px; margin-bottom: 16px;">用上"因为……但是……所以……"公式</p>
+
+                    <p style="font-size: 13px; color: #64748b; margin-bottom: 12px;">分组：4-5 人一组，每组发一张大白纸</p>
+
+                    <p style="font-size: 13px; color: #64748b; margin-bottom: 12px;">题目（三选一）：</p>
+                    <div class="topic-pills">
+                        <span class="topic-pill active" onclick="selectTopic(this, 'topic1')">我学会了骑自行车</span>
+                        <span class="topic-pill" onclick="selectTopic(this, 'topic2')">第一次上台演讲</span>
+                        <span class="topic-pill" onclick="selectTopic(this, 'topic3')">和朋友吵架又和好</span>
+                    </div>
+
+                    <div class="guide-questions">
+                        <h5>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            教师巡视指导问题：
+                        </h5>
+                        <ul>
+                            <li>当时你最想要什么？</li>
+                            <li>最难的是什么？</li>
+                            <li>你是怎么做的？</li>
+                        </ul>
+                    </div>
+
+                    <p style="font-size: 13px; color: #166534; font-style: italic; margin-top: 16px;">鼓励写真实经历，哪怕很小的事</p>
+
+                        <!-- 示例对比 -->
+                        <h4 style="margin-top: 24px; color: #c2410c; font-size: 15px;">示例参考：</h4>
+                        <div class="example-comparison">
+                            <div class="example-card before">
+                                <h5>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                    原版（流水账）
+                                </h5>
+                                <p>我学会了骑自行车，摔了好几跤，最后终于会了。</p>
+                            </div>
+                            <div class="example-card after">
+                                <h5>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    改写版（有故事）
+                                </h5>
+                                <p>因为想和伙伴们一起骑车上学，我央求爸爸教我。但是那辆二八大杠对我来说太高了，刚跨上去就摔了个四脚朝天。膝盖破了皮，我坐在地上不想起来。爸爸没扶我，只说："自己爬起来，摔三次准会。"于是一咬牙，扶起车，摔，再扶，再摔……第三次，我居然歪歪扭扭骑出了十米远。回头一看，爸爸在后面偷偷扶着车座的手，不知什么时候松开了。</p>
+                            </div>
+                        </div>
+
+                        <!-- 写作输入框 -->
+                        <div class="writing-input-area">
+                            <h5>
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                我的改写
+                            </h5>
+                            <textarea placeholder="选一个题目，用&quot;因为……但是……所以……&quot;公式改写：
+
+1. 我学会了骑自行车
+2. 第一次上台演讲
+3. 和朋友吵架又和好
+
+提示：先写出&quo 想要什么，再写出遇到了什么困难……"></textarea>
+                            <p class="hint"><strong>提示：</strong>写完后读一读，看看有没有写出真实的欲望和冲突。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导航按钮 -->
+        <div class="nav-buttons">
+            <a href="1-2.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：故事骨架
+            </a>
+            <a href="1-4.html" class="btn btn-purple">
+                下一步：总结与作业
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectTopic(element, topicId) {
+            // 移除所有 active 类
+            document.querySelectorAll('.topic-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            // 添加 active 类到当前选中的
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

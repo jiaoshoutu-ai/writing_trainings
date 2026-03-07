@@ -1,2 +1,2 @@
-# writing_trainings
-a website design to help student to improve writing skills
+# writing_training
+a webpage to help student improve writing skills
