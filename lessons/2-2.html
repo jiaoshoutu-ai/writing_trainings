@@ -65,6 +65,86 @@
         .tag-purple { background: #f3e8ff; color: #9333ea; }
         .tag-orange { background: #ffedd5; color: #ea580c; }
 
+        /* 引导部分样式 */
+        .intro-section {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border: 2px solid #a855f7;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+        }
+
+        .intro-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            color: #6b21a8;
+        }
+
+        .intro-header h2 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .three-questions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);
+        }
+
+        .question-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .question-content h3 {
+            font-size: 15px;
+            font-weight: bold;
+            color: #6b21a8;
+            margin-bottom: 8px;
+        }
+
+        .question-content p {
+            font-size: 13px;
+            color: #7c3aed;
+            line-height: 1.6;
+        }
+
+        .key-tip {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .key-tip strong {
+            color: #78350f;
+        }
+
         h1 {
             font-size: 2.2em;
             font-weight: 900;
@@ -185,13 +265,13 @@
 
         .writing-area textarea {
             width: 100%;
-            min-height: 120px;
+            min-height: 200px;
             padding: 16px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 14px;
             line-height: 1.8;
-            resize: vertical;
+            resize: none;
             outline: none;
             transition: border-color 0.3s;
             font-family: inherit;
@@ -199,6 +279,11 @@
 
         .writing-area textarea:focus {
             border-color: #a855f7;
+        }
+
+        .writing-area.orange textarea {
+            min-height: 280px;
+            border-color: #f97316;
         }
 
         .input-footer {
@@ -313,8 +398,11 @@
         }
 
         @media (max-width: 768px) {
-            .scene-grid {
+            .scene-grid, .three-questions {
                 grid-template-columns: 1fr;
+            }
+            .question-card {
+                flex-direction: row;
             }
             h1 { font-size: 1.6em; }
         }
@@ -331,7 +419,7 @@
             <div class="lesson-subtitle">一句话故事——快速构建故事骨架</div>
         </div>
         <a href="2-3.html" style="color: #a855f7;">
-            分享互评
+            让故事更新颖
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
     </div>
@@ -340,6 +428,44 @@
         <div style="text-align: center;">
             <span class="section-tag tag-purple">环节二：实战演练</span>
             <h1>一句话故事创作</h1>
+        </div>
+
+        <!-- 三个问题引导 -->
+        <div class="intro-section">
+            <div class="intro-header">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <h2>讲一件事，问自己三个问题</h2>
+            </div>
+
+            <div class="three-questions">
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-content">
+                        <h3>这件事里，我最在乎的是什么？</h3>
+                        <p>（哪怕是很小的在乎：想吃到鸡腿、不想被点名、想让妈妈高兴……）</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-content">
+                        <h3>什么让这件事没那么顺？</h3>
+                        <p>（一个人？一个意外？一个困难？一个误会？）</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">3</div>
+                    <div class="question-content">
+                        <h3>最后怎么了？我什么感觉？</h3>
+                        <p>（成了还是砸了？明白了还是更糊涂了？）</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-tip">
+                <strong>关键提示：</strong>这三个问题不是填空题，是帮你发现自己故事的梯子。
+            </div>
         </div>
 
         <div class="practice-section">
@@ -396,7 +522,7 @@ _________________________________"></textarea>
                     </p>
                 </div>
 
-                <div class="writing-area" style="border-color: #f97316;">
+                <div class="writing-area orange" style="border-color: #f97316;">
                     <h4 style="color: #c2410c;">
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                         我的一句话故事
@@ -446,7 +572,7 @@ _________________________________"></textarea>
                 上一步：一句话故事是什么
             </a>
             <a href="2-3.html" class="btn btn-purple">
-                下一步：分享与互评
+                下一步：让故事更新颖
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
         </div>
