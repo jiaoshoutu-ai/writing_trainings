@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：实战演练 - 五感观察</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .practice-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .timer-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .timer-display {
+            font-size: 48px;
+            font-weight: 900;
+            color: #d97706;
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 12px;
+        }
+
+        .timer-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timer-btn:hover { background: #d97706; }
+        .timer-btn.running { background: #ef4444; }
+
+        .object-info {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .object-info h3 {
+            color: #166534;
+            margin-bottom: 12px;
+        }
+
+        .object-info p {
+            color: #15803d;
+            font-size: 14px;
+        }
+
+        .senses-form {
+            display: grid;
+            gap: 16px;
+        }
+
+        .sense-input {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .sense-input label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .sense-input:nth-child(1) label { color: #3b82f6; }
+        .sense-input:nth-child(2) label { color: #ef4444; }
+        .sense-input:nth-child(3) label { color: #22c55e; }
+        .sense-input:nth-child(4) label { color: #f59e0b; }
+        .sense-input:nth-child(5) label { color: #a855f7; }
+
+        .sense-input textarea {
+            width: 100%;
+            min-height: 80px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            line-height: 1.8;
+            font-family: inherit;
+            resize: vertical;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .sense-input textarea:focus {
+            outline: 2px solid #3b82f6;
+        }
+
+        .save-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 16px;
+        }
+
+        .save-btn:hover { background: #16a34a; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-green {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+        }
+        .btn-green:hover { background: #16a34a; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="4-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程四</span>
+            <div class="lesson-subtitle">五感速写训练</div>
+        </div>
+        <a href="4-3.html" style="color: #22c55e;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-green">环节二：实战演练</span>
+            <h1>五感观察：2 分钟速写</h1>
+        </div>
+
+        <div class="practice-section">
+            <div class="timer-box">
+                <div class="timer-display" id="timer">02:00</div>
+                <button class="timer-btn" id="timer-btn" onclick="toggleTimer()">开始计时</button>
+                <p style="color: #92400e; font-size: 13px; margin-top: 12px;">
+                    拿出一个橘子（或其他实物），从五感角度观察并记录
+                </p>
+            </div>
+
+            <div class="object-info">
+                <h3>🍊 观察对象：橘子</h3>
+                <p>如果你没有橘子，可以用其他水果、文具、小物件代替。</p>
+            </div>
+
+            <div class="senses-form">
+                <div class="sense-input">
+                    <label>
+                        <span>👁️</span> 视觉 - 你看到了什么？
+                    </label>
+                    <textarea id="sense-see" placeholder="颜色、形状、表面的纹理……"></textarea>
+                </div>
+
+                <div class="sense-input">
+                    <label>
+                        <span>👂</span> 听觉 - 你听到了什么？
+                    </label>
+                    <textarea id="sense-hear" placeholder="剥皮时的声音、咬下去的声音……"></textarea>
+                </div>
+
+                <div class="sense-input">
+                    <label>
+                        <span>👃</span> 嗅觉 - 你闻到了什么？
+                    </label>
+                    <textarea id="sense-smell" placeholder="香气、气味……"></textarea>
+                </div>
+
+                <div class="sense-input">
+                    <label>
+                        <span>✋</span> 触觉 - 你摸到了什么？
+                    </label>
+                    <textarea id="sense-touch" placeholder="温度、质感、软硬……"></textarea>
+                </div>
+
+                <div class="sense-input">
+                    <label>
+                        <span>👅</span> 味觉 - 你尝到了什么？
+                    </label>
+                    <textarea id="sense-taste" placeholder="酸、甜、苦、涩……"></textarea>
+                </div>
+            </div>
+
+            <button class="save-btn" onclick="saveObservation()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                保存观察
+            </button>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="4-1.html" class="btn btn-green">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：认识五感
+            </a>
+            <a href="4-3.html" class="btn btn-green">
+                下一步：迁移训练
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let timerInterval = null;
+        let isRunning = false;
+        let timeLeft = 120;
+
+        function toggleTimer() {
+            const btn = document.getElementById('timer-btn');
+            const display = document.getElementById('timer');
+
+            if (isRunning) {
+                clearInterval(timerInterval);
+                btn.textContent = '继续计时';
+                btn.classList.remove('running');
+            } else {
+                btn.textContent = '暂停计时';
+                btn.classList.add('running');
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    const mins = Math.floor(timeLeft / 60);
+                    const secs = timeLeft % 60;
+                    display.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        display.textContent = '时间到！';
+                        btn.textContent = '重新开始';
+                        btn.classList.remove('running');
+                        timeLeft = 120;
+                    }
+                }, 1000);
+            }
+            isRunning = !isRunning;
+        }
+
+        function saveObservation() {
+            const observation = {
+                see: document.getElementById('sense-see').value,
+                hear: document.getElementById('sense-hear').value,
+                smell: document.getElementById('sense-smell').value,
+                touch: document.getElementById('sense-touch').value,
+                taste: document.getElementById('sense-taste').value
+            };
+            localStorage.setItem('lesson4_observation', JSON.stringify(observation));
+            alert('观察记录已保存！');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson4_observation');
+            if (saved) {
+                const observation = JSON.parse(saved);
+                if (observation.see) document.getElementById('sense-see').value = observation.see;
+                if (observation.hear) document.getElementById('sense-hear').value = observation.hear;
+                if (observation.smell) document.getElementById('sense-smell').value = observation.smell;
+                if (observation.touch) document.getElementById('sense-touch').value = observation.touch;
+                if (observation.taste) document.getElementById('sense-taste').value = observation.taste;
+            }
+        });
+    </script>
+</body>
+</html>

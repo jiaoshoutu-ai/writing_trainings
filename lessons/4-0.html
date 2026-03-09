@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：复习导入 - 五感速写</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-cyan { background: #ecfeff; color: #0e7490; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .review-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .review-box h3 {
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .five-senses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .sense-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .sense-card:nth-child(1) { border-color: #3b82f6; }
+        .sense-card:nth-child(2) { border-color: #ef4444; }
+        .sense-card:nth-child(3) { border-color: #22c55e; }
+        .sense-card:nth-child(4) { border-color: #f59e0b; }
+        .sense-card:nth-child(5) { border-color: #a855f7; }
+
+        .sense-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .sense-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .sense-desc {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .objective-box {
+            background: linear-gradient(135deg, #0e7490, #155e75);
+            color: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .objective-box h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .objective-box p {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-cyan {
+            background: #0891b2;
+            color: white;
+            box-shadow: 0 4px 15px rgba(8,145,178,0.4);
+        }
+        .btn-cyan:hover { background: #0e7490; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .five-senses {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程四</span>
+            <div class="lesson-subtitle">五感速写训练</div>
+        </div>
+        <a href="4-1.html" style="color: #0891b2;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-cyan">环节零：复习导入</span>
+            <h1>用五感代替空洞词</h1>
+        </div>
+
+        <div class="intro-section">
+            <div class="review-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    回顾：上周我们消灭了"很"字
+                </h3>
+                <p style="color: #64748b; margin-bottom: 20px;">现在我们要学习用什么样的具体描写来代替那些空洞词呢？答案是——<strong>五感描写</strong>！</p>
+
+                <div class="five-senses">
+                    <div class="sense-card">
+                        <div class="sense-icon">👁️</div>
+                        <div class="sense-name" style="color: #3b82f6;">视觉</div>
+                        <div class="sense-desc">看到的颜色、形状、动作</div>
+                    </div>
+                    <div class="sense-card">
+                        <div class="sense-icon">👂</div>
+                        <div class="sense-name" style="color: #ef4444;">听觉</div>
+                        <div class="sense-desc">听到的声音、节奏</div>
+                    </div>
+                    <div class="sense-card">
+                        <div class="sense-icon">👃</div>
+                        <div class="sense-name" style="color: #22c55e;">嗅觉</div>
+                        <div class="sense-desc">闻到的气味</div>
+                    </div>
+                    <div class="sense-card">
+                        <div class="sense-icon">✋</div>
+                        <div class="sense-name" style="color: #f59e0b;">触觉</div>
+                        <div class="sense-desc">摸到的质感、温度</div>
+                    </div>
+                    <div class="sense-card">
+                        <div class="sense-icon">👅</div>
+                        <div class="sense-name" style="color: #a855f7;">味觉</div>
+                        <div class="sense-desc">尝到的味道</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objective-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    本周目标
+                </h3>
+                <p>
+                    准备一个<strong>橘子</strong>（或其他实物），用 2 分钟时间，从<strong>视觉、听觉、嗅觉、触觉、味觉</strong>五个角度写出观察。<br><br>
+                    之后，把"五感"用到作文场景中。比如写<strong>"奶奶在厨房做饭"</strong>，就要写出切菜的"咚咚"声、油烟的呛味、围裙上的面粉印子。
+                </p>
+            </div>
+
+            <div style="background: #fefce8; border: 2px solid #facc15; border-radius: 20px; padding: 28px; margin-top: 24px;">
+                <h3 style="color: #92400e; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    示例：观察橘子
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="background: white; padding: 16px; border-radius: 12px;">
+                        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 6px;">👁️ 看</p>
+                        <p style="color: #475569; font-size: 14px;">金黄色的皮，上面有细密的小坑，像月球表面。</p>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 12px;">
+                        <p style="color: #f59e0b; font-weight: bold; margin-bottom: 6px;">✋ 摸</p>
+                        <p style="color: #475569; font-size: 14px;">凉凉的，表面有点粗糙，轻轻一捏能感觉到里面的弹性。</p>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 12px;">
+                        <p style="color: #22c55e; font-weight: bold; margin-bottom: 6px;">👃 闻</p>
+                        <p style="color: #475569; font-size: 14px;">还没剥开，就有一股清甜的香气钻进鼻子。</p>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 12px;">
+                        <p style="color: #ef4444; font-weight: bold; margin-bottom: 6px;">👂 听</p>
+                        <p style="color: #475569; font-size: 14px;">指甲掐进皮里，发出"滋滋"的细小声音。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn btn-cyan">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回首页
+            </a>
+            <a href="4-1.html" class="btn btn-cyan">
+                下一步：认识五感
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

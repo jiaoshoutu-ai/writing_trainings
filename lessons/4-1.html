@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节一：认识五感 - 五感速写</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .five-senses-grid {
+            display: grid;
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .sense-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 4px solid #3b82f6;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .sense-card:nth-child(2) { border-left-color: #ef4444; }
+        .sense-card:nth-child(3) { border-left-color: #22c55e; }
+        .sense-card:nth-child(4) { border-left-color: #f59e0b; }
+        .sense-card:nth-child(5) { border-left-color: #a855f7; }
+
+        .sense-icon {
+            width: 56px;
+            height: 56px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .sense-card:nth-child(2) .sense-icon { background: #fee2e2; }
+        .sense-card:nth-child(3) .sense-icon { background: #dcfce7; }
+        .sense-card:nth-child(4) .sense-icon { background: #fef3c7; }
+        .sense-card:nth-child(5) .sense-icon { background: #f3e8ff; }
+
+        .sense-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .sense-card:nth-child(1) .sense-content h3 { color: #3b82f6; }
+        .sense-card:nth-child(2) .sense-content h3 { color: #dc2626; }
+        .sense-card:nth-child(3) .sense-content h3 { color: #16a34a; }
+        .sense-card:nth-child(4) .sense-content h3 { color: #d97706; }
+        .sense-card:nth-child(5) .sense-content h3 { color: #9333ea; }
+
+        .sense-content p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .sense-example {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tip-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            color: #78350f;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .sense-card {
+                flex-direction: column;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="4-0.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程四</span>
+            <div class="lesson-subtitle">五感速写训练</div>
+        </div>
+        <a href="4-2.html" style="color: #3b82f6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-blue">环节一：认识五感</span>
+            <h1>五感是什么？怎么用？</h1>
+        </div>
+
+        <div class="content-section">
+            <p style="font-size: 16px; color: #475569; margin-bottom: 24px;">
+                五感就是人类感知世界的五种方式：<strong>视觉、听觉、嗅觉、触觉、味觉</strong>。用好五感，能让你的描写从"告诉读者"变成"让读者感受到"。
+            </p>
+
+            <div class="five-senses-grid">
+                <!-- 视觉 -->
+                <div class="sense-card">
+                    <div class="sense-icon">👁️</div>
+                    <div class="sense-content">
+                        <h3>视觉 - 看到的</h3>
+                        <p>颜色、形状、大小、动作、表情、光影变化……</p>
+                        <div class="sense-example">
+                            <strong>例：</strong>夕阳把她的影子拉得很长，发丝在风中轻轻飘动，眼睛里闪着光。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 听觉 -->
+                <div class="sense-card">
+                    <div class="sense-icon">👂</div>
+                    <div class="sense-content">
+                        <h3>听觉 - 听到的</h3>
+                        <p>声音的高低、强弱、节奏、远近……</p>
+                        <div class="sense-example">
+                            <strong>例：</strong>厨房里传来"咚咚咚"的切菜声，油锅"滋啦"一声，香味就飘出来了。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 嗅觉 -->
+                <div class="sense-card">
+                    <div class="sense-icon">👃</div>
+                    <div class="sense-content">
+                        <h3>嗅觉 - 闻到的</h3>
+                        <p>香气、臭味、清新的、刺鼻的……</p>
+                        <div class="sense-example">
+                            <strong>例：</strong>刚下过雨，空气里有泥土的腥味和青草的清香。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 触觉 -->
+                <div class="sense-card">
+                    <div class="sense-icon">✋</div>
+                    <div class="sense-content">
+                        <h3>触觉 - 摸到的/身体感觉</h3>
+                        <p>温度、质感、软硬、粗细、轻重……</p>
+                        <div class="sense-example">
+                            <strong>例：</strong>奶奶的手粗糙得像老树皮，掌心有厚厚的茧，握着我的手却很温暖。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 味觉 -->
+                <div class="sense-card">
+                    <div class="sense-icon">👅</div>
+                    <div class="sense-content">
+                        <h3>味觉 - 尝到的</h3>
+                        <p>酸、甜、苦、辣、咸、涩……</p>
+                        <div class="sense-example">
+                            <strong>例：</strong>第一口是酸的，我眯起了眼，然后甜味才慢慢从舌尖泛开。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    使用技巧
+                </h4>
+                <p>
+                    不需要每次都把五感全部用上。<strong>选 2-3 种最突出的感觉</strong>，就能让场景生动起来。<br>
+                    关键是：<strong>选对的，不选多的</strong>。
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="4-0.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：复习导入
+            </a>
+            <a href="4-2.html" class="btn btn-blue">
+                下一步：实战演练
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：复习导入 - 消灭"很"字游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-red { background: #fee2e2; color: #dc2626; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid #dc2626;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .problem-box h3 {
+            color: #991b1b;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .problem-item {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #dc2626;
+            font-size: 16px;
+        }
+
+        .rule-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .rule-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-content {
+            font-size: 16px;
+            color: #78350f;
+            line-height: 1.8;
+        }
+
+        .rule-content strong {
+            color: #dc2626;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-red {
+            background: #dc2626;
+            color: white;
+            box-shadow: 0 4px 15px rgba(220,38,38,0.4);
+        }
+        .btn-red:hover { background: #b91c1c; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .problem-list {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程三</span>
+            <div class="lesson-subtitle">消灭"很"字——告别空洞词</div>
+        </div>
+        <a href="3-1.html" style="color: #dc2626;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-red">环节零：复习导入</span>
+            <h1>为什么不能用"很"字？</h1>
+        </div>
+
+        <div class="intro-section">
+            <div class="problem-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    你是不是也爱用这些词？
+                </h3>
+                <div class="problem-list">
+                    <div class="problem-item">很美</div>
+                    <div class="problem-item">很开心</div>
+                    <div class="problem-item">很难过</div>
+                    <div class="problem-item">很紧张</div>
+                    <div class="problem-item">很热闹</div>
+                    <div class="problem-item">很伤心</div>
+                </div>
+            </div>
+
+            <p style="color: #64748b; text-align: center; margin-bottom: 24px;">
+                这些词叫做<strong>"标签词"</strong>——它们只是给事物贴标签，不能让读者<strong>看到、听到、感受到</strong>。
+            </p>
+
+            <div class="rule-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    本周规则：消灭"很"字！
+                </h3>
+                <p class="rule-content">
+                    以后写作文，<strong>谁再用"很"字，扣分！</strong><br>
+                    必须换成具体的描写，让读者自己感受到你想表达的情绪。
+                </p>
+            </div>
+
+            <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 20px; padding: 28px; margin-top: 24px;">
+                <h3 style="color: #166534; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    对比一下
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="background: #fee2e2; padding: 20px; border-radius: 12px;">
+                        <p style="color: #991b1b; font-weight: bold; margin-bottom: 8px;">原句</p>
+                        <p style="color: #7f1d1d;">今天天气很热。</p>
+                    </div>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 12px;">
+                        <p style="color: #166534; font-weight: bold; margin-bottom: 8px;">改后</p>
+                        <p style="color: #14532d; font-size: 14px;">柏油路被晒得发软，踩上去有种黏鞋底的感觉。路边的狗趴在树荫下，舌头伸得老长，喘气声隔着十米都能听见。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn btn-red">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回首页
+            </a>
+            <a href="3-1.html" class="btn btn-red">
+                下一步：认识"很"字
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

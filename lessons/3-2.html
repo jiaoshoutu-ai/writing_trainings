@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：实战演练——消灭"很"字</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .practice-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .exercise-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6b21a8;
+        }
+
+        .original-sentence {
+            background: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .original-sentence p {
+            color: #991b1b;
+            font-size: 15px;
+        }
+
+        .original-sentence strong {
+            color: #dc2626;
+            text-decoration: line-through;
+        }
+
+        .textarea-box {
+            background: white;
+            border: 2px solid #a855f7;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .textarea-box textarea {
+            width: 100%;
+            min-height: 120px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            line-height: 1.8;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .textarea-box .placeholder {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .word-limit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .word-count {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .save-btn {
+            background: #a855f7;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-btn:hover { background: #9333ea; }
+
+        .example-box {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .example-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p {
+            color: #78350f;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="3-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程三</span>
+            <div class="lesson-subtitle">消灭"很"字——告别空洞词</div>
+        </div>
+        <a href="3-3.html" style="color: #a855f7;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">环节二：实战演练</span>
+            <h1>把"很"字句改成具体描写</h1>
+        </div>
+
+        <div class="practice-section">
+            <!-- 练习 1 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <div class="exercise-number">1</div>
+                    <div class="exercise-title">改写"很伤心"</div>
+                </div>
+                <div class="original-sentence">
+                    <p>原句：他<strong>很伤心</strong>。</p>
+                </div>
+                <p style="color: #64748b; margin-bottom: 12px; font-size: 14px;">要求：用 50 字写出画面，不许出现"伤心"二字。</p>
+                <div class="textarea-box">
+                    <textarea id="exercise1" placeholder="你的改写："></textarea>
+                    <div class="word-limit">
+                        <span class="word-count">当前字数：<strong id="count1">0</strong></span>
+                        <button class="save-btn" onclick="saveExercise(1)">保存</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习 2 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <div class="exercise-number">2</div>
+                    <div class="exercise-title">改写"很紧张"</div>
+                </div>
+                <div class="original-sentence">
+                    <p>原句：上台前，我<strong>很紧张</strong>。</p>
+                </div>
+                <p style="color: #64748b; margin-bottom: 12px; font-size: 14px;">要求：用 60 字写出紧张的感觉，不许出现"紧张"二字。</p>
+                <div class="textarea-box">
+                    <textarea id="exercise2" placeholder="你的改写："></textarea>
+                    <div class="word-limit">
+                        <span class="word-count">当前字数：<strong id="count2">0</strong></span>
+                        <button class="save-btn" onclick="saveExercise(2)">保存</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习 3 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <div class="exercise-number">3</div>
+                    <div class="exercise-title">改写"很开心"</div>
+                </div>
+                <div class="original-sentence">
+                    <p>原句：听到这个消息，她<strong>很开心</strong>。</p>
+                </div>
+                <p style="color: #64748b; margin-bottom: 12px; font-size: 14px;">要求：用 60 字写出开心的样子，不许出现"开心"二字。</p>
+                <div class="textarea-box">
+                    <textarea id="exercise3" placeholder="你的改写："></textarea>
+                    <div class="word-limit">
+                        <span class="word-count">当前字数：<strong id="count3">0</strong></span>
+                        <button class="save-btn" onclick="saveExercise(3)">保存</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    示例参考
+                </h4>
+                <p><strong>"很紧张"改写示例：</strong><br>
+                手心全是汗，我把演讲稿攥在手里，纸都皱成一团了。心跳得厉害，感觉整个礼堂都能听见。轮到我上台时，腿有点发软，差点绊了一跤。</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="3-1.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一步：认识"很"字
+            </a>
+            <a href="3-3.html" class="btn btn-purple">
+                下一步：分享与点评
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function setupExercise(id, countId) {
+            const textarea = document.getElementById(id);
+            const countEl = document.getElementById(countId);
+
+            if (textarea && countEl) {
+                textarea.addEventListener('input', function() {
+                    countEl.textContent = this.value.length;
+                });
+            }
+        }
+
+        function saveExercise(id) {
+            const content = document.getElementById('exercise' + id).value;
+            if (content.trim().length === 0) {
+                alert('请先填写你的改写！');
+                return;
+            }
+            localStorage.setItem('lesson3_exercise' + id, content);
+            alert('练习已保存！');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            setupExercise('exercise1', 'count1');
+            setupExercise('exercise2', 'count2');
+            setupExercise('exercise3', 'count3');
+
+            for (let i = 1; i <= 3; i++) {
+                const saved = localStorage.getItem('lesson3_exercise' + i);
+                if (saved) {
+                    document.getElementById('exercise' + i).value = saved;
+                    document.getElementById('count' + i).textContent = saved.length;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
