@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：实战练习 - 悬念式开头</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .practice-instruction {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .practice-instruction h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .practice-instruction p {
+            color: #78350f;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .practice-card {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .practice-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #7e22ce;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .method-badge {
+            padding: 4px 12px;
+            background: #e9d5ff;
+            color: #6b21a8;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .practice-textarea:focus {
+            border-color: #a855f7;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .example-hint {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .example-hint h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-hint p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .success-toast {
+            background: #dcfce7;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            display: none;
+            color: #166534;
+        }
+
+        .success-toast.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="6-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程六</span>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+        </div>
+        <a href="6-4.html" style="color: #a855f7;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">环节三：实战练习</span>
+            <h1>用三种方法写《我的妈妈》</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="practice-instruction">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H2a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-3.5l-9 9z"/></svg>
+                    练习任务
+                </h3>
+                <p>
+                    请用今天学的三种悬念开头法，分别给《我的妈妈》这个普通题目写一个开头。<br>
+                    每个开头<strong>30-50 字</strong>左右，不需要写完整文章，只写开头。
+                </p>
+            </div>
+
+            <!-- 练习一：结果先行 -->
+            <div class="practice-card">
+                <div class="practice-title">
+                    <span>开头一：结果先行</span>
+                    <span class="method-badge">把结局/关键结果放在开头</span>
+                </div>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
+                    提示：可以先写"直到……我才……"或"当……时，我才知道……"
+                </p>
+                <textarea
+                    class="practice-textarea"
+                    id="method1"
+                    placeholder="例如：直到整理妈妈的遗物时，我才知道，那个每天给我送牛奶的老人，竟然是她失散多年的亲哥哥……"
+                    oninput="checkLength('method1', 'count1', 30)"
+                ></textarea>
+                <div class="char-count" id="count1">0/50 字</div>
+                <div class="success-toast" id="toast1">
+                    ✓ 写得不错！继续完成下一个开头吧！
+                </div>
+                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(1)" id="btn1">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+            </div>
+
+            <!-- 练习二：细节反常 -->
+            <div class="practice-card">
+                <div class="practice-title">
+                    <span>开头二：细节反常</span>
+                    <span class="method-badge">描写一个反常的、不合常理的细节</span>
+                </div>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
+                    提示：可以写妈妈藏起来的东西、反常的举动、奇怪的習慣等
+                </p>
+                <textarea
+                    class="practice-textarea"
+                    id="method2"
+                    placeholder="例如：妈妈的手机上，存着一个从没打过的号码，备注是三个字：对不起。"
+                    oninput="checkLength('method2', 'count2', 30)"
+                ></textarea>
+                <div class="char-count" id="count2">0/50 字</div>
+                <div class="success-toast" id="toast2">
+                    ✓ 很好！这个细节让人好奇！继续完成最后一个！
+                </div>
+                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(2)" id="btn2">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+            </div>
+
+            <!-- 练习三：对话引入 -->
+            <div class="practice-card">
+                <div class="practice-title">
+                    <span>开头三：对话引入</span>
+                    <span class="method-badge">用人物的对话开场</span>
+                </div>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
+                    提示：用"xxx 说"开头，让读者好奇对话的背景
+                </p>
+                <textarea
+                    class="practice-textarea"
+                    id="method3"
+                    placeholder="例如：'你真的要去吗？'姐姐的声音在发抖。"
+                    oninput="checkLength('method3', 'count3', 30)"
+                ></textarea>
+                <div class="char-count" id="count3">0/50 字</div>
+                <div class="success-toast" id="toast3">
+                    ✓ 太棒了！三种悬念开头你都完成了！
+                </div>
+                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(3)" id="btn3">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+            </div>
+
+            <div class="example-hint">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    写作小贴士
+                </h4>
+                <p>
+                    悬念不是"卖关子"，而是<strong>用具体的细节激发读者的好奇心</strong>。<br>
+                    避免使用"很""非常""特别"这些空洞的词，用<strong>动作、物品、对话</strong>来制造悬念。
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="6-2.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：对比练习
+            </a>
+            <a href="6-4.html" class="btn btn-purple">
+                下一步：总结与作业
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let completedPractices = {1: false, 2: false, 3: false};
+
+        function checkLength(textareaId, countId, minChars) {
+            const textarea = document.getElementById(textareaId);
+            const countDiv = document.getElementById(countId);
+            const length = textarea.value.trim().length;
+            countDiv.textContent = length + '/50 字';
+        }
+
+        function submitPractice(num) {
+            const textarea = document.getElementById('method' + num);
+            const toast = document.getElementById('toast' + num);
+            const btn = document.getElementById('btn' + num);
+            const length = textarea.value.trim().length;
+
+            if (length < minChars) {
+                alert('请至少写 ' + minChars + ' 字哦！');
+                return;
+            }
+
+            // 显示成功提示
+            toast.classList.add('show');
+            btn.disabled = true;
+            btn.textContent = '已完成';
+            completedPractices[num] = true;
+
+            // 保存练习
+            savePractices();
+        }
+
+        function savePractices() {
+            const practices = {
+                method1: document.getElementById('method1').value,
+                method2: document.getElementById('method2').value,
+                method3: document.getElementById('method3').value,
+                completed: completedPractices
+            };
+            localStorage.setItem('lesson6_practices', JSON.stringify(practices));
+        }
+
+        // 自动保存
+        document.querySelectorAll('.practice-textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(savePractices, 2000);
+            });
+        });
+
+        // 加载已保存的练习
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson6_practices');
+            if (saved) {
+                const practices = JSON.parse(saved);
+                if (practices.method1) document.getElementById('method1').value = practices.method1;
+                if (practices.method2) document.getElementById('method2').value = practices.method2;
+                if (practices.method3) document.getElementById('method3').value = practices.method3;
+                if (practices.completed) {
+                    completedPractices = practices.completed;
+                    for (let i = 1; i <= 3; i++) {
+                        if (completedPractices[i]) {
+                            document.getElementById('toast' + i).classList.add('show');
+                            document.getElementById('btn' + i).disabled = true;
+                            document.getElementById('btn' + i).textContent = '已完成';
+                        }
+                    }
+                }
+            }
+            // 更新字数统计
+            for (let i = 1; i <= 3; i++) {
+                checkLength('method' + i, 'count' + i);
+            }
+        });
+    </script>
+</body>
+</html>

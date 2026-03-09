@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：实战练习 - 对话代替叙述</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .practice-instruction {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .practice-instruction h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .practice-instruction p {
+            color: #78350f;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .practice-card {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .practice-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .practice-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .scene-desc {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .scene-desc p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .scene-desc .narration {
+            color: #dc2626;
+            font-style: italic;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+            border-left: 3px solid #dc2626;
+        }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .practice-textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tip-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .tip-box h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .success-toast {
+            background: #dcfce7;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            display: none;
+            color: #166534;
+        }
+
+        .success-toast.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .example-hint {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .example-hint h4 {
+            color: #6b21a8;
+            margin-bottom: 12px;
+        }
+
+        .example-hint p {
+            color: #581c87;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .dialogue-sample {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .dialogue-line {
+            margin-bottom: 8px;
+            padding-left: 12px;
+            border-left: 3px solid #e9d5ff;
+            color: #4c1d95;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="7-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程七</span>
+            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
+        </div>
+        <a href="7-4.html" style="color: #3b82f6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-blue">环节三：实战练习</span>
+            <h1>把叙述改成对话</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="practice-instruction">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H2a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-3.5l-9 9z"/></svg>
+                    练习任务
+                </h3>
+                <p>
+                    阅读下面的场景描述，用<strong>对话</strong>来重写每个场景。<br>
+                    要求：不能用"很""非常""特别"等标签词，用人物的对话和动作来展现情绪。
+                </p>
+            </div>
+
+            <!-- 练习一 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 4l-4-4H6a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+                        场景一：迟到被老师发现
+                    </div>
+                    <span style="color: #64748b; font-size: 14px;">建议字数：80-120 字</span>
+                </div>
+
+                <div class="scene-desc">
+                    <p><strong>原叙述：</strong></p>
+                    <p class="narration">我迟到了，很害怕被老师发现。我偷偷溜进教室，但还是被老师看见了。</p>
+                </div>
+
+                <textarea
+                    class="practice-textarea"
+                    id="practice1"
+                    placeholder="用对话改写：
+（提示：可以写老师的质问、你的回答、动作细节等）
+
+"
+                    oninput="checkLength('practice1', 'count1')"
+                ></textarea>
+                <div class="char-count" id="count1">0 字</div>
+
+                <div class="success-toast" id="toast1">
+                    ✓ 写得不错！继续完成下一个场景！
+                </div>
+                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(1)" id="btn1">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint1" style="display: none;">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="dialogue-sample">
+                        <div class="dialogue-line">"站住。"老师的声音从背后传来，</div>
+                        <div class="dialogue-line">我僵在门口，手还搭在门把上。</div>
+                        <div class="dialogue-line">"现在几点了？"</div>
+                        <div class="dialogue-line">我低头看表，八点半。"老……老师，我……"</div>
+                        <div class="dialogue-line">"明天让你家长来一趟。"</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习二 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 4l-4-4H6a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+                        场景二：收到惊喜礼物
+                    </div>
+                    <span style="color: #64748b; font-size: 14px;">建议字数：80-120 字</span>
+                </div>
+
+                <div class="scene-desc">
+                    <p><strong>原叙述：</strong></p>
+                    <p class="narration">我生日那天，妈妈送了我一个礼物，我很感动。</p>
+                </div>
+
+                <textarea
+                    class="practice-textarea"
+                    id="practice2"
+                    placeholder="用对话改写：
+（提示：可以写妈妈的祝福、你的反应、对话中的停顿等）
+
+"
+                    oninput="checkLength('practice2', 'count2')"
+                ></textarea>
+                <div class="char-count" id="count2">0 字</div>
+
+                <div class="success-toast" id="toast2">
+                    ✓ 很好！继续完成最后一个！
+                </div>
+                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(2)" id="btn2">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint2" style="display: none;">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="dialogue-sample">
+                        <div class="dialogue-line">"这个，给你。"妈妈递过来一个包装得歪歪扭扭的盒子。</div>
+                        <div class="dialogue-line">"这是……给我的？"</div>
+                        <div class="dialogue-line">"嗯，我和你爸跑了好几家店才买到的。"</div>
+                        <div class="dialogue-line">我拆开盒子，是那套我念叨了半年的画笔。</div>
+                        <div class="dialogue-line">喉咙突然有点堵，"谢谢妈……"</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 练习三 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 4l-4-4H6a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+                        场景三：和朋友闹矛盾
+                    </div>
+                    <span style="color: #64748b; font-size: 14px;">建议字数：100-150 字</span>
+                </div>
+
+                <div class="scene-desc">
+                    <p><strong>原叙述：</strong></p>
+                    <p class="narration">我和好朋友吵架了，因为他说了一些伤人的话。我很生气，不理他了。</p>
+                </div>
+
+                <textarea
+                    class="practice-textarea"
+                    id="practice3"
+                    placeholder="用对话改写：
+（提示：可以写争吵的内容、语气、动作、沉默等）
+
+"
+                    oninput="checkLength('practice3', 'count3')"
+                ></textarea>
+                <div class="char-count" id="count3">0 字</div>
+
+                <div class="success-toast" id="toast3">
+                    ✓ 太棒了！三个场景你都完成了！
+                </div>
+                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(3)" id="btn3">
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint3" style="display: none;">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="dialogue-sample">
+                        <div class="dialogue-line">"反正你从来都不在乎我的感受！"她把这句话甩过来。</div>
+                        <div class="dialogue-line">我张了张嘴，"我没有……"</div>
+                        <div class="dialogue-line">"你有！每次都是这样！"</div>
+                        <div class="dialogue-line">后面的话我没听见，转身走了。脚步很重，但每一步都在等她在后面喊我。</div>
+                        <div class="dialogue-line">可她没有。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    写作小贴士
+                </h4>
+                <p>
+                    <strong>1. 大声朗读：</strong>写完对话后读出来，看是否像真人说话。<br>
+                    <strong>2. 加入动作：</strong>对话时人物的动作能展现情绪和态度。<br>
+                    <strong>3. 善用停顿：</strong>有时候"……"比直接说出来更有力量。
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="7-2.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：对比练习
+            </a>
+            <a href="7-4.html" class="btn btn-blue">
+                下一步：总结与作业
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let completedPractices = {1: false, 2: false, 3: false};
+
+        function checkLength(textareaId, countId) {
+            const textarea = document.getElementById(textareaId);
+            const countDiv = document.getElementById(countId);
+            const length = textarea.value.trim().length;
+            countDiv.textContent = length + ' 字';
+        }
+
+        function submitPractice(num) {
+            const textarea = document.getElementById('practice' + num);
+            const toast = document.getElementById('toast' + num);
+            const btn = document.getElementById('btn' + num);
+            const hint = document.getElementById('hint' + num);
+            const length = textarea.value.trim().length;
+
+            if (length < 30) {
+                alert('请至少写 30 字哦！');
+                return;
+            }
+
+            toast.classList.add('show');
+            btn.disabled = true;
+            btn.textContent = '已完成';
+            hint.style.display = 'block';
+            completedPractices[num] = true;
+
+            savePractices();
+        }
+
+        function savePractices() {
+            const practices = {
+                practice1: document.getElementById('practice1').value,
+                practice2: document.getElementById('practice2').value,
+                practice3: document.getElementById('practice3').value,
+                completed: completedPractices
+            };
+            localStorage.setItem('lesson7_practices', JSON.stringify(practices));
+        }
+
+        document.querySelectorAll('.practice-textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(savePractices, 2000);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson7_practices');
+            if (saved) {
+                const practices = JSON.parse(saved);
+                if (practices.practice1) document.getElementById('practice1').value = practices.practice1;
+                if (practices.practice2) document.getElementById('practice2').value = practices.practice2;
+                if (practices.practice3) document.getElementById('practice3').value = practices.practice3;
+                if (practices.completed) {
+                    completedPractices = practices.completed;
+                    for (let i = 1; i <= 3; i++) {
+                        if (completedPractices[i]) {
+                            document.getElementById('toast' + i).classList.add('show');
+                            document.getElementById('btn' + i).disabled = true;
+                            document.getElementById('btn' + i).textContent = '已完成';
+                            document.getElementById('hint' + i).style.display = 'block';
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <= 3; i++) {
+                checkLength('practice' + i, 'count' + i);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：情境导入 - 悬念式开头</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .hook-intro {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 2px solid #a855f7;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .hook-intro h3 {
+            color: #6b21a8;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hook-intro p {
+            color: #581c87;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .example-box {
+            background: #f8fafc;
+            border-left: 4px solid #a855f7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .example-box h4 {
+            color: #7e22ce;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .example-box p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .example-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .preview-section {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .preview-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .preview-item {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #7c3aed;
+            border: 2px solid #e9d5ff;
+        }
+
+        @media (max-width: 768px) {
+            .preview-list {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程六</span>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+        </div>
+        <a href="6-1.html" style="color: #a855f7;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">环节零：情境导入</span>
+            <h1>为什么有些开头让你停不下来？</h1>
+        </div>
+
+        <div class="intro-section">
+            <div class="hook-intro">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    读一读下面这三个开头
+                </h3>
+                <p>读完每个开头后，问自己：<strong>你还想知道什么？</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>开头一</h4>
+                <p style="font-size: 16px; color: #1e293b; font-style: italic;">
+                    "当警察把那封信递到我手上时，我才知道，那个每天给我送牛奶的老人，竟然……"
+                </p>
+            </div>
+
+            <div class="example-box">
+                <h4>开头二</h4>
+                <p style="font-size: 16px; color: #1e293b; font-style: italic;">
+                    "妈妈的手机上，存着一个从没打过的号码，备注是三个字：对不起。"
+                </p>
+            </div>
+
+            <div class="example-box">
+                <h4>开头三</h4>
+                <p style="font-size: 16px; color: #1e293b; font-style: italic;">
+                    "'你真的要去吗？'姐姐的声音在发抖。"
+                </p>
+            </div>
+
+            <div class="preview-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    今天你要学会三种悬念开头法
+                </h3>
+                <div class="preview-list">
+                    <div class="preview-item">
+                        <div style="font-size: 24px; margin-bottom: 8px;">🎯</div>
+                        结果先行
+                    </div>
+                    <div class="preview-item">
+                        <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
+                        细节反常
+                    </div>
+                    <div class="preview-item">
+                        <div style="font-size: 24px; margin-bottom: 8px;">💬</div>
+                        对话引入
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回首页
+            </a>
+            <a href="6-1.html" class="btn btn-purple">
+                下一步：认识悬念开头
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

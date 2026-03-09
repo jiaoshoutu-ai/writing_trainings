@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：对比练习 - 对话代替叙述</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .instruction {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .exercise-card {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .exercise-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option-box:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .option-box.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            accent-color: #3b82f6;
+        }
+
+        .option-label {
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .option-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.8;
+            margin-left: 32px;
+        }
+
+        .feedback-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feedback-box p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #16a34a;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .summary-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list li {
+            padding: 12px 0;
+            color: #78350f;
+            border-bottom: 1px solid #fde68a;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .dialogue-example {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-style: italic;
+        }
+
+        .dialogue-line {
+            margin-bottom: 8px;
+            padding-left: 12px;
+            border-left: 3px solid #cbd5e1;
+            color: #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="7-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程七</span>
+            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
+        </div>
+        <a href="7-3.html" style="color: #3b82f6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-blue">环节二：对比练习</span>
+            <h1>哪个版本更好？</h1>
+        </div>
+
+        <div class="content-section">
+            <p class="instruction">
+                阅读下面的题目，选择你认为更好的版本，然后思考为什么。
+            </p>
+
+            <!-- 练习一 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习一：场景——老师发试卷
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise1" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        老师很生气，因为我们班考得很差。她批评了我们，说我们让她失望了。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise1" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        老师把试卷往讲台上一放，沉默了整整一分钟。<br>
+                        "这就是你们给我的交代？"她的声音很轻，"我教了二十年书，第一次觉得……可能我不适合当老师。"
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback1">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 用了"很生气""很差"这些标签词，读者感受不到老师的失望。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>动作</strong>（放试卷、沉默）和<strong>对话</strong>，让读者亲耳听到老师的失望，那种压抑的愤怒更让人难受。</p>
+                </div>
+            </div>
+
+            <!-- 练习二 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习二：场景——朋友借钱
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise2" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        朋友向我借钱，我很为难，因为我也没钱。但我不想让他失望，最后还是借给他了。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise2" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        "能借我五百吗？下个月一定还。"<br>
+                        我摸了摸口袋，里面只有两张皱巴巴的百元钞票。<br>
+                        "行，"我把钱掏出来，"下个月……别忘了。"
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback2">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 是旁白叙述，"很为难""不想让他失望"这些心理描写太直白。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>动作细节</strong>（摸口袋、皱巴巴的钞票）和<strong>对话停顿</strong>（"下个月……别忘了"）展现犹豫，读者自己能感受到那种为难。</p>
+                </div>
+            </div>
+
+            <!-- 练习三 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习三：场景——比赛获奖
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise3" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        听到自己获奖的消息，我非常激动，开心得跳了起来。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise3" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        "一等奖，三年二班，李明！"<br>
+                        我愣了三秒，同桌使劲推了我一把："叫你呢！"<br>
+                        我站起来，腿有点软，走向讲台时差点绊倒。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback3">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 用了"非常激动""开心"这些标签词，太笼统。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>反应细节</strong>（愣三秒、被推、腿软、绊倒）展现激动，读者能看到那个画面，感受到那种惊喜到懵的状态。</p>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    好对话的共同特点
+                </h3>
+                <ul class="summary-list">
+                    <li>不用"很""非常""特别"这些标签词</li>
+                    <li>有具体的动作和表情配合</li>
+                    <li>符合人物身份和当时的情绪</li>
+                    <li>让读者自己感受到情绪，而不是被告诉</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="7-1.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：学习方法
+            </a>
+            <a href="7-3.html" class="btn btn-blue">
+                下一步：实战练习
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectOption(exerciseNum, option) {
+            const exerciseCard = document.getElementById('feedback' + exerciseNum);
+            const optionBoxes = exerciseCard.parentElement.querySelectorAll('.option-box');
+            optionBoxes.forEach(box => box.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            const radio = event.currentTarget.querySelector('.option-radio');
+            radio.checked = true;
+
+            exerciseCard.classList.add('show');
+            exerciseCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

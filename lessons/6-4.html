@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节四：总结与作业 - 悬念式开头</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-sky { background: #e0f2fe; color: #0369a1; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .summary-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 24px;
+        }
+
+        .summary-content h3 {
+            font-size: 15px;
+            color: #e9d5ff;
+            margin-bottom: 6px;
+        }
+
+        .summary-content p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+        }
+
+        .homework-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .homework-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .homework-intro {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .homework-intro p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .homework-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .homework-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #a855f7;
+            transition: all 0.3s;
+        }
+
+        .homework-card:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .homework-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .homework-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .difficulty-badge {
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .difficulty-easy { background: #dcfce7; color: #16a34a; }
+        .difficulty-medium { background: #fef3c7; color: #d97706; }
+        .difficulty-hard { background: #fee2e2; color: #dc2626; }
+
+        .homework-card p {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .homework-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+            margin-top: 12px;
+        }
+
+        .homework-textarea:focus {
+            border-color: #a855f7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .progress-section h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .progress-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checklist-section {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .checklist-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px 0;
+            color: #78350f;
+            border-bottom: 1px solid #fde68a;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "□";
+            color: #a855f7;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="6-3.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程六</span>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+        </div>
+        <a href="../index.html" style="color: #a855f7;">
+            返回首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-sky">环节四：总结与作业</span>
+            <h1>课堂总结与课后作业</h1>
+        </div>
+
+        <div class="summary-section">
+            <h2>
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                核心要点
+            </h2>
+
+            <div class="summary-card">
+                <div class="summary-icon">🎯</div>
+                <div class="summary-content">
+                    <h3>结果先行</h3>
+                    <p>把结局或关键结果放在开头，让读者好奇"为什么会这样"。</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">🔍</div>
+                <div class="summary-content">
+                    <h3>细节反常</h3>
+                    <p>描写一个反常的、不合常理的细节，引发读者好奇。</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">💬</div>
+                <div class="summary-content">
+                    <h3>对话引入</h3>
+                    <p>用人物对话开场，让读者好奇"发生了什么"。</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">✨</div>
+                <div class="summary-content">
+                    <h3>核心原则</h3>
+                    <p>悬念不是"卖关子"，而是用具体细节激发好奇心。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="homework-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                课后作业
+            </h2>
+
+            <div class="homework-intro">
+                <p>
+                    <strong>要求：</strong>从下面的题目中任选一个，用三种悬念开头法各写一个版本。<br>
+                    <strong>字数：</strong>每个开头 50-80 字。<br>
+                    <strong>提交：</strong>明天上课前交给课代表。
+                </p>
+            </div>
+
+            <div class="homework-grid">
+                <!-- 必做题 -->
+                <div class="homework-card">
+                    <div class="homework-header">
+                        <span class="homework-title">
+                            <span class="difficulty-badge difficulty-easy">必做</span>
+                            题目一：《我的______》
+                        </span>
+                    </div>
+                    <p>横线上可以填：爸爸、老师、朋友、同桌……任选一个人物。</p>
+                    <textarea class="homework-textarea" id="homework1" placeholder="用三种悬念开头法各写一个版本：
+
+1. 结果先行：
+_____________________________________
+
+2. 细节反常：
+_____________________________________
+
+3. 对话引入：
+_____________________________________"></textarea>
+                </div>
+
+                <!-- 选做题 -->
+                <div class="homework-card">
+                    <div class="homework-header">
+                        <span class="homework-title">
+                            <span class="difficulty-badge difficulty-medium">选做</span>
+                            题目二：《那一次，我______》
+                        </span>
+                    </div>
+                    <p>横线上可以填：哭了、笑了、后悔了、明白了……任选一个经历。</p>
+                    <textarea class="homework-textarea" id="homework2" placeholder="用三种悬念开头法各写一个版本：
+
+1. 结果先行：
+_____________________________________
+
+2. 细节反常：
+_____________________________________
+
+3. 对话引入：
+_____________________________________"></textarea>
+                </div>
+
+                <!-- 挑战题 -->
+                <div class="homework-card">
+                    <div class="homework-header">
+                        <span class="homework-title">
+                            <span class="difficulty-badge difficulty-hard">挑战</span>
+                            题目三：自由命题
+                        </span>
+                    </div>
+                    <p>自己定一个题目，用它练习三种悬念开头。挑战：让三个开头都能独立成篇！</p>
+                    <textarea class="homework-textarea" id="homework3" placeholder="我的题目：_______________________
+
+1. 结果先行：
+_____________________________________
+
+2. 细节反常：
+_____________________________________
+
+3. 对话引入：
+_____________________________________"></textarea>
+                </div>
+            </div>
+
+            <div class="checklist-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    写作检查清单
+                </h3>
+                <ul class="checklist">
+                    <li>每个开头是否避免了"很""非常""特别"等空洞词？</li>
+                    <li>每个开头是否能引发读者的好奇心？</li>
+                    <li>每个开头是否有具体的细节或场景？</li>
+                    <li>三种方法是否都尝试了？</li>
+                </ul>
+            </div>
+
+            <div class="progress-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    完成进度
+                </h3>
+                <label class="progress-item">
+                    <input type="checkbox" id="check1">
+                    <span>题目一：我的______（必做）</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check2">
+                    <span>题目二：那一次，我______（选做）</span>
+                </label>
+                <label class="progress-item">
+                    <input type="checkbox" id="check3">
+                    <span>题目三：自由命题（挑战）</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="6-3.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：实战练习
+            </a>
+            <a href="../index.html" class="btn btn-purple">
+                返回首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function saveHomework() {
+            const homework = {
+                homework1: document.getElementById('homework1').value,
+                homework2: document.getElementById('homework2').value,
+                homework3: document.getElementById('homework3').value,
+                checks: {
+                    check1: document.getElementById('check1').checked,
+                    check2: document.getElementById('check2').checked,
+                    check3: document.getElementById('check3').checked
+                }
+            };
+            localStorage.setItem('lesson6_homework', JSON.stringify(homework));
+        }
+
+        document.querySelectorAll('.homework-textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(saveHomework, 2000);
+            });
+        });
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+            box.addEventListener('change', saveHomework);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson6_homework');
+            if (saved) {
+                const homework = JSON.parse(saved);
+                if (homework.homework1) document.getElementById('homework1').value = homework.homework1;
+                if (homework.homework2) document.getElementById('homework2').value = homework.homework2;
+                if (homework.homework3) document.getElementById('homework3').value = homework.homework3;
+                if (homework.checks) {
+                    document.getElementById('check1').checked = homework.checks.check1;
+                    document.getElementById('check2').checked = homework.checks.check2;
+                    document.getElementById('check3').checked = homework.checks.check3;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

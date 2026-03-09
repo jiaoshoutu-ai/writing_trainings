@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：对比练习 - 悬念式开头</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .exercise-card {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .exercise-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #7e22ce;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option-box:hover {
+            border-color: #a855f7;
+            background: #faf5ff;
+        }
+
+        .option-box.selected {
+            border-color: #a855f7;
+            background: #f3e8ff;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            accent-color: #a855f7;
+        }
+
+        .option-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .feedback-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feedback-box p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #16a34a;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+        }
+        .btn-purple:hover { background: #9333ea; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .analysis-section {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .analysis-section h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .analysis-list li {
+            padding: 12px 0;
+            color: #78350f;
+            border-bottom: 1px solid #fde68a;
+        }
+
+        .analysis-list li:last-child {
+            border-bottom: none;
+        }
+
+        .analysis-list li::before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="6-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程六</span>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+        </div>
+        <a href="6-3.html" style="color: #a855f7;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">环节二：对比练习</span>
+            <h1>哪个开头更好？</h1>
+        </div>
+
+        <div class="content-section">
+            <p style="color: #64748b; text-align: center; margin-bottom: 30px;">
+                阅读下面的题目，选择你认为更吸引人的开头，然后思考为什么。
+            </p>
+
+            <!-- 练习一 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习一：题目《我的爸爸》
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'A')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise1" class="option-radio" value="A">
+                        <strong>选项 A</strong>
+                    </div>
+                    <p class="option-text">
+                        我的爸爸是一个很普通的人，他在一家公司上班，每天都很忙，但是他很爱我。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'B')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise1" class="option-radio" value="B">
+                        <strong>选项 B</strong>
+                    </div>
+                    <p class="option-text">
+                        爸爸的抽屉里，藏着一枚我从没见他戴过的军功章，上面刻着"1998 年抗洪纪念"。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback1">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 是典型的"标签式"开头，用"很普通""很忙""很爱我"这些空洞的词，读者感受不到任何具体的东西。</p>
+                    <p style="margin-top: 12px;">选项 B 用了一个<strong>反常细节</strong>——藏起来的军功章，让读者好奇：爸爸为什么从不提起？这背后有什么故事？</p>
+                </div>
+            </div>
+
+            <!-- 练习二 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习二：题目《那次考试》
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'A')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise2" class="option-radio" value="A">
+                        <strong>选项 A</strong>
+                    </div>
+                    <p class="option-text">
+                        那是我最难忘的一次考试，我非常紧张，手心都在出汗。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'B')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise2" class="option-radio" value="B">
+                        <strong>选项 B</strong>
+                    </div>
+                    <p class="option-text">
+                        "铃——"开考铃响了，我才发现，试卷上的题目，没有一道是我复习过的。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback2">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 用了"最难忘""非常紧张"这些标签词，读者感受不到紧张是什么样子。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>结果先行</strong> + <strong>细节描写</strong>，让读者立刻感受到那种绝望，同时想知道"然后怎么办？"</p>
+                </div>
+            </div>
+
+            <!-- 练习三 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习三：题目《难忘的一天》
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'A')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise3" class="option-radio" value="A">
+                        <strong>选项 A</strong>
+                    </div>
+                    <p class="option-text">
+                        那天早上，我的心情很复杂，因为要发生一件很重要的事情。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'B')">
+                    <div class="option-label">
+                        <input type="radio" name="exercise3" class="option-radio" value="B">
+                        <strong>选项 B</strong>
+                    </div>
+                    <p class="option-text">
+                        "'你真的决定好了吗？'妈妈的声音很轻，轻得像怕惊扰了什么。"
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback3">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 用了"很复杂""很重要"这些空洞的词，读者完全不知道发生了什么。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>对话引入</strong>，配合一个细腻的动作描写，让读者立刻感受到那种小心翼翼的氛围，好奇"决定"的是什么。</p>
+                </div>
+            </div>
+
+            <div class="analysis-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    好开头的共同特点
+                </h3>
+                <ul class="analysis-list">
+                    <li>不用"很""非常""特别"这些标签词</li>
+                    <li>有具体的细节或场景</li>
+                    <li>能引发读者的好奇心</li>
+                    <li>让读者想知道"然后呢？"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="6-1.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：学习方法
+            </a>
+            <a href="6-3.html" class="btn btn-purple">
+                下一步：实战练习
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectOption(exerciseNum, option) {
+            // 更新选中状态
+            const exerciseCard = document.getElementById('feedback' + exerciseNum);
+            const optionBoxes = exerciseCard.parentElement.querySelectorAll('.option-box');
+            optionBoxes.forEach(box => box.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            // 显示对应的 radio
+            const radio = event.currentTarget.querySelector('.option-radio');
+            radio.checked = true;
+
+            // 显示反馈
+            exerciseCard.classList.add('show');
+            exerciseCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

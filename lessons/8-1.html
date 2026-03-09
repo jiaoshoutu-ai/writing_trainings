@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节一：认识细节 - 细节见真情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .theory-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .theory-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .theory-icon {
+            width: 48px;
+            height: 48px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .theory-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        .theory-desc {
+            color: #14532d;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .comparison-card {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .comparison-bad {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+        }
+
+        .comparison-good {
+            background: #dcfce7;
+            border: 2px solid #4ade80;
+        }
+
+        .comparison-label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .comparison-bad .comparison-label { color: #991b1b; }
+        .comparison-good .comparison-label { color: #166534; }
+
+        .comparison-text {
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .comparison-bad .comparison-text { color: #7f1d1d; }
+        .comparison-good .comparison-text { color: #14532d; }
+
+        .example-section {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .example-section h3 {
+            color: #6b21a8;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .example-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .example-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #a855f7;
+        }
+
+        .example-item h4 {
+            color: #7e22ce;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .example-item p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .detail-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #f3e8ff;
+            color: #9333ea;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .tip-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .tip-box p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-green {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+        }
+        .btn-green:hover { background: #16a34a; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="8-0.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程八</span>
+            <div class="lesson-subtitle">细节见真情——用细节打动人心</div>
+        </div>
+        <a href="8-2.html" style="color: #22c55e;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-green">环节一：理论讲解</span>
+            <h1>什么是好细节？</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="theory-card">
+                <div class="theory-header">
+                    <div class="theory-icon">💡</div>
+                    <div class="theory-title">核心理论</div>
+                </div>
+                <p class="theory-desc">
+                    好细节不是"我看到了什么"，而是<strong>我如何看到</strong>。<br>
+                    它应该是<strong>具体的、独特的、能唤起感受的</strong>。
+                </p>
+            </div>
+
+            <div style="margin-bottom: 24px;">
+                <h3 style="color: #0f172a; margin-bottom: 16px; text-align: center;">对比一下</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card comparison-bad">
+                        <p class="comparison-label">空洞的表达</p>
+                        <p class="comparison-text">
+                            妈妈很爱我，为我做了很多事情。<br>
+                            奶奶老了，走路很不方便。<br>
+                            那天天气很热，我等了好久公交车。
+                        </p>
+                    </div>
+                    <div class="comparison-card comparison-good">
+                        <p class="comparison-label">具体的细节</p>
+                        <p class="comparison-text">
+                            妈妈把我换下来的白球鞋，用牙膏一点一点刷干净，晾在阳台上，鞋尖朝着太阳。<br>
+                            奶奶的拐杖在地板上点出"哒、哒"的声音，每一步都要停一停。<br>
+                            柏油路被晒得发软，踩上去黏鞋底。站台上的蚂蚁都躲进了阴影里。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    三种常见细节类型
+                </h3>
+                <div class="example-grid">
+                    <div class="example-item">
+                        <span class="detail-type">动作细节</span>
+                        <h4>分解动作，展现过程</h4>
+                        <p>
+                            <strong>普通：</strong>爷爷给我削苹果。<br>
+                            <strong>细节：</strong>爷爷的手有些抖，刀刃在苹果皮上慢慢挪动，皮断了三次，他才把那个坑坑洼洼的苹果递给我。
+                        </p>
+                    </div>
+
+                    <div class="example-item">
+                        <span class="detail-type">物品细节</span>
+                        <h4>用物品承载情感</h4>
+                        <p>
+                            <strong>普通：</strong>爸爸很节约。<br>
+                            <strong>细节：</strong>爸爸的毛巾用了五年，边角磨出了毛边，中间破了个洞，他说"还能用"。
+                        </p>
+                    </div>
+
+                    <div class="example-item">
+                        <span class="detail-type">感官细节</span>
+                        <h4>调动五感，让读者身临其境</h4>
+                        <p>
+                            <strong>普通：</strong>厨房里有饭香。<br>
+                            <strong>细节：</strong>推开家门，葱花在油里爆香的味道扑面而来，混合着酱油的咸香，是红烧肉的味道。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <p>
+                    <strong>💡 写作小贴士：</strong>好细节不是堆砌形容词，而是用<strong>名词和动词</strong>说话。<br>
+                    不要说"很破"，说"边角磨出了毛边"；不要说"很慢"，说"每一步都要停一停"。
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="8-0.html" class="btn btn-green">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：情境导入
+            </a>
+            <a href="8-2.html" class="btn btn-green">
+                下一步：对比练习
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

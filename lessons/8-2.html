@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：对比练习 - 细节见真情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-green { background: #dcfce7; color: #16a34a; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .instruction {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .exercise-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .exercise-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option-box:hover {
+            border-color: #22c55e;
+            background: #f0fdf4;
+        }
+
+        .option-box.selected {
+            border-color: #22c55e;
+            background: #dcfce7;
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            accent-color: #22c55e;
+        }
+
+        .option-label {
+            font-weight: bold;
+            color: #166534;
+        }
+
+        .option-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.8;
+            margin-left: 32px;
+        }
+
+        .feedback-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feedback-box p {
+            color: #78350f;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #16a34a;
+        }
+
+        .btn-green {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+        }
+        .btn-green:hover { background: #16a34a; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .summary-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list li {
+            padding: 12px 0;
+            color: #78350f;
+            border-bottom: 1px solid #fde68a;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="8-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程八</span>
+            <div class="lesson-subtitle">细节见真情——用细节打动人心</div>
+        </div>
+        <a href="8-3.html" style="color: #22c55e;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-green">环节二：对比练习</span>
+            <h1>哪个细节更能打动你？</h1>
+        </div>
+
+        <div class="content-section">
+            <p class="instruction">
+                阅读下面的题目，选择你认为更能打动人心的版本，然后思考为什么。
+            </p>
+
+            <!-- 练习一 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习一：描写"奶奶老了"
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise1" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        奶奶老了，走路很不方便，每一步都走得很慢。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(1, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise1" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        奶奶的拐杖在地板上点出"哒、哒"的声音，每走一步都要停一停，像是在等后面的腿赶上来。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback1">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 用了"很不方便""很慢"这些抽象的词，读者感受不到"慢"是什么样子。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>声音细节</strong>（哒、哒）和<strong>动作分解</strong>（停一停、等后面的腿赶上来），让读者能看到、听到奶奶走路的样子。</p>
+                </div>
+            </div>
+
+            <!-- 练习二 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习二：描写"爸爸很辛苦"
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise2" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        爸爸工作很辛苦，每天都很晚回家，非常累。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(2, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise2" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        爸爸推开家门时已经十一点了。他把公文包放在玄关，没开灯，摸着墙走到沙发边，整个人陷了进去。我听见他叹了口气，很轻很轻。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback2">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 是标签式的叙述，"很辛苦""非常累"太笼统。</p>
+                    <p style="margin-top: 12px;">选项 B 用<strong>时间</strong>（十一点）、<strong>动作</strong>（没开灯、摸着墙、陷进沙发）、<strong>声音</strong>（很轻的叹气）来展现疲惫，读者能感受到那种累到极点的状态。</p>
+                </div>
+            </div>
+
+            <!-- 练习三 -->
+            <div class="exercise-card">
+                <div class="exercise-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    练习三：描写"妈妈的爱"
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'A')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise3" class="option-radio" value="A">
+                        <span class="option-label">选项 A</span>
+                    </div>
+                    <p class="option-text">
+                        妈妈很爱我，总是把我的东西整理得整整齐齐。
+                    </p>
+                </div>
+
+                <div class="option-box" onclick="selectOption(3, 'B')">
+                    <div class="option-header">
+                        <input type="radio" name="exercise3" class="option-radio" value="B">
+                        <span class="option-label">选项 B</span>
+                    </div>
+                    <p class="option-text">
+                        妈妈把我换下来的白球鞋，用牙膏一点一点刷干净，晾在阳台上，鞋尖朝着太阳。
+                    </p>
+                </div>
+
+                <div class="feedback-box" id="feedback3">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        分析
+                    </h4>
+                    <p><strong>正确答案是 B。</strong></p>
+                    <p>选项 A 说了"很爱我""整整齐齐"，但读者感受不到爱在哪里。</p>
+                    <p style="margin-top: 12px;">选项 B 没有一个"爱"字，但<strong>"牙膏"</strong>（不用洗衣粉，用牙膏刷得更白）、<strong>"一点一点"</strong>（耐心细致）、<strong>"鞋尖朝着太阳"</strong>（晒得更干爽）这些细节，处处都是爱。</p>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    好细节的共同特点
+                </h3>
+                <ul class="summary-list">
+                    <li>不用"很""非常""特别"等抽象词</li>
+                    <li>有具体的动作、声音、画面</li>
+                    <li>能唤起读者的感受或联想</li>
+                    <li>细节是独特的，不是笼统的</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="8-1.html" class="btn btn-green">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：理论讲解
+            </a>
+            <a href="8-3.html" class="btn btn-green">
+                下一步：实战练习
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectOption(exerciseNum, option) {
+            const exerciseCard = document.getElementById('feedback' + exerciseNum);
+            const optionBoxes = exerciseCard.parentElement.querySelectorAll('.option-box');
+            optionBoxes.forEach(box => box.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            const radio = event.currentTarget.querySelector('.option-radio');
+            radio.checked = true;
+
+            exerciseCard.classList.add('show');
+            exerciseCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
