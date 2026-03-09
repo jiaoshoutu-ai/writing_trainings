@@ -495,7 +495,7 @@
                 </div>
 
                 <div style="margin-top: 20px;">
-                    <a href="1-1.html" class="btn btn-green" id="btn-to-page1" style="display: none; text-decoration: none;" onclick="checkFeelingSubmitted(event)">
+                    <a href="1-1.html" class="btn btn-green" id="btn-to-page1" style="display: none; text-decoration: none;">
                         开始学习：故事对比
                         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
@@ -510,6 +510,7 @@
     <!-- Toast提示 -->
     <div class="toast" id="toast">
         <p id="toast-text"></p>
+        <button class="btn btn-blue" id="toast-close-btn" onclick="closeToast()" style="margin-top: 16px;">明白了</button>
     </div>
 
     <!-- 锁定提示 -->
@@ -520,6 +521,7 @@
     <script>
         // 检查是否已提交感受
         let hasSubmittedFeeling = false;
+        let currentToastType = ''; // 'videoA' 或 'videoB'
 
         function toggleDiscussion() {
             const discussionBox = document.getElementById('discussion-box');
@@ -557,34 +559,16 @@
             const feeling = input.value.trim();
 
             if (feeling.length >= 10) {
-                // 显示Toast和背景模糊
+                // 显示 Toast 和背景模糊
                 const toast = document.getElementById('toast');
                 const toastOverlay = document.getElementById('toast-overlay');
                 const toastText = document.getElementById('toast-text');
-                toastText.textContent = '呐喊、冲撞、对抗，我们的愤怒跟视频中的主人公一样，终于找到了宣泄口。但我们看到的就是真相吗?';
+                const toastCloseBtn = document.getElementById('toast-close-btn');
+                toastText.textContent = '呐喊、冲撞、对抗，我们的愤怒跟视频中的主人公一样，终于找到了宣泄口。但我们看到的就是真相吗？';
                 toast.style.display = 'block';
                 toastOverlay.style.display = 'block';
-
-                // 5秒后关闭Toast并继续
-                setTimeout(function() {
-                    toast.style.animation = 'fadeOut 0.3s';
-                    toastOverlay.style.animation = 'fadeOut 0.3s';
-                    setTimeout(function() {
-                        toast.style.display = 'none';
-                        toastOverlay.style.display = 'none';
-                        toast.style.animation = 'fadeIn 0.3s';
-                    }, 300);
-                }, 5000);
-
-                // Toast显示5.5秒后开始倒计时，并解锁视频B
-                setTimeout(function() {
-                    // 隐藏输入框，显示视频B区域
-                    document.getElementById('feeling-box').style.display = 'none';
-                    document.getElementById('video-b-section').style.display = 'block';
-
-                    // 解锁视频B
-                    unlockVideoB();
-                }, 5500);
+                toastCloseBtn.style.display = 'inline-flex';
+                currentToastType = 'videoA';
             }
         }
 
@@ -638,28 +622,41 @@
             const feeling = input.value.trim();
 
             if (feeling.length >= 10) {
-                // 显示Toast和背景模糊
+                // 显示 Toast 和背景模糊
                 const toast = document.getElementById('toast');
                 const toastOverlay = document.getElementById('toast-overlay');
                 const toastText = document.getElementById('toast-text');
-                toastText.textContent = '原来这竟然是螺蛳粉广告。由愤怒到感动，在眼泪中忍俊不禁，这落差也太大了。这个故事讲得如何?';
+                const toastCloseBtn = document.getElementById('toast-close-btn');
+                toastText.textContent = '原来这竟然是螺蛳粉广告。由愤怒到感动，在眼泪中忍俊不禁，这落差也太大了。这个故事讲得如何？';
                 toast.style.display = 'block';
                 toastOverlay.style.display = 'block';
-
-                // 10秒后关闭Toast并显示关键词
-                setTimeout(function() {
-                    toast.style.animation = 'fadeOut 0.3s';
-                    toastOverlay.style.animation = 'fadeOut 0.3s';
-                    setTimeout(function() {
-                        toast.style.display = 'none';
-                        toastOverlay.style.display = 'none';
-                        toast.style.animation = 'fadeIn 0.3s';
-                        // 显示关键词区域
-                        document.getElementById('keywords-section').style.display = 'block';
-                        document.getElementById('keywords-section').scrollIntoView({ behavior: 'smooth' });
-                    }, 300);
-                }, 10000);
+                toastCloseBtn.style.display = 'inline-flex';
+                currentToastType = 'videoB';
             }
+        }
+
+        function closeToast() {
+            const toast = document.getElementById('toast');
+            const toastOverlay = document.getElementById('toast-overlay');
+            const toastCloseBtn = document.getElementById('toast-close-btn');
+            toastCloseBtn.style.display = 'none';
+            toast.style.animation = 'fadeOut 0.3s';
+            toastOverlay.style.animation = 'fadeOut 0.3s';
+            setTimeout(function() {
+                toast.style.display = 'none';
+                toastOverlay.style.display = 'none';
+                toast.style.animation = 'fadeIn 0.3s';
+                if (currentToastType === 'videoA') {
+                    // 第一个视频：显示视频 B
+                    document.getElementById('feeling-box').style.display = 'none';
+                    document.getElementById('video-b-section').style.display = 'block';
+                    unlockVideoB();
+                } else {
+                    // 第二个视频：显示关键词区域
+                    document.getElementById('keywords-section').style.display = 'block';
+                    document.getElementById('keywords-section').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300);
         }
 
         function revealKeywords() {
@@ -675,20 +672,6 @@
         function onVideoBEnded() {
             document.getElementById('btn-to-page1').style.display = 'inline-flex';
             document.getElementById('btn-to-page1').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // 检查是否已提交感受
-        function checkFeelingSubmitted(event) {
-            if (!hasSubmittedFeeling) {
-                event.preventDefault();
-                const lockedToast = document.getElementById('locked-toast');
-                lockedToast.style.display = 'block';
-
-                // 3 秒后自动关闭
-                setTimeout(function() {
-                    lockedToast.style.display = 'none';
-                }, 3000);
-            }
         }
     </script>
 </body>
