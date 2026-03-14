@@ -242,6 +242,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="3-1.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -278,8 +283,13 @@
                     <textarea id="exercise1" placeholder="你的改写："></textarea>
                     <div class="word-limit">
                         <span class="word-count">当前字数：<strong id="count1">0</strong></span>
-                        <button class="save-btn" onclick="saveExercise(1)">保存</button>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="save-btn" onclick="saveExercise(1)">保存</button>
+                            <button class="save-btn" style="background: #3b82f6;" onclick="showExample(1)">范文</button>
+                            <button class="save-btn" style="background: #10b981;" onclick="getAIFeedback(1)">AI 点评</button>
+                        </div>
                     </div>
+                    <div id="feedback1" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
 
@@ -297,8 +307,13 @@
                     <textarea id="exercise2" placeholder="你的改写："></textarea>
                     <div class="word-limit">
                         <span class="word-count">当前字数：<strong id="count2">0</strong></span>
-                        <button class="save-btn" onclick="saveExercise(2)">保存</button>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="save-btn" onclick="saveExercise(2)">保存</button>
+                            <button class="save-btn" style="background: #3b82f6;" onclick="showExample(2)">范文</button>
+                            <button class="save-btn" style="background: #10b981;" onclick="getAIFeedback(2)">AI 点评</button>
+                        </div>
                     </div>
+                    <div id="feedback2" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
 
@@ -316,18 +331,14 @@
                     <textarea id="exercise3" placeholder="你的改写："></textarea>
                     <div class="word-limit">
                         <span class="word-count">当前字数：<strong id="count3">0</strong></span>
-                        <button class="save-btn" onclick="saveExercise(3)">保存</button>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="save-btn" onclick="saveExercise(3)">保存</button>
+                            <button class="save-btn" style="background: #3b82f6;" onclick="showExample(3)">范文</button>
+                            <button class="save-btn" style="background: #10b981;" onclick="getAIFeedback(3)">AI 点评</button>
+                        </div>
                     </div>
+                    <div id="feedback3" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
-            </div>
-
-            <div class="example-box">
-                <h4>
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                    示例参考
-                </h4>
-                <p><strong>"很紧张"改写示例：</strong><br>
-                手心全是汗，我把演讲稿攥在手里，纸都皱成一团了。心跳得厉害，感觉整个礼堂都能听见。轮到我上台时，腿有点发软，差点绊了一跤。</p>
             </div>
         </div>
 
@@ -344,6 +355,13 @@
     </div>
 
     <script>
+        // 范文数据
+        const examples = {
+            1: `他蹲在墙角，双手捂住脸，肩膀一抽一抽的。眼泪从指缝里渗出来，滴在水泥地上，晕开一小片深色。有人路过，他赶紧把脸埋得更低，声音却止不住，像受伤的小兽。`,
+            2: `手心全是汗，我把演讲稿攥在手里，纸都皱成一团了。心跳得厉害，感觉整个礼堂都能听见。轮到我上台时，腿有点发软，差点绊了一跤。`,
+            3: `她的嘴角控制不住地上扬，眼睛弯成月牙。一边看手机一边摇头笑，走路都轻飘飘的，像踩在云朵上。路过便利店时，还哼起了歌。`
+        };
+
         function setupExercise(id, countId) {
             const textarea = document.getElementById(id);
             const countEl = document.getElementById(countId);
@@ -363,6 +381,49 @@
             }
             localStorage.setItem('lesson3_exercise' + id, content);
             alert('练习已保存！');
+        }
+
+        // 显示范文
+        function showExample(id) {
+            const feedbackDiv = document.getElementById('feedback' + id);
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = '#fefce8';
+            feedbackDiv.style.borderLeftColor = '#facc15';
+            feedbackDiv.innerHTML = '<strong style="color: #92400e;">范文参考：</strong><br>' + examples[id];
+        }
+
+        // AI 点评
+        async function getAIFeedback(id) {
+            const textarea = document.getElementById('exercise' + id);
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的改写！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('feedback' + id);
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = '#dbeafe';
+            feedbackDiv.style.borderLeftColor = '#3b82f6';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const topics = {
+                1: { original: '很伤心', keyword: '伤心', emotion: '伤心/难过' },
+                2: { original: '很紧张', keyword: '紧张', emotion: '紧张/不安' },
+                3: { original: '很开心', keyword: '开心', emotion: '开心/高兴' }
+            };
+
+            const topic = topics[id];
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"消灭很字"改写练习进行点评：\n\n原句："${topic.original}"\n学生改写：\n"${content}"\n\n要求：不许出现"${topic.keyword}"二字，用具体描写表现${topic.emotion}。\n\n请从以下角度点评：\n**一、是否出现禁词**\n检查是否直接出现了"${topic.keyword}"等空洞词\n\n**二、描写是否具体**\n1. 是否有动作描写？\n2. 是否有神态/表情描写？\n3. 是否有心理/生理反应描写？\n\n**三、画面感**\n读了之后能否在脑海中形成清晰的画面？\n\n**四、改进建议**\n给出 1-2 条具体的修改建议，让描写更生动。\n\n请用温和、鼓励性的语言点评。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
         }
 
         window.addEventListener('DOMContentLoaded', function() {
