@@ -295,6 +295,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="1-4.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -410,10 +415,23 @@ _________________________
 _________________________"></textarea>
                     <div class="input-footer">
                         <p class="word-count">当前字数：<strong id="char-count">0</strong></p>
-                        <button class="save-btn" onclick="saveShare()">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            保存分享
-                        </button>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="save-btn" onclick="getAIFeedback()" id="ai-feedback-btn" style="background: #3b82f6;">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                AI 点评
+                            </button>
+                            <button class="save-btn" onclick="saveShare()">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                保存分享
+                            </button>
+                        </div>
+                    </div>
+                    <div id="feedback-result" style="margin-top: 16px; padding: 16px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #3b82f6; display: none;">
+                        <h4 style="color: #0369a1; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            AI 名师点评
+                        </h4>
+                        <div id="feedback-content" style="color: #334155; font-size: 14px; line-height: 1.8; white-space: pre-wrap;"></div>
                     </div>
                 </div>
             </div>
@@ -452,6 +470,38 @@ _________________________"></textarea>
             alert('分享已保存!');
         }
 
+        async function getAIFeedback() {
+            const content = textarea.value;
+            if (content.trim().length === 0) {
+                alert('请先填写你的观察故事！');
+                return;
+            }
+
+            const feedbackBtn = document.getElementById('ai-feedback-btn');
+            const feedbackResult = document.getElementById('feedback-result');
+            const feedbackContent = document.getElementById('feedback-content');
+
+            // 显示加载状态
+            feedbackBtn.disabled = true;
+            feedbackBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px; animation: spin 1s linear infinite;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackResult.style.display = 'none';
+
+            // 构造提示词 - 从故事骨架公式和连续动词技巧角度进行点评
+            const prompt = `请作为一名上海初中语文名师，对下面这篇学生观察日记进行点评：\n\n"${content}"\n\n请从以下两个角度进行专业点评：\n\n**一、故事骨架公式角度**\n用"因为想要什么→但是遇到什么困难→所以怎么做→结果怎样"的公式分析这篇日记：\n1. 指出小作者的"欲望"（想要什么）是否清晰\n2. 指出"冲突"（遇到的困难）是否明确\n3. 指出"行动"和"结局"是否完整\n4. 给出改进建议\n\n**二、连续动词技巧角度**\n分析这篇日记是否运用了连续动词技巧（把一个动作分解成 3-5 个小动作）：\n1. 找出已使用的连续动词（如果有）\n2. 指出哪里可以加入连续动词让描写更生动\n3. 给出具体的修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 800);
+                feedbackContent.textContent = feedback;
+                feedbackResult.style.display = 'block';
+            } catch (error) {
+                alert('AI 点评失败：' + error.message);
+                feedbackResult.style.display = 'none';
+            } finally {
+                feedbackBtn.disabled = false;
+                feedbackBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> AI 点评';
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('lesson2_share');
             if (saved && textarea) {
@@ -460,5 +510,11 @@ _________________________"></textarea>
             }
         });
     </script>
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </body>
 </html>

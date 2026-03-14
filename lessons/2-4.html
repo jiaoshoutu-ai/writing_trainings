@@ -341,6 +341,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="2-3.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -435,6 +440,23 @@ ____________________
 
 结果（最后……）：
 ____________________"></textarea>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button class="timer-btn" style="background: #22c55e; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="showExample('monday')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            范文
+                        </button>
+                        <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="getDailyFeedback('monday', '尴尬的瞬间', '欲望是否具体（想避免尴尬），冲突是否真实（发生了什么麻烦），行动和结果是否有因果关联')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="monday-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
+                    <div id="monday-example" style="margin-top: 12px; padding: 16px; background: #f0fdf4; border-radius: 10px; border-left: 3px solid #22c55e; display: none; font-size: 14px; line-height: 1.8;">
+                        <strong style="color: #166534;">范文示例：</strong><br>
+                        因为我想在课间操前把作业本抱到办公室，但是走到楼梯口时，一个同学匆匆跑来撞了我一下，<br>
+                        所以我脚下一滑，整个人向前扑去，作业本散落一地，<br>
+                        结果我膝盖擦破了皮，最尴尬的是，全校同学都在操场上看到了我狼狈的样子。
+                    </div>
                 </div>
 
                 <!-- 周二 -->
@@ -459,6 +481,24 @@ ____________________
 
 结果（最后……）：
 ____________________"></textarea>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button class="timer-btn" style="background: #22c55e; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="showExample('tuesday')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            范文
+                        </button>
+                        <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="getDailyFeedback('tuesday', '意外的帮助', '欲望是否明确（需要什么），冲突是否有转折（为什么没想到），帮助是否体现意外性')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="tuesday-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
+                    <div id="tuesday-example" style="margin-top: 12px; padding: 16px; background: #f0fdf4; border-radius: 10px; border-left: 3px solid #22c55e; display: none; font-size: 14px; line-height: 1.8;">
+                        <strong style="color: #166534;">范文示例：</strong><br>
+                        因为我在公交车上发现钱包不见了，急得满头大汗，<br>
+                        但是翻遍了所有口袋都没找到，钱已经被偷走了，<br>
+                        所以我只能红着脸告诉司机叔叔，<br>
+                        结果一位陌生的老奶奶掏出零钱帮我付了车费，还笑着说："谁都有困难的时候。"
+                    </div>
                 </div>
 
                 <!-- 周三 -->
@@ -483,6 +523,24 @@ ____________________
 
 结果（最后……）：
 ____________________"></textarea>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button class="timer-btn" style="background: #22c55e; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="showExample('wednesday')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            范文
+                        </button>
+                        <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="getDailyFeedback('wednesday', '和家人的争吵', '冲突是否体现双方立场（你想要的 vs 家人认为的），行动是否反映矛盾升级，结局是否有和解或思考')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="wednesday-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
+                    <div id="wednesday-example" style="margin-top: 12px; padding: 16px; background: #f0fdf4; border-radius: 10px; border-left: 3px solid #22c55e; display: none; font-size: 14px; line-height: 1.8;">
+                        <strong style="color: #166534;">范文示例：</strong><br>
+                        因为我想周末和同学去公园写生，但是妈妈认为我应该在家复习功课，<br>
+                        所以我们吵了起来，我摔门进房间，妈妈在客厅叹气，<br>
+                        所以我冷静下来后，写了张纸条从门缝递出去，说明我的计划，<br>
+                        结果妈妈看完后，竟同意让我去，但要求我周日补上复习时间。
+                    </div>
                 </div>
 
                 <!-- 周四 -->
@@ -507,6 +565,24 @@ ____________________
 
 结果（最后……）：
 ____________________"></textarea>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button class="timer-btn" style="background: #22c55e; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="showExample('thursday')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            范文
+                        </button>
+                        <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="getDailyFeedback('thursday', '课堂走神', '欲望是否真实（走神时想什么），冲突是否有突发感（被发现了吗），行动是否体现慌张或应对')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="thursday-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
+                    <div id="thursday-example" style="margin-top: 12px; padding: 16px; background: #f0fdf4; border-radius: 10px; border-left: 3px solid #22c55e; display: none; font-size: 14px; line-height: 1.8;">
+                        <strong style="color: #166534;">范文示例：</strong><br>
+                        因为我在想昨晚没看完的那本科幻书，主人公到底有没有逃出黑洞，<br>
+                        但是老师突然点我的名字："请这位同学回答这个问题。"<br>
+                        所以我猛地站起来，脸一下子红了，支支吾吾说不出话，<br>
+                        结果同桌小声提醒了我，我才磕磕绊绊地回答完，全班都笑了。
+                    </div>
                 </div>
 
                 <!-- 周五 -->
@@ -531,6 +607,24 @@ ____________________
 
 结果（最后……）：
 ____________________"></textarea>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <button class="timer-btn" style="background: #22c55e; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="showExample('friday')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            范文
+                        </button>
+                        <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px;" onclick="getDailyFeedback('friday', '放学小插曲', '欲望是否清晰（准备做什么），冲突是否有意想不到转折，行动和结果是否完整')">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="friday-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
+                    <div id="friday-example" style="margin-top: 12px; padding: 16px; background: #f0fdf4; border-radius: 10px; border-left: 3px solid #22c55e; display: none; font-size: 14px; line-height: 1.8;">
+                        <strong style="color: #166534;">范文示例：</strong><br>
+                        因为我准备放学后直接回家，刚走出校门就听见一阵猫叫，<br>
+                        但是循着声音找过去，发现一只小猫卡在了下水道栅栏里，<br>
+                        所以我放下书包，蹲下来用力掰开栅栏，把小猫抱了出来，<br>
+                        结果小猫的主人正好赶来，是附近小店的阿姨，非要塞给我一瓶饮料感谢我。
+                    </div>
                 </div>
             </div>
 
@@ -560,6 +654,13 @@ _____________________________________
 _____________________________________
 _____________________________________
 _____________________________________"></textarea>
+                <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                    <button class="timer-btn" style="background: #7c3aed; padding: 10px 24px; font-size: 14px; border-radius: 10px;" onclick="getWeekendFeedback()">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
+                </div>
+                <div id="weekend-feedback" style="margin-top: 12px; padding: 16px; background: #f3e8ff; border-radius: 12px; border-left: 3px solid #7c3aed; display: none; font-size: 14px; line-height: 1.7;"></div>
             </div>
 
             <div class="progress-section">
@@ -607,6 +708,67 @@ _____________________________________"></textarea>
     </div>
 
     <script>
+        // 显示/隐藏范文
+        function showExample(dayId) {
+            const exampleDiv = document.getElementById(dayId + '-example');
+            if (exampleDiv.style.display === 'none') {
+                exampleDiv.style.display = 'block';
+            } else {
+                exampleDiv.style.display = 'none';
+            }
+        }
+
+        // AI 点评函数 - 每日练习
+        async function getDailyFeedback(dayId, topic, checkPoints) {
+            const textarea = document.getElementById(dayId);
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写内容！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById(dayId + '-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            // 构造提示词 - 针对一句话故事练习
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"练习进行点评：\n\n主题：**${topic}**\n\n学生习作：\n"${content}"\n\n请从以下角度进行点评：\n\n**一、故事骨架公式角度**\n${checkPoints}\n\n**二、改进建议**\n1. 给出 1-2 条具体可操作的修改建议\n2. 如果用"因为……但是……所以……结果……"的公式来完善，可以怎么改？\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                // 将反馈转换为 HTML 格式（保留换行）
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
+        // AI 点评函数 - 周末扩展作文
+        async function getWeekendFeedback() {
+            const textarea = document.getElementById('weekend');
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写作文内容！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('weekend-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            // 构造提示词 - 针对扩展成文的完整作文
+            const prompt = `请作为一名上海初中语文名师，对下面这篇学生的扩展作文进行点评：\n\n学生习作：\n"${content}"\n\n这是从"一句话故事"扩展成的 300-400 字作文，请从以下角度进行专业点评：\n\n**一、故事完整性**\n1. 故事的"欲望→冲突→行动→结局"是否清晰完整？\n2. 情节是否有起因、经过、结果？\n\n**二、细节描写**\n1. 是否有 1-2 处细节描写（动作、神态、心理等）？\n2. 是否运用了连续动词技巧（把一个动作分解成多个小动作）？\n\n**三、对话运用**\n1. 是否有对话描写？\n2. 对话是否自然、符合人物身份？\n\n**四、综合建议**\n1. 给出 2 条具体可操作的修改建议\n2. 指出一个最值得优化的地方，并给出修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 800);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
         // 自动调整文本框高度
         function autoResize(textarea) {
             textarea.style.height = 'auto';
@@ -614,7 +776,7 @@ _____________________________________"></textarea>
         }
 
         // 保存每日练习
-        function saveDaily() {
+        function saveDaily(showAlert = false) {
             const daily = {
                 monday: document.getElementById('monday').value,
                 tuesday: document.getElementById('tuesday').value,
@@ -632,7 +794,7 @@ _____________________________________"></textarea>
                 }
             };
             localStorage.setItem('lesson2_homework', JSON.stringify(daily));
-            alert('作业已保存！');
+            if (showAlert) alert('作业已保存！');
         }
 
         // 自动保存监听
@@ -640,7 +802,7 @@ _____________________________________"></textarea>
             area.addEventListener('input', function() {
                 autoResize(this);
                 clearTimeout(this.saveTimer);
-                this.saveTimer = setTimeout(saveDaily, 2000);
+                this.saveTimer = setTimeout(() => saveDaily(false), 2000);
             });
             // 页面加载时调整高度
             setTimeout(() => autoResize(area), 100);
@@ -648,7 +810,7 @@ _____________________________________"></textarea>
 
         // 复选框监听
         document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-            box.addEventListener('change', saveDaily);
+            box.addEventListener('change', () => saveDaily(false));
         });
 
         // 页面加载时恢复

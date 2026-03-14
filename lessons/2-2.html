@@ -409,6 +409,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="2-1.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -504,6 +509,20 @@
 我的一句话故事：
 _________________________________
 _________________________________"></textarea>
+                    <div class="input-footer">
+                        <p class="word-count">第一轮构思</p>
+                        <button class="timer-btn" style="background: #a855f7; padding: 10px 24px; font-size: 14px;" onclick="getRound1Feedback()">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="round1-feedback-result" style="margin-top: 16px; padding: 16px; background: #f3e8ff; border-radius: 12px; border-left: 4px solid #a855f7; display: none;">
+                        <h4 style="color: #6b21a8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            AI 点评
+                        </h4>
+                        <div id="round1-feedback-content" style="color: #334155; font-size: 14px; line-height: 1.8; white-space: pre-wrap;"></div>
+                    </div>
                 </div>
             </div>
 
@@ -534,10 +553,23 @@ _________________________________"></textarea>
 • 最难的是什么？"></textarea>
                     <div class="input-footer">
                         <p class="word-count">当前字数：<strong id="char-count">0</strong> / 建议 100 字以内</p>
-                        <button class="timer-btn" style="background: #22c55e; padding: 10px 24px; font-size: 14px;" onclick="saveStory()">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            保存故事
-                        </button>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="timer-btn" style="background: #a855f7; padding: 10px 24px; font-size: 14px;" onclick="getRound2Feedback()">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                AI 点评
+                            </button>
+                            <button class="timer-btn" style="background: #22c55e; padding: 10px 24px; font-size: 14px;" onclick="saveStory()">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                保存故事
+                            </button>
+                        </div>
+                    </div>
+                    <div id="round2-feedback-result" style="margin-top: 16px; padding: 16px; background: #f3e8ff; border-radius: 12px; border-left: 4px solid #a855f7; display: none;">
+                        <h4 style="color: #6b21a8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            AI 点评
+                        </h4>
+                        <div id="round2-feedback-content" style="color: #334155; font-size: 14px; line-height: 1.8; white-space: pre-wrap;"></div>
                     </div>
                 </div>
 
@@ -641,6 +673,59 @@ _________________________________"></textarea>
             }
             localStorage.setItem('lesson2_story', content);
             alert('故事已保存！准备好和同桌分享吧！');
+        }
+
+        // 第一轮 AI 点评 - 针对场景构思
+        async function getRound1Feedback() {
+            const textarea = document.getElementById('round1-input');
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的构思！');
+                return;
+            }
+
+            const feedbackResult = document.getElementById('round1-feedback-result');
+            const feedbackContent = document.getElementById('round1-feedback-content');
+
+            feedbackResult.style.display = 'block';
+            feedbackContent.textContent = '正在思考中...';
+
+            // 构造提示词 - 针对给定场景的构思点评
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"构思进行点评：\n\n"${content}"\n\n这是"给定场景"练习，请从以下角度进行点评：\n\n**一、故事骨架公式角度**\n1. "欲望"（想要什么）是否清晰具体？\n2. "冲突"（遇到的困难/阻碍）是否明确？\n3. "行动"和"结局"是否完整？\n4. 这个构思是否符合所选场景？\n\n**二、建议**\n1. 如果要让故事更有吸引力，可以在哪里增加细节或转折？\n2. 给出一个具体的修改建议或示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                feedbackContent.textContent = feedback;
+            } catch (error) {
+                feedbackContent.textContent = 'AI 点评失败：' + error.message;
+            }
+        }
+
+        // 第二轮 AI 点评 - 针对完整的一句话故事
+        async function getRound2Feedback() {
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的故事！');
+                return;
+            }
+
+            const feedbackResult = document.getElementById('round2-feedback-result');
+            const feedbackContent = document.getElementById('round2-feedback-content');
+
+            feedbackResult.style.display = 'block';
+            feedbackContent.textContent = '正在思考中...';
+
+            // 构造提示词 - 针对完整的一句话故事点评
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"进行点评：\n\n"${content}"\n\n请从以下角度进行专业点评：\n\n**一、故事骨架公式角度**\n1. "欲望"（想要什么）是否清晰？是否能引起读者共鸣？\n2. "冲突"（遇到的困难）是否具体？是否有足够的阻碍感？\n3. "行动"是否主动？"结局"是否完整？\n4. 整体故事是否完整、有吸引力？\n\n**二、连续动词技巧角度**（如果有动作描写）\n1. 是否运用了连续动词技巧（把一个动作分解成 3-5 个小动作）？\n2. 哪里可以加入连续动词让描写更生动？\n\n**三、综合建议**\n1. 给出 1-2 条具体可操作的修改建议\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 700);
+                feedbackContent.textContent = feedback;
+            } catch (error) {
+                feedbackContent.textContent = 'AI 点评失败：' + error.message;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', function() {
