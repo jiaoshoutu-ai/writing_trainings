@@ -223,6 +223,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="4-2.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -263,10 +268,17 @@
 
                 <div class="writing-area">
                     <textarea id="scene-writing" placeholder="用五感描写"奶奶在厨房做饭"的场景（100 字左右）："></textarea>
-                    <button class="save-btn" onclick="saveWriting()">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        保存写作
-                    </button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveWriting()">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            保存写作
+                        </button>
+                        <button class="save-btn" onclick="getAIFeedback('scene')" style="background: #3b82f6;">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="feedback-scene" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
 
@@ -299,10 +311,17 @@
                     <textarea id="free-writing" placeholder="我选的场景：_______________
 
 我的五感描写："></textarea>
-                    <button class="save-btn" onclick="saveFreeWriting()" style="background: #3b82f6;">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        保存练习
-                    </button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveFreeWriting()" style="background: #3b82f6;">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            保存练习
+                        </button>
+                        <button class="save-btn" onclick="getAIFeedback('free')" style="background: #3b82f6;">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div id="feedback-free" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
         </div>
@@ -320,6 +339,32 @@
     </div>
 
     <script>
+        // AI 点评 - 五感迁移训练
+        async function getAIFeedback(type) {
+            const textarea = document.getElementById(type === 'scene' ? 'scene-writing' : 'free-writing');
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写内容！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('feedback-' + type);
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = '#dbeafe';
+            feedbackDiv.style.borderLeftColor = '#3b82f6';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"五感速写"练习进行点评：\n\n学生习作：\n"${content}"\n\n请从以下角度点评：\n**一、五感运用**\n1. 运用了哪些感觉？（视觉、听觉、嗅觉、触觉、味觉）\n2. 哪些感觉描写得比较出色？\n3. 是否有遗漏的感觉可以补充？\n\n**二、描写是否具体**\n1. 是否用了具体的细节而不是空洞的形容词？\n2. 是否有拟声词、比喻等修辞手法？\n\n**三、画面感**\n读了之后能否在脑海中形成清晰的画面？\n\n**四、改进建议**\n给出 1-2 条具体的修改建议，让五感描写更生动。\n\n请用温和、鼓励性的语言点评。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
         function saveWriting() {
             const content = document.getElementById('scene-writing').value;
             if (content.trim().length === 0) {

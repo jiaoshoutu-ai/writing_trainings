@@ -289,6 +289,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="4-3.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -365,6 +370,11 @@
                     </div>
                     <p>要求：至少用 3 种感觉，80 字左右。</p>
                     <textarea class="daily-textarea" id="monday" placeholder="下课后的教室："></textarea>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveDaily()" style="background: #0891b2; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">保存</button>
+                        <button class="save-btn" onclick="getAIFeedback('monday', '下课后的教室')" style="background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">AI 点评</button>
+                    </div>
+                    <div id="feedback-monday" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <!-- 周二 -->
@@ -377,6 +387,11 @@
                     </div>
                     <p>要求：至少用 3 种感觉，80 字左右。</p>
                     <textarea class="daily-textarea" id="tuesday" placeholder="早晨的早餐店："></textarea>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveDaily()" style="background: #0891b2; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">保存</button>
+                        <button class="save-btn" onclick="getAIFeedback('tuesday', '早晨的早餐店')" style="background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">AI 点评</button>
+                    </div>
+                    <div id="feedback-tuesday" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <!-- 周三 -->
@@ -389,6 +404,11 @@
                     </div>
                     <p>要求：至少用 3 种感觉，80 字左右。</p>
                     <textarea class="daily-textarea" id="wednesday" placeholder="下雨天的公交车站："></textarea>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveDaily()" style="background: #0891b2; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">保存</button>
+                        <button class="save-btn" onclick="getAIFeedback('wednesday', '下雨天的公交车站')" style="background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">AI 点评</button>
+                    </div>
+                    <div id="feedback-wednesday" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <!-- 周四 -->
@@ -401,6 +421,11 @@
                     </div>
                     <p>要求：至少用 3 种感觉，80 字左右。</p>
                     <textarea class="daily-textarea" id="thursday" placeholder="运动场上的比赛："></textarea>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveDaily()" style="background: #0891b2; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">保存</button>
+                        <button class="save-btn" onclick="getAIFeedback('thursday', '运动场上的比赛')" style="background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">AI 点评</button>
+                    </div>
+                    <div id="feedback-thursday" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <!-- 周五 -->
@@ -415,6 +440,11 @@
                     <textarea class="daily-textarea" id="friday" placeholder="我选的场景：_______________
 
 我的描写："></textarea>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <button class="save-btn" onclick="saveDaily()" style="background: #0891b2; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">保存</button>
+                        <button class="save-btn" onclick="getAIFeedback('friday', '自由选题')" style="background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: bold; cursor: pointer;">AI 点评</button>
+                    </div>
+                    <div id="feedback-friday" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
 
@@ -459,6 +489,32 @@
     </div>
 
     <script>
+        // AI 点评 - 五感每日小练
+        async function getAIFeedback(dayId, sceneName) {
+            const textarea = document.getElementById(dayId);
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写内容！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('feedback-' + dayId);
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = '#dbeafe';
+            feedbackDiv.style.borderLeftColor = '#3b82f6';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"五感速写"练习进行点评：\n\n场景：${sceneName}\n学生习作：\n"${content}"\n\n请从以下角度点评：\n**一、五感运用**\n1. 运用了哪些感觉？（视觉、听觉、嗅觉、触觉、味觉）\n2. 是否至少使用了 3 种感觉？\n3. 哪些感觉描写得比较出色？\n\n**二、描写是否具体**\n1. 是否用了具体的细节而不是空洞的形容词？\n2. 是否有拟声词、比喻等修辞手法？\n\n**三、画面感**\n读了之后能否在脑海中形成清晰的画面？\n\n**四、改进建议**\n给出 1-2 条具体的修改建议，让五感描写更生动。\n\n请用温和、鼓励性的语言点评。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
         function saveDaily() {
             const daily = {
                 monday: document.getElementById('monday').value,
