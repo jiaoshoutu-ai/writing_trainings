@@ -227,6 +227,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <div class="nav-header">
         <a href="4-1.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -268,6 +273,10 @@
                         <span>👁️</span> 视觉 - 你看到了什么？
                     </label>
                     <textarea id="sense-see" placeholder="颜色、形状、表面的纹理……"></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button class="save-btn" onclick="getAIFeedback('see', '视觉')" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; margin-top: 0;">AI 点评</button>
+                    </div>
+                    <div id="feedback-see" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <div class="sense-input">
@@ -275,6 +284,10 @@
                         <span>👂</span> 听觉 - 你听到了什么？
                     </label>
                     <textarea id="sense-hear" placeholder="剥皮时的声音、咬下去的声音……"></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button class="save-btn" onclick="getAIFeedback('hear', '听觉')" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; margin-top: 0;">AI 点评</button>
+                    </div>
+                    <div id="feedback-hear" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <div class="sense-input">
@@ -282,6 +295,10 @@
                         <span>👃</span> 嗅觉 - 你闻到了什么？
                     </label>
                     <textarea id="sense-smell" placeholder="香气、气味……"></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button class="save-btn" onclick="getAIFeedback('smell', '嗅觉')" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; margin-top: 0;">AI 点评</button>
+                    </div>
+                    <div id="feedback-smell" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <div class="sense-input">
@@ -289,6 +306,10 @@
                         <span>✋</span> 触觉 - 你摸到了什么？
                     </label>
                     <textarea id="sense-touch" placeholder="温度、质感、软硬……"></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button class="save-btn" onclick="getAIFeedback('touch', '触觉')" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; margin-top: 0;">AI 点评</button>
+                    </div>
+                    <div id="feedback-touch" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
 
                 <div class="sense-input">
@@ -296,6 +317,10 @@
                         <span>👅</span> 味觉 - 你尝到了什么？
                     </label>
                     <textarea id="sense-taste" placeholder="酸、甜、苦、涩……"></textarea>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+                        <button class="save-btn" onclick="getAIFeedback('taste', '味觉')" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; margin-top: 0;">AI 点评</button>
+                    </div>
+                    <div id="feedback-taste" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                 </div>
             </div>
 
@@ -318,6 +343,42 @@
     </div>
 
     <script>
+        // AI 点评 - 五感观察
+        async function getAIFeedback(senseId, senseName) {
+            const textarea = document.getElementById('sense-' + senseId);
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的观察！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('feedback-' + senseId);
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.style.background = '#dbeafe';
+            feedbackDiv.style.borderLeftColor = '#3b82f6';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const prompts = {
+                see: `请作为一名上海初中语文名师，对下面这个学生的"视觉观察"练习进行点评：\n\n学生观察：\n"${content}"\n\n请从以下角度点评：\n**一、观察是否细致**\n1. 是否写出了颜色、形状、纹理等细节？\n2. 是否有独特的发现？\n\n**二、描写是否具体**\n1. 是否用了恰当的形容词？\n2. 是否有比喻或联想？\n\n**三、改进建议**\n给出 1-2 条具体的修改建议，让视觉描写更生动。\n\n请用温和、鼓励性的语言点评。`,
+
+                hear: `请作为一名上海初中语文名师，对下面这个学生的"听觉观察"练习进行点评：\n\n学生观察：\n"${content}"\n\n请从以下角度点评：\n**一、是否捕捉到声音**\n1. 是否写出了具体的声音？\n2. 是否用了拟声词或比喻来形容声音？\n\n**二、描写是否生动**\n1. 声音描写能否让读者在脑海中"听到"？\n2. 是否有独特的听觉发现？\n\n**三、改进建议**\n给出 1-2 条具体的修改建议，让听觉描写更生动。\n\n请用温和、鼓励性的语言点评。`,
+
+                smell: `请作为一名上海初中语文名师，对下面这个学生的"嗅觉观察"练习进行点评：\n\n学生观察：\n"${content}"\n\n请从以下角度点评：\n**一、是否捕捉到气味**\n1. 是否写出了具体的气味特点？\n2. 是否有独特的嗅觉发现？\n\n**二、描写是否具体**\n1. 是否用了恰当的词语形容气味？\n2. 是否有联想或回忆？\n\n**三、改进建议**\n给出 1-2 条具体的修改建议，让嗅觉描写更生动。\n\n请用温和、鼓励性的语言点评。`,
+
+                touch: `请作为一名上海初中语文名师，对下面这个学生的"触觉观察"练习进行点评：\n\n学生观察：\n"${content}"\n\n请从以下角度点评：\n**一、是否捕捉到触感**\n1. 是否写出了温度、质感、软硬等触觉特点？\n2. 是否有独特的触觉发现？\n\n**二、描写是否具体**\n1. 是否用了恰当的词语形容触感？\n2. 是否能让读者产生共鸣？\n\n**三、改进建议**\n给出 1-2 条具体的修改建议，让触觉描写更生动。\n\n请用温和、鼓励性的语言点评。`,
+
+                taste: `请作为一名上海初中语文名师，对下面这个学生的"味觉观察"练习进行点评：\n\n学生观察：\n"${content}"\n\n请从以下角度点评：\n**一、是否捕捉到味道**\n1. 是否写出了酸、甜、苦、辣等具体味道？\n2. 是否有独特的味觉发现？\n\n**二、描写是否生动**\n1. 味道描写能否让读者在脑海中"尝到"？\n2. 是否有联想或感受？\n\n**三、改进建议**\n给出 1-2 条具体的修改建议，让味觉描写更生动。\n\n请用温和、鼓励性的语言点评。`
+            };
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompts[senseId], 600);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
         let timerInterval = null;
         let isRunning = false;
         let timeLeft = 120;
