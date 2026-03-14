@@ -414,6 +414,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <!-- 导航栏 -->
     <div class="nav-header">
         <a href="1-2.html">
@@ -581,14 +586,21 @@
                                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                 我的改写
                             </h5>
-                            <textarea placeholder="选一个题目，用&quot;因为……但是……所以……&quot;公式改写：
+                            <textarea id="rewrite-input" placeholder="选一个题目，用&quot;因为……但是……所以……&quot;公式改写：
 
 1. 我学会了骑自行车
 2. 第一次上台演讲
 3. 和朋友吵架又和好
 
-提示：先写出&quo 想要什么，再写出遇到了什么困难……"></textarea>
-                            <p class="hint"><strong>提示：</strong>写完后读一读，看看有没有写出真实的欲望和冲突。</p>
+提示：先写出你想要什么，再写出遇到了什么困难……"></textarea>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                                <p class="hint"><strong>提示：</strong>写完后读一读，看看有没有写出真实的欲望和冲突。</p>
+                                <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px; border: none; cursor: pointer;" onclick="getRewriteFeedback()">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    AI 点评
+                                </button>
+                            </div>
+                            <div id="rewrite-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                         </div>
                     </div>
                 </div>
@@ -610,13 +622,48 @@
 
     <script>
         function selectTopic(element, topicId) {
-            // 移除所有 active 类
             document.querySelectorAll('.topic-pill').forEach(pill => {
                 pill.classList.remove('active');
             });
-            // 添加 active 类到当前选中的
             element.classList.add('active');
         }
+
+        // AI 点评 - 改写练习
+        async function getRewriteFeedback() {
+            const textarea = document.getElementById('rewrite-input');
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的改写！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('rewrite-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"故事改写"练习进行点评：\n\n学生习作：\n"${content}"\n\n这是学习"故事骨架公式"后的改写练习，要求用"因为……但是……所以……结果……"的公式把流水账改写成有故事性的版本。请从以下角度进行点评：\n\n**一、故事骨架公式运用**\n1. "欲望"（想要什么）是否具体？是真实的渴望还是套话？\n2. "冲突"（遇到的困难）是否真实？小冲突也算冲突\n3. "行动"是否主动？"结果"是否完整？\n\n**二、与原版对比**（如果学生写了原版和改写版）\n1. 改写后是否比原版更有故事性？\n2. 哪里改得特别好？\n\n**三、改进建议**\n1. 欲望是否还能更具体？给出建议\n2. 冲突是否还能更真实？给出建议\n3. 给出一个修改后的示例片段\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 800);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
     </script>
+    <style>
+        .timer-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .timer-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
 </body>
 </html>

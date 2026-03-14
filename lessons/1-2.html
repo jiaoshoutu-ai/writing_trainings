@@ -353,6 +353,11 @@
     </style>
 </head>
 <body>
+    <script src="../js/writing-assistant.js"></script>
+    <script>
+        // 初始化 WritingAssistant - 设置 API key
+        WritingAssistant.init('sk-e2406cb874820928714c16c2a2886a46');
+    </script>
     <!-- 导航栏 -->
     <div class="nav-header">
         <a href="1-1.html">
@@ -530,7 +535,14 @@
                                 <strong>💡 小提示：</strong>写的时候问问自己——他/她的手、脚、身体分别在做什么？把每个部位的动作都写出来，画面就生动了！
                             </p>
                         </div>
-                        <textarea placeholder="你的场景：他/她……（试着用连续动词）"></textarea>
+                        <textarea id="verb-practice-input" placeholder="你的场景：他/她……（试着用连续动词）"></textarea>
+                        <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                            <button class="timer-btn" style="background: #3b82f6; padding: 8px 20px; font-size: 13px; border-radius: 8px; border: none; cursor: pointer;" onclick="getVerbPracticeFeedback()">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                AI 点评
+                            </button>
+                        </div>
+                        <div id="verb-practice-feedback" style="margin-top: 12px; padding: 12px; background: #dbeafe; border-radius: 10px; border-left: 3px solid #3b82f6; display: none; font-size: 14px; line-height: 1.7;"></div>
                     </div>
                 </div>
             </div>
@@ -550,6 +562,30 @@
     </div>
 
     <script>
+        // AI 点评 - 连续动词练习
+        async function getVerbPracticeFeedback() {
+            const textarea = document.getElementById('verb-practice-input');
+            const content = textarea.value;
+
+            if (content.trim().length === 0) {
+                alert('请先填写你的练习！');
+                return;
+            }
+
+            const feedbackDiv = document.getElementById('verb-practice-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '正在思考中...';
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"连续动词"练习进行点评：\n\n学生习作：\n"${content}"\n\n这是学习《背影》后模仿"连续动词"技巧的练习，请从以下角度进行点评：\n\n**一、连续动词运用**\n1. 是否把一个动作分解成了 3-5 个小动作？\n2. 找出具体的动词，评价这些动词是否准确、生动\n3. 动词之间是否有逻辑顺序（时间先后/因果关系）\n\n**二、画面感**\n1. 读了之后能否在脑海中形成清晰的画面？\n2. 是否有细节可以让画面更生动？\n\n**三、改进建议**\n1. 如果有动词不够准确，给出替换建议\n2. 如果动作分解不够细，指出哪里可以再加拆解\n3. 给出一个修改后的示例版本\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+
+            try {
+                const feedback = await WritingAssistant.callAPI(prompt, 700);
+                feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
+            } catch (error) {
+                feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
+            }
+        }
+
         let userSelections = { desire: false, conflict: false, action: false, result: false };
 
         function toggleTag(tag) {
@@ -568,5 +604,18 @@
             }
         }
     </script>
+    <style>
+        .timer-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .timer-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
 </body>
 </html>

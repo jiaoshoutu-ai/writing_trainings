@@ -179,6 +179,8 @@
             outline: none;
             transition: border-color 0.3s;
             font-family: inherit;
+            min-height: 100px;
+            resize: none;
         }
 
         .form-group input:focus,
@@ -228,13 +230,13 @@
 
         .story-display textarea {
             width: 100%;
-            min-height: 150px;
+            min-height: 200px;
             padding: 16px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 14px;
             line-height: 1.8;
-            resize: vertical;
+            resize: none;
             outline: none;
             transition: border-color 0.3s;
             font-family: inherit;
@@ -832,19 +834,19 @@
                 <h4>我的练习：</h4>
                 <div class="form-group">
                     <label>原版故事（同桌写的初稿）：</label>
-                    <textarea id="original-story" placeholder="写下同桌的原版故事……"></textarea>
+                    <textarea id="original-story" placeholder="写下同桌的原版故事……" style="min-height: 120px;"></textarea>
                 </div>
                 <div class="form-group">
                     <label>新版故事（用新角度重写后）：</label>
-                    <textarea id="new-story" placeholder="用新角度重写后的故事……"></textarea>
+                    <textarea id="new-story" placeholder="用新角度重写后的故事……" style="min-height: 120px;"></textarea>
                 </div>
                 <div class="form-group">
                     <label>同桌给我的建议：</label>
-                    <textarea id="partner-suggestion" placeholder="同桌用哪个问题帮你找到了新角度？"></textarea>
+                    <textarea id="partner-suggestion" placeholder="同桌用哪个问题帮你找到了新角度？" style="min-height: 100px;"></textarea>
                 </div>
                 <div class="form-group">
                     <label>我的发现：</label>
-                    <textarea id="reflection" placeholder="改写前后，故事有什么不一样？" style="min-height: 80px;"></textarea>
+                    <textarea id="reflection" placeholder="改写前后，故事有什么不一样？" style="min-height: 100px;"></textarea>
                 </div>
                 <button onclick="savePractice()" class="btn btn-green" style="margin-top: 16px;">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>

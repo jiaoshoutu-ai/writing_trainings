@@ -705,11 +705,18 @@ _________________________________"></textarea>
         // 第二轮 AI 点评 - 针对完整的一句话故事
         async function getRound2Feedback() {
             const content = textarea.value;
+            const charCount = content.length;
 
             if (content.trim().length === 0) {
                 alert('请先填写你的故事！');
                 return;
             }
+
+            // 获取自查清单状态
+            const check1 = document.getElementById('check1').checked;
+            const check2 = document.getElementById('check2').checked;
+            const check3 = document.getElementById('check3').checked;
+            const check4 = document.getElementById('check4').checked;
 
             const feedbackResult = document.getElementById('round2-feedback-result');
             const feedbackContent = document.getElementById('round2-feedback-content');
@@ -717,11 +724,21 @@ _________________________________"></textarea>
             feedbackResult.style.display = 'block';
             feedbackContent.textContent = '正在思考中...';
 
-            // 构造提示词 - 针对完整的一句话故事点评
-            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"进行点评：\n\n"${content}"\n\n请从以下角度进行专业点评：\n\n**一、故事骨架公式角度**\n1. "欲望"（想要什么）是否清晰？是否能引起读者共鸣？\n2. "冲突"（遇到的困难）是否具体？是否有足够的阻碍感？\n3. "行动"是否主动？"结局"是否完整？\n4. 整体故事是否完整、有吸引力？\n\n**二、连续动词技巧角度**（如果有动作描写）\n1. 是否运用了连续动词技巧（把一个动作分解成 3-5 个小动作）？\n2. 哪里可以加入连续动词让描写更生动？\n\n**三、综合建议**\n1. 给出 1-2 条具体可操作的修改建议\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
+            // 构造提示词 - 针对完整的一句话故事点评，加入自查清单检查结果
+            const checklistStatus = `
+学生自查清单完成情况：
+- 有明确的"想要"（欲望）吗？${check1 ? '✓ 已确认' : '✗ 未确认'}
+- 有具体的"冲突"（阻碍）吗？${check2 ? '✓ 已确认' : '✗ 未确认'}
+- 有清晰的"行动/结果"吗？${check3 ? '✓ 已确认' : '✗ 未确认'}
+- 字数在 100 字以内吗？${check4 ? '✓ 已确认' : '✗ 未确认'}
+
+当前字数：${charCount}字（要求 100 字以内）
+`;
+
+            const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"进行点评：\n\n学生习作：\n"${content}"\n\n${checklistStatus}\n请从以下角度进行专业点评：\n\n**一、故事骨架公式角度**\n1. "欲望"（想要什么）是否清晰？是否能引起读者共鸣？\n2. "冲突"（遇到的困难）是否具体？是否有足够的阻碍感？\n3. "行动"是否主动？"结局"是否完整？\n4. 整体故事是否完整、有吸引力？\n\n**二、连续动词技巧角度**（如果有动作描写）\n1. 是否运用了连续动词技巧（把一个动作分解成 3-5 个小动作）？\n2. 哪里可以加入连续动词让描写更生动？\n\n**三、自查清单核对**\n请根据学生的自查清单勾选情况，给出针对性建议：\n- 如果学生勾选了某项但实际做得不够，请温和地指出差距\n- 如果学生没有勾选某项，请提醒 TA 注意这个要点\n\n**四、综合建议（注意可行性）**\n1. 给出 1-2 条具体可操作的修改建议\n2. **字数相关的建议要可行**：\n   - 如果字数已接近或超过 100 字，建议应该侧重于"删减冗余、写得更简略"\n   - 如果字数远少于 100 字（如 50 字以下），建议可以侧重于"补充必要的细节"\n   - 不要建议字数已经超标的学生"增加细节描写"\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompt, 700);
+                const feedback = await WritingAssistant.callAPI(prompt, 800);
                 feedbackContent.textContent = feedback;
             } catch (error) {
                 feedbackContent.textContent = 'AI 点评失败：' + error.message;
