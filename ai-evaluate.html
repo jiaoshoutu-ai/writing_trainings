@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 写作评估 - 写作训练</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* 主面板 */
+        .main-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* API Key 输入 */
+        .api-key-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .api-key-section label {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .api-key-input {
+            display: flex;
+            gap: 10px;
+        }
+        .api-key-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .api-key-input input:focus {
+            border-color: #3b82f6;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-blue:hover {
+            background: #2563eb;
+        }
+        .btn-green {
+            background: #22c55e;
+            color: white;
+        }
+        .btn-green:hover {
+            background: #16a34a;
+        }
+
+        /* 写作输入区 */
+        .writing-section {
+            margin-bottom: 25px;
+        }
+        .writing-section label {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .writing-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+        .writing-input:focus {
+            border-color: #3b82f6;
+        }
+        .topic-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            margin-top: 10px;
+        }
+        .topic-input:focus {
+            border-color: #3b82f6;
+        }
+
+        /* 评估类型选择 */
+        .eval-type-section {
+            margin-bottom: 25px;
+        }
+        .eval-type-section label {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        .eval-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .eval-type-btn {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            font-size: 13px;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .eval-type-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .eval-type-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        /* 评估按钮 */
+        .evaluate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .evaluate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .evaluate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* 评估结果 */
+        .result-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            display: none;
+        }
+        .result-section.show {
+            display: block;
+        }
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .result-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .result-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .result-content {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #334155;
+            white-space: pre-wrap;
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 返回首页 */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: white;
+        }
+
+        /* 状态提示 */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .status-ready {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .status-not-set {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            返回首页
+        </a>
+
+        <h1>AI 写作评估</h1>
+        <p class="subtitle">上海初中语文名师级别的智能点评</p>
+
+        <div class="main-panel">
+            <!-- API Key 设置 -->
+            <div class="api-key-section">
+                <label>第一步：设置 API Key</label>
+                <div class="api-key-input">
+                    <input type="password" id="api-key-input" placeholder="sk-xxxxxxxxxxxxxxxx">
+                    <button class="btn btn-green" onclick="saveApiKey()">保存</button>
+                </div>
+                <div style="margin-top: 8px;">
+                    <span id="api-key-status" class="status-badge status-not-set">未设置</span>
+                </div>
+            </div>
+
+            <!-- 写作输入 -->
+            <div class="writing-section">
+                <label>第二步：写下你的句子或段落</label>
+                <textarea
+                    class="writing-input"
+                    id="writing-input"
+                    placeholder="在这里写下你的作文片段..."
+                ></textarea>
+                <input
+                    type="text"
+                    class="topic-input"
+                    id="topic-input"
+                    placeholder="可选：输入写作主题（如"我的妈妈"、"春天的校园"）"
+                >
+            </div>
+
+            <!-- 评估类型选择 -->
+            <div class="eval-type-section">
+                <label>第三步：选择评估类型</label>
+                <div class="eval-type-grid">
+                    <div class="eval-type-btn active" data-type="evaluate">综合评估</div>
+                    <div class="eval-type-btn" data-type="running">流水账检查</div>
+                    <div class="eval-type-btn" data-type="empty">空洞词检查</div>
+                    <div class="eval-type-btn" data-type="senses">五感描写</div>
+                    <div class="eval-type-btn" data-type="slowmo">慢镜头评估</div>
+                </div>
+            </div>
+
+            <!-- 评估按钮 -->
+            <button class="evaluate-btn" id="evaluate-btn" onclick="evaluateWriting()">
+                开始评估
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </button>
+
+            <!-- 评估结果 -->
+            <div class="result-section" id="result-section">
+                <div class="result-header">
+                    <div class="result-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="result-title">老师点评</div>
+                </div>
+                <div class="result-content" id="result-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/writing-assistant.js"></script>
+    <script>
+        let selectedEvalType = 'evaluate';
+
+        // 从环境变量读取 API key 的函数
+        function getApiKeyFromEnv() {
+            // 优先检查 window 对象中的全局变量（可通过脚本注入）
+            if (window.IFLOW_API_KEY) {
+                return window.IFLOW_API_KEY;
+            }
+            // 检查 HTML 中的 meta 标签配置
+            const metaKey = document.querySelector('meta[name="iflow-api-key"]');
+            if (metaKey) {
+                return metaKey.getAttribute('content');
+            }
+            return null;
+        }
+
+        // 页面加载时检查 API key
+        window.addEventListener('DOMContentLoaded', () => {
+            // 1. 优先从环境变量读取
+            const envKey = getApiKeyFromEnv();
+            if (envKey) {
+                document.getElementById('api-key-input').value = envKey;
+                WritingAssistant.init(envKey);
+                updateApiKeyStatus(true);
+                console.log('已从环境变量加载 API Key');
+                return;
+            }
+            // 2. 回退到 localStorage
+            const savedKey = localStorage.getItem('iflow_api_key');
+            if (savedKey) {
+                document.getElementById('api-key-input').value = savedKey;
+                WritingAssistant.init(savedKey);
+                updateApiKeyStatus(true);
+            }
+        });
+
+        // 保存 API key
+        function saveApiKey() {
+            const apiKey = document.getElementById('api-key-input').value.trim();
+            if (!apiKey) {
+                alert('请输入 API Key');
+                return;
+            }
+            localStorage.setItem('iflow_api_key', apiKey);
+            WritingAssistant.init(apiKey);
+            updateApiKeyStatus(true);
+            alert('API Key 已保存！');
+        }
+
+        // 更新 API key 状态显示
+        function updateApiKeyStatus(isReady) {
+            const statusEl = document.getElementById('api-key-status');
+            if (isReady) {
+                statusEl.textContent = '已设置';
+                statusEl.className = 'status-badge status-ready';
+            } else {
+                statusEl.textContent = '未设置';
+                statusEl.className = 'status-badge status-not-set';
+            }
+        }
+
+        // 评估类型选择
+        document.querySelectorAll('.eval-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.eval-type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedEvalType = btn.dataset.type;
+            });
+        });
+
+        // 执行评估
+        async function evaluateWriting() {
+            const apiKey = localStorage.getItem('iflow_api_key');
+            if (!apiKey) {
+                alert('请先设置 API Key');
+                return;
+            }
+
+            const writing = document.getElementById('writing-input').value.trim();
+            if (!writing) {
+                alert('请先写下你的句子或段落');
+                return;
+            }
+
+            const topic = document.getElementById('topic-input').value.trim();
+
+            const btn = document.getElementById('evaluate-btn');
+            const resultSection = document.getElementById('result-section');
+            const resultContent = document.getElementById('result-content');
+
+            // 显示加载状态
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> 正在评估中...';
+            resultSection.classList.remove('show');
+
+            try {
+                let result;
+                switch (selectedEvalType) {
+                    case 'running':
+                        result = await WritingAssistant.checkForRunningAccount(writing);
+                        break;
+                    case 'empty':
+                        result = await WritingAssistant.checkForEmptyWords(writing);
+                        break;
+                    case 'senses':
+                        result = await WritingAssistant.evaluateFiveSenses(writing);
+                        break;
+                    case 'slowmo':
+                        result = await WritingAssistant.evaluateSlowMotion(writing);
+                        break;
+                    default:
+                        result = await WritingAssistant.evaluate(writing, topic);
+                }
+
+                resultContent.textContent = result.feedback;
+                resultSection.classList.add('show');
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                alert('评估失败：' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `
+                    开始评估
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
