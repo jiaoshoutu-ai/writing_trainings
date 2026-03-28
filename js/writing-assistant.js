@@ -57,6 +57,10 @@ const WritingAssistant = {
             }
 
             const data = await response.json();
+            if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                console.error('API 响应格式异常:', data);
+                throw new Error('API 返回数据格式异常，请检查 API 配置或重试');
+            }
             return data.choices[0].message.content;
         } catch (error) {
             console.error('WritingAssistant API 调用失败:', error);
