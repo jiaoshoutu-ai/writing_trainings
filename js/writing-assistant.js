@@ -57,8 +57,14 @@ const WritingAssistant = {
             }
 
             const data = await response.json();
-            if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-                console.error('API 响应格式异常:', data);
+            // 调试：输出完整响应数据
+            console.log('API Response:', data);
+            if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
+                console.error('API 响应格式异常 - choices 缺失或为空:', data);
+                throw new Error('API 返回数据格式异常，请检查 API key 是否有效');
+            }
+            if (!data.choices[0] || !data.choices[0].message) {
+                console.error('API 响应格式异常 - message 缺失:', data);
                 throw new Error('API 返回数据格式异常，请检查 API 配置或重试');
             }
             return data.choices[0].message.content;
