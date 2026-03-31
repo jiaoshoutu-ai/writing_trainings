@@ -394,7 +394,15 @@
                 document.getElementById('api-key-input').value = savedKey;
                 WritingAssistant.init(savedKey);
                 updateApiKeyStatus(true);
+                console.log('已从 localStorage 加载 API Key');
+                return;
             }
+            // 3. 使用默认 API Key（用于测试）
+            const defaultApiKey = 'sk-31695a4872ae3911906b711ae68faec3';
+            document.getElementById('api-key-input').value = defaultApiKey;
+            WritingAssistant.init(defaultApiKey);
+            updateApiKeyStatus(true);
+            console.log('已使用默认 API Key');
         });
 
         // 保存 API key
