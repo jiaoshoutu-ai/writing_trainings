@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节五：素材积累 - 母亲的神态</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-pink { background: #fce7f3; color: #db2777; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .material-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .material-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-note {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .video-note p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .guide-section {
+            background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+        }
+
+        .guide-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #9d174d;
+            margin-bottom: 24px;
+        }
+
+        .guide-card {
+            background: rgba(255,255,255,0.7);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .guide-card h3 {
+            color: #be185d;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .guide-card p {
+            color: #831843;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .example-box {
+            background: white;
+            border-left: 4px solid #ec4899;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .example-box p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-pink {
+            background: #ec4899;
+            color: white;
+            box-shadow: 0 4px 15px rgba(236,72,153,0.4);
+        }
+        .btn-pink:hover { background: #be185d; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="5-4.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程五</span>
+            <div class="lesson-subtitle">慢镜头描写——把瞬间写长</div>
+        </div>
+        <a href="../index.html" style="color: #ec4899;">
+            返回首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-pink">环节五：素材积累</span>
+            <h1>母亲的神态</h1>
+        </div>
+
+        <div class="material-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                观看视频
+            </h2>
+
+            <div class="video-container">
+                <iframe
+                    src="//player.bilibili.com/player.html?isOutside=true&bvid=BV1un1KYXEMt&p=2"
+                    scrolling="no"
+                    border="0"
+                    frameborder="no"
+                    framespacing="0"
+                    allowfullscreen="true"
+                ></iframe>
+            </div>
+
+            <div class="video-note">
+                <p><strong>观看提示：</strong>注意视频中母亲的神态变化，这些细微的表情如何传达出深深的爱与关怀。</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                神态描写技巧
+            </h2>
+
+            <div class="guide-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    善用神态描写
+                </h3>
+                <p>人物的神态是内心世界的外在表现。描写母亲时，不要只写"她很爱我"，而要通过<strong>眼神、嘴角、眉头、手部动作</strong>等细节，让读者"看见"这份爱。</p>
+                <div class="example-box">
+                    <p><strong>平淡写法：</strong>妈妈很担心我。<br>
+                    <strong>神态描写：</strong>妈妈的眉头紧紧锁在一起，眼睛里满是焦急，她不停地搓着手，目光一遍又一遍地扫向门口。</p>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    注入个人情感
+                </h3>
+                <p>神态描写不是冷冰冰的"照相"，而是带着你的情感去观察和表达。当你怀着感激之心去描写母亲，她的每一个表情都会变得温暖动人。</p>
+                <div class="example-box">
+                    <p><strong>无情感的描写：</strong>她笑了笑，眼角的皱纹很明显。<br>
+                    <strong>带情感的描写：</strong>她笑了，眼角的皱纹像涟漪一样荡漾开来，那是岁月留下的温柔痕迹，藏着多少个为我操心的日夜。</p>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    小练笔
+                </h3>
+                <p>回忆一个母亲关心你的瞬间，用<strong>神态描写</strong>记录下来，注意融入你的情感。</p>
+                <div class="example-box">
+                    <p><strong>写作提示：</strong><br>
+                    • 母亲等你回家时的神态<br>
+                    • 母亲知道你生病时的表情<br>
+                    • 母亲为你高兴时的笑容<br>
+                    • 母亲生气时的眼神</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="5-4.html" class="btn btn-pink">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：总结与作业
+            </a>
+            <a href="../index.html" class="btn btn-pink">
+                返回首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
