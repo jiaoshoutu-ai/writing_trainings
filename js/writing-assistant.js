@@ -8,7 +8,7 @@ const WritingAssistant = {
     config: {
         baseURL: 'https://apis.iflow.cn/v1',
         model: 'deepseek-v3',
-        apiKey: 'sk-31695a4872ae3911906b711ae68faec3' // 需要在使用前设置
+        apiKey: 'sk-4586617c5fbb22d14515429ff4698bec' // 需要在使用前设置
     },
 
     // 初始化 - 设置 API key

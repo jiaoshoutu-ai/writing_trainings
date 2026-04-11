@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>环节四：总结与作业 - 慢镜头描写</title>
+    <script src="../js/writing-assistant.js"></script>
     <style>
         * {
             margin: 0;
@@ -243,6 +244,23 @@
         }
         .btn-sky:hover { background: #0369a1; }
 
+        .save-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(2,132,199,0.4);
+        }
+        .save-btn:hover { background: #0369a1; }
+
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -290,7 +308,7 @@
 </head>
 <body>
     <div class="nav-header">
-        <a href="5-3.html">
+        <a href="5-2.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             上一环节
         </a>
@@ -365,6 +383,10 @@
                     </div>
                     <p>要求：用慢镜头描写推门的瞬间，80 字左右。</p>
                     <textarea class="daily-textarea" id="monday" placeholder="她推开了教室的门……"></textarea>
+                    <button class="save-btn" onclick="showAIEvaluate('monday')" style="margin-top: 12px;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
                 </div>
 
                 <!-- 周二 -->
@@ -377,6 +399,10 @@
                     </div>
                     <p>要求：用慢镜头描写投篮命中的瞬间，80 字左右。</p>
                     <textarea class="daily-textarea" id="tuesday" placeholder="篮球投进了篮筐……"></textarea>
+                    <button class="save-btn" onclick="showAIEvaluate('tuesday')" style="margin-top: 12px;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
                 </div>
 
                 <!-- 周三 -->
@@ -389,6 +415,10 @@
                     </div>
                     <p>要求：用慢镜头描写杯子摔碎的瞬间，80 字左右。</p>
                     <textarea class="daily-textarea" id="wednesday" placeholder="玻璃杯掉在地上摔碎了……"></textarea>
+                    <button class="save-btn" onclick="showAIEvaluate('wednesday')" style="margin-top: 12px;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
                 </div>
 
                 <!-- 周四 -->
@@ -401,6 +431,10 @@
                     </div>
                     <p>要求：用慢镜头描写接钥匙的瞬间，80 字左右。</p>
                     <textarea class="daily-textarea" id="thursday" placeholder="他接住了抛过来的钥匙……"></textarea>
+                    <button class="save-btn" onclick="showAIEvaluate('thursday')" style="margin-top: 12px;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
                 </div>
 
                 <!-- 周五 -->
@@ -415,6 +449,10 @@
                     <textarea class="daily-textarea" id="friday" placeholder="我选的瞬间：_______________
 
 我的慢镜头描写："></textarea>
+                    <button class="save-btn" onclick="showAIEvaluate('friday')" style="margin-top: 12px;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI 点评
+                    </button>
                 </div>
             </div>
 
@@ -447,9 +485,9 @@
         </div>
 
         <div class="nav-buttons">
-            <a href="5-3.html" class="btn btn-sky">
+            <a href="5-2.html" class="btn btn-sky">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                上一步：分享与点评
+                上一步：实战演练
             </a>
             <a href="5-5.html" class="btn btn-sky">
                 下一环节：素材积累
@@ -459,6 +497,14 @@
     </div>
 
     <script>
+        // 默认 API Key
+        const DEFAULT_API_KEY = 'sk-4586617c5fbb22d14515429ff4698bec';
+
+        // 初始化 WritingAssistant
+        if (typeof WritingAssistant !== 'undefined') {
+            WritingAssistant.init(DEFAULT_API_KEY);
+        }
+
         function saveDaily() {
             const daily = {
                 monday: document.getElementById('monday').value,
@@ -476,6 +522,212 @@
             };
             localStorage.setItem('lesson5_homework', JSON.stringify(daily));
             alert('作业已保存！');
+        }
+
+        // 显示 AI 点评弹窗
+        function showAIEvaluate(dayId) {
+            const content = document.getElementById(dayId).value.trim();
+            if (!content) {
+                alert('请先填写内容！');
+                return;
+            }
+
+            // 创建弹窗
+            const modal = document.createElement('div');
+            modal.id = 'ai-evaluate-modal';
+            modal.innerHTML = `
+                <div class="modal-overlay" onclick="closeAIEvaluate()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>AI 老师点评</h3>
+                        <button class="modal-close" onclick="closeAIEvaluate()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="loading-section" id="loading-section">
+                            <div class="loading-spinner"></div>
+                            <p>AI 老师正在认真批改中...</p>
+                        </div>
+                        <div class="result-section" id="result-section" style="display: none;">
+                            <div class="result-content" id="result-content"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // 添加样式
+            const style = document.createElement('style');
+            style.id = 'ai-evaluate-style';
+            style.textContent = `
+                #ai-evaluate-modal .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1000;
+                }
+                #ai-evaluate-modal .modal-content {
+                    background: white;
+                    border-radius: 20px;
+                    padding: 24px;
+                    max-width: 600px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    position: relative;
+                }
+                #ai-evaluate-modal .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    padding-bottom: 16px;
+                    border-bottom: 1px solid #e2e8f0;
+                }
+                #ai-evaluate-modal .modal-header h3 {
+                    color: #0f172a;
+                    font-size: 18px;
+                    margin: 0;
+                }
+                #ai-evaluate-modal .modal-close {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    color: #64748b;
+                    cursor: pointer;
+                    padding: 0;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    transition: background 0.3s;
+                }
+                #ai-evaluate-modal .modal-close:hover {
+                    background: #f1f5f9;
+                }
+                #ai-evaluate-modal .modal-body {
+                    min-height: 200px;
+                }
+                #ai-evaluate-modal .loading-section {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 40px 0;
+                }
+                #ai-evaluate-modal .loading-spinner {
+                    width: 40px;
+                    height: 40px;
+                    border: 3px solid #e2e8f0;
+                    border-top-color: #0284c7;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    margin-bottom: 16px;
+                }
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+                #ai-evaluate-modal .loading-section p {
+                    color: #64748b;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                #ai-evaluate-modal .result-section {
+                    padding: 20px 0;
+                }
+                #ai-evaluate-modal .result-content {
+                    background: #f8fafc;
+                    border-radius: 12px;
+                    padding: 20px;
+                    font-size: 15px;
+                    line-height: 1.8;
+                    color: #334155;
+                    white-space: pre-wrap;
+                }
+                @media (max-width: 768px) {
+                    #ai-evaluate-modal .modal-content {
+                        width: 95%;
+                        padding: 16px;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // 调用 AI 评估
+            evaluateContent(content).then((result) => {
+                document.getElementById('loading-section').style.display = 'none';
+                document.getElementById('result-section').style.display = 'block';
+                document.getElementById('result-content').textContent = result.feedback;
+            }).catch((error) => {
+                document.getElementById('loading-section').innerHTML = `
+                    <p style="color: #dc2626;">点评失败：${error.message}</p>
+                    <button class="save-btn" onclick="closeAIEvaluate()" style="margin-top: 16px;">关闭</button>
+                `;
+            });
+        }
+
+        // 关闭 AI 点评弹窗
+        function closeAIEvaluate() {
+            const modal = document.getElementById('ai-evaluate-modal');
+            if (modal) {
+                modal.remove();
+            }
+            const style = document.getElementById('ai-evaluate-style');
+            if (style) {
+                style.remove();
+            }
+        }
+
+        // 调用 AI 评估
+        async function evaluateContent(content) {
+            // 使用慢镜头评估
+            if (typeof WritingAssistant !== 'undefined') {
+                return await WritingAssistant.evaluateSlowMotion(content);
+            } else {
+                // 如果 WritingAssistant 未加载，使用 fetch 直接调用
+                const apiKey = DEFAULT_API_KEY;
+                const response = await fetch('https://apis.iflow.cn/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'deepseek-v3',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。'
+                            },
+                            {
+                                role: 'user',
+                                content: `请评估下面这段文字是否成功运用了"慢镜头"技巧（把一个瞬间的动作拉长、分解，加入细节）：\n\n"${content}"\n\n请：\n1. 评价是否有慢镜头意识\n2. 指出可以进一步分解的动作\n3. 给出一个慢镜头修改示例`
+                            }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 500
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API 请求失败：${response.status}`);
+                }
+
+                const data = await response.json();
+                return {
+                    original: content,
+                    type: '慢镜头评估',
+                    feedback: data.choices[0].message.content,
+                    timestamp: new Date().toISOString()
+                };
+            }
         }
 
         document.querySelectorAll('.daily-textarea').forEach(area => {
