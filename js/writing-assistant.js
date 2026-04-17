@@ -8,12 +8,33 @@ const WritingAssistant = {
     config: {
         baseURL: 'https://apis.iflow.cn/v1',
         model: 'deepseek-v3',
-        apiKey: 'sk-4586617c5fbb22d14515429ff4698bec' // 需要在使用前设置
+        apiKey: '' // 通过 init() 设置
     },
 
-    // 初始化 - 设置 API key
+    // 初始化 - 设置 API key（统一入口）
     init(apiKey) {
+        if (!apiKey) {
+            // 尝试从环境变量读取（HTML 注入的全局变量或 meta 标签）
+            if (window.IFLOW_API_KEY) {
+                apiKey = window.IFLOW_API_KEY;
+            } else {
+                const metaKey = document.querySelector('meta[name="iflow-api-key"]');
+                if (metaKey) {
+                    apiKey = metaKey.getAttribute('content');
+                }
+            }
+            // 尝试从 localStorage 读取
+            if (!apiKey) {
+                apiKey = localStorage.getItem('iflow_api_key');
+            }
+            // 使用默认 key（仅用于测试）
+            if (!apiKey) {
+                apiKey = 'sk-4586617c5fbb22d14515429ff4698bec';
+            }
+        }
         this.config.apiKey = apiKey;
+        console.log('WritingAssistant 已初始化');
+        return apiKey;
     },
 
     /**

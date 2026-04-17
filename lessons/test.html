@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第 01 课 第 5 部分 素材转化 - 初中现代文阅读专题课程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .lesson-header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .lesson-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .lesson-header h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .part-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .learning-objectives {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .learning-objectives h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .learning-objectives ul {
+            margin-left: 20px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f4ff;
+        }
+
+        .content-section h3 {
+            color: #444;
+            font-size: 1.1rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-section ul, .content-section ol {
+            margin: 15px 0 15px 25px;
+            color: #555;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .tip-box {
+            background: #fff8e6;
+            border: 1px solid #ffd54f;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .tip-box strong {
+            color: #f57c00;
+        }
+
+        /* 第四部分：素材转化样式 */
+        .material-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 2px solid #ff9800;
+        }
+
+        .material-section h2 {
+            color: #ff9800;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fff3e0;
+        }
+
+        .micro-lecture-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .micro-lecture-box h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .writing-password {
+            background: white;
+            border: 1px solid #ffcc80;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .writing-password h3 {
+            color: #f57c00;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .password-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .password-table th {
+            background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .password-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #ffe0b2;
+            vertical-align: top;
+        }
+
+        .password-table tr:nth-child(even) {
+            background: #fff8e1;
+        }
+
+        .password-table tr:hover {
+            background: #ffe0b2;
+        }
+
+        .material-training-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .material-training-box h3 {
+            color: #9c27b0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .training-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .training-table th {
+            background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .training-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e1bee7;
+            vertical-align: top;
+        }
+
+        .training-table tr:nth-child(even) {
+            background: #f3e5f5;
+        }
+
+        .training-table input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ce93d8;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .training-table input[type="text"]:focus {
+            outline: none;
+            border-color: #9c27b0;
+            box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.1);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .challenge-box h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .challenge-requirement {
+            background: white;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .challenge-requirement ul {
+            margin-left: 20px;
+            color: #333;
+        }
+
+        .challenge-requirement li {
+            margin-bottom: 8px;
+        }
+
+        .challenge-input-area {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .challenge-input-area label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .challenge-input-area textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            line-height: 1.8;
+        }
+
+        .challenge-input-area textarea:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .submit-challenge-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        .submit-challenge-btn:hover {
+            opacity: 0.9;
+        }
+
+        .teacher-feedback {
+            background: #f1f8e9;
+            border: 1px solid #c5e1a5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .teacher-feedback.show {
+            display: block;
+        }
+
+        .teacher-feedback strong {
+            color: #33691e;
+        }
+
+        .feedback-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #a5d6a7;
+        }
+
+        .feedback-title h4 {
+            color: #2e7d32;
+            margin: 0;
+        }
+
+        .feedback-title .badge {
+            background: #4caf50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .student-work {
+            background: white;
+            border: 1px solid #dcedc8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .student-work .title {
+            font-weight: 600;
+            color: #558b2f;
+            margin-bottom: 10px;
+        }
+
+        .teacher-comment {
+            background: #fff8e1;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .teacher-comment .label {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .highlight-point {
+            background: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.9;
+        }
+
+        .feedback-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback-box.correct {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+        }
+
+        .feedback-box.incorrect {
+            background: #fff3e0;
+            border: 1px solid #ffcc80;
+        }
+
+        .feedback-box h4 {
+            margin-bottom: 10px;
+        }
+
+        .feedback-box.correct h4 {
+            color: #2e7d32;
+        }
+
+        .feedback-box.incorrect h4 {
+            color: #e65100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .nav-links a {
+            background: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #e0e0e0;
+            color: #666;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .progress-step.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .progress-step.completed {
+            background: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html">&larr; 返回首页</a>
+    </nav>
+
+    <div class="container">
+        <!-- 进度指示器 -->
+        <div class="progress-indicator">
+            <div class="progress-step completed">Part 1 核心概括法</div>
+            <div class="progress-step completed">Part 2 两个基本结构</div>
+            <div class="progress-step completed">Part 3 真题练习</div>
+            <div class="progress-step completed">Part 4 批注式阅读</div>
+            <div class="progress-step active">Part 5 素材转化</div>
+            <div class="progress-step">附录</div>
+        </div>
+
+        <div class="lesson-header">
+            <span class="lesson-number">第 01 课</span>
+            <span class="part-badge">第五部分</span>
+            <h1>素材转化——把阅读变成"作文提款机"</h1>
+            <div class="learning-objectives">
+                <h3>学习目标</h3>
+                <ul>
+                    <li>学会将阅读中学到的技法转化为自己的写作素材</li>
+                    <li>掌握"连续动词法""笨拙感描写""情感触发点"三大技法</li>
+                    <li>建立个人素材库，为写作积累真实感人的细节</li>
+                    <li>完成微写作训练，实战运用所学技法</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第四部分：素材转化训练 -->
+        <div class="material-section">
+            <div class="micro-lecture-box">
+                <h3>🎬 微课讲解：你的生活不无聊，是你不会"翻译"</h3>
+                <p>为什么朱自清写父亲买橘子能成经典？你写你爸帮你搬行李就是流水账？区别在于有没有<strong>"翻译"</strong>素材。</p>
+                <p style="margin-top: 10px;">普通人看到的是"父亲爬月台"，朱自清看到的是<b>"一个笨拙的父亲为了儿子不顾形象地努力"</b>。写作就是把生活场景"翻译"成动人画面的过程。</p>
+            </div>
+
+            <div class="writing-password">
+                <h3>🔑 写作密码提炼：慢镜头 + 情感触发点</h3>
+                <p>从《背影》学到的三大技法，让你的作文也能打动人心：</p>
+
+                <table class="password-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">从《背影》学到的技法</th>
+                            <th style="width: 35%">具体解释</th>
+                            <th style="width: 45%">如何用到我的作文里？</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. 连续动词法</strong></td>
+                            <td>把一个大动作拆成 3-5 个小动作（探、爬、攀、缩、倾）。</td>
+                            <td>不要写"妈妈炒菜"，写<b>"妈妈侧身、探手、翻炒、后仰躲避油烟"</b>。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. 笨拙感/障碍法</strong></td>
+                            <td>特意描写人物的"不方便"（肥胖、穿着臃肿、手上有伤）。</td>
+                            <td>写感动的瞬间，要写人物因为爱你而显露出的<b>"不优雅"或"费劲"</b>。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. 情感触发点</strong></td>
+                            <td>找到一个具体的"物"或"画面"作为引爆眼泪的开关（背影）。</td>
+                            <td>不要写"我很感动"，写<b>"看着妈妈发间突然多出的一根白发，我愣住了"</b>。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="material-training-box">
+                <h3>📋 素材转化训练表</h3>
+                <p>下面这个表格是提升作文水平的关键工具。请完成表格的 <strong>"我的生活素材"</strong> 这一栏，把你生活中的类似瞬间写下来。</p>
+
+                <table class="training-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">阅读的名场面</th>
+                            <th style="width: 25%">作者的写作技法</th>
+                            <th style="width: 45%">我能想到的类似瞬间（你的生活素材）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>父亲爬月台：</strong>肥胖的身子、双手攀、两脚缩、向左微倾。</td>
+                            <td>描写笨拙的动作，因为笨拙，所以动人。</td>
+                            <td><input type="text" placeholder="例如：一向严肃的爸爸笨手笨脚地给生病的我削苹果，皮削断了三次，最后只剩个核。" id="material1"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>父亲的来信：</strong>说自己"大去之期不远"。</td>
+                            <td>通过语言细节侧面表现人物的衰老与牵挂。</td>
+                            <td><input type="text" placeholder="例如：爷爷打电话说家里枇杷熟了，问我要不要吃，其实是他想我了，找个笨拙的借口。" id="material2"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>父亲的背影：</strong>混入人群再也找不着了。</td>
+                            <td>用一个渐行渐远的画面定格思念。</td>
+                            <td><input type="text" placeholder="例如：外婆送我到村口，我走出很远回头看，她还拄着拐杖像一棵老树站在风里。" id="material3"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="submit-btn" onclick="checkMaterialTable()">完成素材表格</button>
+                <div id="material-feedback" class="feedback-box"></div>
+
+                <div class="tip-box" style="background: #e3f2fd; border-color: #2196f3; margin-top: 15px;">
+                    <strong>💡 提示：</strong> 这些素材都是你独一无二的写作财富，写下来后可以在以后的作文中反复使用！
+                </div>
+            </div>
+
+            <div class="challenge-box">
+                <h3>🎯 最终挑战：微写作训练</h3>
+                <p>请运用今天学习的 <strong>"连续动词法"</strong>和 <strong>"笨拙感描写"</strong>，写一个 100 字左右的片段。</p>
+
+                <div class="challenge-requirement">
+                    <p><strong>题目：</strong>《______的背影/侧影》（横线填一位家人）</p>
+                    <p><strong>写作要求：</strong></p>
+                    <ul>
+                        <li>选定一个场景（做饭、修理东西、接你放学、帮你拎箱子）</li>
+                        <li>不准写"他很辛苦""他很爱我"这样的直接抒情</li>
+                        <li>用至少<strong>4 个不同的动词</strong>描写他/她的动作</li>
+                        <li>写出他/她动作的<strong>"费力"或"笨拙"</strong>之处</li>
+                    </ul>
+                </div>
+
+                <div class="challenge-input-area">
+                    <label for="challenge-writing"><strong>你的微写作：</strong></label>
+                    <textarea id="challenge-writing" placeholder="请在这里完成你的微写作片段：
+
+题目：《______的背影/侧影》
+
+写作提示：
+- 先确定你要写的家人和场景
+- 聚焦一个具体的画面或瞬间
+- 用连续的动词分解动作
+- 写出他/她的"笨拙"或"费力"
+- 让读者从细节中感受到情感，而不是直接说"我很感动"
+
+开始写作吧，期待你的精彩作品！"></textarea>
+                    <button class="submit-challenge-btn" onclick="submitChallenge()">提交作文</button>
+                    <div id="challenge-feedback" class="feedback-box"></div>
+                </div>
+
+                <button class="toggle-btn" onclick="toggleTeacherFeedback()">查看老师点评范例</button>
+
+                <div id="teacher-feedback" class="teacher-feedback">
+                    <div class="feedback-title">
+                        <h4>📖 学生作品范例与老师点评</h4>
+                        <span class="badge">满分示例</span>
+                    </div>
+
+                    <div class="student-work">
+                        <p class="title">学生作品：《妈妈的侧影》</p>
+                        <p>厨房里的灯把妈妈的影子投在墙上。她左手按着滑溜溜的鱼，右手的刀凑过去，刮鳞片的声音"刺啦刺啦"响。鱼突然弹了一下，她整个人吓得往后缩了缩，手在围裙上蹭了两把，又小心翼翼地凑上去。我发现她的背微微弓着，后颈的碎发被汗水粘成了几缕。我这才意识到，那个说爱吃鱼却总把鱼肚夹给我的人，其实很怕收拾活鱼。</p>
+                    </div>
+
+                    <div class="teacher-comment">
+                        <span class="label">老师点评</span>
+                        <p><strong>✓ 连续动词法运用出色：</strong> "按、凑、刮、缩、蹭、凑"——一连串动词把妈妈收拾鱼的过程分解成慢镜头，画面感极强。</p>
+                        <p style="margin-top: 10px;"><strong>✓ 笨拙感描写到位：</strong> "吓得往后缩了缩""小心翼翼地凑上去"，写出妈妈怕鱼却为了孩子硬着头皮做的"不优雅"，反而更动人。</p>
+                        <p style="margin-top: 10px;"><strong>✓ 情感触发点巧妙：</strong> 不直接说"妈妈爱我"，而是通过<b>"后颈的碎发被汗水粘成了几缕"</b>和<b>"说爱吃鱼却总把鱼肚夹给我"</b>这两个细节，让读者自己感受到母爱。</p>
+                        <p style="margin-top: 10px;"><strong>📊 评分：</strong> 内容 4/4 | 技法 4/4 | 情感 4/4 = <strong>12/12 分</strong></p>
+                    </div>
+
+                    <div class="tip-box" style="background: #fff3e0; border-color: #ff9800; margin-top: 15px;">
+                        <strong>💡 写作秘诀：</strong><br>
+                        好的作文不是"写出来"的，是"看出来"的——观察生活中的细节，把那些让你心头一动的瞬间记录下来，就是好素材。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="lesson01-part4.html">← 返回 Part 4</a>
+            <a href="lesson01-appendix.html">去附录 📄</a>
+            <a href="../index.html">返回首页</a>
+        </div>
+    </div>
+
+    <script>
+        // 进度指示器点击跳转
+        document.querySelectorAll('.progress-step').forEach((step, index) => {
+            step.style.cursor = 'pointer';
+            step.addEventListener('click', () => {
+                const pages = ['lesson01-part1.html', 'lesson01-part2.html', 'lesson01-part3.html', 'lesson01-part4.html', 'lesson01-part5.html', 'lesson01-appendix.html'];
+                window.location.href = pages[index];
+            });
+        });
+
+        // 检查素材转化训练表
+        function checkMaterialTable() {
+            var filledCount = 0;
+            var inputs = ['material1', 'material2', 'material3'];
+
+            inputs.forEach(function(id) {
+                var val = document.getElementById(id).value.trim();
+                if (val !== '') filledCount++;
+            });
+
+            var feedback = document.getElementById('material-feedback');
+            feedback.style.display = 'block';
+
+            if (filledCount === 0) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<h4>⚠️ 请先填写素材表格后再提交</h4><p>至少填写一个你生活中的类似瞬间！</p>';
+                return;
+            }
+
+            feedback.className = 'feedback-box correct';
+            var message = '<h4>✓ 太棒了！你已经完成了素材转化训练</h4>';
+            message += '<p>你完成了 ' + filledCount + '/3 个素材。</p>';
+            message += '<p style="margin-top: 15px;"><strong>📝 这些素材的价值：</strong></p>';
+            message += '<p>这些从阅读中"转化"来的生活素材，是你独一无二的写作财富。以后写到亲情、感动、成长等主题时，都可以用上它们！</p>';
+            message += '<p style="margin-top: 10px; color: #667eea;"><em>（建议把这些素材抄写到你的作文素材本上）</em></p>';
+            feedback.innerHTML = message;
+        }
+
+        // 切换老师点评显示
+        function toggleTeacherFeedback() {
+            var feedback = document.getElementById('teacher-feedback');
+            if (feedback.classList.contains('show')) {
+                feedback.classList.remove('show');
+            } else {
+                feedback.classList.add('show');
+            }
+        }
+
+        // 提交微写作挑战
+        function submitChallenge() {
+            var writing = document.getElementById('challenge-writing').value.trim();
+            var feedback = document.getElementById('challenge-feedback');
+
+            if (!writing) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<h4>⚠️ 请先完成微写作后再提交</h4><p>期待看到你的精彩片段！</p>';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            // 检查字数
+            var charCount = writing.length;
+            var wordFeedback = '';
+            if (charCount < 80) {
+                wordFeedback = '<p style="color: #f57c00; margin-top: 10px;"><strong>提示：</strong> 目前 ' + charCount + ' 字，建议写到 100 字左右，内容会更丰富。</p>';
+            } else if (charCount > 150) {
+                wordFeedback = '<p style="color: #f57c00; margin-top: 10px;"><strong>提示：</strong> 目前 ' + charCount + ' 字，稍微精简一下，控制在 100 字左右更好。</p>';
+            } else {
+                wordFeedback = '<p style="color: #2e7d32; margin-top: 10px;"><strong>✓ 字数合适：</strong> ' + charCount + ' 字，符合 100 字左右的要求。</p>';
+            }
+
+            // 检查是否包含直接抒情
+            var directEmotion = ['很辛苦', '很爱我', '很感动', '非常爱', '太伟大', '无私奉献', '辛苦了'];
+            var hasDirectEmotion = false;
+            directEmotion.forEach(function(phrase) {
+                if (writing.indexOf(phrase) >= 0) hasDirectEmotion = true;
+            });
+
+            var emotionFeedback = '';
+            if (hasDirectEmotion) {
+                emotionFeedback = '<p style="color: #f57c00; margin-top: 10px;"><strong>提示：</strong> 你使用了直接抒情的表达（如"很辛苦""很爱我"等）。试着删掉这些词，用动作和细节让读者自己感受到情感。</p>';
+            } else {
+                emotionFeedback = '<p style="color: #2e7d32; margin-top: 10px;"><strong>✓ 情感表达含蓄：</strong> 你没有直接说"爱"或"辛苦"，而是用细节让读者自己感受，很好！</p>';
+            }
+
+            // 检查是否包含多个动词
+            var actionVerbs = ['走', '跑', '跳', '坐', '站', '蹲', '拿', '提', '拎', '搬', '抬', '放', '按', '切', '炒', '煮', '洗', '擦', '拖', '扫', '修', '拧', '敲', '打', '缝', '织', '写', '画', '看', '听', '摸', '闻', '笑', '哭', '点头', '摇头', '弯腰', '转身', '抬头', '低头'];
+            var verbCount = 0;
+            actionVerbs.forEach(function(v) {
+                if (writing.indexOf(v) >= 0) verbCount++;
+            });
+
+            var verbFeedback = '';
+            if (verbCount >= 4) {
+                verbFeedback = '<p style="color: #2e7d32; margin-top: 10px;"><strong>✓ 动词丰富：</strong> 你使用了至少 ' + verbCount + ' 个不同的动词，符合"连续动词法"的要求！</p>';
+            } else if (verbCount >= 2) {
+                verbFeedback = '<p style="color: #f57c00; margin-top: 10px;"><strong>提示：</strong> 你使用了 ' + verbCount + ' 个动词，如果能再用 1-2 个动词分解动作，会更生动。</p>';
+            } else {
+                verbFeedback = '<p style="color: #f57c00; margin-top: 10px;"><strong>提示：</strong> 你使用了 ' + verbCount + ' 个动词，试着把一个大动作拆成 3-5 个小动作来写。</p>';
+            }
+
+            feedback.className = 'feedback-box correct';
+            var message = '<h4>✓ 微写作已提交！</h4>';
+            message += wordFeedback;
+            message += verbFeedback;
+            message += emotionFeedback;
+            message += '<p style="margin-top: 15px;">💡 点击下方"查看老师点评范例"，看看满分作文是怎么写的，对比一下自己的作品，想想哪里还可以改进！</p>';
+            feedback.innerHTML = message;
+            feedback.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
