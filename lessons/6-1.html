@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环节一：认识悬念开头 - 写作训练</title>
+    <title>环节一：复习回顾 - 综合复习</title>
     <style>
         * {
             margin: 0;
@@ -62,7 +62,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tag-purple { background: #f3e8ff; color: #9333ea; }
+        .tag-indigo { background: #e0e7ff; color: #3730a3; }
 
         h1 {
             font-size: 2.2em;
@@ -80,128 +80,136 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .method-card {
-            background: #faf5ff;
-            border: 2px solid #e9d5ff;
+        .review-card {
+            background: #e0e7ff;
+            border: 2px solid #6366f1;
             border-radius: 20px;
             padding: 28px;
             margin-bottom: 24px;
         }
 
-        .method-header {
+        .review-card h3 {
+            color: #312e81;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 10px;
+            font-size: 18px;
         }
 
-        .method-icon {
-            width: 48px;
-            height: 48px;
-            background: #a855f7;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
+        .question-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
         }
 
-        .method-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #7e22ce;
+        .question-box p {
+            color: #92400e;
+            font-size: 16px;
+            line-height: 1.8;
         }
 
-        .method-desc {
-            color: #581c87;
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-
-        .example-card {
+        .answer-box {
             background: white;
-            border-left: 4px solid #a855f7;
+            border-left: 4px solid #6366f1;
             border-radius: 12px;
             padding: 20px;
             margin-top: 16px;
         }
 
-        .example-label {
-            font-size: 12px;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .answer-box h4 {
+            color: #4338ca;
+            margin-bottom: 12px;
+        }
+
+        .answer-box ul {
+            color: #475569;
+            padding-left: 20px;
+            line-height: 2;
+        }
+
+        .example-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .example-card h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-card p {
+            color: #14532d;
+            line-height: 1.8;
+        }
+
+        .five-senses-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .sense-item {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 2px solid #6366f1;
+        }
+
+        .sense-icon {
+            font-size: 24px;
             margin-bottom: 8px;
         }
 
-        .example-text {
-            font-size: 16px;
-            color: #1e293b;
-            font-style: italic;
-            line-height: 1.8;
-        }
-
-        .tip-box {
-            background: #fef3c7;
-            border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 24px;
-        }
-
-        .tip-box p {
-            color: #92400e;
+        .sense-name {
+            font-weight: bold;
+            color: #312e81;
             font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .comparison-section {
-            background: #f0fdf4;
-            border: 2px solid #22c55e;
-            border-radius: 20px;
-            padding: 28px;
-            margin-top: 24px;
-        }
-
-        .comparison-section h3 {
-            color: #166534;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .comparison-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
+            margin-top: 16px;
         }
 
         .comparison-item {
-            padding: 20px;
             border-radius: 12px;
+            padding: 20px;
         }
 
         .comparison-bad {
-            background: #fee2e2;
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
         }
 
         .comparison-good {
             background: #dcfce7;
+            border: 2px solid #4ade80;
         }
 
         .comparison-label {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .comparison-bad .comparison-label { color: #991b1b; }
         .comparison-good .comparison-label { color: #166534; }
 
         .comparison-text {
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.8;
         }
 
@@ -222,12 +230,12 @@
             text-decoration: none;
         }
 
-        .btn-purple {
-            background: #a855f7;
+        .btn-indigo {
+            background: #6366f1;
             color: white;
-            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+            box-shadow: 0 4px 15px rgba(99,102,241,0.4);
         }
-        .btn-purple:hover { background: #9333ea; }
+        .btn-indigo:hover { background: #4f46e5; }
 
         .nav-buttons {
             display: flex;
@@ -239,7 +247,22 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        .teacher-tip {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .teacher-tip p {
+            color: #92400e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
         @media (max-width: 768px) {
+            .five-senses-grid,
             .comparison-grid {
                 grid-template-columns: 1fr;
             }
@@ -255,9 +278,9 @@
         </a>
         <div style="text-align: center;">
             <span class="lesson-title">课程六</span>
-            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+            <div class="lesson-subtitle">综合复习——巩固前五课内容</div>
         </div>
-        <a href="6-2.html" style="color: #a855f7;">
+        <a href="6-2.html" style="color: #6366f1;">
             下一环节
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
@@ -265,116 +288,107 @@
 
     <div class="container">
         <div style="text-align: center;">
-            <span class="section-tag tag-purple">环节一：学习方法</span>
-            <h1>三种悬念开头法</h1>
+            <span class="section-tag tag-indigo">环节一：复习回顾</span>
+            <h1>两大核心工具</h1>
         </div>
 
         <div class="content-section">
-            <!-- 方法一：结果先行 -->
-            <div class="method-card">
-                <div class="method-header">
-                    <div class="method-icon">🎯</div>
-                    <div class="method-title">方法一：结果先行</div>
-                </div>
-                <p class="method-desc">
-                    把故事的结局或关键结果放在开头，让读者好奇"为什么会这样"。
-                </p>
-                <div class="example-card">
-                    <div class="example-label">示例</div>
-                    <p class="example-text">
-                        "当警察把那封信递到我手上时，我才知道，那个每天给我送牛奶的老人，竟然是一个隐姓埋名的亿万富翁。"
-                    </p>
-                </div>
-                <div class="example-card">
-                    <div class="example-label">另一个例子</div>
-                    <p class="example-text">
-                        "直到站在领奖台上，我才明白，那个总是批评我的老师，其实一直在默默支持我。"
-                    </p>
-                </div>
-            </div>
-
-            <!-- 方法二：细节反常 -->
-            <div class="method-card">
-                <div class="method-header">
-                    <div class="method-icon">🔍</div>
-                    <div class="method-title">方法二：细节反常</div>
-                </div>
-                <p class="method-desc">
-                    描写一个反常的、不合常理的细节，让读者好奇"这是怎么回事"。
-                </p>
-                <div class="example-card">
-                    <div class="example-label">示例</div>
-                    <p class="example-text">
-                        "妈妈的手机上，存着一个从没打过的号码，备注是三个字：对不起。"
-                    </p>
-                </div>
-                <div class="example-card">
-                    <div class="example-label">另一个例子</div>
-                    <p class="example-text">
-                        "爸爸的抽屉里，锁着一张泛黄的照片，照片上的他和一个陌生的女人笑得很开心。"
-                    </p>
-                </div>
-            </div>
-
-            <!-- 方法三：对话引入 -->
-            <div class="method-card">
-                <div class="method-header">
-                    <div class="method-icon">💬</div>
-                    <div class="method-title">方法三：对话引入</div>
-                </div>
-                <p class="method-desc">
-                    用人物的对话开场，让读者好奇"发生了什么"、"为什么要说这句话"。
-                </p>
-                <div class="example-card">
-                    <div class="example-label">示例</div>
-                    <p class="example-text">
-                        "'你真的要去吗？'姐姐的声音在发抖。"
-                    </p>
-                </div>
-                <div class="example-card">
-                    <div class="example-label">另一个例子</div>
-                    <p class="example-text">
-                        "'别开门！'电话那头传来妈妈急促的声音，可门铃已经响了。"
-                    </p>
-                </div>
-            </div>
-
-            <!-- 对比：普通开头 vs 悬念开头 -->
-            <div class="comparison-section">
+            <!-- 复习一：故事要有波折 -->
+            <div class="review-card">
                 <h3>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    对比一下：哪个开头更吸引你？
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    核心工具一：故事要有波折
                 </h3>
+
+                <div class="question-box">
+                    <p><strong>快速问答：</strong>写一件事，要让它像故事而不是流水账，心里要装着哪三个问题？</p>
+                </div>
+
+                <div class="answer-box">
+                    <h4>三个问题法</h4>
+                    <ul>
+                        <li><strong>① 最在乎什么？</strong></li>
+                        <li><strong>② 什么让这件事没那么顺？</strong>（意外/困难/误会）</li>
+                        <li><strong>③ 最后怎么了？</strong></li>
+                    </ul>
+                </div>
+
+                <div class="example-card">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        举例验证
+                    </h4>
+                    <p><strong>在乎：</strong>想帮妈妈洗碗</p>
+                    <p><strong>波折：</strong>结果打碎了一个盘子</p>
+                    <p><strong>结果：</strong>妈妈没骂你反而说"碎碎平安"</p>
+                    <p style="color: #166534; font-weight: bold; margin-top: 8px;">——这就是一个有波折的小故事。</p>
+                </div>
+            </div>
+
+            <!-- 复习二：五感描写 -->
+            <div class="review-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    核心工具二：描写要有画面
+                </h3>
+
+                <div class="question-box">
+                    <p><strong>快速回忆：</strong>要让读者仿佛亲眼看见、亲耳听见，我们要调动哪五种感觉？</p>
+                </div>
+
+                <div class="five-senses-grid">
+                    <div class="sense-item">
+                        <div class="sense-icon">👁️</div>
+                        <div class="sense-name">看</div>
+                    </div>
+                    <div class="sense-item">
+                        <div class="sense-icon">👂</div>
+                        <div class="sense-name">听</div>
+                    </div>
+                    <div class="sense-item">
+                        <div class="sense-icon">👃</div>
+                        <div class="sense-name">闻</div>
+                    </div>
+                    <div class="sense-item">
+                        <div class="sense-icon">👅</div>
+                        <div class="sense-name">尝</div>
+                    </div>
+                    <div class="sense-item">
+                        <div class="sense-icon">✋</div>
+                        <div class="sense-name">触</div>
+                    </div>
+                </div>
+
                 <div class="comparison-grid">
                     <div class="comparison-item comparison-bad">
-                        <div class="comparison-label">普通开头</div>
-                        <p class="comparison-text">
-                            我的妈妈是一个很普通的人，她每天都很忙，但是我很爱她。
-                        </p>
+                        <div class="comparison-label">平淡写法</div>
+                        <p class="comparison-text">"我很紧张。"</p>
                     </div>
                     <div class="comparison-item comparison-good">
-                        <div class="comparison-label">悬念开头</div>
+                        <div class="comparison-label">五感写法</div>
                         <p class="comparison-text">
-                            妈妈的书桌抽屉里，藏着一本我从没见她打开过的日记本，锁已经锈了。
+                            "手心的汗把笔杆浸湿了（触），<br>
+                            心脏咚咚咚像在打鼓（听），<br>
+                            连空气都闷得发慌（感觉）。"
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="tip-box">
-                <p>
-                    <strong>💡 核心要点：</strong>悬念开头的目的不是"卖关子"，而是激发读者的好奇心。好的悬念，让读者忍不住想知道"然后呢？"
-                </p>
+                <div class="teacher-tip">
+                    <p>
+                        <strong>教师强调：</strong>今天作文里，<strong>至少要有两处</strong>地方用上五感。你可以用红笔在文中圈出来，方便批改时重点看。
+                    </p>
+                </div>
             </div>
         </div>
 
         <div class="nav-buttons">
-            <a href="6-0.html" class="btn btn-purple">
+            <a href="6-0.html" class="btn btn-indigo">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 上一环节：情境导入
             </a>
-            <a href="6-2.html" class="btn btn-purple">
-                下一步：对比练习
+            <a href="6-2.html" class="btn btn-indigo">
+                下一步：作文题目
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
         </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环节一：认识细节 - 细节见真情</title>
+    <title>环节一：学习方法 - 对话代替叙述</title>
     <style>
         * {
             margin: 0;
@@ -62,7 +62,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tag-green { background: #dcfce7; color: #16a34a; }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
 
         h1 {
             font-size: 2.2em;
@@ -80,25 +80,25 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .theory-card {
-            background: #f0fdf4;
-            border: 2px solid #22c55e;
+        .rule-card {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
             border-radius: 20px;
             padding: 28px;
             margin-bottom: 24px;
         }
 
-        .theory-header {
+        .rule-header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
         }
 
-        .theory-icon {
+        .rule-icon {
             width: 48px;
             height: 48px;
-            background: #22c55e;
+            background: #3b82f6;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -107,111 +107,58 @@
             flex-shrink: 0;
         }
 
-        .theory-title {
+        .rule-title {
             font-size: 20px;
             font-weight: bold;
-            color: #166534;
+            color: #1e40af;
         }
 
-        .theory-desc {
-            color: #14532d;
+        .rule-desc {
+            color: #1e3a8a;
             font-size: 16px;
-            line-height: 1.8;
             margin-bottom: 20px;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .comparison-card {
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .comparison-bad {
-            background: #fef2f2;
-            border: 2px solid #fca5a5;
-        }
-
-        .comparison-good {
-            background: #dcfce7;
-            border: 2px solid #4ade80;
-        }
-
-        .comparison-label {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .comparison-bad .comparison-label { color: #991b1b; }
-        .comparison-good .comparison-label { color: #166534; }
-
-        .comparison-text {
-            font-size: 15px;
             line-height: 1.8;
         }
 
-        .comparison-bad .comparison-text { color: #7f1d1d; }
-        .comparison-good .comparison-text { color: #14532d; }
-
-        .example-section {
-            background: #faf5ff;
-            border: 2px solid #e9d5ff;
-            border-radius: 20px;
-            padding: 28px;
-            margin-top: 24px;
-        }
-
-        .example-section h3 {
-            color: #6b21a8;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .example-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .example-item {
+        .example-card {
             background: white;
-            padding: 20px;
+            border-left: 4px solid #3b82f6;
             border-radius: 12px;
-            border-left: 4px solid #a855f7;
+            padding: 20px;
+            margin-top: 16px;
         }
 
-        .example-item h4 {
-            color: #7e22ce;
-            margin-bottom: 12px;
-            font-size: 15px;
-        }
-
-        .example-item p {
-            color: #475569;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .detail-type {
-            display: inline-block;
-            padding: 4px 12px;
-            background: #f3e8ff;
-            color: #9333ea;
-            border-radius: 999px;
+        .example-label {
             font-size: 12px;
-            font-weight: bold;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 8px;
         }
 
+        .example-text {
+            font-size: 15px;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        .example-dialogue {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .dialogue-line {
+            margin-bottom: 8px;
+            padding-left: 12px;
+            border-left: 3px solid #cbd5e1;
+        }
+
         .tip-box {
-            background: #fefce8;
-            border: 2px solid #eab308;
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
             border-radius: 16px;
             padding: 20px;
             margin-top: 24px;
@@ -221,6 +168,54 @@
             color: #92400e;
             font-size: 14px;
             line-height: 1.8;
+        }
+
+        .技巧-section {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .技巧-section h3 {
+            color: #166534;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .技巧-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .技巧-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #86efac;
+        }
+
+        .技巧-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .技巧-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .技巧-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
         }
 
         .btn {
@@ -237,12 +232,12 @@
             text-decoration: none;
         }
 
-        .btn-green {
-            background: #22c55e;
+        .btn-blue {
+            background: #3b82f6;
             color: white;
-            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
         }
-        .btn-green:hover { background: #16a34a; }
+        .btn-blue:hover { background: #2563eb; }
 
         .nav-buttons {
             display: flex;
@@ -255,7 +250,7 @@
         }
 
         @media (max-width: 768px) {
-            .comparison-grid {
+            .技巧-grid {
                 grid-template-columns: 1fr;
             }
             h1 { font-size: 1.6em; }
@@ -270,9 +265,9 @@
         </a>
         <div style="text-align: center;">
             <span class="lesson-title">课程八</span>
-            <div class="lesson-subtitle">细节见真情——用细节打动人心</div>
+            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
         </div>
-        <a href="8-2.html" style="color: #22c55e;">
+        <a href="8-2.html" style="color: #3b82f6;">
             下一环节
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
@@ -280,93 +275,126 @@
 
     <div class="container">
         <div style="text-align: center;">
-            <span class="section-tag tag-green">环节一：理论讲解</span>
-            <h1>什么是好细节？</h1>
+            <span class="section-tag tag-blue">环节一：学习方法</span>
+            <h1>把叙述变成对话</h1>
         </div>
 
         <div class="content-section">
-            <div class="theory-card">
-                <div class="theory-header">
-                    <div class="theory-icon">💡</div>
-                    <div class="theory-title">核心理论</div>
+            <!-- 核心规则 -->
+            <div class="rule-card">
+                <div class="rule-header">
+                    <div class="rule-icon">💡</div>
+                    <div class="rule-title">核心规则</div>
                 </div>
-                <p class="theory-desc">
-                    好细节不是"我看到了什么"，而是<strong>我如何看到</strong>。<br>
-                    它应该是<strong>具体的、独特的、能唤起感受的</strong>。
+                <p class="rule-desc">
+                    <strong>能用对话展现的，绝不用旁白交代。</strong><br>
+                    让读者亲耳听到人物说什么，而不是听你转述。
                 </p>
             </div>
 
-            <div style="margin-bottom: 24px;">
-                <h3 style="color: #0f172a; margin-bottom: 16px; text-align: center;">对比一下</h3>
-                <div class="comparison-grid">
-                    <div class="comparison-card comparison-bad">
-                        <p class="comparison-label">空洞的表达</p>
-                        <p class="comparison-text">
-                            妈妈很爱我，为我做了很多事情。<br>
-                            奶奶老了，走路很不方便。<br>
-                            那天天气很热，我等了好久公交车。
+            <!-- 示例对比 -->
+            <div class="rule-card" style="background: #faf5ff; border-color: #a855f7;">
+                <div class="rule-header">
+                    <div class="rule-icon" style="background: #a855f7;">📚</div>
+                    <div class="rule-title" style="color: #6b21a8;">示例对比</div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="background: #fee2e2; padding: 20px; border-radius: 12px;">
+                        <p style="color: #991b1b; font-weight: bold; margin-bottom: 12px;">叙述版</p>
+                        <p style="color: #7f1d1d; font-size: 14px;">
+                            小明很紧张，因为他要上台演讲了。他手心出汗，心跳加速。
                         </p>
                     </div>
-                    <div class="comparison-card comparison-good">
-                        <p class="comparison-label">具体的细节</p>
-                        <p class="comparison-text">
-                            妈妈把我换下来的白球鞋，用牙膏一点一点刷干净，晾在阳台上，鞋尖朝着太阳。<br>
-                            奶奶的拐杖在地板上点出"哒、哒"的声音，每一步都要停一停。<br>
-                            柏油路被晒得发软，踩上去黏鞋底。站台上的蚂蚁都躲进了阴影里。
-                        </p>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 12px;">
+                        <p style="color: #166534; font-weight: bold; margin-bottom: 12px;">对话版</p>
+                        <div class="example-dialogue" style="background: white; padding: 12px; border-radius: 8px;">
+                            <div class="dialogue-line">"小明，准备好了吗？"老师问。</div>
+                            <div class="dialogue-line">他咽了咽口水，"我……我怕忘词。"</div>
+                            <div class="dialogue-line">"深呼吸，"老师说，"记住，你已经练了很多遍了。"</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="example-section">
+            <!-- 三大技巧 -->
+            <div class="技巧-section">
                 <h3>
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                    三种常见细节类型
+                    写好对话的三个技巧
                 </h3>
-                <div class="example-grid">
-                    <div class="example-item">
-                        <span class="detail-type">动作细节</span>
-                        <h4>分解动作，展现过程</h4>
-                        <p>
-                            <strong>普通：</strong>爷爷给我削苹果。<br>
-                            <strong>细节：</strong>爷爷的手有些抖，刀刃在苹果皮上慢慢挪动，皮断了三次，他才把那个坑坑洼洼的苹果递给我。
-                        </p>
+                <div class="技巧-grid">
+                    <div class="技巧-card">
+                        <div class="技巧-icon">🎯</div>
+                        <div class="技巧-title">符合人物身份</div>
+                        <div class="技巧-desc">小孩说小孩的话，老人说老人的话，让每个人物有自己的说话方式。</div>
+                    </div>
+                    <div class="技巧-card">
+                        <div class="技巧-icon">🎭</div>
+                        <div class="技巧-title">展现情绪</div>
+                        <div class="技巧-desc">用语气、停顿、动作来展现人物当时的心情，而不是直接说"他很生气"。</div>
+                    </div>
+                    <div class="技巧-card">
+                        <div class="技巧-icon">🎬</div>
+                        <div class="技巧-title">配合动作</div>
+                        <div class="技巧-desc">对话时加入人物的动作和表情，让场景更生动。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 更多示例 -->
+            <div style="margin-top: 24px;">
+                <h3 style="color: #0f172a; margin-bottom: 16px; text-align: center;">更多示例</h3>
+
+                <div style="display: grid; gap: 16px;">
+                    <div class="example-card">
+                        <div class="example-label">场景：妈妈发现孩子偷吃零食</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+                            <div style="background: #fef2f2; padding: 16px; border-radius: 8px;">
+                                <p style="color: #991b1b; font-size: 13px; font-weight: bold; margin-bottom: 8px;">叙述版</p>
+                                <p style="color: #7f1d1d; font-size: 14px;">妈妈发现我在偷吃零食，很生气。</p>
+                            </div>
+                            <div style="background: #f0fdf4; padding: 16px; border-radius: 8px;">
+                                <p style="color: #166534; font-size: 13px; font-weight: bold; margin-bottom: 8px;">对话版</p>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"抽屉里的饼干，少了三块。"</div>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">妈妈的声音从背后传来，我嘴里的饼干渣差点喷出来。</div>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"数着呢？"</div>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"嗯，数着。"</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="example-item">
-                        <span class="detail-type">物品细节</span>
-                        <h4>用物品承载情感</h4>
-                        <p>
-                            <strong>普通：</strong>爸爸很节约。<br>
-                            <strong>细节：</strong>爸爸的毛巾用了五年，边角磨出了毛边，中间破了个洞，他说"还能用"。
-                        </p>
-                    </div>
-
-                    <div class="example-item">
-                        <span class="detail-type">感官细节</span>
-                        <h4>调动五感，让读者身临其境</h4>
-                        <p>
-                            <strong>普通：</strong>厨房里有饭香。<br>
-                            <strong>细节：</strong>推开家门，葱花在油里爆香的味道扑面而来，混合着酱油的咸香，是红烧肉的味道。
-                        </p>
+                    <div class="example-card">
+                        <div class="example-label">场景：考试前同学的对话</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+                            <div style="background: #fef2f2; padding: 16px; border-radius: 8px;">
+                                <p style="color: #991b1b; font-size: 13px; font-weight: bold; margin-bottom: 8px;">叙述版</p>
+                                <p style="color: #7f1d1d; font-size: 14px;">考前大家都很紧张，互相询问复习情况。</p>
+                            </div>
+                            <div style="background: #f0fdf4; padding: 16px; border-radius: 8px;">
+                                <p style="color: #166534; font-size: 13px; font-weight: bold; margin-bottom: 8px;">对话版</p>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"你复习到哪了？"</div>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"第三章……吧。"</div>
+                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"第三章？！考试范围不是到第五章吗？！"</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="tip-box">
                 <p>
-                    <strong>💡 写作小贴士：</strong>好细节不是堆砌形容词，而是用<strong>名词和动词</strong>说话。<br>
-                    不要说"很破"，说"边角磨出了毛边"；不要说"很慢"，说"每一步都要停一停"。
+                    <strong>💡 写作小贴士：</strong>写对话时，试着<strong>大声读出来</strong>。如果读起来像书面语或者不像真人说的话，那就需要修改。
                 </p>
             </div>
         </div>
 
         <div class="nav-buttons">
-            <a href="8-0.html" class="btn btn-green">
+            <a href="8-0.html" class="btn btn-blue">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 上一环节：情境导入
             </a>
-            <a href="8-2.html" class="btn btn-green">
+            <a href="8-2.html" class="btn btn-blue">
                 下一步：对比练习
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>

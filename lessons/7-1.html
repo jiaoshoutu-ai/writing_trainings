@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环节一：学习方法 - 对话代替叙述</title>
+    <title>环节一：认识悬念开头 - 写作训练</title>
     <style>
         * {
             margin: 0;
@@ -62,7 +62,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
 
         h1 {
             font-size: 2.2em;
@@ -80,25 +80,25 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .rule-card {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
+        .method-card {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
             border-radius: 20px;
             padding: 28px;
             margin-bottom: 24px;
         }
 
-        .rule-header {
+        .method-header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
         }
 
-        .rule-icon {
+        .method-icon {
             width: 48px;
             height: 48px;
-            background: #3b82f6;
+            background: #a855f7;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -107,22 +107,21 @@
             flex-shrink: 0;
         }
 
-        .rule-title {
+        .method-title {
             font-size: 20px;
             font-weight: bold;
-            color: #1e40af;
+            color: #7e22ce;
         }
 
-        .rule-desc {
-            color: #1e3a8a;
-            font-size: 16px;
-            margin-bottom: 20px;
-            line-height: 1.8;
+        .method-desc {
+            color: #581c87;
+            font-size: 15px;
+            margin-bottom: 16px;
         }
 
         .example-card {
             background: white;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid #a855f7;
             border-radius: 12px;
             padding: 20px;
             margin-top: 16px;
@@ -130,30 +129,17 @@
 
         .example-label {
             font-size: 12px;
-            color: #64748b;
+            color: #9ca3af;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 8px;
         }
 
         .example-text {
-            font-size: 15px;
+            font-size: 16px;
             color: #1e293b;
-            line-height: 1.8;
-        }
-
-        .example-dialogue {
-            background: #f8fafc;
-            padding: 16px;
-            border-radius: 8px;
-            margin-top: 12px;
             font-style: italic;
-        }
-
-        .dialogue-line {
-            margin-bottom: 8px;
-            padding-left: 12px;
-            border-left: 3px solid #cbd5e1;
+            line-height: 1.8;
         }
 
         .tip-box {
@@ -170,7 +156,7 @@
             line-height: 1.8;
         }
 
-        .技巧-section {
+        .comparison-section {
             background: #f0fdf4;
             border: 2px solid #22c55e;
             border-radius: 20px;
@@ -178,45 +164,49 @@
             margin-top: 24px;
         }
 
-        .技巧-section h3 {
+        .comparison-section h3 {
             color: #166534;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .技巧-grid {
+        .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        .技巧-card {
-            background: white;
+        .comparison-item {
             padding: 20px;
             border-radius: 12px;
-            text-align: center;
-            border: 2px solid #86efac;
         }
 
-        .技巧-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
+        .comparison-bad {
+            background: #fee2e2;
         }
 
-        .技巧-title {
-            font-size: 14px;
+        .comparison-good {
+            background: #dcfce7;
+        }
+
+        .comparison-label {
+            font-size: 12px;
             font-weight: bold;
-            color: #166534;
             margin-bottom: 8px;
         }
 
-        .技巧-desc {
-            font-size: 13px;
-            color: #475569;
-            line-height: 1.6;
+        .comparison-bad .comparison-label { color: #991b1b; }
+        .comparison-good .comparison-label { color: #166534; }
+
+        .comparison-text {
+            font-size: 14px;
+            line-height: 1.8;
         }
+
+        .comparison-bad .comparison-text { color: #7f1d1d; }
+        .comparison-good .comparison-text { color: #14532d; }
 
         .btn {
             display: inline-flex;
@@ -232,12 +222,12 @@
             text-decoration: none;
         }
 
-        .btn-blue {
-            background: #3b82f6;
+        .btn-purple {
+            background: #a855f7;
             color: white;
-            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
         }
-        .btn-blue:hover { background: #2563eb; }
+        .btn-purple:hover { background: #9333ea; }
 
         .nav-buttons {
             display: flex;
@@ -250,7 +240,7 @@
         }
 
         @media (max-width: 768px) {
-            .技巧-grid {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
             h1 { font-size: 1.6em; }
@@ -265,9 +255,9 @@
         </a>
         <div style="text-align: center;">
             <span class="lesson-title">课程七</span>
-            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
         </div>
-        <a href="7-2.html" style="color: #3b82f6;">
+        <a href="7-2.html" style="color: #a855f7;">
             下一环节
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
@@ -275,126 +265,115 @@
 
     <div class="container">
         <div style="text-align: center;">
-            <span class="section-tag tag-blue">环节一：学习方法</span>
-            <h1>把叙述变成对话</h1>
+            <span class="section-tag tag-purple">环节一：学习方法</span>
+            <h1>三种悬念开头法</h1>
         </div>
 
         <div class="content-section">
-            <!-- 核心规则 -->
-            <div class="rule-card">
-                <div class="rule-header">
-                    <div class="rule-icon">💡</div>
-                    <div class="rule-title">核心规则</div>
+            <!-- 方法一：结果先行 -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">🎯</div>
+                    <div class="method-title">方法一：结果先行</div>
                 </div>
-                <p class="rule-desc">
-                    <strong>能用对话展现的，绝不用旁白交代。</strong><br>
-                    让读者亲耳听到人物说什么，而不是听你转述。
+                <p class="method-desc">
+                    把故事的结局或关键结果放在开头，让读者好奇"为什么会这样"。
                 </p>
+                <div class="example-card">
+                    <div class="example-label">示例</div>
+                    <p class="example-text">
+                        "当警察把那封信递到我手上时，我才知道，那个每天给我送牛奶的老人，竟然是一个隐姓埋名的亿万富翁。"
+                    </p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">另一个例子</div>
+                    <p class="example-text">
+                        "直到站在领奖台上，我才明白，那个总是批评我的老师，其实一直在默默支持我。"
+                    </p>
+                </div>
             </div>
 
-            <!-- 示例对比 -->
-            <div class="rule-card" style="background: #faf5ff; border-color: #a855f7;">
-                <div class="rule-header">
-                    <div class="rule-icon" style="background: #a855f7;">📚</div>
-                    <div class="rule-title" style="color: #6b21a8;">示例对比</div>
+            <!-- 方法二：细节反常 -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">🔍</div>
+                    <div class="method-title">方法二：细节反常</div>
                 </div>
+                <p class="method-desc">
+                    描写一个反常的、不合常理的细节，让读者好奇"这是怎么回事"。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例</div>
+                    <p class="example-text">
+                        "妈妈的手机上，存着一个从没打过的号码，备注是三个字：对不起。"
+                    </p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">另一个例子</div>
+                    <p class="example-text">
+                        "爸爸的抽屉里，锁着一张泛黄的照片，照片上的他和一个陌生的女人笑得很开心。"
+                    </p>
+                </div>
+            </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                    <div style="background: #fee2e2; padding: 20px; border-radius: 12px;">
-                        <p style="color: #991b1b; font-weight: bold; margin-bottom: 12px;">叙述版</p>
-                        <p style="color: #7f1d1d; font-size: 14px;">
-                            小明很紧张，因为他要上台演讲了。他手心出汗，心跳加速。
+            <!-- 方法三：对话引入 -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">💬</div>
+                    <div class="method-title">方法三：对话引入</div>
+                </div>
+                <p class="method-desc">
+                    用人物的对话开场，让读者好奇"发生了什么"、"为什么要说这句话"。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例</div>
+                    <p class="example-text">
+                        "'你真的要去吗？'姐姐的声音在发抖。"
+                    </p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">另一个例子</div>
+                    <p class="example-text">
+                        "'别开门！'电话那头传来妈妈急促的声音，可门铃已经响了。"
+                    </p>
+                </div>
+            </div>
+
+            <!-- 对比：普通开头 vs 悬念开头 -->
+            <div class="comparison-section">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    对比一下：哪个开头更吸引你？
+                </h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item comparison-bad">
+                        <div class="comparison-label">普通开头</div>
+                        <p class="comparison-text">
+                            我的妈妈是一个很普通的人，她每天都很忙，但是我很爱她。
                         </p>
                     </div>
-                    <div style="background: #dcfce7; padding: 20px; border-radius: 12px;">
-                        <p style="color: #166534; font-weight: bold; margin-bottom: 12px;">对话版</p>
-                        <div class="example-dialogue" style="background: white; padding: 12px; border-radius: 8px;">
-                            <div class="dialogue-line">"小明，准备好了吗？"老师问。</div>
-                            <div class="dialogue-line">他咽了咽口水，"我……我怕忘词。"</div>
-                            <div class="dialogue-line">"深呼吸，"老师说，"记住，你已经练了很多遍了。"</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 三大技巧 -->
-            <div class="技巧-section">
-                <h3>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                    写好对话的三个技巧
-                </h3>
-                <div class="技巧-grid">
-                    <div class="技巧-card">
-                        <div class="技巧-icon">🎯</div>
-                        <div class="技巧-title">符合人物身份</div>
-                        <div class="技巧-desc">小孩说小孩的话，老人说老人的话，让每个人物有自己的说话方式。</div>
-                    </div>
-                    <div class="技巧-card">
-                        <div class="技巧-icon">🎭</div>
-                        <div class="技巧-title">展现情绪</div>
-                        <div class="技巧-desc">用语气、停顿、动作来展现人物当时的心情，而不是直接说"他很生气"。</div>
-                    </div>
-                    <div class="技巧-card">
-                        <div class="技巧-icon">🎬</div>
-                        <div class="技巧-title">配合动作</div>
-                        <div class="技巧-desc">对话时加入人物的动作和表情，让场景更生动。</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 更多示例 -->
-            <div style="margin-top: 24px;">
-                <h3 style="color: #0f172a; margin-bottom: 16px; text-align: center;">更多示例</h3>
-
-                <div style="display: grid; gap: 16px;">
-                    <div class="example-card">
-                        <div class="example-label">场景：妈妈发现孩子偷吃零食</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
-                            <div style="background: #fef2f2; padding: 16px; border-radius: 8px;">
-                                <p style="color: #991b1b; font-size: 13px; font-weight: bold; margin-bottom: 8px;">叙述版</p>
-                                <p style="color: #7f1d1d; font-size: 14px;">妈妈发现我在偷吃零食，很生气。</p>
-                            </div>
-                            <div style="background: #f0fdf4; padding: 16px; border-radius: 8px;">
-                                <p style="color: #166534; font-size: 13px; font-weight: bold; margin-bottom: 8px;">对话版</p>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"抽屉里的饼干，少了三块。"</div>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">妈妈的声音从背后传来，我嘴里的饼干渣差点喷出来。</div>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"数着呢？"</div>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"嗯，数着。"</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="example-card">
-                        <div class="example-label">场景：考试前同学的对话</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
-                            <div style="background: #fef2f2; padding: 16px; border-radius: 8px;">
-                                <p style="color: #991b1b; font-size: 13px; font-weight: bold; margin-bottom: 8px;">叙述版</p>
-                                <p style="color: #7f1d1d; font-size: 14px;">考前大家都很紧张，互相询问复习情况。</p>
-                            </div>
-                            <div style="background: #f0fdf4; padding: 16px; border-radius: 8px;">
-                                <p style="color: #166534; font-size: 13px; font-weight: bold; margin-bottom: 8px;">对话版</p>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"你复习到哪了？"</div>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"第三章……吧。"</div>
-                                <div class="dialogue-line" style="color: #14532d; font-size: 14px;">"第三章？！考试范围不是到第五章吗？！"</div>
-                            </div>
-                        </div>
+                    <div class="comparison-item comparison-good">
+                        <div class="comparison-label">悬念开头</div>
+                        <p class="comparison-text">
+                            妈妈的书桌抽屉里，藏着一本我从没见她打开过的日记本，锁已经锈了。
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="tip-box">
                 <p>
-                    <strong>💡 写作小贴士：</strong>写对话时，试着<strong>大声读出来</strong>。如果读起来像书面语或者不像真人说的话，那就需要修改。
+                    <strong>💡 核心要点：</strong>悬念开头的目的不是"卖关子"，而是激发读者的好奇心。好的悬念，让读者忍不住想知道"然后呢？"
                 </p>
             </div>
         </div>
 
         <div class="nav-buttons">
-            <a href="7-0.html" class="btn btn-blue">
+            <a href="7-0.html" class="btn btn-purple">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 上一环节：情境导入
             </a>
-            <a href="7-2.html" class="btn btn-blue">
+            <a href="7-2.html" class="btn btn-purple">
                 下一步：对比练习
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>

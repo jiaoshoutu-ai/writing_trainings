@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环节三：实战练习 - 悬念式开头</title>
+    <title>环节三：当堂写作 - 综合复习</title>
     <style>
         * {
             margin: 0;
@@ -49,7 +49,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px 60px;
         }
@@ -62,7 +62,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tag-purple { background: #f3e8ff; color: #9333ea; }
+        .tag-indigo { background: #e0e7ff; color: #3730a3; }
 
         h1 {
             font-size: 2.2em;
@@ -72,88 +72,29 @@
             text-align: center;
         }
 
-        .content-section {
-            background: white;
+        .timer-section {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             border-radius: 24px;
             padding: 32px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .practice-instruction {
-            background: #fefce8;
-            border: 2px solid #eab308;
-            border-radius: 20px;
-            padding: 28px;
-            margin-bottom: 24px;
-        }
-
-        .practice-instruction h3 {
-            color: #92400e;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .practice-instruction p {
-            color: #78350f;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .practice-card {
-            background: #faf5ff;
-            border: 2px solid #e9d5ff;
-            border-radius: 20px;
-            padding: 28px;
-            margin-bottom: 24px;
-        }
-
-        .practice-title {
-            font-size: 18px;
+        .timer-display {
+            font-size: 72px;
             font-weight: bold;
-            color: #7e22ce;
-            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            color: #4ade80;
+        }
+
+        .timer-buttons {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .method-badge {
-            padding: 4px 12px;
-            background: #e9d5ff;
-            color: #6b21a8;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .practice-textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 15px;
-            line-height: 1.8;
-            resize: vertical;
-            outline: none;
-            transition: border-color 0.3s;
-            font-family: inherit;
-        }
-
-        .practice-textarea:focus {
-            border-color: #a855f7;
-        }
-
-        .char-count {
-            text-align: right;
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 8px;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
         }
 
         .btn {
@@ -162,25 +103,229 @@
             gap: 8px;
             padding: 14px 28px;
             border-radius: 999px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             border: none;
             transition: all 0.3s;
         }
 
-        .btn-purple {
-            background: #a855f7;
+        .btn-green {
+            background: #22c55e;
             color: white;
-            box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+            box-shadow: 0 4px 15px rgba(34,197,94,0.4);
         }
-        .btn-purple:hover { background: #9333ea; }
+        .btn-green:hover { background: #16a34a; }
 
-        .btn:disabled {
-            background: #cbd5e1;
-            color: #94a3b8;
-            cursor: not-allowed;
-            box-shadow: none;
+        .btn-red {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 4px 15px rgba(239,68,68,0.4);
+        }
+        .btn-red:hover { background: #dc2626; }
+
+        .btn-indigo {
+            background: #6366f1;
+            color: white;
+            box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+        }
+        .btn-indigo:hover { background: #4f46e5; }
+
+        .time-management {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .time-management h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #6366f1;
+            border-radius: 50%;
+        }
+
+        .timeline-item.completed {
+            background: #dcfce7;
+            border-left-color: #22c55e;
+        }
+
+        .timeline-item.completed::before {
+            background: #22c55e;
+        }
+
+        .timeline-time {
+            font-size: 14px;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item.completed .timeline-time {
+            color: #16a34a;
+        }
+
+        .timeline-content {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .checklist {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .checklist h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #fde68a;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .five-senses-reminder {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .five-senses-reminder h3 {
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .senses-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .sense-check {
+            background: white;
+            border: 2px solid #86efac;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .sense-check label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #166534;
+            font-size: 14px;
+        }
+
+        .sense-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .writing-area {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .writing-area h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .writing-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            line-height: 2;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .writing-textarea:focus {
+            border-color: #6366f1;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 8px;
         }
 
         .nav-buttons {
@@ -193,46 +338,14 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .example-hint {
-            background: #f0fdf4;
-            border: 2px solid #22c55e;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 24px;
-        }
-
-        .example-hint h4 {
-            color: #166534;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .example-hint p {
-            color: #14532d;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .success-toast {
-            background: #dcfce7;
-            border: 2px solid #22c55e;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 16px;
-            display: none;
-            color: #166534;
-        }
-
-        .success-toast.show {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+            .timer-display {
+                font-size: 48px;
+            }
+            .senses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            h1 { font-size: 1.6em; }
         }
     </style>
 </head>
@@ -244,9 +357,9 @@
         </a>
         <div style="text-align: center;">
             <span class="lesson-title">课程六</span>
-            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+            <div class="lesson-subtitle">综合复习——巩固前五课内容</div>
         </div>
-        <a href="6-4.html" style="color: #a855f7;">
+        <a href="6-4.html" style="color: #6366f1;">
             下一环节
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
@@ -254,115 +367,136 @@
 
     <div class="container">
         <div style="text-align: center;">
-            <span class="section-tag tag-purple">环节三：实战练习</span>
-            <h1>用三种方法写《我的妈妈》</h1>
+            <span class="section-tag tag-indigo">环节三：当堂写作</span>
+            <h1>30 分钟写作时间</h1>
         </div>
 
-        <div class="content-section">
-            <div class="practice-instruction">
+        <div class="timer-section">
+            <h2>⏱️ 写作计时器</h2>
+            <div class="timer-display" id="timer">30:00</div>
+            <div class="timer-buttons">
+                <button class="btn btn-green" onclick="startTimer()">开始</button>
+                <button class="btn btn-indigo" onclick="pauseTimer()">暂停</button>
+                <button class="btn btn-red" onclick="resetTimer()">重置</button>
+            </div>
+        </div>
+
+        <div class="time-management">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                时间管理建议
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item" id="step1">
+                    <div class="timeline-time">0-3 分钟</div>
+                    <div class="timeline-content">
+                        <strong>审题与构思</strong>：选定素材，在草稿纸上写下"三个问题"的答案（在乎什么？波折？结果？）
+                    </div>
+                </div>
+                <div class="timeline-item" id="step2">
+                    <div class="timeline-time">3-25 分钟</div>
+                    <div class="timeline-content">
+                        <strong>正式写作</strong>：边写边注意加入五感（心里默念：看、听、触……）
+                    </div>
+                </div>
+                <div class="timeline-item" id="step3">
+                    <div class="timeline-time">25-28 分钟</div>
+                    <div class="timeline-content">
+                        <strong>自我检查</strong>：默读一遍，检查是否漏掉了五感，是否把波折写清楚了
+                    </div>
+                </div>
+                <div class="timeline-item" id="step4">
+                    <div class="timeline-time">28-30 分钟</div>
+                    <div class="timeline-content">
+                        <strong>标注五感</strong>：在文末用括号标注你用了哪几处五感（例如：①触觉 - 手心出汗 ②听觉 - 心跳声）
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist">
                 <h3>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H2a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-3.5l-9 9z"/></svg>
-                    练习任务
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    写作检查清单
                 </h3>
-                <p>
-                    请用今天学的三种悬念开头法，分别给《我的妈妈》这个普通题目写一个开头。<br>
-                    每个开头<strong>30-50 字</strong>左右，不需要写完整文章，只写开头。
-                </p>
+                <label class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <span>我已经明确了"最在乎什么"</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <span>我已经设计了波折（意外/困难/误会）</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <span>我已经有至少两处五感描写</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <span>我已经检查并标注了五感位置</span>
+                </label>
             </div>
 
-            <!-- 练习一：结果先行 -->
-            <div class="practice-card">
-                <div class="practice-title">
-                    <span>开头一：结果先行</span>
-                    <span class="method-badge">把结局/关键结果放在开头</span>
+            <div class="five-senses-reminder">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    五感自检：你用了哪些感官？
+                </h3>
+                <div class="senses-grid">
+                    <div class="sense-check">
+                        <label>
+                            <input type="checkbox" id="sense1">
+                            <span>👁️ 看</span>
+                        </label>
+                    </div>
+                    <div class="sense-check">
+                        <label>
+                            <input type="checkbox" id="sense2">
+                            <span>👂 听</span>
+                        </label>
+                    </div>
+                    <div class="sense-check">
+                        <label>
+                            <input type="checkbox" id="sense3">
+                            <span>👃 闻</span>
+                        </label>
+                    </div>
+                    <div class="sense-check">
+                        <label>
+                            <input type="checkbox" id="sense4">
+                            <span>👅 尝</span>
+                        </label>
+                    </div>
+                    <div class="sense-check">
+                        <label>
+                            <input type="checkbox" id="sense5">
+                            <span>✋ 触</span>
+                        </label>
+                    </div>
                 </div>
-                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
-                    提示：可以先写"直到……我才……"或"当……时，我才知道……"
-                </p>
-                <textarea
-                    class="practice-textarea"
-                    id="method1"
-                    placeholder="例如：直到整理妈妈的遗物时，我才知道，那个每天给我送牛奶的老人，竟然是她失散多年的亲哥哥……"
-                    oninput="checkLength('method1', 'count1', 30)"
-                ></textarea>
-                <div class="char-count" id="count1">0/50 字</div>
-                <div class="success-toast" id="toast1">
-                    ✓ 写得不错！继续完成下一个开头吧！
-                </div>
-                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(1)" id="btn1">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
             </div>
+        </div>
 
-            <!-- 练习二：细节反常 -->
-            <div class="practice-card">
-                <div class="practice-title">
-                    <span>开头二：细节反常</span>
-                    <span class="method-badge">描写一个反常的、不合常理的细节</span>
-                </div>
-                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
-                    提示：可以写妈妈藏起来的东西、反常的举动、奇怪的習慣等
-                </p>
-                <textarea
-                    class="practice-textarea"
-                    id="method2"
-                    placeholder="例如：妈妈的手机上，存着一个从没打过的号码，备注是三个字：对不起。"
-                    oninput="checkLength('method2', 'count2', 30)"
-                ></textarea>
-                <div class="char-count" id="count2">0/50 字</div>
-                <div class="success-toast" id="toast2">
-                    ✓ 很好！这个细节让人好奇！继续完成最后一个！
-                </div>
-                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(2)" id="btn2">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-            </div>
-
-            <!-- 练习三：对话引入 -->
-            <div class="practice-card">
-                <div class="practice-title">
-                    <span>开头三：对话引入</span>
-                    <span class="method-badge">用人物的对话开场</span>
-                </div>
-                <p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">
-                    提示：用"xxx 说"开头，让读者好奇对话的背景
-                </p>
-                <textarea
-                    class="practice-textarea"
-                    id="method3"
-                    placeholder="例如：'你真的要去吗？'姐姐的声音在发抖。"
-                    oninput="checkLength('method3', 'count3', 30)"
-                ></textarea>
-                <div class="char-count" id="count3">0/50 字</div>
-                <div class="success-toast" id="toast3">
-                    ✓ 太棒了！三种悬念开头你都完成了！
-                </div>
-                <button class="btn btn-purple" style="margin-top: 16px;" onclick="submitPractice(3)" id="btn3">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-            </div>
-
-            <div class="example-hint">
-                <h4>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                    写作小贴士
-                </h4>
-                <p>
-                    悬念不是"卖关子"，而是<strong>用具体的细节激发读者的好奇心</strong>。<br>
-                    避免使用"很""非常""特别"这些空洞的词，用<strong>动作、物品、对话</strong>来制造悬念。
-                </p>
-            </div>
+        <div class="writing-area">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                我的作文
+            </h2>
+            <textarea
+                class="practice-textarea"
+                id="composition"
+                placeholder="在这里开始你的写作..."
+                oninput="updateCharCount()"
+            ></textarea>
+            <div class="char-count" id="charCount">0 字</div>
         </div>
 
         <div class="nav-buttons">
-            <a href="6-2.html" class="btn btn-purple">
+            <a href="6-2.html" class="btn btn-indigo">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                上一环节：对比练习
+                上一环节：作文题目
             </a>
-            <a href="6-4.html" class="btn btn-purple">
+            <a href="6-4.html" class="btn btn-indigo">
                 下一步：总结与作业
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -370,77 +504,102 @@
     </div>
 
     <script>
-        let completedPractices = {1: false, 2: false, 3: false};
+        let timerInterval;
+        let timeLeft = 30 * 60; // 30 minutes in seconds
+        let isRunning = false;
 
-        function checkLength(textareaId, countId, minChars) {
-            const textarea = document.getElementById(textareaId);
-            const countDiv = document.getElementById(countId);
-            const length = textarea.value.trim().length;
-            countDiv.textContent = length + '/50 字';
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent =
+                String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
         }
 
-        function submitPractice(num) {
-            const textarea = document.getElementById('method' + num);
-            const toast = document.getElementById('toast' + num);
-            const btn = document.getElementById('btn' + num);
-            const length = textarea.value.trim().length;
-
-            if (length < minChars) {
-                alert('请至少写 ' + minChars + ' 字哦！');
-                return;
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(function() {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        alert('时间到！请停止写作。');
+                    }
+                    // Update timeline progress
+                    const elapsed = 30 * 60 - timeLeft;
+                    if (elapsed >= 3 * 60) document.getElementById('step1').classList.add('completed');
+                    if (elapsed >= 25 * 60) document.getElementById('step2').classList.add('completed');
+                    if (elapsed >= 28 * 60) document.getElementById('step3').classList.add('completed');
+                    if (elapsed >= 30 * 60) document.getElementById('step4').classList.add('completed');
+                }, 1000);
             }
-
-            // 显示成功提示
-            toast.classList.add('show');
-            btn.disabled = true;
-            btn.textContent = '已完成';
-            completedPractices[num] = true;
-
-            // 保存练习
-            savePractices();
         }
 
-        function savePractices() {
-            const practices = {
-                method1: document.getElementById('method1').value,
-                method2: document.getElementById('method2').value,
-                method3: document.getElementById('method3').value,
-                completed: completedPractices
-            };
-            localStorage.setItem('lesson6_practices', JSON.stringify(practices));
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
         }
 
-        // 自动保存
-        document.querySelectorAll('.practice-textarea').forEach(area => {
-            area.addEventListener('input', function() {
-                clearTimeout(this.saveTimer);
-                this.saveTimer = setTimeout(savePractices, 2000);
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            timeLeft = 30 * 60;
+            updateTimerDisplay();
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.remove('completed');
             });
+        }
+
+        function updateCharCount() {
+            const text = document.getElementById('composition').value;
+            const count = text.replace(/\s/g, '').length;
+            document.getElementById('charCount').textContent = count + ' 字';
+            saveComposition();
+        }
+
+        function saveComposition() {
+            const data = {
+                composition: document.getElementById('composition').value,
+                checks: {
+                    check1: document.getElementById('check1').checked,
+                    check2: document.getElementById('check2').checked,
+                    check3: document.getElementById('check3').checked,
+                    check4: document.getElementById('check4').checked,
+                    sense1: document.getElementById('sense1').checked,
+                    sense2: document.getElementById('sense2').checked,
+                    sense3: document.getElementById('sense3').checked,
+                    sense4: document.getElementById('sense4').checked,
+                    sense5: document.getElementById('sense5').checked
+                }
+            };
+            localStorage.setItem('lesson6_composition', JSON.stringify(data));
+        }
+
+        // Save checklist state
+        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+            box.addEventListener('change', saveComposition);
         });
 
-        // 加载已保存的练习
+        // Load saved data
         window.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('lesson6_practices');
+            const saved = localStorage.getItem('lesson6_composition');
             if (saved) {
-                const practices = JSON.parse(saved);
-                if (practices.method1) document.getElementById('method1').value = practices.method1;
-                if (practices.method2) document.getElementById('method2').value = practices.method2;
-                if (practices.method3) document.getElementById('method3').value = practices.method3;
-                if (practices.completed) {
-                    completedPractices = practices.completed;
-                    for (let i = 1; i <= 3; i++) {
-                        if (completedPractices[i]) {
-                            document.getElementById('toast' + i).classList.add('show');
-                            document.getElementById('btn' + i).disabled = true;
-                            document.getElementById('btn' + i).textContent = '已完成';
-                        }
-                    }
+                const data = JSON.parse(saved);
+                if (data.composition) document.getElementById('composition').value = data.composition;
+                if (data.checks) {
+                    document.getElementById('check1').checked = data.checks.check1;
+                    document.getElementById('check2').checked = data.checks.check2;
+                    document.getElementById('check3').checked = data.checks.check3;
+                    document.getElementById('check4').checked = data.checks.check4;
+                    document.getElementById('sense1').checked = data.checks.sense1;
+                    document.getElementById('sense2').checked = data.checks.sense2;
+                    document.getElementById('sense3').checked = data.checks.sense3;
+                    document.getElementById('sense4').checked = data.checks.sense4;
+                    document.getElementById('sense5').checked = data.checks.sense5;
                 }
             }
-            // 更新字数统计
-            for (let i = 1; i <= 3; i++) {
-                checkLength('method' + i, 'count' + i);
-            }
+            updateCharCount();
         });
     </script>
 </body>
