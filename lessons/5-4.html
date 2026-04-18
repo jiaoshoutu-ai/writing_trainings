@@ -289,6 +289,10 @@
             display: block;
         }
 
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -608,10 +612,6 @@
         function showAIEvaluate() { alert('请使用新的点评功能'); }
         function closeAIEvaluate() {}
         function evaluateContent() { return Promise.resolve({}); }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
 
         document.querySelectorAll('.daily-textarea').forEach(area => {
             area.addEventListener('input', function() {
