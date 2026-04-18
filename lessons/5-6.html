@@ -628,6 +628,10 @@
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 上一环节：素材积累
             </a>
+            <a href="5-7.html" class="btn btn-amber">
+                附录：延伸阅读
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
             <a href="../index.html" class="btn btn-amber">
                 返回首页
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -704,6 +708,19 @@
             feedback.innerHTML = '<h4>⏳ AI 点评中，请稍侯...</h4>';
             feedback.style.display = 'block';
 
+            // 先检查用户输入是否切题（简单验证）
+            var isRelevant = writing.length >= 20 &&
+                             (writing.includes('的') || writing.includes('了') || writing.includes('在')) &&
+                             !/^[^\u4e00-\u9fa5]+$/.test(writing); // 包含中文字符
+
+            if (!isRelevant && writing.length < 20) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<h4>⚠️ 内容太简短或不符合要求</h4><p>你的输入看起来不像是一篇完整的微写作片段。</p><p><strong>请认真写作：</strong></p><ul><li>至少写 50 字以上</li><li>描写一位家人的背影或侧影</li><li>用至少 4 个动词分解动作</li><li>写出他/她的"笨拙"或"费力"</li></ul>';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                return;
+            }
+
             // 构造 AI 点评提示词 - 结合写作要求和本环节内容
             var prompt = `请作为一名上海初中语文名师，对下面这篇学生微写作进行点评：
 
@@ -722,7 +739,9 @@
 - 用至少 4 个不同的动词描写动作
 - 写出动作的"费力"或"笨拙"之处
 
-**请从以下角度进行点评：**
+**请先判断：** 这篇习作是否认真完成了题目要求？如果内容明显不符合要求（如乱打文字、与题目无关），请直接指出问题，不要强行点评。
+
+**如果习作符合要求，请从以下角度进行点评：**
 1. **连续动词运用**：是否把动作分解成小动作？找出文中的动词，评价是否准确生动
 2. **笨拙感描写**：是否写出人物的"费力"或"不优雅"？哪里体现了为了爱而显露出的费劲？
 3. **情感触发点**：是否有具体的细节或画面让读者感受到情感？

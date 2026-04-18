@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>附录：丰子恺《我的母亲》- 课程五</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #f59e0b;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #9333ea; }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .author {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .article-content {
+            font-size: 18px;
+            line-height: 2;
+            color: #1e293b;
+            text-align: justify;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+            text-indent: 2em;
+        }
+
+        .article-content p:first-child {
+            text-indent: 0;
+        }
+
+        .print-btn-area {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            border-radius: 16px;
+            border: 2px solid #a855f7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-purple {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+        }
+        .btn-purple:hover {
+            background: #9333ea;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #a855f7;
+            border: 2px solid #a855f7;
+        }
+        .btn-outline:hover {
+            background: #f3e8ff;
+        }
+
+        .reading-tip {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .reading-tip h3 {
+            color: #d97706;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reading-tip ul {
+            margin-left: 20px;
+            color: #92400e;
+        }
+
+        .reading-tip li {
+            margin-bottom: 8px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-header,
+            .print-btn-area,
+            .nav-buttons,
+            .reading-tip {
+                display: none !important;
+            }
+            .container {
+                max-width: 100%;
+                padding: 20px;
+            }
+            .article-card {
+                box-shadow: none;
+                padding: 20px;
+                border: none;
+            }
+            .article-content {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+            .section-tag {
+                background: none;
+                color: #333;
+                border: 1px solid #333;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5em; }
+            .article-card { padding: 24px; }
+            .article-content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="5-6.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            返回课程
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程五 · 附录</span>
+            <div class="lesson-subtitle">延伸阅读材料</div>
+        </div>
+        <a href="../index.html" style="color: #f59e0b;">
+            返回首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">附录：经典延伸阅读</span>
+            <h1>我的母亲</h1>
+            <p class="author">作者：丰子恺</p>
+        </div>
+
+        <div class="print-btn-area">
+            <button class="btn btn-purple" onclick="window.print()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                打印本文
+            </button>
+            <button class="btn btn-outline" onclick="saveAsPDF()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                保存为 PDF
+            </button>
+        </div>
+
+        <div class="reading-tip">
+            <h3>
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                阅读提示
+            </h3>
+            <ul>
+                <li>注意作者如何通过<b>"母亲的坐姿"</b>这一独特角度来描写母亲</li>
+                <li>找出文中反复出现的句子：<b>"眼睛里发出严肃的光辉，口角上表出慈爱的笑容"</b>，思考其作用</li>
+                <li>体会作者如何通过<b>"八仙椅子"</b>这个具体物件，串联起母亲的辛劳一生</li>
+                <li>学习作者<b>不直接抒情</b>，而是通过细节描写让情感自然流露的写法</li>
+            </ul>
+        </div>
+
+        <div class="article-card">
+            <div class="article-content">
+                <p>中国文化馆要我写一篇《我的母亲》，并寄我母亲的照片一张。照片我有一张四寸的肖像。一向挂在我的书桌的对面。已有放大的挂在堂上，这一张小的不妨送人。</p>
+
+                <p>但是《我的母亲》一文从何处说起呢？看看母亲的肖像，想起了母亲的坐姿。母亲生前没有摄影取坐像的照片，但这姿态清楚地摄入在我脑海中的底片上，不过没有晒出。现在就用笔墨代替显影液和定影液，把我母亲的坐像晒出来吧：</p>
+
+                <p>我的母亲坐在我家老屋的西北角里的八仙椅子上，眼睛里发出严肃的光辉，口角上表出慈爱的笑容。</p>
+
+                <p>老屋的西北角里的八仙椅子，是母亲的老位子。从我小时候直到她逝世前数月，母亲空下来总是坐在这把椅子上，这是很不舒服的一个座位：我家的老屋是一所三开间的楼厅，右边是我的堂兄家，左边一间是我的堂叔家，中央一间是我家。但是没有板壁隔开，只拿在左右的两排八仙椅子当作三份人家的界限。所以母亲坐的椅子，背后凌空。若是沙发椅子，三面是柔软的厚壁，凌空原无妨碍。但我家的八仙椅子是木造的，坐板和靠背成九十度角，靠背只是疏疏的几根木条，其高只及人的肩膀。母亲坐着没处搁头，很不安稳。母亲又防椅子的脚摆在泥土上要霉烂，用二三寸高的木座子衬在椅子脚下，因此这只八仙椅子特别高，母亲坐上去两脚须得挂空，很不便利。所谓西北角，就是左边最里面的一只椅子，这椅子的里面就是通过退堂的门。退堂里就是灶间。母亲坐在椅子上向里面顾，可以看见灶头。风从里面吹出的时候，烟灰和油气都吹在母亲身上，很不卫生。堂前隔着三四尺阔的一条天井便是墙门。墙外面便是我们的染坊店。母亲坐在椅子里向外面望，可以看见杂沓往来的顾客，听到沸反盈天的市井声，很不清静。但我的母亲一身坐在我家老屋西北角里的这样不安稳、不便利、不卫生、不清静的一只八仙椅子上，眼睛发出严肃的光辉，口角上表出慈爱的笑容。</p>
+
+                <p>母亲为什么老是坐在这样不舒服的椅子里呢？因为这位子在我家中最为冲要。母亲坐在这位子里可以顾到灶上，又可以顾到店里。母亲为要兼顾内外，便顾不到座位的安稳不安稳、便利不便利、卫生不卫生和清静不清静了。</p>
+
+                <p>我四岁时，父亲中了举人，同年祖母逝世，父亲丁艰在家，郁郁不乐，以诗酒自娱，不管家事，丁艰终而科举废，父亲就从此隐遁。这期间家事店事，内外都归母亲一个兼理。我从书堂出来，照例走向坐在西北角里的椅子上的母亲的身边，向她讨点东西吃。母亲口角上表出亲爱的笑容，伸手除下挂在椅子头顶的"饿杀猫篮"，拿起饼饵给我吃；同时眼睛里发出严肃的光辉，给我几句勉励。</p>
+
+                <p>我九岁的时候，父亲遗下了母亲和我们姐弟六人，薄田数亩和染坊店一间而逝世。我家内外一切责任全部归母亲负担。此后她坐在那椅子上的时间愈加多了。工人们常来坐在里面的凳子上，同母亲谈家事；店伙们常来坐在外面的椅子上，同母亲谈店事；父亲的朋友和亲戚邻人常来坐在对面的椅子上，同母亲交涉或应酬。我从学堂里放假回家，又照例走向西北角椅子边，同母亲讨个铜板。有时这四班人同时来到，使得母亲招架不住，于是她用眼睛的严肃的光辉来命令，警戒，或交涉；同时又用了口角上的慈爱的笑容来劝勉，抚爱，或应酬。当时的我看惯了这种光景，以为母亲是天生成坐在这只椅子上的，而且天生成有四班人向她缠绕不清的。</p>
+
+                <p>我十七岁离开母亲，到远方求学。临行的时候，母亲眼睛里发出严肃的光辉，诫我待人接物求学立身的大道；口角上表出慈爱的笑容，关照我起居饮食一切的细事。她给我准备学费，她给我置备行李，她给我制一罐猪油炒米粉，放在我的网篮里；她给我做一个小线板，上面插两只引线放在我的箱子里，然后送我出门。放假归来的时候，我一进店门，就望见母亲坐在西北角里的八仙椅子上。她欢迎我归家，口角上表了慈爱的笑容，她探问我的学业，眼睛里发出严肃的光辉。晚上她亲自上灶，烧些我所爱吃的菜蔬给我吃，灯下她详询我的学校生活，加以勉励，教训，或责备。</p>
+
+                <p>我廿二岁毕业后，赴远方服务，唯假期归省。每次归家，依然看见母亲坐在西北角里的椅子上，眼睛里发出严肃的光辉，口角上表现出慈爱的笑容。她像贤主一般招待我，又像良师一般教训我。她不时催促我早些归家，总说："明年放暑假，早些回来，我有话要问你。"但每次我归家，她总是问我学业或事业上的事，勉励我努力。我每次离家，她送我出门，眼睛里发出严肃的光辉，口角上表出慈爱的笑容，嘱咐我："路上当心，早些回来。"</p>
+
+                <p>我三十三岁时，母亲逝世。我三十三岁，正是母亲逝世之年。我三十三岁，母亲就离开了人间。此后我每次归家，依然看见母亲坐在西北角里的椅子上，眼睛里发出严肃的光辉，口角上表出慈爱的笑容。只是我的思念，不能再见她的面了。</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="5-6.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回课程：素材转化
+            </a>
+            <a href="../index.html" class="btn btn-purple">
+                返回首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 保存为 PDF 功能
+        function saveAsPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
