@@ -295,11 +295,7 @@
     </style>
 </head>
 <body>
-    <script src="../js/writing-assistant.js?v=2"></script>
-    <script>
-        // 初始化 WritingAssistant - 设置 API key
-        WritingAssistant.init('sk-4586617c5fbb22d14515429ff4698bec');
-    </script>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <div class="nav-header">
         <a href="1-4.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -490,7 +486,7 @@ _________________________"></textarea>
             const prompt = `请作为一名上海初中语文名师，对下面这篇学生观察日记进行点评：\n\n"${content}"\n\n请从以下两个角度进行专业点评：\n\n**一、故事骨架公式角度**\n用"因为想要什么→但是遇到什么困难→所以怎么做→结果怎样"的公式分析这篇日记：\n1. 指出小作者的"欲望"（想要什么）是否清晰\n2. 指出"冲突"（遇到的困难）是否明确\n3. 指出"行动"和"结局"是否完整\n4. 给出改进建议\n\n**二、连续动词技巧角度**\n分析这篇日记是否运用了连续动词技巧（把一个动作分解成 3-5 个小动作）：\n1. 找出已使用的连续动词（如果有）\n2. 指出哪里可以加入连续动词让描写更生动\n3. 给出具体的修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompt, 800);
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议.');
                 feedbackContent.textContent = feedback;
                 feedbackResult.style.display = 'block';
             } catch (error) {

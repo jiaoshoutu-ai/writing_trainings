@@ -227,11 +227,7 @@
     </style>
 </head>
 <body>
-    <script src="../js/writing-assistant.js?v=2"></script>
-    <script>
-        // 初始化 WritingAssistant - 设置 API key
-        WritingAssistant.init('sk-4586617c5fbb22d14515429ff4698bec');
-    </script>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <div class="nav-header">
         <a href="4-1.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -372,7 +368,7 @@
             };
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompts[senseId], 600);
+                const feedback = await chat(prompts[senseId], '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议.');
                 feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
             } catch (error) {
                 feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';

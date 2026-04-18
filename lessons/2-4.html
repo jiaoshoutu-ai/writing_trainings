@@ -341,11 +341,7 @@
     </style>
 </head>
 <body>
-    <script src="../js/writing-assistant.js?v=2"></script>
-    <script>
-        // 初始化 WritingAssistant - 设置 API key
-        WritingAssistant.init('sk-4586617c5fbb22d14515429ff4698bec');
-    </script>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <div class="nav-header">
         <a href="2-3.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -736,7 +732,7 @@ _____________________________________"></textarea>
             const prompt = `请作为一名上海初中语文名师，对下面这个学生的"一句话故事"练习进行点评：\n\n主题：**${topic}**\n\n学生习作：\n"${content}"\n\n请从以下角度进行点评：\n\n**一、故事骨架公式角度**\n${checkPoints}\n\n**二、改进建议**\n1. 给出 1-2 条具体可操作的修改建议\n2. 如果用"因为……但是……所以……结果……"的公式来完善，可以怎么改？\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompt, 600);
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议.');
                 // 将反馈转换为 HTML 格式（保留换行）
                 feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
             } catch (error) {
@@ -762,7 +758,7 @@ _____________________________________"></textarea>
             const prompt = `请作为一名上海初中语文名师，对下面这篇学生的扩展作文进行点评：\n\n学生习作：\n"${content}"\n\n这是从"一句话故事"扩展成的 300-400 字作文，请从以下角度进行专业点评：\n\n**一、故事完整性**\n1. 故事的"欲望→冲突→行动→结局"是否清晰完整？\n2. 情节是否有起因、经过、结果？\n\n**二、细节描写**\n1. 是否有 1-2 处细节描写（动作、神态、心理等）？\n2. 是否运用了连续动词技巧（把一个动作分解成多个小动作）？\n\n**三、对话运用**\n1. 是否有对话描写？\n2. 对话是否自然、符合人物身份？\n\n**四、综合建议**\n1. 给出 2 条具体可操作的修改建议\n2. 指出一个最值得优化的地方，并给出修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompt, 800);
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议.');
                 feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
             } catch (error) {
                 feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';

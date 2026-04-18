@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>环节六：素材转化 - 把阅读变成"作文提款机"</title>
-    <script src="../js/writing-assistant.js"></script>
+    <script src="../writing-assistant.browser.js"></script>
     <style>
         * {
             margin: 0;
@@ -634,11 +634,6 @@
     <script>
         // 默认 API Key
         const DEFAULT_API_KEY = 'sk-4586617c5fbb22d14515429ff4698bec';
-
-        // 初始化 WritingAssistant
-        if (typeof WritingAssistant !== 'undefined') {
-            WritingAssistant.init(DEFAULT_API_KEY);
-        }
 
         // 检查素材转化训练表
         function checkMaterialTable() {

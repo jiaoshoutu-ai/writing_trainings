@@ -353,11 +353,7 @@
     </style>
 </head>
 <body>
-    <script src="../js/writing-assistant.js?v=2"></script>
-    <script>
-        // 初始化 WritingAssistant - 设置 API key
-        WritingAssistant.init('sk-4586617c5fbb22d14515429ff4698bec');
-    </script>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <!-- 导航栏 -->
     <div class="nav-header">
         <a href="1-1.html">
@@ -579,7 +575,7 @@
             const prompt = `请作为一名上海初中语文名师，对下面这个学生的"连续动词"练习进行点评：\n\n学生习作：\n"${content}"\n\n这是学习《背影》后模仿"连续动词"技巧的练习，请从以下角度进行点评：\n\n**一、连续动词运用**\n1. 是否把一个动作分解成了 3-5 个小动作？\n2. 找出具体的动词，评价这些动词是否准确、生动\n3. 动词之间是否有逻辑顺序（时间先后/因果关系）\n\n**二、画面感**\n1. 读了之后能否在脑海中形成清晰的画面？\n2. 是否有细节可以让画面更生动？\n\n**三、改进建议**\n1. 如果有动词不够准确，给出替换建议\n2. 如果动作分解不够细，指出哪里可以再加拆解\n3. 给出一个修改后的示例版本\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。`;
 
             try {
-                const feedback = await WritingAssistant.callAPI(prompt, 700);
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议.');
                 feedbackDiv.innerHTML = feedback.replace(/\n/g, '<br>');
             } catch (error) {
                 feedbackDiv.innerHTML = '<span style="color: #dc2626;">AI 点评失败：' + error.message + '</span>';
