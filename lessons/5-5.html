@@ -172,6 +172,75 @@
             line-height: 1.8;
         }
 
+        .writing-input-area {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .writing-input-area textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 16px;
+            border: 2px solid #f9a8d4;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .writing-input-area textarea:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+
+        .input-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .word-count {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .feedback-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .feedback-box.loading {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+            display: block;
+        }
+
+        .feedback-box.correct {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            display: block;
+        }
+
+        .feedback-box.incorrect {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+            display: block;
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -193,6 +262,11 @@
         }
         .btn-pink:hover { background: #be185d; }
 
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -203,12 +277,18 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.6em; }
         }
     </style>
 </head>
 <body>
+    <script src="../writing-assistant.browser.js"></script>
     <div class="nav-header">
         <a href="5-4.html">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -295,6 +375,27 @@
                     • 母亲为你高兴时的笑容<br>
                     • 母亲生气时的眼神</p>
                 </div>
+
+                <div class="writing-input-area">
+                    <textarea id="practice-writing" placeholder="请在这里完成你的小练笔：
+
+回忆一个母亲关心你的瞬间，用神态描写记录下来。
+
+写作提示：
+1. 描写母亲的眼神、嘴角、眉头等细节
+2. 融入你的情感，让读者感受到母爱
+3. 可以运用连续动词技巧，让画面更生动
+
+开始写作吧..."></textarea>
+                    <div class="input-footer">
+                        <p class="word-count">当前字数：<strong id="char-count">0</strong></p>
+                        <button class="btn btn-pink btn-sm" onclick="submitPractice()" id="submit-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            提交练笔
+                        </button>
+                        <div id="practice-feedback" class="feedback-box"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -309,5 +410,85 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // 字数统计
+        const textarea = document.getElementById('practice-writing');
+        const charCount = document.getElementById('char-count');
+
+        if (textarea && charCount) {
+            textarea.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
+        }
+
+        // 提交练笔
+        async function submitPractice() {
+            const writing = textarea.value.trim();
+            const feedback = document.getElementById('practice-feedback');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (!writing) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<strong>⚠️ 请先完成练笔后再提交</strong>';
+                return;
+            }
+
+            // 显示加载状态
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px; animation: spin 1s linear infinite;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> AI 点评中...';
+
+            // 显示加载提示
+            feedback.className = 'feedback-box loading';
+            feedback.innerHTML = '<strong>⏳ AI 点评中，请稍侯...</strong>';
+
+            const prompt = `请作为一名上海初中语文名师，对下面这篇学生练笔进行点评：
+
+**学生习作：**
+"${writing}"
+
+**写作要求：**
+回忆一个母亲关心你的瞬间，用神态描写记录下来，注意融入情感。
+
+**请从以下角度进行点评：**
+1. **神态描写**：是否描写了母亲的眼神、嘴角、眉头、手部动作等细节？
+2. **情感表达**：是否融入了作者的情感，让读者能感受到母爱？
+3. **语言生动性**：用词是否准确、生动？是否有画面感？
+4. **改进建议**：给出 1-2 条具体可操作的修改建议
+
+请用温和、鼓励性的语言，字数控制在 250 字左右。`;
+
+            try {
+                const aiFeedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+
+                feedback.className = 'feedback-box correct';
+                feedback.innerHTML = '<strong>✓ AI 名师点评</strong><br><span style="line-height: 1.8;">' + aiFeedback.replace(/\n/g, '<br>') + '</span>';
+            } catch (error) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<strong>❌ AI 点评失败</strong><br>' + error.message;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+
+        // 自动保存功能
+        if (textarea) {
+            textarea.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(function() {
+                    localStorage.setItem('lesson5_5_practice', this.value);
+                }.bind(this), 2000);
+            });
+
+            // 页面加载时恢复保存的内容
+            const saved = localStorage.getItem('lesson5_5_practice');
+            if (saved) {
+                textarea.value = saved;
+                charCount.textContent = saved.length;
+            }
+        }
+    </script>
 </body>
 </html>
