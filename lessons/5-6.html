@@ -428,6 +428,11 @@
             h1 { font-size: 1.6em; }
             .password-table, .training-table { font-size: 0.8rem; }
         }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -620,10 +625,6 @@
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 上一环节：素材积累
             </a>
-            <a href="5-4.html" class="btn btn-amber">
-                返回总结与作业
-                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
             <a href="../index.html" class="btn btn-amber">
                 返回首页
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -674,7 +675,7 @@
         }
 
         // 提交微写作挑战
-        function submitChallenge() {
+        async function submitChallenge() {
             var writing = document.getElementById('challenge-writing').value.trim();
             var feedback = document.getElementById('challenge-feedback');
 
@@ -685,55 +686,29 @@
                 return;
             }
 
-            // 检查字数
-            var charCount = writing.length;
-            var wordFeedback = '';
-            if (charCount < 80) {
-                wordFeedback = '<p style="color: #d97706; margin-top: 10px;"><strong>提示：</strong> 目前 ' + charCount + ' 字，建议写到 100 字左右，内容会更丰富。</p>';
-            } else if (charCount > 150) {
-                wordFeedback = '<p style="color: #d97706; margin-top: 10px;"><strong>提示：</strong> 目前 ' + charCount + ' 字，稍微精简一下，控制在 100 字左右更好。</p>';
-            } else {
-                wordFeedback = '<p style="color: #16a34a; margin-top: 10px;"><strong>✓ 字数合适：</strong> ' + charCount + ' 字，符合 100 字左右的要求。</p>';
+            // 显示加载状态
+            var submitBtn = event.target.closest('button');
+            var originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px; animation: spin 1s linear infinite;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> AI 点评中...';
+
+            // 构造 AI 点评提示词 - 结合写作要求和本环节内容
+            var prompt = `请作为一名上海初中语文名师，对下面这篇学生微写作进行点评：\n\n**学生习作：**\n"${writing}"\n\n**写作题目：**《______的背影/侧影》（描写一位家人）\n\n**本环节学习的写作技法：**\n1. **连续动词法**：把一个动作分解成 3-5 个小动作，如"探、爬、攀、缩、倾"\n2. **笨拙感/障碍法**：描写人物的"不方便"（如肥胖、笨拙、费劲），因为笨拙所以动人\n3. **情感触发点**：用具体的"物"或"画面"作为情感引爆点，而不是直接抒情\n\n**写作要求：**\n- 不准写"他很辛苦""他很爱我"这样的直接抒情\n- 用至少 4 个不同的动词描写动作\n- 写出动作的"费力"或"笨拙"之处\n\n**请从以下角度进行点评：**\n1. **连续动词运用**：是否把动作分解成小动作？找出文中的动词，评价是否准确生动\n2. **笨拙感描写**：是否写出人物的"费力"或"不优雅"？哪里体现了为了爱而显露出的费劲？\n3. **情感触发点**：是否有具体的细节或画面让读者感受到情感？\n4. **改进建议**：给出 1-2 条具体可操作的修改建议，并提供一个修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。字数控制在 300 字左右。`;
+
+            try {
+                const aiFeedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+
+                feedback.className = 'feedback-box correct';
+                var message = '<h4>✓ AI 名师点评</h4>';
+                message += '<div style="margin-top: 15px; line-height: 1.8;">' + aiFeedback.replace(/\n/g, '<br>') + '</div>';\n                feedback.innerHTML = message;
+                feedback.style.display = 'block';
+            } catch (error) {
+                feedback.className = 'feedback-box incorrect';
+                feedback.innerHTML = '<h4>❌ AI 点评失败</h4><p>' + error.message + '</p><p>请检查网络连接后重试。</p>';\n                feedback.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             }
-
-            // 检查是否包含直接抒情
-            var directEmotion = ['很辛苦', '很爱我', '很感动', '非常爱', '太伟大', '无私奉献', '辛苦了'];
-            var hasDirectEmotion = false;
-            directEmotion.forEach(function(phrase) {
-                if (writing.indexOf(phrase) >= 0) hasDirectEmotion = true;
-            });
-
-            var emotionFeedback = '';
-            if (hasDirectEmotion) {
-                emotionFeedback = '<p style="color: #d97706; margin-top: 10px;"><strong>提示：</strong> 你使用了直接抒情的表达（如"很辛苦""很爱我"等）。试着删掉这些词，用动作和细节让读者自己感受到情感。</p>';
-            } else {
-                emotionFeedback = '<p style="color: #16a34a; margin-top: 10px;"><strong>✓ 情感表达含蓄：</strong> 你没有直接说"爱"或"辛苦"，而是用细节让读者自己感受，很好！</p>';
-            }
-
-            // 检查是否包含多个动词
-            var actionVerbs = ['走', '跑', '跳', '坐', '站', '蹲', '拿', '提', '拎', '搬', '抬', '放', '按', '切', '炒', '煮', '洗', '擦', '拖', '扫', '修', '拧', '敲', '打', '缝', '织', '写', '画', '看', '听', '摸', '闻', '笑', '哭', '点头', '摇头', '弯腰', '转身', '抬头', '低头'];
-            var verbCount = 0;
-            actionVerbs.forEach(function(v) {
-                if (writing.indexOf(v) >= 0) verbCount++;
-            });
-
-            var verbFeedback = '';
-            if (verbCount >= 4) {
-                verbFeedback = '<p style="color: #16a34a; margin-top: 10px;"><strong>✓ 动词丰富：</strong> 你使用了至少 ' + verbCount + ' 个不同的动词，符合"连续动词法"的要求！</p>';
-            } else if (verbCount >= 2) {
-                verbFeedback = '<p style="color: #d97706; margin-top: 10px;"><strong>提示：</strong> 你使用了 ' + verbCount + ' 个动词，如果能再用 1-2 个动词分解动作，会更生动。</p>';
-            } else {
-                verbFeedback = '<p style="color: #d97706; margin-top: 10px;"><strong>提示：</strong> 你使用了 ' + verbCount + ' 个动词，试着把一个大动作拆成 3-5 个小动作来写。</p>';
-            }
-
-            feedback.className = 'feedback-box correct';
-            var message = '<h4>✓ 微写作已提交！</h4>';
-            message += wordFeedback;
-            message += verbFeedback;
-            message += emotionFeedback;
-            message += '<p style="margin-top: 15px;">💡 点击下方"查看老师点评范例"，看看满分作文是怎么写的，对比一下自己的作品，想想哪里还可以改进！</p>';
-            feedback.innerHTML = message;
-            feedback.style.display = 'block';
         }
 
         // 自动保存功能
