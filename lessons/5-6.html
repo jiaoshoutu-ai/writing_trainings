@@ -386,10 +386,11 @@
         }
 
         .feedback-box {
-            margin-top: 15px;
+            margin-top: 0;
             padding: 15px;
             border-radius: 8px;
             display: none;
+            min-width: 200px;
         }
 
         .feedback-box.correct {
@@ -581,11 +582,13 @@
 - 让读者从细节中感受到情感，而不是直接说"我很感动"
 
 开始写作吧，期待你的精彩作品！"></textarea>
-                    <button class="btn btn-amber" onclick="submitChallenge()" style="margin-top: 15px;">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                        提交作文
-                    </button>
-                    <div id="challenge-feedback" class="feedback-box"></div>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
+                        <button class="btn btn-amber" onclick="submitChallenge()" id="submit-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            提交作文
+                        </button>
+                        <div id="challenge-feedback" class="feedback-box" style="flex: 1; min-width: 200px; margin: 0;"></div>
+                    </div>
                 </div>
 
                 <button class="btn btn-amber" onclick="toggleTeacherFeedback()" style="margin-top: 15px;">
@@ -678,6 +681,7 @@
         async function submitChallenge() {
             var writing = document.getElementById('challenge-writing').value.trim();
             var feedback = document.getElementById('challenge-feedback');
+            var submitBtn = document.getElementById('submit-btn');
 
             if (!writing) {
                 feedback.className = 'feedback-box incorrect';
@@ -687,24 +691,51 @@
             }
 
             // 显示加载状态
-            var submitBtn = event.target.closest('button');
             var originalBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px; animation: spin 1s linear infinite;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> AI 点评中...';
 
+            // 显示加载中提示
+            feedback.className = 'feedback-box correct';
+            feedback.innerHTML = '<h4>⏳ AI 点评中，请稍侯...</h4>';
+            feedback.style.display = 'block';
+
             // 构造 AI 点评提示词 - 结合写作要求和本环节内容
-            var prompt = `请作为一名上海初中语文名师，对下面这篇学生微写作进行点评：\n\n**学生习作：**\n"${writing}"\n\n**写作题目：**《______的背影/侧影》（描写一位家人）\n\n**本环节学习的写作技法：**\n1. **连续动词法**：把一个动作分解成 3-5 个小动作，如"探、爬、攀、缩、倾"\n2. **笨拙感/障碍法**：描写人物的"不方便"（如肥胖、笨拙、费劲），因为笨拙所以动人\n3. **情感触发点**：用具体的"物"或"画面"作为情感引爆点，而不是直接抒情\n\n**写作要求：**\n- 不准写"他很辛苦""他很爱我"这样的直接抒情\n- 用至少 4 个不同的动词描写动作\n- 写出动作的"费力"或"笨拙"之处\n\n**请从以下角度进行点评：**\n1. **连续动词运用**：是否把动作分解成小动作？找出文中的动词，评价是否准确生动\n2. **笨拙感描写**：是否写出人物的"费力"或"不优雅"？哪里体现了为了爱而显露出的费劲？\n3. **情感触发点**：是否有具体的细节或画面让读者感受到情感？\n4. **改进建议**：给出 1-2 条具体可操作的修改建议，并提供一个修改示例\n\n请用温和、鼓励性的语言，让学生容易理解并接受建议。字数控制在 300 字左右。`;
+            var prompt = `请作为一名上海初中语文名师，对下面这篇学生微写作进行点评：
+
+**学生习作：**
+"${writing}"
+
+**写作题目：**《______的背影/侧影》（描写一位家人）
+
+**本环节学习的写作技法：**
+1. **连续动词法**：把一个动作分解成 3-5 个小动作，如"探、爬、攀、缩、倾"
+2. **笨拙感/障碍法**：描写人物的"不方便"（如肥胖、笨拙、费劲），因为笨拙所以动人
+3. **情感触发点**：用具体的"物"或"画面"作为情感引爆点，而不是直接抒情
+
+**写作要求：**
+- 不准写"他很辛苦""他很爱我"这样的直接抒情
+- 用至少 4 个不同的动词描写动作
+- 写出动作的"费力"或"笨拙"之处
+
+**请从以下角度进行点评：**
+1. **连续动词运用**：是否把动作分解成小动作？找出文中的动词，评价是否准确生动
+2. **笨拙感描写**：是否写出人物的"费力"或"不优雅"？哪里体现了为了爱而显露出的费劲？
+3. **情感触发点**：是否有具体的细节或画面让读者感受到情感？
+4. **改进建议**：给出 1-2 条具体可操作的修改建议，并提供一个修改示例
+
+请用温和、鼓励性的语言，让学生容易理解并接受建议。字数控制在 300 字左右。`;
 
             try {
                 const aiFeedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
 
                 feedback.className = 'feedback-box correct';
                 var message = '<h4>✓ AI 名师点评</h4>';
-                message += '<div style="margin-top: 15px; line-height: 1.8;">' + aiFeedback.replace(/\n/g, '<br>') + '</div>';\n                feedback.innerHTML = message;
-                feedback.style.display = 'block';
+                message += '<div style="margin-top: 15px; line-height: 1.8;">' + aiFeedback.replace(/\n/g, '<br>') + '</div>';
+                feedback.innerHTML = message;
             } catch (error) {
                 feedback.className = 'feedback-box incorrect';
-                feedback.innerHTML = '<h4>❌ AI 点评失败</h4><p>' + error.message + '</p><p>请检查网络连接后重试。</p>';\n                feedback.style.display = 'block';
+                feedback.innerHTML = '<h4>❌ AI 点评失败</h4><p>' + error.message + '</p><p>请检查网络连接后重试。</p>';
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
