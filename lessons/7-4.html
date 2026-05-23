@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>环节四：总结与作业 - 悬念式开头</title>
+    <script src="../writing-assistant.browser.js?v=5"></script>
     <style>
         * {
             margin: 0;
@@ -322,6 +323,61 @@
             font-size: 18px;
         }
 
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(2,132,199,0.4);
+            margin-top: 12px;
+        }
+        .ai-btn:hover { background: #0369a1; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            display: none;
+        }
+
+        .ai-feedback.loading {
+            background: #fef3c7;
+            color: #92400e;
+            display: block;
+        }
+
+        .ai-feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+
+        .ai-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.6em; }
         }
@@ -422,6 +478,11 @@ _____________________________________
 
 3. 对话引入：
 _____________________________________"></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(1)" id="ai-btn1">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback1"></div>
                 </div>
 
                 <!-- 选做题 -->
@@ -443,6 +504,11 @@ _____________________________________
 
 3. 对话引入：
 _____________________________________"></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(2)" id="ai-btn2">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback2"></div>
                 </div>
 
                 <!-- 挑战题 -->
@@ -464,6 +530,11 @@ _____________________________________
 
 3. 对话引入：
 _____________________________________"></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(3)" id="ai-btn3">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback3"></div>
                 </div>
             </div>
 
@@ -522,9 +593,64 @@ _____________________________________"></textarea>
                     check1: document.getElementById('check1').checked,
                     check2: document.getElementById('check2').checked,
                     check3: document.getElementById('check3').checked
-                }
+                },
+                aiFeedback1: document.getElementById('ai-feedback1').innerHTML,
+                aiFeedback2: document.getElementById('ai-feedback2').innerHTML,
+                aiFeedback3: document.getElementById('ai-feedback3').innerHTML
             };
             localStorage.setItem('lesson7_homework', JSON.stringify(homework));
+        }
+
+        const homeworkTitles = {
+            1: '《我的______》',
+            2: '《那一次，我______》',
+            3: '自由命题'
+        };
+
+        async function submitAIFeedback(num) {
+            const textarea = document.getElementById('homework' + num);
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback' + num);
+            const btn = document.getElementById('ai-btn' + num);
+
+            if (!content) {
+                alert('请先填写作业内容！');
+                return;
+            }
+
+            const title = homeworkTitles[num];
+            const prompt = `请评估下面这份作业，题目是${title}。学生用三种悬念开头法各写了一个版本：
+
+${content}
+
+请从以下角度点评：
+1. 结果先行版本：是否有效制造"为什么会这样"的好奇？
+2. 细节反常版本：所写的细节是否足够反常、引人注意？
+3. 对话引入版本：对话是否能引发读者对场景的好奇？
+4. 三个开头是否都避免了空洞词（如"很""非常""特别"），使用了具体细节？
+5. 给出一个综合性的改进建议
+
+请用温和、鼓励性的语言，字数控制在 250 字左右。`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px; animation: spin 1s linear infinite;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = 'AI 名师点评中，请稍后...';
+
+            try {
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+
+                feedbackDiv.className = 'ai-feedback correct';
+                feedbackDiv.innerHTML = '<strong>✓ AI 点评（' + title + '）</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                saveHomework();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback incorrect';
+                feedbackDiv.innerHTML = '<strong>❌ AI 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
         }
 
         document.querySelectorAll('.homework-textarea').forEach(area => {
@@ -549,6 +675,14 @@ _____________________________________"></textarea>
                     document.getElementById('check1').checked = homework.checks.check1;
                     document.getElementById('check2').checked = homework.checks.check2;
                     document.getElementById('check3').checked = homework.checks.check3;
+                }
+                // 恢复 AI 点评结果
+                for (let i = 1; i <= 3; i++) {
+                    if (homework['aiFeedback' + i]) {
+                        const fb = document.getElementById('ai-feedback' + i);
+                        fb.className = 'ai-feedback correct';
+                        fb.innerHTML = homework['aiFeedback' + i];
+                    }
                 }
             }
         });
