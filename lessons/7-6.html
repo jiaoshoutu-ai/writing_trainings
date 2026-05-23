@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节六：课外阅读 - 悬念式开头</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #a855f7;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .author {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 4px solid #ea580c;
+        }
+
+        .article-title {
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: 900;
+            color: #1e293b;
+            margin-bottom: 24px;
+        }
+
+        .article-content {
+            font-size: 18px;
+            line-height: 2;
+            color: #1e293b;
+            text-align: justify;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+            text-indent: 2em;
+        }
+
+        .article-content .no-indent {
+            text-indent: 0;
+        }
+
+        .article-content .dialogue {
+            text-indent: 4em;
+            font-style: italic;
+            color: #475569;
+        }
+
+        .article-content .highlight-line {
+            background: linear-gradient(transparent 60%, #fed7aa 60%);
+            padding: 0 2px;
+        }
+
+        .reading-intro {
+            background: #fff7ed;
+            border: 2px solid #fb923c;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+
+        .reading-intro h3 {
+            color: #c2410c;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reading-intro p {
+            color: #9a3412;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* 素材分析部分 */
+        .analysis-section {
+            margin-top: 40px;
+        }
+
+        .analysis-section > h2 {
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .analysis-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .analysis-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid #ea580c;
+            transition: all 0.3s;
+        }
+
+        .analysis-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .analysis-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .icon-observation { background: #dcfce7; }
+        .icon-emotion { background: #fce7f3; }
+        .icon-contrast { background: #dbeafe; }
+        .icon-philosophy { background: #f3e8ff; }
+
+        .analysis-title {
+            font-weight: bold;
+            color: #0f172a;
+            font-size: 1.1em;
+        }
+
+        .analysis-body {
+            padding-left: 56px;
+        }
+
+        .analysis-body p {
+            color: #475569;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .quote-box {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-style: italic;
+            color: #92400e;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .quote-label {
+            font-style: normal;
+            font-weight: bold;
+            color: #b45309;
+            font-size: 13px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .takeaway {
+            background: #f0fdf4;
+            border: 2px solid #4ade80;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+
+        .takeaway-title {
+            font-weight: bold;
+            color: #166534;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .takeaway p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* 写作练习 */
+        .practice-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .practice-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .practice-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .practice-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #ea580c;
+        }
+
+        .practice-card h4 {
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .practice-card p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .homework-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+            margin-top: 12px;
+        }
+
+        .homework-textarea:focus {
+            border-color: #ea580c;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-orange {
+            background: #ea580c;
+            color: white;
+            box-shadow: 0 4px 15px rgba(234,88,12,0.4);
+        }
+        .btn-orange:hover { background: #c2410c; }
+
+        .btn-teal {
+            background: #14b8a6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(20,184,166,0.4);
+        }
+        .btn-teal:hover { background: #0d9488; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5em; }
+            .article-card { padding: 24px; }
+            .article-content { font-size: 16px; }
+            .analysis-body { padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="7-5.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程七</span>
+            <div class="lesson-subtitle">悬念式开头——让读者忍不住读下去</div>
+        </div>
+        <a href="../index.html" style="color: #a855f7;">
+            返回首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-orange">环节六：课外阅读</span>
+            <h1>《紫藤萝瀑布》——素材积累与经典赏析</h1>
+        </div>
+
+        <div class="reading-intro">
+            <h3>
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                阅读引导
+            </h3>
+            <p>
+                宗璞的《紫藤萝瀑布》是一篇经典的写景抒情散文。今天我们从<strong>"素材积累"</strong>的角度来阅读——不仅欣赏文章的美，更要学习作者是如何<b>从日常观察中收集素材、提炼情感、升华主题</b>的。这种能力，正是我们写出好文章的基础。
+            </p>
+        </div>
+
+        <div class="article-card">
+            <div class="article-title">紫藤萝瀑布</div>
+            <p class="author" style="margin-bottom: 30px;">作者：宗璞</p>
+
+            <div class="article-content">
+                <p class="no-indent">我不由得停住了脚步。</p>
+
+                <p>从未见过开得这样盛的藤萝，只见一片辉煌的淡紫色，像一条瀑布，从空中垂下，不见其发端，也不见其终极。只是深深浅浅的紫，仿佛在流动，在欢笑，在不停地生长。紫色的大条幅上，泛着点点银光，就像迸溅的水花。仔细看时，才知道那是每一朵紫花中最浅淡的部分，在和阳光互相挑逗。</p>
+
+                <p>这里春红已谢，没有赏花的人群，也没有蜂围蝶阵。有的就是这一树闪光的、盛开的藤萝。花朵儿一串挨着一串，一朵接着一朵，彼此推着挤着，好不活泼热闹！</p>
+
+                <p class="dialogue">"我在开花！"它们在笑。</p>
+
+                <p class="dialogue">"我在开花！"它们嚷嚷。</p>
+
+                <p>每一穗花都是上面的盛开、下面的待放。颜色便上浅下深，好像那紫色沉淀下来了，沉淀在最嫩最小的花苞里。每一朵盛开的花就像是一个小小的张满了的帆，帆下带着尖底的舱，船舱鼓鼓的；又像一个忍俊不禁的笑容，就要绽开似的。那里装的是什么仙露琼浆？我凑上去，想摘一朵。</p>
+
+                <p>但是我没有摘。我没有摘花的习惯。我只是伫立凝望，觉得这一条紫藤萝瀑布不只在我眼前，也在我心上缓缓流过。流着流着，它带走了这些时一直压在我心上的关于生死的疑惑，关于疾病的痛楚。我沉浸在这繁密的花朵的光辉中，别的一切暂时都不存在，有的只是精神的宁静和生的喜悦。</p>
+
+                <p>这里除了光彩，还有淡淡的芳香，香气似乎也是浅紫色的，梦幻一般轻轻地笼罩着我。忽然记起十多年前家门外也曾有过一大株紫藤萝，它依傍一株枯槐爬得很高，但花朵从来都稀落，东一穗西一串伶仃地挂在树梢，好像在试探什么。后来索性连那稀零的花串也没有了。园中别的紫藤花架也都拆掉，改种了果树。那时的说法是，花和生活腐化有什么必然关系。我曾遗憾地想：这里再也看不见藤萝花了。</p>
+
+                <p>过了这么多年，藤萝又开花了，而且开得这样盛，这样密，紫色的瀑布遮住了粗壮的盘虬卧龙般的枝干，不断地流着，流着，流向人的心底。</p>
+
+                <p><span class="highlight-line">花和人都会遇到各种各样的不幸，但是生命的长河是无止境的。</span>我抚摸了一下那小小的紫色的花舱，那里满装生命的酒酿，它张满了帆，在这闪光的花的河流上航行。它是万花中的一朵，也正是一朵朵花，组成了万花灿烂的流动的瀑布。</p>
+
+                <p>在这浅紫色的光辉和浅紫色的芳香中，我不觉加快了脚步。</p>
+            </div>
+        </div>
+
+        <!-- 素材积累分析 -->
+        <div class="analysis-section">
+            <h2>素材积累分析</h2>
+            <p class="analysis-subtitle">从四个维度拆解作者如何收集与运用写作素材</p>
+
+            <!-- 观察素材 -->
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-icon icon-observation">👁️</div>
+                    <span class="analysis-title">一、观察素材的积累——用感官记录世界</span>
+                </div>
+                <div class="analysis-body">
+                    <p>好的写作始于细致的观察。宗璞对紫藤萝的观察达到了<strong>"显微镜"</strong>级别：</p>
+
+                    <div class="quote-box">
+                        <span class="quote-label">色彩观察</span>
+                        "一片辉煌的淡紫色" → "深深浅浅的紫" → "上浅下深" → "最浅淡的部分"
+                    </div>
+                    <div class="quote-box">
+                        <span class="quote-label">形态观察</span>
+                        "像一条瀑布，从空中垂下" → "张满了的帆，帆下带着尖底的舱" → "忍俊不禁的笑容"
+                    </div>
+                    <div class="quote-box">
+                        <span class="quote-label">动态观察</span>
+                        "仿佛在流动，在欢笑，在不停地生长" → "彼此推着挤着"
+                    </div>
+                    <div class="quote-box">
+                        <span class="quote-label">嗅觉观察</span>
+                        "淡淡的芳香，香气似乎也是浅紫色的"——将嗅觉与视觉打通（通感）
+                    </div>
+
+                    <div class="takeaway">
+                        <div class="takeaway-title">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            素材积累方法
+                        </div>
+                        <p>随身携带一个小本子，遇到让你停下脚步的事物，记录它的颜色、形状、动态、气味。<strong>不要只写"很美"，要写出"美在哪里"</strong>——这是积累观察素材的第一步。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 情感素材 -->
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-icon icon-emotion">❤️</div>
+                    <span class="analysis-title">二、情感素材的积累——从景物到心灵</span>
+                </div>
+                <div class="analysis-body">
+                    <p>观察只是起点，真正打动读者的是情感。宗璞没有直接说"我很感动"，而是写出了情感的<strong>变化过程</strong>：</p>
+
+                    <div class="quote-box">
+                        <span class="quote-label">情感转变</span>
+                        之前： "生死的疑惑，疾病的痛楚"（沉重、压抑）<br>
+                        之后： "精神的宁静和生的喜悦"（释然、愉悦）
+                    </div>
+                    <div class="quote-box">
+                        <span class="quote-label">关键句</span>
+                        "流着流着，它带走了这些时一直压在我心上的关于生死的疑惑，关于疾病的痛楚。"
+                    </div>
+
+                    <p>自然景物成为情感的"药方"——花的盛开治愈了心的伤痛。这种"以景抒情"的手法，是情感素材积累的高级运用。</p>
+
+                    <div class="takeaway">
+                        <div class="takeaway-title">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            素材积累方法
+                        </div>
+                        <p>当你有情绪波动时（开心、难过、愤怒、感动），试着找一个与之呼应的自然景物来承载它。<strong>不要说"我很难过"，去找一个能让你想到悲伤的东西来写</strong>——这是情感素材的核心。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对比素材 -->
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-icon icon-contrast">🔄</div>
+                    <span class="analysis-title">三、对比素材的积累——时间的力量</span>
+                </div>
+                <div class="analysis-body">
+                    <p>文章最精彩的一笔是插入了<strong>十多年前</strong>的回忆，形成了强烈的今昔对比：</p>
+
+                    <div class="quote-box">
+                        <span class="quote-label">过去 vs 现在</span>
+                        <strong>十年前：</strong> "花朵从来都稀落，东一穗西一串伶仃地挂在树梢" → "稀零的花串也没有了" → "花架也都拆掉"<br>
+                        <strong>现在：</strong> "开得这样盛，这样密" → "紫色的瀑布遮住了粗壮的盘虬卧龙般的枝干"
+                    </div>
+
+                    <p>十年的等待与变迁，让眼前的花不再只是一朵花，而是带着时间的重量。这种"回忆+现实"的对比手法，让素材变得厚重而丰富。</p>
+
+                    <div class="takeaway">
+                        <div class="takeaway-title">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            素材积累方法
+                        </div>
+                        <p>写一个事物时，想一想它过去的样子。同一个地点、同一棵树、同一条路，<strong>"以前"和"现在"的对比本身就是最好的素材</strong>。你的记忆就是最好的素材库。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 哲理素材 -->
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-icon icon-philosophy">💡</div>
+                    <span class="analysis-title">四、哲理素材的积累——从一朵花到一条河</span>
+                </div>
+                <div class="analysis-body">
+                    <p>最高级的素材积累，是把一件小事升华为一个道理。全文最核心的一句：</p>
+
+                    <div class="quote-box">
+                        <span class="quote-label">全文主旨句</span>
+                        "花和人都会遇到各种各样的不幸，但是生命的长河是无止境的。"
+                    </div>
+
+                    <p>作者没有空洞地说教，而是先写了足够多的具体素材——花的形态、颜色、香气，过去的凋零与现在的盛开——最后自然引出这个哲理。读者是先"看到"了一朵花，然后才"懂了"一个道理。</p>
+
+                    <p>这就是素材积累的终极目标：<strong>让哲理从事实中自然生长出来</strong>，而不是凭空喊口号。</p>
+
+                    <div class="takeaway">
+                        <div class="takeaway-title">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            素材积累方法
+                        </div>
+                        <p>积累生活中的感悟和小道理，但不要直接写出来。<strong>先找到承载这个道理的具体事物，让它替你"说话"</strong>。就像宗璞不直接说"要乐观"，而是写一朵重新盛开的紫藤萝。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 写作练习 -->
+        <div class="practice-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                课后练习
+            </h2>
+
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <h4>
+                        <span class="difficulty-badge difficulty-easy" style="background: #dcfce7; color: #16a34a; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: bold;">基础</span>
+                        观察练习：我的校园一角
+                    </h4>
+                    <p>选择校园中的一个角落，从颜色、形状、动态、气味四个角度进行观察描写，写 100-150 字。</p>
+                    <textarea class="homework-textarea" id="practice1" placeholder="我选择的角落：_______________________
+
+颜色：_______________________
+形状：_______________________
+动态：_______________________
+气味：_______________________"></textarea>
+                </div>
+
+                <div class="practice-card">
+                    <h4>
+                        <span style="background: #fef3c7; color: #d97706; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: bold;">提高</span>
+                        情感练习：那件事之后
+                    </h4>
+                    <p>回忆一次让你心情发生转变的经历，用一件具体的景物来承载你的情感变化，写 150-200 字。</p>
+                    <textarea class="homework-textarea" id="practice2" placeholder="那件事：_______________________
+转变前的情感：_______________________
+转变后的情感：_______________________
+承载情感的景物：_______________________"></textarea>
+                </div>
+
+                <div class="practice-card">
+                    <h4>
+                        <span style="background: #fee2e2; color: #dc2626; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: bold;">挑战</span>
+                        对比练习：以前和现在
+                    </h4>
+                    <p>选择一个你熟悉的地点，写它过去和现在的对比，并在结尾自然引出一个感悟，写 200-300 字。</p>
+                    <textarea class="homework-textarea" id="practice3" placeholder="我选择的地点：_______________________
+
+以前的样子：_______________________
+
+现在的样子：_______________________
+
+我的感悟：_______________________"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="7-5.html" class="btn btn-purple">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：素材积累
+            </a>
+            <a href="../index.html" class="btn btn-purple">
+                返回首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function savePractice() {
+            const data = {
+                practice1: document.getElementById('practice1').value,
+                practice2: document.getElementById('practice2').value,
+                practice3: document.getElementById('practice3').value
+            };
+            localStorage.setItem('lesson7_6_practice', JSON.stringify(data));
+        }
+
+        document.querySelectorAll('.homework-textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                clearTimeout(this.saveTimer);
+                this.saveTimer = setTimeout(savePractice, 2000);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson7_6_practice');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.practice1) document.getElementById('practice1').value = data.practice1;
+                if (data.practice2) document.getElementById('practice2').value = data.practice2;
+                if (data.practice3) document.getElementById('practice3').value = data.practice3;
+            }
+        });
+    </script>
+</body>
+</html>
