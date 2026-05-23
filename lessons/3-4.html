@@ -304,10 +304,13 @@
             <span class="lesson-title">课程三</span>
             <div class="lesson-subtitle">消灭"很"字——告别空洞词</div>
         </div>
-        <a href="../index.html" style="color: #3b82f6;">
-            返回首页
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="global-save-status" style="font-size: 13px; color: #16a34a;"></span>
+            <a href="../index.html" style="color: #3b82f6;">
+                返回首页
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
     </div>
 
     <div class="container">
@@ -553,6 +556,7 @@
             }
         }
 
+        let saveTimerId = null;
         function saveDaily() {
             const daily = {
                 monday: document.getElementById('monday').value,
@@ -569,13 +573,19 @@
                 }
             };
             localStorage.setItem('lesson3_homework', JSON.stringify(daily));
-            alert('作业已保存！');
+            const statusEl = document.getElementById('global-save-status');
+            if (statusEl) {
+                statusEl.textContent = '已保存';
+                clearTimeout(saveTimerId);
+                saveTimerId = setTimeout(() => { statusEl.textContent = ''; }, 2000);
+            }
         }
 
+        let saveInputTimer = null;
         document.querySelectorAll('.daily-textarea').forEach(area => {
             area.addEventListener('input', function() {
-                clearTimeout(this.saveTimer);
-                this.saveTimer = setTimeout(saveDaily, 2000);
+                clearTimeout(saveInputTimer);
+                saveInputTimer = setTimeout(saveDaily, 2000);
             });
         });
 
