@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>环节五：实战练习 - 对话代替叙述</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <style>
         * {
             margin: 0;
@@ -234,59 +235,79 @@
             line-height: 1.8;
         }
 
-        .success-toast {
-            background: #dcfce7;
-            border: 2px solid #22c55e;
-            border-radius: 16px;
-            padding: 20px;
+        .btn-row {
+            display: flex;
+            gap: 8px;
             margin-top: 16px;
-            display: none;
-            color: #166534;
+            flex-wrap: wrap;
         }
 
-        .success-toast.show {
-            display: block;
-            animation: fadeIn 0.3s;
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(2,132,199,0.4);
+        }
+        .ai-btn:hover { background: #0369a1; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .ref-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
         }
+        .ref-btn:hover { background: #d97706; }
 
-        .example-hint {
-            background: #faf5ff;
-            border: 2px solid #e9d5ff;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 24px;
-        }
-
-        .example-hint h4 {
-            color: #6b21a8;
-            margin-bottom: 12px;
-        }
-
-        .example-hint p {
-            color: #581c87;
+        .ai-feedback {
+            margin-top: 12px;
+            padding: 16px;
+            border-radius: 12px;
             font-size: 14px;
             line-height: 1.8;
+            display: none;
         }
+        .ai-feedback.loading  { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.correct   { background: #dcfce7; color: #166534; display: block; }
+        .ai-feedback.incorrect { background: #fee2e2; color: #991b1b; display: block; }
 
-        .dialogue-sample {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
+        .ref-answer {
             margin-top: 12px;
-            font-style: italic;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            background: #fefce8;
+            border: 2px solid #facc15;
+            color: #78350f;
+            display: none;
         }
+        .ref-answer.show { display: block; }
 
-        .dialogue-line {
-            margin-bottom: 8px;
-            padding-left: 12px;
-            border-left: 3px solid #e9d5ff;
-            color: #4c1d95;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -349,24 +370,24 @@
                 ></textarea>
                 <div class="char-count" id="count1">0 字</div>
 
-                <div class="success-toast" id="toast1">
-                    ✓ 写得不错！继续完成下一个场景！
+                <div class="btn-row">
+                    <button class="ai-btn" onclick="submitAIFeedback(1)" id="ai-btn1">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(1)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
                 </div>
-                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(1)" id="btn1">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-
-                <div class="example-hint" id="hint1" style="display: none;">
-                    <h4>💡 参考示例</h4>
-                    <p>试试这样写：</p>
-                    <div class="dialogue-sample">
-                        <div class="dialogue-line">"站住。"老师的声音从背后传来，</div>
-                        <div class="dialogue-line">我僵在门口，手还搭在门把上。</div>
-                        <div class="dialogue-line">"现在几点了？"</div>
-                        <div class="dialogue-line">我低头看表，八点半。"老……老师，我……"</div>
-                        <div class="dialogue-line">"明天让你家长来一趟。"</div>
-                    </div>
+                <div class="ai-feedback" id="ai-feedback1"></div>
+                <div class="ref-answer" id="ref-answer1">
+                    <strong>参考答案：</strong><br><br>
+                    "站住。"老师的声音从背后传来，<br>
+                    我僵在门口，手还搭在门把上。<br>
+                    "现在几点了？"<br>
+                    我低头看表，八点半。"老……老师，我……"<br>
+                    "明天让你家长来一趟。"
                 </div>
             </div>
 
@@ -396,24 +417,24 @@
                 ></textarea>
                 <div class="char-count" id="count2">0 字</div>
 
-                <div class="success-toast" id="toast2">
-                    ✓ 很好！继续完成最后一个！
+                <div class="btn-row">
+                    <button class="ai-btn" onclick="submitAIFeedback(2)" id="ai-btn2">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(2)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
                 </div>
-                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(2)" id="btn2">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-
-                <div class="example-hint" id="hint2" style="display: none;">
-                    <h4>💡 参考示例</h4>
-                    <p>试试这样写：</p>
-                    <div class="dialogue-sample">
-                        <div class="dialogue-line">"这个，给你。"妈妈递过来一个包装得歪歪扭扭的盒子。</div>
-                        <div class="dialogue-line">"这是……给我的？"</div>
-                        <div class="dialogue-line">"嗯，我和你爸跑了好几家店才买到的。"</div>
-                        <div class="dialogue-line">我拆开盒子，是那套我念叨了半年的画笔。</div>
-                        <div class="dialogue-line">喉咙突然有点堵，"谢谢妈……"</div>
-                    </div>
+                <div class="ai-feedback" id="ai-feedback2"></div>
+                <div class="ref-answer" id="ref-answer2">
+                    <strong>参考答案：</strong><br><br>
+                    "这个，给你。"妈妈递过来一个包装得歪歪扭扭的盒子。<br>
+                    "这是……给我的？"<br>
+                    "嗯，我和你爸跑了好几家店才买到的。"<br>
+                    我拆开盒子，是那套我念叨了半年的画笔。<br>
+                    喉咙突然有点堵，"谢谢妈……"
                 </div>
             </div>
 
@@ -443,24 +464,24 @@
                 ></textarea>
                 <div class="char-count" id="count3">0 字</div>
 
-                <div class="success-toast" id="toast3">
-                    ✓ 太棒了！三个场景你都完成了！
+                <div class="btn-row">
+                    <button class="ai-btn" onclick="submitAIFeedback(3)" id="ai-btn3">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(3)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
                 </div>
-                <button class="btn btn-blue" style="margin-top: 16px;" onclick="submitPractice(3)" id="btn3">
-                    提交
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-
-                <div class="example-hint" id="hint3" style="display: none;">
-                    <h4>💡 参考示例</h4>
-                    <p>试试这样写：</p>
-                    <div class="dialogue-sample">
-                        <div class="dialogue-line">"反正你从来都不在乎我的感受！"她把这句话甩过来。</div>
-                        <div class="dialogue-line">我张了张嘴，"我没有……"</div>
-                        <div class="dialogue-line">"你有！每次都是这样！"</div>
-                        <div class="dialogue-line">后面的话我没听见，转身走了。脚步很重，但每一步都在等她在后面喊我。</div>
-                        <div class="dialogue-line">可她没有。</div>
-                    </div>
+                <div class="ai-feedback" id="ai-feedback3"></div>
+                <div class="ref-answer" id="ref-answer3">
+                    <strong>参考答案：</strong><br><br>
+                    "反正你从来都不在乎我的感受！"她把这句话甩过来。<br>
+                    我张了张嘴，"我没有……"<br>
+                    "你有！每次都是这样！"<br>
+                    后面的话我没听见，转身走了。脚步很重，但每一步都在等她在后面喊我。<br>
+                    可她没有。
                 </div>
             </div>
 
@@ -490,7 +511,11 @@
     </div>
 
     <script>
-        let completedPractices = {1: false, 2: false, 3: false};
+        const practiceTitles = {
+            1: '场景一：迟到被老师发现',
+            2: '场景二：收到惊喜礼物',
+            3: '场景三：和朋友闹矛盾'
+        };
 
         function checkLength(textareaId, countId) {
             const textarea = document.getElementById(textareaId);
@@ -499,33 +524,54 @@
             countDiv.textContent = length + ' 字';
         }
 
-        function submitPractice(num) {
+        async function submitAIFeedback(num) {
             const textarea = document.getElementById('practice' + num);
-            const toast = document.getElementById('toast' + num);
-            const btn = document.getElementById('btn' + num);
-            const hint = document.getElementById('hint' + num);
-            const length = textarea.value.trim().length;
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback' + num);
+            const btn = document.getElementById('ai-btn' + num);
 
-            if (length < 30) {
-                alert('请至少写 30 字哦！');
+            if (!content) {
+                alert('请先填写内容！');
                 return;
             }
 
-            toast.classList.add('show');
-            btn.disabled = true;
-            btn.textContent = '已完成';
-            hint.style.display = 'block';
-            completedPractices[num] = true;
+            const title = practiceTitles[num];
+            const prompt = `请作为一名上海初中语文名师，对下面学生的实战练习进行点评。练习题目是"${title}"。\n\n要求：用对话改写原叙述，不能用"很""非常""特别"等标签词，用人物的对话和动作来展现情绪。\n\n学生写的内容：\n${content}\n\n请从以下角度点评：\n1. 是否避免了标签词\n2. 对话是否符合人物身份和情境\n3. 是否有动作和表情配合\n4. 读者能否从对话中感受到人物的情绪\n5. 给出具体修改建议\n\n请温和、鼓励性地指出优点和不足，给出具体建议。`;
 
-            savePractices();
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = 'AI 名师点评中，请稍后...';
+
+            try {
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+                feedbackDiv.className = 'ai-feedback correct';
+                feedbackDiv.innerHTML = '<strong>AI 点评（' + title + '）</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                savePractices();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback incorrect';
+                feedbackDiv.innerHTML = '<strong>AI 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+
+        function toggleRef(num) {
+            const refDiv = document.getElementById('ref-answer' + num);
+            if (refDiv.style.display === 'block') {
+                refDiv.style.display = 'none';
+            } else {
+                refDiv.style.display = 'block';
+            }
         }
 
         function savePractices() {
             const practices = {
                 practice1: document.getElementById('practice1').value,
                 practice2: document.getElementById('practice2').value,
-                practice3: document.getElementById('practice3').value,
-                completed: completedPractices
+                practice3: document.getElementById('practice3').value
             };
             localStorage.setItem('lesson8_practices', JSON.stringify(practices));
         }
@@ -544,17 +590,6 @@
                 if (practices.practice1) document.getElementById('practice1').value = practices.practice1;
                 if (practices.practice2) document.getElementById('practice2').value = practices.practice2;
                 if (practices.practice3) document.getElementById('practice3').value = practices.practice3;
-                if (practices.completed) {
-                    completedPractices = practices.completed;
-                    for (let i = 1; i <= 3; i++) {
-                        if (completedPractices[i]) {
-                            document.getElementById('toast' + i).classList.add('show');
-                            document.getElementById('btn' + i).disabled = true;
-                            document.getElementById('btn' + i).textContent = '已完成';
-                            document.getElementById('hint' + i).style.display = 'block';
-                        }
-                    }
-                }
             }
             for (let i = 1; i <= 3; i++) {
                 checkLength('practice' + i, 'count' + i);
