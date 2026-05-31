@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：怎样描写人物语言 - 对话代替叙述</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-purple { background: #f3e8ff; color: #7c3aed; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-fallback {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .video-fallback a {
+            color: #3b82f6;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .video-fallback a:hover {
+            text-decoration: underline;
+        }
+
+        .technique-card {
+            background: #faf5ff;
+            border: 2px solid #a855f7;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .technique-icon {
+            width: 48px;
+            height: 48px;
+            background: #a855f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .technique-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #6b21a8;
+        }
+
+        .technique-desc {
+            color: #581c87;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .example-card {
+            background: white;
+            border-left: 4px solid #a855f7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 12px;
+        }
+
+        .example-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .example-text {
+            font-size: 15px;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        .summary-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .summary-card h3 {
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list li {
+            padding: 12px 0;
+            color: #14532d;
+            font-size: 15px;
+            border-bottom: 1px solid #bbf7d0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="8-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程八</span>
+            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
+        </div>
+        <a href="8-6.html" style="color: #3b82f6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-purple">环节三：视频学习</span>
+            <h1>怎样描写人物语言</h1>
+        </div>
+
+        <div class="content-section">
+            <!-- 视频 -->
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1CLVfzWEiX&p=26&high_quality=1" allowfullscreen></iframe>
+            </div>
+
+            <p style="text-align: center; color: #64748b; margin-bottom: 24px;">
+                如果视频无法播放，请<a href="https://www.bilibili.com/video/BV1CLVfzWEiX/?spm_id_from=333.788.videopod.episodes&vd_source=d67a608c52aab6d3506c645a00a0be26&p=26" target="_blank" style="color: #3b82f6;">点击这里</a>在 B站观看。
+            </p>
+
+            <!-- 技巧一 -->
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">1️⃣</div>
+                    <div class="technique-title">符合人物的身份、年龄、性格和生活经历</div>
+                </div>
+                <p class="technique-desc">
+                    人物的语言必须贴合他自身的特征。不同身份、不同年龄、不同性格的人，说话方式截然不同。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：妈妈的三次尖叫</div>
+                    <p class="example-text">
+                        妈妈一看见我，立刻大叫起来："宝贝儿，总算找到你了！你的脸怎么紫一块红一块的？"<br>
+                        看见客厅墙上的画，妈妈又一次尖叫："妈呀，这墙怎么了？"<br>
+                        过了一会儿，刚进房间的妈妈再次尖叫："我的口红和指甲油！"<br><br>
+                        <strong>分析：</strong>三次尖叫的排比，写出了妈妈一惊一乍、容易激动的性格。"总算找到你了"体现妈妈的关心，"口红和指甲油"暗示妈妈平时有很多化妆品，是个爱美的人。语言既写出了性格，也写出了生活经历。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 技巧二 -->
+            <div class="technique-card" style="background: #eff6ff; border-color: #3b82f6;">
+                <div class="technique-header">
+                    <div class="technique-icon" style="background: #3b82f6;">2️⃣</div>
+                    <div class="technique-title" style="color: #1e40af;">符合特定的背景和场合</div>
+                </div>
+                <p class="technique-desc" style="color: #1e3a8a;">
+                    同一个人在不同场合、不同背景下，同一件事说话的方式可能完全不同。设计语言描写时，要考虑人物所处的具体环境。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：团团找作文本</div>
+                    <p class="example-text">
+                        <strong>在课堂上：</strong>团团小心翼翼地翻着书包，心里默念道："作文本，作文本，你在哪儿呢？"（课堂上不能大声说话，只能心里想）<br><br>
+                        <strong>在课间时：</strong>团团着急地翻着课桌，大声喊道："我的作文本去哪儿了？谁见过我的作文本呢？作文本呢？作文本？"（课间可以向同学求助，大声喊叫）<br><br>
+                        <strong>在家里：</strong>团团对妈妈说："妈妈快来，我的作文本飞了！快帮帮我，快帮我找找！"（在家里有明确求助对象，语气更亲近）
+                    </p>
+                </div>
+            </div>
+
+            <!-- 技巧三 -->
+            <div class="technique-card" style="background: #fefce8; border-color: #eab308;">
+                <div class="technique-header">
+                    <div class="technique-icon" style="background: #eab308;">3️⃣</div>
+                    <div class="technique-title" style="color: #92400e;">借助标点符号突出人物个性和情境</div>
+                </div>
+                <p class="technique-desc" style="color: #78350f;">
+                    标点符号可以增强语言的表现力，让读者感受到人物的语气和情绪。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：三种标点的妙用</div>
+                    <p class="example-text">
+                        <strong>感叹号（！）——语气强烈：</strong><br>
+                        妈妈大喊一声："小心！"<br><br>
+                        <strong>省略号（……）——吞吞吐吐、结结巴巴：</strong><br>
+                        小明涨红了脸说："不……不……不是我干的。"<br><br>
+                        <strong>破折号（——）——声音延长：</strong><br>
+                        我们站在大海边大喊："大海——我来了——"
+                    </p>
+                </div>
+            </div>
+
+            <!-- 素材欣赏 -->
+            <div style="background: #fff7ed; border: 2px solid #f97316; border-radius: 20px; padding: 28px; margin-top: 24px;">
+                <h3 style="color: #9a3412; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    素材欣赏：妈妈的话
+                </h3>
+                <p style="color: #7c2d12; font-size: 15px; line-height: 2;">
+                    晚上，我正写着作业，耳边传来熟悉的声音："写字姿势要正确，才能预防近视眼。"我只好挺了挺腰板作证。<br><br>
+                    写完作业我正津津有味地看电视，那熟悉的声音又来了："别看了，明天还要上学呢！"电视情节那么吸引人，这声音真烦人。我假装没听见，继续看电视。<br><br>
+                    可在这时，严厉的声音凑近了耳边："怎么回事？睡觉时间到了！"我一扭头，正好看到长着黑痣的嘴唇一张一合，像复读机一样不知疲倦。那眼光不用看，肯定是咄咄逼人的。<br><br>
+                    从早到晚妈妈唠叨个不停，怎能不让人心烦呢？可仔细想一想，妈妈也是为我好。
+                </p>
+                <p style="color: #9a3412; font-size: 14px; margin-top: 16px;">
+                    <strong>点评：</strong>这段话通过三个场景的排比，写出了妈妈唠叨又关心的语言特征——写字时管姿势，看电视时催睡觉，最后严厉提醒。非常符合妈妈的身份和性格。
+                </p>
+            </div>
+
+            <!-- 总结 -->
+            <div class="summary-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    本环节要点总结
+                </h3>
+                <ul class="summary-list">
+                    <li>语言描写要符合人物的身份、年龄、性格特征和生活经历</li>
+                    <li>语言描写要符合特定的背景和场合</li>
+                    <li>可以借助标点符号（感叹号、省略号、破折号）来突出人物个性和情境</li>
+                </ul>
+            </div>
+
+            <div style="background: #fef2f2; border: 2px solid #fca5a5; border-radius: 16px; padding: 20px; margin-top: 24px;">
+                <p style="color: #991b1b; font-size: 14px; line-height: 1.8;">
+                    <strong>💡 课后观察：</strong>观察并描写你的妈妈平时爱说的话和说话时的神态。以妈妈为中心进行一段语言描写，记得用上今天的这几个技巧！
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="8-2.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：对比练习
+            </a>
+            <a href="8-6.html" class="btn btn-blue">
+                下一步：怎样描写人物的对话
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节四：怎样描写人物的对话 - 对话代替叙述</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #3b82f6;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .technique-card {
+            background: #faf5ff;
+            border: 2px solid #a855f7;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .technique-icon {
+            width: 48px;
+            height: 48px;
+            background: #a855f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .technique-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #6b21a8;
+        }
+
+        .technique-desc {
+            color: #581c87;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .example-card {
+            background: white;
+            border-left: 4px solid #a855f7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 12px;
+        }
+
+        .example-label {
+            font-size: 12px;
+            color: #64748b;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .example-text {
+            font-size: 15px;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        .example-analysis {
+            background: #fef3c7;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.8;
+        }
+
+        .summary-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .summary-card h3 {
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list li {
+            padding: 12px 0;
+            color: #14532d;
+            font-size: 15px;
+            border-bottom: 1px solid #bbf7d0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-blue {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+        }
+        .btn-blue:hover { background: #2563eb; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="8-5.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程八</span>
+            <div class="lesson-subtitle">对话代替叙述——让人物自己说话</div>
+        </div>
+        <a href="8-3.html" style="color: #3b82f6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-orange">环节四：视频学习</span>
+            <h1>怎样描写人物的对话</h1>
+        </div>
+
+        <div class="content-section">
+            <!-- 视频 -->
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1CLVfzWEiX&p=27&high_quality=1" allowfullscreen></iframe>
+            </div>
+
+            <p style="text-align: center; color: #64748b; margin-bottom: 24px;">
+                如果视频无法播放，请<a href="https://www.bilibili.com/video/BV1CLVfzWEiX?spm_id_from=333.788.videopod.episodes&vd_source=d67a608c52aab6d3506c645a00a0be26&p=27" target="_blank" style="color: #3b82f6;">点击这里</a>在 B站观看。
+            </p>
+
+            <!-- 技巧一 -->
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">1️⃣</div>
+                    <div class="technique-title">对话要符合人物的身份、年龄和性格特征</div>
+                </div>
+                <p class="technique-desc">
+                    人物说什么话、怎么说，都要由他的身份、年龄和性格来决定。不同性格的人面对同样的事情，反应截然不同。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：无忧无虑的阿美丽</div>
+                    <p class="example-text">
+                        阿美丽总是说："好啊！好啊！"<br>
+                        她对听写课说"好啊"，对水煮菠菜说"好啊"，对乐理课本也说"好啊"。<br><br>
+                        <strong>分析：</strong>三个场景的"好啊好啊"，写出一个乐天派小朋友无忧无虑的性格。如果身边有这样的乐天派，就可以用这种方式来写——通过反复出现的口头禅来体现性格。
+                    </p>
+                </div>
+                <div class="example-card" style="margin-top: 16px;">
+                    <div class="example-label">示例：受了委屈的马小跳</div>
+                    <p class="example-text">
+                        "我没心虚！我没心虚！"马小跳脖子上爆出几根青筋，继续喊道，"我又没做坏事，我为什么要心虚？"<br><br>
+                        <strong>分析：</strong>重复的话语加上感叹号，写出被冤枉时的强烈语气。马小跳性格急躁，不会慢条斯理地解释，而是直接喊出来——这正是淘气包、风风火火的性格。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 技巧二 -->
+            <div class="technique-card" style="background: #eff6ff; border-color: #3b82f6;">
+                <div class="technique-header">
+                    <div class="technique-icon" style="background: #3b82f6;">2️⃣</div>
+                    <div class="technique-title" style="color: #1e40af;">加上人物说话时的神态、动作和表情描写</div>
+                </div>
+                <p class="technique-desc" style="color: #1e3a8a;">
+                    光有对话内容还不够，要在"说"的前面加上神态、动作的描写，让场景活灵活现。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：马小跳恭恭敬敬</div>
+                    <p class="example-text">
+                        马小跳<strong>恭恭敬敬地</strong>向裴帆哥哥鞠了一躬，说："裴帆哥哥，你说的每一句话我都牢牢地记住了。"<br><br>
+                        <strong>分析：</strong>"恭恭敬敬"是神态描写，"鞠了一躬"是动作描写。加上这些，才能表现出马小跳认真、恭敬的态度。
+                    </p>
+                </div>
+                <div class="example-card" style="margin-top: 16px;">
+                    <div class="example-label">示例：秦老师的严厉</div>
+                    <p class="example-text">
+                        秦老师<strong>锐利的目光在四个人的脸上扫了一遍</strong>："你们谁先说？"<br><br>
+                        <strong>分析：</strong>"锐利的目光扫了一遍"写出了老师的严厉。如果只写"秦老师说：你们谁先说"，就看不到那种犀利的眼神。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 技巧三 -->
+            <div class="technique-card" style="background: #fefce8; border-color: #eab308;">
+                <div class="technique-header">
+                    <div class="technique-icon" style="background: #eab308;">3️⃣</div>
+                    <div class="technique-title" style="color: #92400e;">在"说"前面加上修饰语和提示语</div>
+                </div>
+                <p class="technique-desc" style="color: #78350f;">
+                    最简单有效的方法：在"说""道"等动词前面，加上描写语气、动作、神态和心理活动的修饰语，让对话更生动。
+                </p>
+                <div class="example-card">
+                    <div class="example-label">示例：对比感受修饰语的力量</div>
+                    <p class="example-text">
+                        <strong>没有修饰语：</strong>弟弟说："我吃饱了。"（平淡）<br>
+                        <strong>加上修饰语：</strong>弟弟<strong>拍着肚子心满意足地</strong>说："我吃饱了。"（生动，画面感强）<br><br>
+                        <strong>没有修饰语：</strong>妈妈说："那就去外面玩一会儿。"（看不到表情）<br>
+                        <strong>加上修饰语：</strong>妈妈<strong>温柔地</strong>说："那就去外面玩一会儿。"（神态温和，心情愉悦）
+                    </p>
+                </div>
+                <div class="example-card" style="margin-top: 16px;">
+                    <div class="example-label">示例：《夏洛的网》中的精彩对话</div>
+                    <p class="example-text">
+                        他<strong>温和地</strong>说："你得学会控制自己，控制自己。"<br>
+                        弗恩<strong>叫道</strong>，<strong>泪珠滚滚滑落他的面颊，他一把抓住斧子，打算把它从爸爸手里抢下来</strong>："这是生死攸关的事，你还说什么控制自己？"<br><br>
+                        威尔伯一听这话，<strong>悲痛万分，扑倒下来。他大声抽搭，浑身哆嗦。他喘着气悲伤地哼哼叫</strong>："夏洛，我忠实的朋友……"<br>
+                        夏洛说："安静下来，威尔伯，不要折腾自己了。"<br>
+                        威尔伯<strong>大叫</strong>："我不能让你单独留下来等死！你留下来，我也要留下来！"<br><br>
+                        <strong>分析：</strong>这些描写把对话写得丰富立体。没有神态和动作的铺垫，人物的悲痛和愤怒就无法很好地传达出来。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 小练笔 -->
+            <div style="background: #fef2f2; border: 2px solid #fca5a5; border-radius: 16px; padding: 20px; margin-top: 24px;">
+                <p style="color: #991b1b; font-size: 14px; line-height: 1.8;">
+                    <strong>💡 小练笔任务：</strong>使用这三个技巧，描写当你不小心犯错时，妈妈和你的一次对话。<br>
+                    记得要用上今天学的三个关键技巧！
+                </p>
+            </div>
+
+            <!-- 总结 -->
+            <div class="summary-card">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    本环节要点总结
+                </h3>
+                <ul class="summary-list">
+                    <li>对话要符合人物的身份、年龄和性格特征——不同性格的人说不同的话</li>
+                    <li>加上人物说话时的神态、动作或表情描写——让场景活灵活现</li>
+                    <li>在"说"前面加上修饰语气、动作、神态和心理活动的提示语——简单而有效</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="8-5.html" class="btn btn-blue">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：怎样描写人物语言
+            </a>
+            <a href="8-3.html" class="btn btn-blue">
+                下一步：实战练习
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
