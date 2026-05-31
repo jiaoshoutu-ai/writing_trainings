@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>环节六：总结与作业 - 对话代替叙述</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
     <style>
         * {
             margin: 0;
@@ -322,6 +323,76 @@
             font-size: 18px;
         }
 
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 4px 15px rgba(2,132,199,0.4);
+            margin-top: 12px;
+        }
+        .ai-btn:hover { background: #0369a1; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ref-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+            margin-top: 12px;
+            margin-left: 8px;
+        }
+        .ref-btn:hover { background: #d97706; }
+
+        .ai-feedback {
+            margin-top: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading  { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.correct   { background: #dcfce7; color: #166534; display: block; }
+        .ai-feedback.incorrect { background: #fee2e2; color: #991b1b; display: block; }
+
+        .ref-answer {
+            margin-top: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            background: #fefce8;
+            border: 2px solid #facc15;
+            color: #78350f;
+            display: none;
+        }
+        .ref-answer.show { display: block; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.6em; }
         }
@@ -418,6 +489,24 @@
                     <textarea class="homework-textarea" id="homework1" placeholder="你的改写：
 
 "></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(1)" id="ai-btn1">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(1)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback1"></div>
+                    <div class="ref-answer" id="ref-answer1">
+                        <strong>参考答案：</strong><br><br>
+                        我把那张揉得皱巴巴的试卷摊在桌上。<br>
+                        妈妈拿起试卷看了半天，没说话。<br>
+                        "我……我不是故意的。"我低着头，手指抠着桌角。<br>
+                        妈妈把试卷放下，坐到我旁边，手搭在我肩上："你觉得自己应该考得更好，对吗？"<br>
+                        我鼻子一酸，点了点头。<br>
+                        "那咱们一起来看看错在哪儿了。下次，一定能比这次好。"
+                    </div>
                 </div>
 
                 <!-- 选做题 -->
@@ -432,6 +521,24 @@
                     <textarea class="homework-textarea" id="homework2" placeholder="我的对话场景：_______________________
 
 "></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(2)" id="ai-btn2">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(2)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback2"></div>
+                    <div class="ref-answer" id="ref-answer2">
+                        <strong>参考答案：</strong><br><br>
+                        "吃饭了！"妈妈在厨房喊。<br>
+                        我应了一声，坐到餐桌前。<br>
+                        爸爸夹了一块排骨放到我碗里："多吃点，看你瘦的。"<br>
+                        "我在减肥呢。"我把排骨推回去。<br>
+                        妈妈端着汤走过来，听见了，瞪了爸爸一眼："你别逼他。"<br>
+                        "我这是关心他！"爸爸小声嘟囔，又夹了一块菜到自己碗里。
+                    </div>
                 </div>
 
                 <!-- 挑战题 -->
@@ -446,6 +553,23 @@
                     <textarea class="homework-textarea" id="homework3" placeholder="我的对话：
 
 "></textarea>
+                    <button class="ai-btn" onclick="submitAIFeedback(3)" id="ai-btn3">
+                        AI 点评
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+                    <button class="ref-btn" onclick="toggleRef(3)">
+                        参考答案
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </button>
+                    <div class="ai-feedback" id="ai-feedback3"></div>
+                    <div class="ref-answer" id="ref-answer3">
+                        <strong>参考答案：</strong><br><br>
+                        "你从来不把我的话当回事！"她把书包往肩上一甩，背对着我。<br>
+                        "我没有……"<br>
+                        "你有！每次都说好了一起走，结果每次都自己先跑了！"<br>
+                        我张了张嘴，没说出话。<br>
+                        她往前走了一步，没回头。我站在原地，脚步声在走廊里回荡，越来越远。我迈开腿追上去，每一步都像踩在棉花上。
+                    </div>
                 </div>
             </div>
 
@@ -496,6 +620,12 @@
     </div>
 
     <script>
+        const homeworkTitles = {
+            1: '题目一：改写下面的叙述',
+            2: '题目二：家庭对话',
+            3: '题目三：情绪对话'
+        };
+
         function saveHomework() {
             const homework = {
                 homework1: document.getElementById('homework1').value,
@@ -508,6 +638,49 @@
                 }
             };
             localStorage.setItem('lesson8_homework', JSON.stringify(homework));
+        }
+
+        async function submitAIFeedback(num) {
+            const textarea = document.getElementById('homework' + num);
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback' + num);
+            const btn = document.getElementById('ai-btn' + num);
+
+            if (!content) {
+                alert('请先填写作业内容！');
+                return;
+            }
+
+            const title = homeworkTitles[num];
+            const prompt = `请作为一名上海初中语文名师，对下面学生的作业进行点评。作业题目是"${title}"。\n\n学生作业内容：\n${content}\n\n请从以下角度点评：\n1. 是否避免了"很""非常""特别"等标签词\n2. 对话是否符合人物身份和年龄\n3. 是否有动作和表情配合对话\n4. 读者能否从对话中感受到人物的情绪\n5. 给出具体修改建议\n\n请温和、鼓励性地指出优点和不足，给出具体建议。`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = 'AI 名师点评中，请稍后...';
+
+            try {
+                const feedback = await chat(prompt, '你是经验丰富的上海初中语文名师，擅长指导学生写作和阅读作业。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+                feedbackDiv.className = 'ai-feedback correct';
+                feedbackDiv.innerHTML = '<strong>AI 点评（' + title + '）</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                saveHomework();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback incorrect';
+                feedbackDiv.innerHTML = '<strong>AI 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+
+        function toggleRef(num) {
+            const refDiv = document.getElementById('ref-answer' + num);
+            if (refDiv.style.display === 'block') {
+                refDiv.style.display = 'none';
+            } else {
+                refDiv.style.display = 'block';
+            }
         }
 
         document.querySelectorAll('.homework-textarea').forEach(area => {
