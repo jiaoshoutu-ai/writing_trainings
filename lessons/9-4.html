@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>环节四：总结与作业 - 细节见真情</title>
+    <title>环节四：实战练习 - 细节见真情</title>
     <style>
         * {
             margin: 0;
@@ -49,7 +49,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px 60px;
         }
@@ -62,7 +62,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .tag-sky { background: #e0f2fe; color: #0369a1; }
+        .tag-green { background: #dcfce7; color: #16a34a; }
 
         h1 {
             font-size: 2.2em;
@@ -72,55 +72,7 @@
             text-align: center;
         }
 
-        .summary-section {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            border-radius: 24px;
-            padding: 32px;
-            margin-top: 30px;
-            color: white;
-        }
-
-        .summary-section h2 {
-            color: white;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .summary-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .summary-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 24px;
-        }
-
-        .summary-content h3 {
-            font-size: 15px;
-            color: #dcfce7;
-            margin-bottom: 6px;
-        }
-
-        .summary-content p {
-            font-size: 13px;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.7;
-        }
-
-        .homework-section {
+        .content-section {
             background: white;
             border-radius: 24px;
             padding: 32px;
@@ -128,110 +80,119 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .homework-section h2 {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #0f172a;
-            margin-bottom: 24px;
-        }
-
-        .homework-intro {
+        .practice-instruction {
             background: #fefce8;
-            border: 2px solid #facc15;
-            border-radius: 16px;
-            padding: 20px;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 28px;
             margin-bottom: 24px;
         }
 
-        .homework-intro p {
+        .practice-instruction h3 {
             color: #92400e;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .homework-grid {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 30px;
-        }
-
-        .homework-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 20px;
-            border-left: 4px solid #22c55e;
-            transition: all 0.3s;
-        }
-
-        .homework-card:hover {
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .homework-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .homework-title {
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: bold;
-            color: #0f172a;
         }
 
-        .difficulty-badge {
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: bold;
+        .practice-instruction p {
+            color: #78350f;
+            font-size: 16px;
+            line-height: 1.8;
         }
 
-        .difficulty-easy { background: #dcfce7; color: #16a34a; }
-        .difficulty-medium { background: #fef3c7; color: #d97706; }
-        .difficulty-hard { background: #fee2e2; color: #dc2626; }
+        .practice-card {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
 
-        .homework-card p {
+        .practice-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .practice-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        .practice-subtitle {
+            color: #64748b;
             font-size: 14px;
-            color: #475569;
+        }
+
+        .practice-hint {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid #22c55e;
+        }
+
+        .practice-hint p {
+            color: #64748b;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
-        .homework-textarea {
+        .practice-hint .forbidden {
+            color: #dc2626;
+            font-weight: bold;
+            background: #fef2f2;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .practice-textarea {
             width: 100%;
-            min-height: 100px;
-            padding: 14px;
+            min-height: 120px;
+            padding: 16px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.8;
             resize: vertical;
             outline: none;
             transition: border-color 0.3s;
             font-family: inherit;
-            margin-top: 12px;
         }
 
-        .homework-textarea:focus {
+        .practice-textarea:focus {
             border-color: #22c55e;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 32px;
+            padding: 14px 28px;
             border-radius: 999px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             border: none;
             transition: all 0.3s;
-            text-decoration: none;
         }
 
         .btn-green {
@@ -241,12 +202,12 @@
         }
         .btn-green:hover { background: #16a34a; }
 
-        .btn-teal {
-            background: #14b8a6;
-            color: white;
-            box-shadow: 0 4px 15px rgba(20,184,166,0.4);
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
         }
-        .btn-teal:hover { background: #0d9488; }
 
         .nav-buttons {
             display: flex;
@@ -258,94 +219,84 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .progress-section {
-            background: white;
+        .success-toast {
+            background: #dcfce7;
+            border: 2px solid #22c55e;
             border-radius: 16px;
             padding: 20px;
-            margin-top: 30px;
+            margin-top: 16px;
+            display: none;
+            color: #166534;
         }
 
-        .progress-section h3 {
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .success-toast.show {
+            display: block;
+            animation: fadeIn 0.3s;
         }
 
-        .progress-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 8px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .progress-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .checklist-section {
-            background: #fefce8;
-            border: 2px solid #eab308;
-            border-radius: 20px;
-            padding: 24px;
-            margin-top: 24px;
-        }
-
-        .checklist-section h3 {
-            color: #92400e;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .checklist {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .checklist li {
-            padding: 10px 0;
-            color: #78350f;
-            border-bottom: 1px solid #fde68a;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .checklist li:last-child {
-            border-bottom: none;
-        }
-
-        .checklist li::before {
-            content: "□";
-            color: #22c55e;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .classic-quote {
+        .example-hint {
             background: #faf5ff;
             border: 2px solid #e9d5ff;
             border-radius: 16px;
             padding: 20px;
             margin-top: 24px;
+            display: none;
         }
 
-        .classic-quote p {
+        .example-hint.show {
+            display: block;
+        }
+
+        .example-hint h4 {
             color: #6b21a8;
+            margin-bottom: 12px;
+        }
+
+        .example-hint p {
+            color: #581c87;
             font-size: 14px;
             line-height: 1.8;
-            font-style: italic;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 1.6em; }
+        .example-box {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border-left: 4px solid #a855f7;
+        }
+
+        .example-box p {
+            color: #4c1d95;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .tip-box {
+            background: #fefce8;
+            border: 2px solid #eab308;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .tip-box h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            color: #78350f;
+            font-size: 14px;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -359,211 +310,275 @@
             <span class="lesson-title">课程九</span>
             <div class="lesson-subtitle">细节见真情——用细节打动人心</div>
         </div>
-        <a href="../index.html" style="color: #22c55e;">
-            返回首页
+        <a href="9-5.html" style="color: #22c55e;">
+            下一环节
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
     </div>
 
     <div class="container">
         <div style="text-align: center;">
-            <span class="section-tag tag-sky">环节四：总结与作业</span>
-            <h1>课堂总结与课后作业</h1>
+            <span class="section-tag tag-green">环节四：实战练习</span>
+            <h1>用细节描写"妈妈的爱"</h1>
         </div>
 
-        <div class="summary-section">
-            <h2>
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                核心要点
-            </h2>
-
-            <div class="summary-card">
-                <div class="summary-icon">📝</div>
-                <div class="summary-content">
-                    <h3>核心理念</h3>
-                    <p>最打动人的不是"我很感动"，而是一个具体的细节。</p>
-                </div>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">🎯</div>
-                <div class="summary-content">
-                    <h3>好细节的特点</h3>
-                    <p>具体的、独特的、能唤起感受的。</p>
-                </div>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">👁️</div>
-                <div class="summary-content">
-                    <h3>三种细节类型</h3>
-                    <p>动作细节、物品细节、感官细节。</p>
-                </div>
-            </div>
-
-            <div class="summary-card">
-                <div class="summary-icon">✨</div>
-                <div class="summary-content">
-                    <h3>核心原则</h3>
-                    <p>用名词和动词说话，不用形容词堆砌。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="homework-section">
-            <h2>
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                课后作业
-            </h2>
-
-            <div class="homework-intro">
+        <div class="content-section">
+            <div class="practice-instruction">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H2a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-3.5l-9 9z"/></svg>
+                    练习任务
+                </h3>
                 <p>
-                    <strong>要求：</strong>从下面的题目中任选一个，用细节描写来完成。<br>
-                    <strong>字数：</strong>150-200 字。<br>
-                    <strong>提交：</strong>明天上课前交给课代表。
+                    写"妈妈的爱"，<strong>不准用"爱"字</strong>，只能写一个具体的细节。<br>
+                    让读者从你的描写中自己感受到"爱"。
                 </p>
             </div>
 
-            <div class="homework-grid">
-                <!-- 必做题 -->
-                <div class="homework-card">
-                    <div class="homework-header">
-                        <span class="homework-title">
-                            <span class="difficulty-badge difficulty-easy">必做</span>
-                            题目一：妈妈的______
-                        </span>
+            <!-- 练习一 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        练习一：妈妈的爱
                     </div>
-                    <p>横线上可以填：手、背影、眼神、声音、习惯动作……任选一个，用细节描写。</p>
-                    <p style="color: #dc2626; font-size: 13px; margin-top: 8px;">⚠️ 要求：不能出现"爱""关心""辛苦"等词</p>
-                    <textarea class="homework-textarea" id="homework1" placeholder="我的题目：妈妈的_______________________
-
-"></textarea>
+                    <span class="practice-subtitle">建议字数：50-80 字</span>
                 </div>
 
-                <!-- 选做题 -->
-                <div class="homework-card">
-                    <div class="homework-header">
-                        <span class="homework-title">
-                            <span class="difficulty-badge difficulty-medium">选做</span>
-                            题目二：家里的一个角落
-                        </span>
-                    </div>
-                    <p>描写家里的一个角落（如厨房、阳台、书桌等），通过物品和细节展现家人的情感。</p>
-                    <textarea class="homework-textarea" id="homework2" placeholder="我选的角落：_______________________
-
-"></textarea>
+                <div class="practice-hint">
+                    <p><strong>写作提示：</strong></p>
+                    <p>可以写：妈妈为你做的事、妈妈的一个习惯、家里的一个角落、厨房里的一个画面……</p>
+                    <span class="forbidden">⚠️ 禁止使用："爱""关心""照顾""辛苦"等抽象词</span>
                 </div>
 
-                <!-- 挑战题 -->
-                <div class="homework-card">
-                    <div class="homework-header">
-                        <span class="homework-title">
-                            <span class="difficulty-badge difficulty-hard">挑战</span>
-                            题目三：模仿《背影》
-                        </span>
-                    </div>
-                    <p>模仿朱自清《背影》的写法，写一个家人的动作片段，分解动作，展现情感。</p>
-                    <textarea class="homework-textarea" id="homework3" placeholder="我写的人物：_______________________
+                <textarea
+                    class="practice-textarea"
+                    id="practice1"
+                    placeholder="例如：妈妈把我换下来的白球鞋，用牙膏一点一点刷干净，晾在阳台上，鞋尖朝着太阳。
 
-"></textarea>
+"
+                    oninput="checkLength('practice1', 'count1')"
+                ></textarea>
+                <div class="char-count" id="count1">0 字</div>
+
+                <div class="success-toast" id="toast1">
+                    ✓ 写得不错！继续挑战下一个！
+                </div>
+                <button class="btn btn-green" style="margin-top: 16px;" onclick="submitPractice(1)" id="btn1" disabled>
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint1">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="example-box">
+                        <p>
+                            每天晚上，我的书包里总会多出一盒切好的水果，苹果永远摆成小兔子的形状。<br>
+                            或者：<br>
+                            妈妈的手机相册里，存得最多的是我的作业本，一张一张，按日期排好。
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="checklist-section">
-                <h3>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    写作检查清单
-                </h3>
-                <ul class="checklist">
-                    <li>是否避免了"很""非常""特别"等抽象词？</li>
-                    <li>是否有具体的动作、物品或感官描写？</li>
-                    <li>细节是否独特，不是笼统的描述？</li>
-                    <li>读者能否从细节中感受到你想表达的情感？</li>
-                    <li>大声朗读后，描写是否生动形象？</li>
-                </ul>
+            <!-- 练习二 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        练习二：家人的习惯
+                    </div>
+                    <span class="practice-subtitle">建议字数：50-80 字</span>
+                </div>
+
+                <div class="practice-hint">
+                    <p><strong>写作提示：</strong></p>
+                    <p>可以写：爸爸的一个动作、奶奶的一句话、家里的一个声音、一个重复多年的仪式……</p>
+                    <span class="forbidden">⚠️ 禁止使用："习惯""总是""一直"等笼统词</span>
+                </div>
+
+                <textarea
+                    class="practice-textarea"
+                    id="practice2"
+                    placeholder="例如：爷爷的拐杖在地板上点出"哒、哒"的声音，每走一步都要停一停，像是在等后面的腿赶上来。
+
+"
+                    oninput="checkLength('practice2', 'count2')"
+                ></textarea>
+                <div class="char-count" id="count2">0 字</div>
+
+                <div class="success-toast" id="toast2">
+                    ✓ 很好！继续完成最后一个！
+                </div>
+                <button class="btn btn-green" style="margin-top: 16px;" onclick="submitPractice(2)" id="btn2" disabled>
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint2">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="example-box">
+                        <p>
+                            爸爸每次吃饭前，都要把筷子在开水里烫一遍，哪怕是一次性筷子。<br>
+                            或者：<br>
+                            奶奶看电视时，总会把音量调到 3，她说"3 刚刚好，能听见，又不吵"。
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="classic-quote">
+            <!-- 练习三 -->
+            <div class="practice-card">
+                <div class="practice-header">
+                    <div class="practice-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        练习三：自由选题
+                    </div>
+                    <span class="practice-subtitle">建议字数：60-100 字</span>
+                </div>
+
+                <div class="practice-hint">
+                    <p><strong>写作提示：</strong></p>
+                    <p>自选一个情感主题（如"友谊""思念""感动"等），用细节来表现，不能直接说出这个情感词。</p>
+                    <span class="forbidden">⚠️ 禁止使用：任何抽象的情感词</span>
+                </div>
+
+                <textarea
+                    class="practice-textarea"
+                    id="practice3"
+                    placeholder="我的主题：_______________________
+
+"
+                    oninput="checkLength('practice3', 'count3')"
+                ></textarea>
+                <div class="char-count" id="count3">0 字</div>
+
+                <div class="success-toast" id="toast3">
+                    ✓ 太棒了！三个练习你都完成了！
+                </div>
+                <button class="btn btn-green" style="margin-top: 16px;" onclick="submitPractice(3)" id="btn3" disabled>
+                    提交
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+
+                <div class="example-hint" id="hint3">
+                    <h4>💡 参考示例</h4>
+                    <p>试试这样写：</p>
+                    <div class="example-box">
+                        <p><strong>主题：友谊</strong></p>
+                        <p>我的抽屉里，躺着三十七张纸条，都是小华传的。最后一张只写了四个字："别难过。"那是我爸去世的第二天。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    写作小贴士
+                </h4>
                 <p>
-                    <strong>💡 记住：</strong>写作不是告诉读者"这是什么"，而是让读者自己"看到这是什么"。<br><br>
-                    "鞋尖朝着太阳"比"妈妈很爱我"好一万倍。
+                    <strong>1. 越具体越好：</strong>用名词和动词，少用形容词。<br>
+                    <strong>2. 调动五感：</strong>让读者看到、听到、闻到、触摸到。<br>
+                    <strong>3. 独特的才是好的：</strong>"鞋尖朝着太阳"比"整整齐齐"好一万倍。
                 </p>
-            </div>
-
-            <div class="progress-section">
-                <h3>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    完成进度
-                </h3>
-                <label class="progress-item">
-                    <input type="checkbox" id="check1">
-                    <span>题目一：妈妈的______（必做）</span>
-                </label>
-                <label class="progress-item">
-                    <input type="checkbox" id="check2">
-                    <span>题目二：家里的一个角落（选做）</span>
-                </label>
-                <label class="progress-item">
-                    <input type="checkbox" id="check3">
-                    <span>题目三：模仿《背影》（挑战）</span>
-                </label>
             </div>
         </div>
 
         <div class="nav-buttons">
             <a href="9-3.html" class="btn btn-green">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                上一环节：实战练习
+                上一步：细节描写
             </a>
-            <a href="9-5.html" class="btn btn-teal" style="background: #14b8a6; box-shadow: 0 4px 15px rgba(20,184,166,0.4);">
-                下一步：轻松一刻
-                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-            <a href="../index.html" class="btn btn-green">
-                返回首页
+            <a href="9-5.html" class="btn btn-green">
+                下一步：总结与作业
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
         </div>
     </div>
 
     <script>
-        function saveHomework() {
-            const homework = {
-                homework1: document.getElementById('homework1').value,
-                homework2: document.getElementById('homework2').value,
-                homework3: document.getElementById('homework3').value,
-                checks: {
-                    check1: document.getElementById('check1').checked,
-                    check2: document.getElementById('check2').checked,
-                    check3: document.getElementById('check3').checked
-                }
-            };
-            localStorage.setItem('lesson9_homework', JSON.stringify(homework));
+        let completedPractices = {1: false, 2: false, 3: false};
+
+        function checkLength(textareaId, countId) {
+            const textarea = document.getElementById(textareaId);
+            const countDiv = document.getElementById(countId);
+            const btn = document.getElementById('btn' + textareaId.replace('practice', 'btn'));
+            const length = textarea.value.trim().length;
+            countDiv.textContent = length + ' 字';
+
+            // 至少 20 字才能提交
+            if (length >= 20) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
         }
 
-        document.querySelectorAll('.homework-textarea').forEach(area => {
+        function submitPractice(num) {
+            const textarea = document.getElementById('practice' + num);
+            const toast = document.getElementById('toast' + num);
+            const btn = document.getElementById('btn' + num);
+            const hint = document.getElementById('hint' + num);
+            const length = textarea.value.trim().length;
+
+            if (length < 20) {
+                alert('请至少写 20 字哦！');
+                return;
+            }
+
+            // 检查是否包含禁用的词
+            const forbiddenWords = ['爱', '关心', '照顾', '辛苦', '习惯', '总是', '一直', '非常', '很'];
+            const text = textarea.value;
+            // 不强制检查，只是提醒
+
+            toast.classList.add('show');
+            btn.disabled = true;
+            btn.textContent = '已完成';
+            hint.classList.add('show');
+            completedPractices[num] = true;
+
+            savePractices();
+        }
+
+        function savePractices() {
+            const practices = {
+                practice1: document.getElementById('practice1').value,
+                practice2: document.getElementById('practice2').value,
+                practice3: document.getElementById('practice3').value,
+                completed: completedPractices
+            };
+            localStorage.setItem('lesson9_practices', JSON.stringify(practices));
+        }
+
+        document.querySelectorAll('.practice-textarea').forEach(area => {
             area.addEventListener('input', function() {
                 clearTimeout(this.saveTimer);
-                this.saveTimer = setTimeout(saveHomework, 2000);
+                this.saveTimer = setTimeout(savePractices, 2000);
             });
         });
 
-        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-            box.addEventListener('change', saveHomework);
-        });
-
         window.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('lesson9_homework');
+            const saved = localStorage.getItem('lesson9_practices');
             if (saved) {
-                const homework = JSON.parse(saved);
-                if (homework.homework1) document.getElementById('homework1').value = homework.homework1;
-                if (homework.homework2) document.getElementById('homework2').value = homework.homework2;
-                if (homework.homework3) document.getElementById('homework3').value = homework.homework3;
-                if (homework.checks) {
-                    document.getElementById('check1').checked = homework.checks.check1;
-                    document.getElementById('check2').checked = homework.checks.check2;
-                    document.getElementById('check3').checked = homework.checks.check3;
+                const practices = JSON.parse(saved);
+                if (practices.practice1) document.getElementById('practice1').value = practices.practice1;
+                if (practices.practice2) document.getElementById('practice2').value = practices.practice2;
+                if (practices.practice3) document.getElementById('practice3').value = practices.practice3;
+                if (practices.completed) {
+                    completedPractices = practices.completed;
+                    for (let i = 1; i <= 3; i++) {
+                        if (completedPractices[i]) {
+                            document.getElementById('toast' + i).classList.add('show');
+                            document.getElementById('btn' + i).disabled = true;
+                            document.getElementById('btn' + i).textContent = '已完成';
+                            document.getElementById('hint' + i).classList.add('show');
+                        }
+                    }
                 }
+            }
+            for (let i = 1; i <= 3; i++) {
+                checkLength('practice' + i, 'count' + i);
             }
         });
     </script>
