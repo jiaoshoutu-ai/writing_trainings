@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：复习导入 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #f59e0b;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle-text {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .challenge-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge-question {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            color: #78350f;
+            font-weight: bold;
+            line-height: 1.8;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .challenge-rule {
+            display: inline-block;
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+
+        /* 中考题目表格 */
+        .exam-table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 24px;
+        }
+
+        .exam-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .exam-table thead th {
+            background: #f59e0b;
+            color: white;
+            padding: 14px 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .exam-table thead th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .exam-table thead th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .exam-table tbody td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #fef3c7;
+            color: #78350f;
+        }
+
+        .exam-table tbody tr:nth-child(even) {
+            background: #fffbeb;
+        }
+
+        .exam-table tbody tr:nth-child(odd) {
+            background: white;
+        }
+
+        .exam-table tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 12px;
+        }
+
+        .exam-table tbody tr:last-child td:last-child {
+            border-radius: 0 0 12px 0;
+        }
+
+        .exam-table .col-category {
+            font-weight: bold;
+            color: #92400e;
+        }
+
+        .exam-table .col-title {
+            color: #b45309;
+            font-style: italic;
+        }
+
+        .exam-table .col-character {
+            color: #d97706;
+            font-weight: 500;
+        }
+
+        .teacher-box {
+            background: #f8fafc;
+            border-left: 4px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+
+        .teacher-box p {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .teacher-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .teacher-box .key-insight {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .comparison-card {
+            padding: 24px;
+            border-radius: 16px;
+        }
+
+        .comparison-bad {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+        }
+
+        .comparison-good {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+        }
+
+        .comparison-card h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-bad h4 { color: #991b1b; }
+        .comparison-good h4 { color: #166534; }
+
+        .comparison-card p {
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .comparison-bad p { color: #7f1d1d; }
+        .comparison-good p { color: #14532d; }
+
+        .teacher-question {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+
+        .teacher-question p {
+            color: #854d0e;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+
+        .table-caption {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .practice-textarea:focus {
+            border-color: #f59e0b;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 16px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading  { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show     { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error    { background: #fee2e2; color: #991b1b; display: block; }
+
+        .recap-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: none;
+        }
+        .recap-section.show { display: block; }
+
+        .recap-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .recap-cards {
+            display: grid;
+            gap: 16px;
+        }
+
+        .recap-card {
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 5px solid;
+        }
+
+        .recap-card-3 {
+            background: #fef2f2;
+            border-color: #dc2626;
+        }
+
+        .recap-card-4 {
+            background: #ecfeff;
+            border-color: #0891b2;
+        }
+
+        .recap-card-5 {
+            background: #eef2ff;
+            border-color: #4f46e5;
+        }
+
+        .recap-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .recap-card-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .recap-card-3 .recap-card-num { background: #dc2626; }
+        .recap-card-4 .recap-card-num { background: #0891b2; }
+        .recap-card-5 .recap-card-num { background: #4f46e5; }
+
+        .recap-card-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .recap-card-3 .recap-card-title { color: #991b1b; }
+        .recap-card-4 .recap-card-title { color: #0e7490; }
+        .recap-card-5 .recap-card-title { color: #4338ca; }
+
+        .recap-card p {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .recap-card .highlight {
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .recap-card-3 .highlight { background: #fee2e2; color: #dc2626; }
+        .recap-card-4 .highlight { background: #cffafe; color: #0e7490; }
+        .recap-card-5 .highlight { background: #e0e7ff; color: #4338ca; }
+
+        .tip-box {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .tip-box h4 {
+            color: #166534;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            color: #14532d;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="10-1.html" style="color: #f59e0b;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节零：复习导入</span>
+            <h1>温故知新</h1>
+        </div>
+
+        <!-- 挑战题目 -->
+        <div class="content-section">
+            <div class="challenge-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    写作挑战
+                </h3>
+                <div class="challenge-question">
+                    如果让你描写一个人<strong>"很伤心"</strong>，但不能出现<span class="challenge-rule">"很"</span>和<span class="challenge-rule">"伤心"</span>两个字，你会怎么写？
+                </div>
+                <p style="color: #92400e; font-size: 14px; margin-top: 16px;">
+                    💡 <strong>提示：</strong>回想一下我们学过的技巧——用具体的动作、神态、五感细节来"展示"情绪，而不是"告诉"读者。
+                </p>
+            </div>
+
+            <textarea
+                class="practice-textarea"
+                id="writing-input"
+                placeholder="在这里写下你的答案……
+（提示：想想伤心的人会有什么表情、动作？身体有什么感觉？周围环境是什么样的？）
+"
+                oninput="updateCharCount()"
+            ></textarea>
+            <div class="char-count" id="char-count">0 字</div>
+
+            <div class="btn-row">
+                <button class="btn btn-amber" onclick="submitForReview()" id="submit-btn">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    提交，让 AI 点评
+                </button>
+            </div>
+
+            <div class="ai-feedback" id="ai-feedback"></div>
+        </div>
+
+        <!-- 课程回顾（AI 点评后显示） -->
+        <div class="recap-section" id="recap-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                温故知新：回顾我们学过的三大武器
+            </h2>
+
+            <div class="recap-cards">
+                <!-- 课程三 -->
+                <div class="recap-card recap-card-3">
+                    <div class="recap-card-header">
+                        <div class="recap-card-num">三</div>
+                        <div class="recap-card-title">消灭"很"字——告别空洞词</div>
+                    </div>
+                    <p>
+                        不说"很伤心"，而是用<span class="highlight">具体的描写</span>来替代。<br>
+                        核心口诀：<strong>不说"很"，用细节说话。</strong><br>
+                        示例：不说"很开心"→ 说"嘴角翘到了耳朵根，眼睛弯成两道月牙"。
+                    </p>
+                </div>
+
+                <!-- 课程四 -->
+                <div class="recap-card recap-card-4">
+                    <div class="recap-card-header">
+                        <div class="recap-card-num">四</div>
+                        <div class="recap-card-title">五感速写——让读者身临其境</div>
+                    </div>
+                    <p>
+                        用<span class="highlight">视觉、听觉、嗅觉、触觉、味觉</span>来描写场景和人物。<br>
+                        核心口诀：<strong>看到的、听到的、闻到的、摸到的、尝到的——调动五感来写作。</strong><br>
+                        示例：写"伤心"可以写眼泪的咸味（味觉）、鼻子堵塞的感觉（触觉）、抽泣的声音（听觉）。
+                    </p>
+                </div>
+
+                <!-- 课程五 -->
+                <div class="recap-card recap-card-5">
+                    <div class="recap-card-header">
+                        <div class="recap-card-num">五</div>
+                        <div class="recap-card-title">慢镜头描写——把瞬间写长</div>
+                    </div>
+                    <p>
+                        把一瞬间的动作<span class="highlight">放慢、拉长、分解</span>，让读者看清每一个细节。<br>
+                        核心口诀：<strong>越重要的地方，写得越慢。</strong><br>
+                        示例：不是"他哭了"，而是"眼眶先红了，然后睫毛上挂了一颗水珠，颤了颤，终于落下来，在下巴上停了一秒才滴到地上"。
+                    </p>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    本周预告
+                </h4>
+                <p>
+                    这周，我们要把这三把"武器"组合起来，学习一个全新的技巧——<strong>三笔勾勒法</strong>。<br>
+                    就像画家用三笔就能画出人物神韵一样，我们也要学会用<strong>三笔</strong>快速勾勒出鲜明的人物形象！
+                </p>
+            </div>
+        </div>
+
+        <!-- 课程引入：中考题分类 -->
+        <div class="content-section">
+            <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #0f172a;">
+                <svg width="22" height="22" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                近年上海中考作文题（按命题方向分类）
+            </h3>
+
+            <div class="exam-table-wrapper">
+                <table class="exam-table">
+                    <thead>
+                        <tr>
+                            <th>命题方向</th>
+                            <th>典型题目</th>
+                            <th>核心人物</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-category">亲情类</td>
+                            <td class="col-title">《真的不容易》《有一种甜》</td>
+                            <td class="col-character">父母、祖辈</td>
+                        </tr>
+                        <tr>
+                            <td class="col-category">成长类</td>
+                            <td class="col-title">《这事，真带劲》《那个星期天》</td>
+                            <td class="col-character">自己、同伴、师长</td>
+                        </tr>
+                        <tr>
+                            <td class="col-category">社会类</td>
+                            <td class="col-title">《这里也有风景》《偶得》</td>
+                            <td class="col-character">陌生人、小人物</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="teacher-box">
+                <p>
+                    <strong>👩‍🏫 教师讲解：</strong><br>
+                    "看到这张表，你发现了什么？——<span class="key-insight">中考作文，经常要'写人'</span>。亲情类要写父母，成长类要写自己或同伴，社会类要写陌生人。阅卷老师看你的文章，首先看的就是：<strong>你笔下的人，是不是'活的'</strong>。"
+                </p>
+            </div>
+
+            <div class="teacher-box">
+                <p>
+                    "再看这个对比——<strong>同一素材（写妈妈），两种写法：</strong>"
+                </p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card comparison-bad">
+                    <h4>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        普通版
+                    </h4>
+                    <p>我的妈妈很勤劳，她每天为我做很多事情。</p>
+                </div>
+                <div class="comparison-card comparison-good">
+                    <h4>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        升级版
+                    </h4>
+                    <p>妈妈的手背上，总有一道浅浅的白痕——那是热油溅过的印记。每天早上，她就是用这双手，把豆浆机的轰鸣压到最低，让我多睡那宝贵的十分钟。</p>
+                </div>
+            </div>
+
+            <div class="teacher-question">
+                <p>
+                    💬 <strong>提问：</strong>"两段都在写妈妈的'不容易'，哪一段让你心头一颤？为什么？"
+                </p>
+            </div>
+
+            <div class="teacher-box">
+                <p>
+                    <strong>总结：</strong><br>
+                    "秘密就在第二个版本用了具体的<strong>身体特征</strong>（手背的白痕）和<strong>习惯性动作</strong>（压低豆浆机声音）。读这段，你会'看见'这个妈妈，而不是'听说'她。这就是人物描写的魔力——<span class="key-insight">让阅卷老师不是'读到'你写的人，而是'看见'你写的人</span>。"
+                </p>
+                <p style="margin-top: 12px;">
+                    "今天这节课，我们就先通过一个视频，系统地看一遍人物描写的'兵器库'。然后，我们一起学习<strong>'三笔勾勒法'</strong>，三笔下去，人物就活过来。以后写亲情、写成长、写任何文章，这个人都能直接从纸上走出来。"
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回首页
+            </a>
+            <a href="10-1.html" class="btn btn-amber">
+                下一步：人物描写的兵器库
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('writing-input');
+            const countDiv = document.getElementById('char-count');
+            const length = textarea.value.trim().length;
+            countDiv.textContent = length + ' 字';
+        }
+
+        function autoSave() {
+            const content = document.getElementById('writing-input').value;
+            localStorage.setItem('lesson10_warmup', content);
+        }
+
+        async function submitForReview() {
+            const textarea = document.getElementById('writing-input');
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback');
+            const btn = document.getElementById('submit-btn');
+            const recapSection = document.getElementById('recap-section');
+
+            if (!content) {
+                alert('请先写下你的答案！');
+                return;
+            }
+
+            if (content.length < 15) {
+                alert('请写得更具体一些，至少 15 个字。');
+                return;
+            }
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生的写作练习进行点评。
+
+练习题目：描写一个人"很伤心"，但不能出现"很"和"伤心"两个字。
+
+学生写的内容：
+${content}
+
+请从以下三个维度进行点评（每个维度都要点评到）：
+
+1. 【消灭"很"字】（课程三）：是否避免了"很""非常""特别"等空洞词，用具体描写代替了抽象标签？
+2. 【五感速写】（课程四）：是否调动了视觉、听觉、嗅觉、触觉、味觉中的至少 2-3 种感官来展现"伤心"？
+3. 【慢镜头描写】（课程五）：是否把"伤心"的瞬间动作放慢、分解，让读者看到了细节？
+
+点评要求：
+- 语气温和、鼓励性强，先肯定优点再指出不足
+- 每个维度给出具体评价 + 1 条修改建议
+- 最后给出一段修改后的示例（50-100 字），展示如何综合运用三个技巧`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> AI 点评中，请稍候...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 名师正在认真阅读你的作品，请稍候……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。你特别擅长从"消灭很字""五感速写""慢镜头描写"三个维度评估学生的写作。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 名师点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                recapSection.classList.add('show');
+                recapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                autoSave();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message + '<br><br>请检查网络连接和 API Key 设置后重试。';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+
+        // Auto-save on input
+        document.getElementById('writing-input').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave, 2000);
+        });
+
+        // Restore saved content on load
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_warmup');
+            if (saved) {
+                document.getElementById('writing-input').value = saved;
+                updateCharCount();
+            }
+        });
+    </script>
+</body>
+</html>

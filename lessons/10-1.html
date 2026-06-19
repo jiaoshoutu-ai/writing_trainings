@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节一：人物描写的兵器库 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover {
+            color: #f59e0b;
+        }
+        .lesson-title {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .lesson-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .preview-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .preview-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-box ol {
+            padding-left: 24px;
+            color: #78350f;
+            font-size: 16px;
+            line-height: 2;
+        }
+
+        .preview-box ol li {
+            margin-bottom: 8px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-fallback {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .video-fallback a {
+            color: #f59e0b;
+            text-decoration: none;
+        }
+
+        .video-fallback a:hover {
+            text-decoration: underline;
+        }
+
+        .review-box {
+            margin-bottom: 24px;
+        }
+
+        .review-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        details {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 4px 20px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        details[open] {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        summary {
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #78350f;
+            cursor: pointer;
+            outline: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▶";
+            display: inline-block;
+            font-size: 12px;
+            transition: transform 0.3s;
+            color: #f59e0b;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            padding: 0 0 20px 0;
+            font-size: 15px;
+            color: #475569;
+            line-height: 2;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .method-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #78350f;
+            border: 1px solid #fef3c7;
+        }
+
+        .think-box {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .think-box p {
+            color: #854d0e;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .practice-section {
+            margin-top: 24px;
+        }
+
+        .practice-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .story-box {
+            background: #f8fafc;
+            border-left: 4px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+
+        .story-box p {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .practice-task {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .practice-task h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .practice-task .scenario {
+            color: #78350f;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .practice-textarea:focus {
+            border-color: #f59e0b;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .ai-btn:hover { background: #d97706; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 16px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show    { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10-0.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="10-2.html" style="color: #f59e0b;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节一：视频学习</span>
+            <h1>人物描写的兵器库</h1>
+        </div>
+
+        <div class="content-section">
+            <!-- 看前提示 -->
+            <div class="preview-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看前提示
+                </h3>
+                <p style="color: #92400e; font-size: 15px; margin-bottom: 16px;">
+                    视频是人物描写的"兵器库"，带着这两个问题去观看：
+                </p>
+                <ol>
+                    <li>一共介绍了哪几种描写人物的方法？</li>
+                    <li>在外貌描写中，哪一扇"窗户"最能暴露人物的内心？</li>
+                </ol>
+            </div>
+
+            <!-- 视频 -->
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1Pwjv62EF2&high_quality=1" allowfullscreen></iframe>
+            </div>
+
+            <p class="video-fallback">
+                如果视频无法播放，请<a href="https://www.bilibili.com/video/BV1Pwjv62EF2/?vd_source=d67a608c52aab6d3506c645a00a0be26" target="_blank">点击这里</a>在 B站观看。
+            </p>
+
+            <!-- 看后梳理 -->
+            <div class="review-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看后梳理
+                </h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">
+                    点击下方卡片，查看视频核心要点总结：
+                </p>
+
+                <details>
+                    <summary>📋 人物描写的八种方法</summary>
+                    <div class="details-content">
+                        <div class="method-grid">
+                            <div class="method-item">概括介绍 · 侧面烘托</div>
+                            <div class="method-item">外貌描写 · 神态描写</div>
+                            <div class="method-item">动作描写 · 语言描写</div>
+                            <div class="method-item">心理描写 · 细节描写</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🔍 外貌描写要抓住什么？</summary>
+                    <div class="details-content">
+                        <p>按顺序观察（从上到下或从下到上）</p>
+                        <p>抓独特特征（眼睛是重要窗口）</p>
+                        <p>用修辞（比喻、夸张来表现性格）</p>
+                        <p>写神态（喜怒哀乐的表情变化）</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 思考 -->
+            <div class="think-box">
+                <p>
+                    💡 <strong>思考：</strong>视频给了八种武器，但写文章时不可能全用一遍。有没有一种方法，只用<strong>三笔</strong>，就能让一个人物活过来？
+                </p>
+            </div>
+
+            <!-- 小练习：寻人启事 -->
+            <div class="practice-section">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    小练习：寻人启事
+                </h3>
+
+                <div class="story-box">
+                    <p>
+                        曾经有一道中考阅读题，题目叫<strong>《寻找妈妈的寻人启事》</strong>。老师问同学们："如果你妈妈走丢了，你要写一篇寻人启事，你怎样介绍妈妈的长相和衣着？"结果同学们都傻眼了——他们写出来的妈妈，几乎一模一样，没什么区别。甚至有人连今天早上送自己上学的妈妈穿了什么衣服都说不出来。
+                    </p>
+                    <p style="margin-top: 12px;">
+                        没有日常的观察，就不可能有细致的描写，更谈不上生动。观察，是写作的第一步。
+                    </p>
+                </div>
+
+                <div class="practice-task">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        你的任务
+                    </h4>
+                    <p class="scenario">
+                        <strong>场景：</strong>你和家人一起去逛商场，一转身，人不见了。你需要去服务台播一则寻人启事广播，让工作人员帮你找人。<br>
+                        <strong>要求：</strong>选一位家人（爸爸/妈妈/爷爷/奶奶/弟弟/妹妹），写一段 100-150 字的寻人启事。必须包含：<strong>身高体型、发型发色、面部特征、今天穿的衣服（颜色+款式）</strong>，让陌生人听完就能在人群中认出他/她。
+                    </p>
+
+                    <textarea
+                        class="practice-textarea"
+                        id="missing-notice"
+                        placeholder="寻人启事：
+
+我叫______，我和我的______走散了。
+
+他/她今天______……
+"
+                        oninput="updateCharCount()"
+                    ></textarea>
+                    <div class="char-count" id="char-count">0 字</div>
+
+                    <div class="btn-row">
+                        <button class="ai-btn" onclick="submitAIReview()" id="ai-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div class="ai-feedback" id="ai-feedback"></div>
+                </div>
+
+                <div class="practice-task" style="background: #f0fdf4; border-color: #22c55e;">
+                    <h4 style="color: #166534;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                        进阶练习：通过描写表现性格
+                    </h4>
+                    <p class="scenario" style="color: #14532d;">
+                        <strong>任务：</strong>下面有两个性格完全相反的人，请各用 2-3 句话描写他们的<strong>同一个动作</strong>（比如"走进教室"或"吃一碗面"），让读者从描写中就能看出他们的性格。<br><br>
+                        🏃 <strong>A：急性子</strong>（做事风风火火，什么都快）<br>
+                        🐢 <strong>B：慢性子</strong>（不紧不慢，天塌下来也慢慢来）
+                    </p>
+
+                    <div style="background: #fefce8; border: 2px solid #facc15; border-radius: 12px; padding: 16px 20px; margin-bottom: 16px;">
+                        <p style="color: #92400e; font-size: 14px; line-height: 1.8; margin: 0;">
+                            💡 <strong>写作提示：试试"夸张"和"比喻"</strong><br>
+                            写急性子，可以把动作<strong>夸张</strong>——"他像一阵风刮过走廊，书包还没放下，人已经坐到了座位上"。<br>
+                            写慢性子，也可以用<strong>比喻</strong>——"他拿起筷子，像在给面条做按摩，一根一根地挑，半天才送进嘴里"。<br>
+                            <strong>夸张</strong>放大特征，<strong>比喻</strong>让画面好玩又生动，性格一下就跳出来了！
+                        </p>
+                    </div>
+
+                    <textarea
+                        class="practice-textarea"
+                        id="personality-a"
+                        placeholder="他走进教室，_________________________"
+                        oninput="updateCharCount2()"
+                    ></textarea>
+                    <div class="char-count" id="char-count-a">0 字</div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <p style="font-weight: bold; color: #16a34a; margin-bottom: 8px;">🐢 B：慢性子（不紧不慢，天塌下来也慢慢来）</p>
+                    <textarea
+                        class="practice-textarea"
+                        id="personality-b"
+                        placeholder="他走进教室，_________________________"
+                        oninput="updateCharCount2()"
+                    ></textarea>
+                    <div class="char-count" id="char-count-b">0 字</div>
+
+                    <div class="btn-row">
+                        <button class="ai-btn" onclick="submitPersonalityReview()" id="ai-btn2" style="background: #22c55e; box-shadow: 0 4px 15px rgba(34,197,94,0.4);">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div class="ai-feedback" id="ai-feedback2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="10-0.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：复习导入
+            </a>
+            <a href="10-2.html" class="btn btn-amber">
+                下一环节：人物描写的兵器库进阶
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('missing-notice');
+            const countDiv = document.getElementById('char-count');
+            const length = textarea.value.trim().length;
+            countDiv.textContent = length + ' 字';
+        }
+
+        function autoSave() {
+            const content = document.getElementById('missing-notice').value;
+            localStorage.setItem('lesson10_missing_notice', content);
+        }
+
+        document.getElementById('missing-notice').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave, 2000);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_missing_notice');
+            if (saved) {
+                document.getElementById('missing-notice').value = saved;
+                updateCharCount();
+            }
+        });
+
+        async function submitAIReview() {
+            const textarea = document.getElementById('missing-notice');
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback');
+            const btn = document.getElementById('ai-btn');
+
+            if (!content) {
+                alert('请先写下寻人启事！');
+                return;
+            }
+
+            if (content.length < 20) {
+                alert('请写得更具体一些，至少 20 个字。');
+                return;
+            }
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生写的"寻人启事"进行点评。
+
+练习题目：在商场和家人走散，写一则寻人启事广播，描述家人的外貌和衣着特征。
+
+学生写的内容：
+${content}
+
+请从以下角度点评：
+1. 是否写出了足够具体的外貌特征（身高体型、发型发色、面部特征）？哪些特征能让陌生人一眼认出？
+2. 衣着描写是否细致（颜色+款式）？不是只说"穿了一件外套"，而是什么颜色、什么款式的外套？
+3. 整体是否生动、有画面感？读者能否在脑海中"看到"这个人？
+
+点评要求：
+- 语气温和、鼓励性强，先肯定优点再指出不足
+- 如果学生写得不够具体，给出具体的改进示例
+- 最后提醒：好的人物描写，来自日常的仔细观察`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在点评你的寻人启事，请稍候……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                autoSave();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message + '<br><br>请检查网络连接和 API Key 设置后重试。';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+
+        function updateCharCount2() {
+            const textareaA = document.getElementById('personality-a');
+            const textareaB = document.getElementById('personality-b');
+            document.getElementById('char-count-a').textContent = textareaA.value.trim().length + ' 字';
+            document.getElementById('char-count-b').textContent = textareaB.value.trim().length + ' 字';
+        }
+
+        function autoSave2() {
+            const data = {
+                a: document.getElementById('personality-a').value,
+                b: document.getElementById('personality-b').value
+            };
+            localStorage.setItem('lesson10_personality', JSON.stringify(data));
+        }
+
+        document.getElementById('personality-a').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave2, 2000);
+        });
+
+        document.getElementById('personality-b').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave2, 2000);
+        });
+
+        async function submitPersonalityReview() {
+            const textareaA = document.getElementById('personality-a');
+            const textareaB = document.getElementById('personality-b');
+            const contentA = textareaA.value.trim();
+            const contentB = textareaB.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback2');
+            const btn = document.getElementById('ai-btn2');
+
+            if (!contentA || !contentB) {
+                alert('请把急性子和慢性子的描写都写完整！');
+                return;
+            }
+
+            if (contentA.length < 10 || contentB.length < 10) {
+                alert('请写得更具体一些，每段至少 10 个字。');
+                return;
+            }
+
+            const content = `A（急性子）：\n${contentA}\n\nB（慢性子）：\n${contentB}`;
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生的写作练习进行点评。
+
+练习题目：用同一个动作（如"走进教室"）描写两个性格相反的人——急性子和慢性子，通过动作描写体现性格差异。要求尽量使用"夸张"和"比喻"的修辞手法。
+
+学生写的内容：
+${content}
+
+请从以下角度点评：
+1. 急性子的描写是否通过动作的快慢、幅度、细节展现了"风风火火"的性格？
+2. 慢性子的描写是否通过动作的节奏、停顿、细节展现了"不紧不慢"的性格？
+3. 是否运用了"夸张"或"比喻"的修辞手法？效果如何？
+4. 两个描写是否形成了鲜明对比？读者能否不看标签就分辨出谁急谁慢？
+5. 是否避免了直接说"他很急""他很慢"，而是用具体的动作来展示？
+
+点评要求：
+- 语气温和、鼓励性强，先肯定优点再指出不足
+- 给出具体修改建议，示范如何用夸张和比喻让动作描写更精准地体现性格`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在点评你的描写，请稍候……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。你的点评专业、温和、鼓励性强，能用学生容易理解的语言指出问题并给出具体修改建议。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                autoSave2();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message + '<br><br>请检查网络连接和 API Key 设置后重试。';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_personality');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.a) document.getElementById('personality-a').value = data.a;
+                if (data.b) document.getElementById('personality-b').value = data.b;
+                updateCharCount2();
+            }
+        });
+            </script>
+</body>
+</html>

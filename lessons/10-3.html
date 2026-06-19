@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节三：三笔勾勒法 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover { color: #f59e0b; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .comparison-card {
+            padding: 24px;
+            border-radius: 16px;
+        }
+        .comparison-bad {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+        }
+        .comparison-good {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+        }
+        .comparison-card h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .comparison-bad h4 { color: #991b1b; }
+        .comparison-good h4 { color: #166534; }
+        .comparison-card p {
+            font-size: 15px;
+            line-height: 2;
+        }
+        .comparison-bad p { color: #7f1d1d; }
+        .comparison-good p { color: #14532d; }
+
+        .insight-box {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .insight-box p {
+            color: #854d0e;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .technique-card {
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+        .technique-card-1 {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+        }
+        .technique-card-2 {
+            background: #faf5ff;
+            border: 2px solid #a855f7;
+        }
+        .technique-card-3 {
+            background: #fff7ed;
+            border: 2px solid #f97316;
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .technique-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            flex-shrink: 0;
+        }
+        .technique-card-1 .technique-num { background: #3b82f6; }
+        .technique-card-2 .technique-num { background: #a855f7; }
+        .technique-card-3 .technique-num { background: #f97316; }
+
+        .technique-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .technique-card-1 .technique-title { color: #1e40af; }
+        .technique-card-2 .technique-title { color: #6b21a8; }
+        .technique-card-3 .technique-title { color: #9a3412; }
+
+        .technique-desc {
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .technique-card-1 .technique-desc { color: #1e3a8a; }
+        .technique-card-2 .technique-desc { color: #581c87; }
+        .technique-card-3 .technique-desc { color: #7c2d12; }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 16px 0;
+        }
+        .compare-table thead th {
+            background: #64748b;
+            color: white;
+            padding: 10px 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .compare-table thead th:first-child { border-radius: 10px 0 0 0; }
+        .compare-table thead th:last-child { border-radius: 0 10px 0 0; }
+        .compare-table tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            line-height: 1.8;
+        }
+        .compare-table tbody tr:nth-child(even) { background: #f8fafc; }
+        .compare-table tbody tr:nth-child(odd) { background: white; }
+        .compare-table .col-bad {
+            color: #dc2626;
+            width: 45%;
+        }
+        .compare-table .col-good {
+            color: #16a34a;
+            width: 45%;
+        }
+
+        .koujue-box {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .technique-card-1 .koujue-box { color: #1e40af; border-left: 4px solid #3b82f6; }
+        .technique-card-2 .koujue-box { color: #6b21a8; border-left: 4px solid #a855f7; }
+        .technique-card-3 .koujue-box { color: #9a3412; border-left: 4px solid #f97316; }
+
+        .demo-section {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .demo-section h3 {
+            color: #92400e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .demo-block {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid #f59e0b;
+        }
+        .demo-block .demo-label {
+            font-size: 13px;
+            color: #b45309;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .demo-block .demo-text {
+            font-size: 16px;
+            color: #78350f;
+            line-height: 2;
+            font-weight: 500;
+        }
+
+        .think-box {
+            background: #fefce8;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+        .think-box p { color: #854d0e; font-size: 16px; line-height: 1.8; }
+
+        details {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 4px 20px;
+            margin-top: 12px;
+            transition: all 0.3s;
+        }
+        details[open] {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        summary {
+            padding: 16px 0;
+            font-size: 15px;
+            font-weight: bold;
+            color: #78350f;
+            cursor: pointer;
+            outline: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::before {
+            content: "▶";
+            display: inline-block;
+            font-size: 12px;
+            transition: transform 0.3s;
+            color: #f59e0b;
+        }
+        details[open] summary::before { transform: rotate(90deg); }
+        .details-content {
+            padding: 0 0 20px 0;
+            font-size: 15px;
+            color: #475569;
+            line-height: 2;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+            color: white;
+        }
+        .summary-section h3 {
+            color: white;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .summary-section p {
+            font-size: 15px;
+            line-height: 2;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .practice-section { margin-top: 30px; }
+
+        .timer-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'SF Mono', 'Menlo', monospace;
+        }
+        .timer-normal { background: #fef3c7; color: #b45309; }
+        .timer-warning { background: #fee2e2; color: #dc2626; animation: pulse 1s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .practice-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+        .practice-label-1 { color: #1e40af; }
+        .practice-label-2 { color: #6b21a8; }
+        .practice-label-3 { color: #9a3412; }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .practice-textarea:focus { border-color: #f59e0b; }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .ai-btn:hover { background: #d97706; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show    { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10-2.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="10-4.html" style="color: #f59e0b;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节三：核心技法</span>
+            <h1>三笔勾勒法</h1>
+        </div>
+
+        <div class="content-section">
+            <!-- 为什么是三笔 -->
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                为什么是"三笔"？
+            </h2>
+
+            <p style="color: #64748b; font-size: 15px; margin-bottom: 20px;">对比下面两段文字：</p>
+
+            <div class="comparison-grid">
+                <div class="comparison-card comparison-bad">
+                    <h4>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        A版
+                    </h4>
+                    <p>我的妈妈个子不高，留着短发。她有一双大眼睛，对人很温和，每天都给我做饭。她性格很勤劳。</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: #991b1b;">——用了概括、外貌、性格，但人物你能"看见"吗？</p>
+                </div>
+                <div class="comparison-card comparison-good">
+                    <h4>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        B版
+                    </h4>
+                    <p>母亲个子不高不矮，身材不胖不瘦。她的头发永远梳得一丝不乱，在脑后绾成一个髻。她走路时步子很轻，像踩在棉花上，手上永远拿着一块抹布。</p>
+                    <p style="margin-top: 12px; font-size: 13px; color: #166534;">——没写"勤劳""温和"，但你能"看见"她吗？</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <p>
+                    A版在<strong>"说"</strong>，B版在<strong>"画"</strong>。B版用了三个看得见的特征：<strong>发型、走路姿态、手中之物</strong>。这就是三笔勾勒法的核心。
+                </p>
+            </div>
+
+            <!-- 三笔拆解 -->
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                三笔拆解
+            </h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">三笔勾勒法是从视频的"兵器库"里精选三件武器，集中发力。每一笔都对应视频中的某一种方法。</p>
+
+            <!-- 第一笔 -->
+            <div class="technique-card technique-card-1">
+                <div class="technique-header">
+                    <div class="technique-num">1</div>
+                    <div class="technique-title">第一笔：形体——身材 + 比喻</div>
+                </div>
+                <p class="technique-desc">
+                    视频说外貌描写要写身材。但"高矮胖瘦"太省事了。我们要做的，是找到那个<strong>"不一样的比例"</strong>，然后用比喻放大它。
+                </p>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>概括（别这样）</th>
+                            <th>描写（要这样）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-bad">他很瘦。</td>
+                            <td class="col-good">校服挂在他身上，风一吹就鼓起来，像一面旗。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-bad">奶奶老了。</td>
+                            <td class="col-good">奶奶的背弯成一个问号，仿佛一直在向大地询问什么。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="koujue-box">技法口诀：放大一个特征，写出它的比喻。</div>
+            </div>
+
+            <!-- 第二笔 -->
+            <div class="technique-card technique-card-2">
+                <div class="technique-header">
+                    <div class="technique-num">2</div>
+                    <div class="technique-title">第二笔：符号——特征 + 故事感</div>
+                </div>
+                <p class="technique-desc">
+                    视频说外貌要抓"独特特征"。但最容易被记住的，往往不是一个五官，而是一个<strong>甩不掉的物件</strong>。眼镜、手表、围裙、水杯、钥匙串……这就是人物的"视觉名片"。
+                </p>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>概括（别这样）</th>
+                            <th>描写（要这样）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-bad">张老师戴着眼镜。</td>
+                            <td class="col-good">张老师的眼镜永远推在额头上，像第二双眼睛，冷冷地俯瞰着我们。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="koujue-box">技法口诀：锁定一个物件，写出它与主人的"故事感"。</div>
+            </div>
+
+            <!-- 第三笔 -->
+            <div class="technique-card technique-card-3">
+                <div class="technique-header">
+                    <div class="technique-num">3</div>
+                    <div class="technique-title">第三笔：姿态——习惯动作 + 节奏</div>
+                </div>
+                <p class="technique-desc">
+                    视频说动作和神态能表现性格。比一个大动作更厉害的，是一个<strong>改不了的小习惯</strong>。它比心理描写更能暴露内心。
+                </p>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>概括（别这样）</th>
+                            <th>描写（要这样）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-bad">他很内向。</td>
+                            <td class="col-good">他说话时，手指总是不自觉地卷着衣角，卷起，松开，再卷起。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="koujue-box">技法口诀：捕捉一个重复动作，写出它的频率与节奏。</div>
+            </div>
+
+            <!-- 三笔合体示范 -->
+            <div class="demo-section">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    三笔合体示范
+                </h3>
+
+                <div class="demo-block">
+                    <div class="demo-label">【一笔：形体】身材 + 比喻</div>
+                    <div class="demo-text">爷爷的腰板永远是直的，像一棵不肯弯腰的老树。</div>
+                </div>
+
+                <div class="demo-block">
+                    <div class="demo-label">【二笔：符号】特征物件 + 故事感</div>
+                    <div class="demo-text">他的腰间别着一串钥匙，走起路来叮当作响，人没到，声音先到了。</div>
+                </div>
+
+                <div class="demo-block">
+                    <div class="demo-label">【三笔：姿态】习惯动作 + 节奏</div>
+                    <div class="demo-text">每次说话前，他总要把那串钥匙往身后一拨，清清嗓子，仿佛要宣布什么大事。</div>
+                </div>
+
+                <div class="think-box">
+                    <p>
+                        💡 <strong>想一想：</strong>从这三笔中，你读出了一个怎样的爷爷？
+                    </p>
+                </div>
+
+                <details>
+                    <summary>点击查看参考</summary>
+                    <div class="details-content">
+                        <p>严肃、讲究、有仪式感。没有一句"爷爷很传统"，但全都感受到了。</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 小结 -->
+            <div class="summary-section">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    小结
+                </h3>
+                <p>
+                    三笔勾勒法 = 视频八种武器的精华浓缩：<br>
+                    <strong>一笔画身材</strong>（对应视频的"身材描写"）<br>
+                    <strong>一笔画标志</strong>（对应视频的"外貌特征 + 细节描写"）<br>
+                    <strong>一笔画习惯</strong>（对应视频的"动作描写 + 神态描写"）<br><br>
+                    三笔下去，人物就有了骨头、有了名片、有了呼吸。
+                </p>
+            </div>
+        </div>
+
+        <!-- 随堂练习 -->
+        <div class="content-section practice-section">
+            <h2 style="margin-bottom: 8px;">
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                随堂练习
+            </h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 8px;">
+                请用"三笔勾勒法"，写一个你身边的人。三笔之间自然衔接，全文不超过 150 字。
+            </p>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+                <span style="color: #64748b; font-size: 13px;">⏱ 限时 12 分钟</span>
+                <span class="timer-box timer-normal" id="timer">12:00</span>
+            </div>
+
+            <div>
+                <div class="practice-label practice-label-1">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #3b82f6; color: white; font-size: 12px;">1</span>
+                    第一笔·形体：一个独特的身体特征 + 比喻
+                </div>
+                <textarea class="practice-textarea" id="stroke-1" placeholder="示例：她的背影像一座沉默的山，校服在她身上总是大一号，风一吹就鼓起来……" oninput="autoSaveStrokes()"></textarea>
+                <div class="char-count" id="count-1">0 字</div>
+            </div>
+
+            <div>
+                <div class="practice-label practice-label-2">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #a855f7; color: white; font-size: 12px;">2</span>
+                    第二笔·符号：一个标志性物件或特征，写出故事感
+                </div>
+                <textarea class="practice-textarea" id="stroke-2" placeholder="示例：她的手腕上永远戴着一根褪色的红绳，据说是她奶奶留给她的，绳结已经磨得发白……" oninput="autoSaveStrokes()"></textarea>
+                <div class="char-count" id="count-2">0 字</div>
+            </div>
+
+            <div>
+                <div class="practice-label practice-label-3">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #f97316; color: white; font-size: 12px;">3</span>
+                    第三笔·姿态：一个习惯性动作或神态，写出节奏
+                </div>
+                <textarea class="practice-textarea" id="stroke-3" placeholder="示例：回答问题时，她总要先抿一下嘴唇，然后才慢慢开口，声音很轻，但每个字都咬得很清楚……" oninput="autoSaveStrokes()"></textarea>
+                <div class="char-count" id="count-3">0 字</div>
+            </div>
+
+            <div class="btn-row">
+                <button class="ai-btn" onclick="submitStrokesReview()" id="ai-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    AI 即时点评
+                </button>
+                <span style="color: #94a3b8; font-size: 13px;">提交后，AI 会从三个维度给出反馈</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px;">
+                <div style="background: #eff6ff; border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">📐</div>
+                    <div style="font-size: 12px; color: #1e40af; font-weight: bold;">形体</div>
+                    <div style="font-size: 11px; color: #64748b;">是否用了生动的比喻？</div>
+                </div>
+                <div style="background: #faf5ff; border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🔑</div>
+                    <div style="font-size: 12px; color: #6b21a8; font-weight: bold;">符号</div>
+                    <div style="font-size: 11px; color: #64748b;">物件是否独特？有没有"故事感"？</div>
+                </div>
+                <div style="background: #fff7ed; border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🎭</div>
+                    <div style="font-size: 12px; color: #9a3412; font-weight: bold;">姿态</div>
+                    <div style="font-size: 11px; color: #64748b;">动作是否具体？有没有写出节奏？</div>
+                </div>
+            </div>
+
+            <div class="ai-feedback" id="ai-feedback"></div>
+        </div>
+
+        <!-- 佳作影棚 -->
+        <div class="content-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                佳作影棚
+            </h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">精选同龄人"三笔法"人物速写（点击展开）：</p>
+
+            <details>
+                <summary>👤 范例 1：校门口的保安</summary>
+                <div class="details-content">
+                    <p>他的肚子很大，把保安服的扣子撑得紧紧的，远远看去像个移动的酒桶。腰带上挂着一串钥匙和一把大剪刀，走起路来哐啷哐啷响，像自带背景音乐。每次有家长来接孩子，他总要先把肚子一挺，再把手往背后一背，才慢悠悠地开口盘问。</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>👤 范例 2：同桌</summary>
+                <div class="details-content">
+                    <p>她瘦瘦小小，坐在椅子上脚刚好够到地面，写字时整个人趴在桌上，像一只趴在岸边的青蛙。桌上永远放着一个粉色的笔袋，那笔袋鼓得快炸开了，里面塞满了各种颜色的荧光笔。回答问题前，她一定会推一下鼻梁上的眼镜——其实眼镜根本没滑下来。</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>📚 范例 3：杨绛《老王》——外貌描写片段</summary>
+                <div class="details-content">
+                    <p>他面色死灰，两只眼上都结着一层翳，分不清哪一只瞎，哪一只不瞎。说得可笑些，他简直像棺材里倒出来的，就像我想象里的僵尸，骷髅上绷着一层枯黄的干皮，打上一棍就会散成一堆白骨。</p>
+                    <p style="margin-top: 8px; color: #92400e; font-size: 13px;">——抓住面色、眼睛，用一个惊心动魄的比喻，写出老王的病态。</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="10-2.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：人物描写的兵器库进阶
+            </a>
+            <a href="10-4.html" class="btn btn-amber">
+                下一环节：总结回顾
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // === 倒计时 ===
+        const TOTAL_SECONDS = 12 * 60;
+        let remainingSeconds = TOTAL_SECONDS;
+        let timerInterval = null;
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(remainingSeconds / 60);
+            const secs = remainingSeconds % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+            if (remainingSeconds <= 60) {
+                timerEl.className = 'timer-box timer-warning';
+            } else {
+                timerEl.className = 'timer-box timer-normal';
+            }
+        }
+
+        function startTimer() {
+            const saved = localStorage.getItem('lesson10_strokes_timer');
+            if (saved) {
+                remainingSeconds = parseInt(saved);
+                if (remainingSeconds <= 0) remainingSeconds = 0;
+            }
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                if (remainingSeconds > 0) {
+                    remainingSeconds--;
+                    updateTimerDisplay();
+                    localStorage.setItem('lesson10_strokes_timer', remainingSeconds);
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+
+        // === 字数统计 ===
+        function updateCharCounts() {
+            for (let i = 1; i <= 3; i++) {
+                const textarea = document.getElementById('stroke-' + i);
+                const countDiv = document.getElementById('count-' + i);
+                countDiv.textContent = textarea.value.trim().length + ' 字';
+            }
+        }
+
+        // === 自动保存 ===
+        function autoSaveStrokes() {
+            const data = {
+                stroke1: document.getElementById('stroke-1').value,
+                stroke2: document.getElementById('stroke-2').value,
+                stroke3: document.getElementById('stroke-3').value
+            };
+            localStorage.setItem('lesson10_strokes', JSON.stringify(data));
+            updateCharCounts();
+        }
+
+        ['stroke-1', 'stroke-2', 'stroke-3'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(this._saveTimer);
+                this._saveTimer = setTimeout(autoSaveStrokes, 2000);
+            });
+        });
+
+        // === 恢复保存 ===
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_strokes');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.stroke1) document.getElementById('stroke-1').value = data.stroke1;
+                if (data.stroke2) document.getElementById('stroke-2').value = data.stroke2;
+                if (data.stroke3) document.getElementById('stroke-3').value = data.stroke3;
+                updateCharCounts();
+            }
+            startTimer();
+        });
+
+        // === AI 点评 ===
+        async function submitStrokesReview() {
+            const s1 = document.getElementById('stroke-1').value.trim();
+            const s2 = document.getElementById('stroke-2').value.trim();
+            const s3 = document.getElementById('stroke-3').value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback');
+            const btn = document.getElementById('ai-btn');
+
+            if (!s1 || !s2 || !s3) {
+                alert('请把三笔都写完！');
+                return;
+            }
+
+            const content = `【第一笔·形体】${s1}\n\n【第二笔·符号】${s2}\n\n【第三笔·姿态】${s3}`;
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生用"三笔勾勒法"写的人物速写进行点评。
+
+三笔勾勒法要求：
+- 第一笔·形体：一个独特的身体特征 + 比喻
+- 第二笔·符号：一个标志性物件或特征，写出故事感
+- 第三笔·姿态：一个习惯性动作或神态，写出节奏
+
+学生写的内容：
+${content}
+
+请从以下三个维度分别点评：
+1. 📐 形体：是否用了生动的比喻？特征是否独特、有画面感？
+2. 🔑 符号：物件是否独特？有没有"故事感"——让人想知道这个物件背后的故事？
+3. 🎭 姿态：动作是否具体？有没有写出节奏（频率、重复感）？
+
+点评要求：
+- 语气温和、鼓励性强，先肯定优点再指出不足
+- 每个维度给出 1-2 句具体评价
+- 如果某笔写得不够好，给出改进示例`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在从三个维度点评你的三笔勾勒……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 即时点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                autoSaveStrokes();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+    </script>
+</body>
+</html>

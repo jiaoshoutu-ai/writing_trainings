@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：人物描写的兵器库进阶 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover { color: #f59e0b; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .preview-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .preview-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .preview-box ol {
+            padding-left: 24px;
+            color: #78350f;
+            font-size: 15px;
+            line-height: 2;
+        }
+        .preview-box ol li { margin-bottom: 8px; }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .video-fallback {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        .video-fallback a { color: #f59e0b; text-decoration: none; }
+        .video-fallback a:hover { text-decoration: underline; }
+
+        .review-box { margin-bottom: 24px; }
+        .review-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        details {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 4px 20px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        details[open] {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        summary {
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #78350f;
+            cursor: pointer;
+            outline: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::before {
+            content: "▶";
+            display: inline-block;
+            font-size: 12px;
+            transition: transform 0.3s;
+            color: #f59e0b;
+        }
+        details[open] summary::before { transform: rotate(90deg); }
+
+        .details-content {
+            padding: 0 0 20px 0;
+            font-size: 15px;
+            color: #475569;
+            line-height: 2;
+        }
+        .details-content p { margin-bottom: 8px; }
+        .details-content ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+        .details-content ul li { margin-bottom: 6px; }
+
+        .practice-section { margin-top: 24px; }
+        .practice-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .practice-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .practice-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+
+        .practice-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .practice-table thead th {
+            background: #f59e0b;
+            color: white;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .practice-table thead th:first-child { border-radius: 10px 0 0 0; }
+        .practice-table thead th:last-child { border-radius: 0 10px 0 0; }
+        .practice-table tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #fef3c7;
+            vertical-align: top;
+        }
+        .practice-table tbody tr:nth-child(even) { background: #fffbeb; }
+        .practice-table tbody tr:nth-child(odd) { background: white; }
+        .practice-table .col-action {
+            font-weight: bold;
+            color: #92400e;
+            width: 180px;
+            text-align: center;
+        }
+        .practice-table .col-example {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .practice-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.8;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+        }
+        .practice-input:focus { border-color: #f59e0b; }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .practice-textarea:focus { border-color: #f59e0b; }
+
+        .ref-details {
+            margin-top: 16px;
+        }
+        .ref-details details {
+            background: #fefce8;
+            border-color: #facc15;
+        }
+        .ref-details summary { color: #92400e; }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .practice-table .col-action { width: 120px; }
+        }
+
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show    { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="10-3.html" style="color: #f59e0b;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节二：视频学习</span>
+            <h1>人物描写的兵器库进阶</h1>
+        </div>
+
+        <div class="content-section">
+            <!-- 看前提示 -->
+            <div class="preview-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看前提示
+                </h3>
+                <p style="color: #92400e; font-size: 15px; margin-bottom: 16px;">
+                    上一个视频我们建立了人物描写的"兵器库"。这个视频将聚焦两件最常用的武器——<strong>动作描写</strong>和<strong>语言描写</strong>，并教你三个进阶技巧。请带着这些问题观看：
+                </p>
+                <ol>
+                    <li>什么是"分解动作"？把"他拍了一下桌子"拆解开来，可以怎么写？</li>
+                    <li>写人物对话时，在"说的话"和"别人的反应"之间，应该插入什么？</li>
+                    <li>范文《老薛》用了什么结构，让人物既有主要性格，又不显得单薄？</li>
+                </ol>
+            </div>
+
+            <!-- 视频 -->
+            <!-- TODO: 待填入视频地址 -->
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1dJjv6PEe6&high_quality=1" allowfullscreen></iframe>
+            </div>
+            <p class="video-fallback">
+                如果视频无法播放，请<a href="https://www.bilibili.com/video/BV1dJjv6PEe6/?vd_source=d67a608c52aab6d3506c645a00a0be26" target="_blank">点击这里</a>在 B站观看。
+            </p>
+
+            <!-- 看后梳理 -->
+            <div class="review-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看后梳理
+                </h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">点击下方卡片，查看视频核心要点：</p>
+
+                <details>
+                    <summary>🔧 动作描写的三个要点</summary>
+                    <div class="details-content">
+                        <p><strong>抓标志性动作：</strong>每个人都有自己的习惯动作（如推眼镜、搓手、爱眨眼），抓住它，人物就有了辨识度。</p>
+                        <p><strong>抓细小动作：</strong>隐藏在说话、行为中的小动作，往往最能暴露内心。</p>
+                        <p><strong>分解连续动作：</strong>不要写"他拍了一下桌子"，要写成"他抬起手，上扬了一下，突然落下，猛地拍在桌子上。"——像写机器人的程序一样，把动作拆成一步一步。</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>💬 语言描写的进阶技巧</summary>
+                    <div class="details-content">
+                        <p>写完人物说的话 → 不要立刻写其他人的反应 → 中间插入一段<strong>"缓冲"</strong>：</p>
+                        <ul>
+                            <li>揣测一下：他为什么这么说？他今天怎么了？</li>
+                            <li>补充一段插叙：这个人平时是不是就这样说话？</li>
+                            <li>描写一下他说话时的心理或情绪状态。</li>
+                        </ul>
+                        <p style="margin-top: 8px;">这样，对话就不再是干巴巴的"你说……我说……"，而有了层次和张力。</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>📖 范文《老薛》的结构密码</summary>
+                    <div class="details-content">
+                        <p>这篇文章的写人结构，可以直接套用：</p>
+                        <ol>
+                            <li><strong>概括介绍：</strong>职业、年纪、总体印象。</li>
+                            <li><strong>细致描绘：</strong>抓住外貌特征，用比喻（尤其是结合人物职业特点的比喻）。</li>
+                            <li><strong>交代人物关系：</strong>"我"和这个人的渊源。</li>
+                            <li><strong>主要事件：</strong>用一件典型事件，集中展现人物的主要性格（如暴躁）。</li>
+                            <li><strong>侧面烘托：</strong>通过其他人的反应，间接强化人物特点。</li>
+                            <li><strong>另一面性格：</strong>事件写完后，用一两段展现人物的另一面（如风趣、亲切），让人物立体丰满。</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>✍️ 可以积累的语言素材</summary>
+                    <div class="details-content">
+                        <p><strong>写秃顶：</strong>头顶原本葱葱茏茏的丛林，因岁月的侵蚀，水土严重流失，树木纷纷流离失所。</p>
+                        <p><strong>写驼背：</strong>本来挺拔的背，而今却背上了一个不小的丘陵。</p>
+                        <p><strong>写皱纹：</strong>脸上的皱纹，比作黄土高原千沟万壑之地貌的缩影，绝对不过分。</p>
+                        <p><strong>写眼镜反光：</strong>一副大号花镜支在鼻梁上，对阳光的反射作用，相信比南极的冰盖一点也不逊色。</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🎭 主要事件和另一面</summary>
+                    <div class="details-content">
+                        <p>优秀的人物描写应展现性格的<strong>多面性</strong>。例如"老薛"既有暴躁严厉的一面，也有风趣慈祥的一面。</p>
+                        <p>只用一件事写一个性格，人物会显得单薄。写完主要事件后，再用一两段展现人物的<strong>另一面</strong>——一个严厉的老师可能私下很幽默，一个风风火火的妈妈可能也有细腻温柔的时刻。这样人物才立体、真实。</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 两个巩固小练习 -->
+            <div class="practice-section">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    两个巩固小练习
+                </h3>
+
+                <!-- 练习一 -->
+                <div class="practice-card">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+                        练习一：动作拆解实验室
+                    </h4>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">
+                        将下面的"概括动作"拆解成至少 3 个连续动作，写成"慢镜头"。
+                    </p>
+
+                    <table class="practice-table">
+                        <thead>
+                            <tr>
+                                <th>概括动作</th>
+                                <th>你的拆解</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-action">他喝了一口水。</td>
+                                <td class="col-example">示例：他伸手握住杯子，顿了顿，慢慢举到嘴边，喉结上下滚动了一下。</td>
+                            </tr>
+                            <tr>
+                                <td class="col-action">她推门进了教室。</td>
+                                <td><textarea class="practice-input" id="decompose-1" placeholder="把"推门进教室"拆解成连续动作……" oninput="autoSaveDecompose()"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="col-action">老师拿起粉笔开始写字。</td>
+                                <td><textarea class="practice-input" id="decompose-2" placeholder="把"拿粉笔写字"拆解成连续动作……" oninput="autoSaveDecompose()"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="col-action">他弯腰捡起地上的书。</td>
+                                <td><textarea class="practice-input" id="decompose-3" placeholder="把"弯腰捡书"拆解成连续动作……" oninput="autoSaveDecompose()"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="ref-details">
+                        <details>
+                            <summary>完成后再查看参考拆解</summary>
+                            <div class="details-content">
+                                <p><strong>她推门进了教室：</strong>她的手在门把上停了两秒，轻轻一转，门开了一道缝，她侧着身子挤了进来，又反手把门无声地合上。</p>
+                                <p><strong>老师拿起粉笔开始写字：</strong>老师用拇指和食指捏起一支粉笔，在指尖转了半圈，手腕一抖，黑板上落下一个白点，然后是流畅的一横。</p>
+                                <p><strong>他弯腰捡起地上的书：</strong>他愣了一下，膝盖先弯下去，一只手撑着地面，另一只手够到书角，拍了拍封面的灰，才慢慢直起身来。</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- 练习二 -->
+                <div class="practice-card">
+                    <h4>
+                        <svg width="20" height="20" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                        练习二：语言描写"缓冲带"训练
+                    </h4>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">
+                        下面是一段干巴巴的对话。请在<strong>妈妈说的话</strong>和<strong>"我"的反应</strong>之间，插入一段心理揣测或插叙，作为"缓冲"。
+                    </p>
+
+                    <div style="background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <p style="color: #991b1b; font-size: 14px; margin-bottom: 4px;"><strong>原版：</strong></p>
+                        <p style="color: #7f1d1d; font-size: 15px; line-height: 2; margin: 0;">
+                            妈妈推门进来，大声说："都几点了，作业还没写完？"<br>
+                            我赶紧低下头，加快了写字的速度。
+                        </p>
+                    </div>
+
+                    <p style="color: #475569; font-size: 14px; margin-bottom: 12px;">
+                        <strong>你的升级版</strong>（在妈妈的话和"我"的反应之间，插入一段揣测）：
+                    </p>
+
+                    <p style="color: #1e293b; font-size: 15px; line-height: 2; margin-bottom: 12px;">
+                        妈妈推门进来，大声说："都几点了，作业还没写完？"
+                    </p>
+
+                    <textarea
+                        class="practice-textarea"
+                        id="buffer-practice"
+                        placeholder="在这里插入你的"缓冲"——揣测妈妈为什么这么急？她今天经历了什么？她平时也这样吗？……"
+                        oninput="updateCharCount3()"
+                    ></textarea>
+                    <div class="char-count" id="char-count3">0 字</div>
+
+                    <p style="color: #1e293b; font-size: 15px; line-height: 2; margin-top: 12px;">
+                        我赶紧低下头，加快了写字的速度。
+                    </p>
+
+                    <div class="btn-row" style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="ai-btn" onclick="submitBufferReview()" id="ai-btn3" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; background: #f59e0b; color: white; box-shadow: 0 4px 15px rgba(245,158,11,0.4);">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            AI 点评
+                        </button>
+                    </div>
+                    <div class="ai-feedback" id="ai-feedback3" style="margin-top: 16px; padding: 20px; border-radius: 16px; font-size: 15px; line-height: 1.8; display: none;"></div>
+
+                    <div class="ref-details" style="margin-top: 16px;">
+                        <details>
+                            <summary>完成后再查看参考</summary>
+                            <div class="details-content">
+                                <p>妈妈推门进来，大声说："都几点了，作业还没写完？"</p>
+                                <p><strong>她今天加班到这么晚，进门连包都没放下就冲进我房间。我瞥了一眼她眉头那道还没舒展的竖纹——那是她开会时才会有的表情。看来今天的方案又没通过。</strong></p>
+                                <p>我赶紧低下头，加快了写字的速度。</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="10-1.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：人物描写的兵器库
+            </a>
+            <a href="10-3.html" class="btn btn-amber">
+                下一环节：三笔勾勒法
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // === 练习一：自动保存 ===
+        function autoSaveDecompose() {
+            const data = {
+                d1: document.getElementById('decompose-1').value,
+                d2: document.getElementById('decompose-2').value,
+                d3: document.getElementById('decompose-3').value
+            };
+            localStorage.setItem('lesson10_decompose', JSON.stringify(data));
+        }
+
+        ['decompose-1', 'decompose-2', 'decompose-3'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(this._saveTimer);
+                this._saveTimer = setTimeout(autoSaveDecompose, 2000);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_decompose');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.d1) document.getElementById('decompose-1').value = data.d1;
+                if (data.d2) document.getElementById('decompose-2').value = data.d2;
+                if (data.d3) document.getElementById('decompose-3').value = data.d3;
+            }
+        });
+
+        // === 练习二：字数统计 + 自动保存 ===
+        function updateCharCount3() {
+            const textarea = document.getElementById('buffer-practice');
+            document.getElementById('char-count3').textContent = textarea.value.trim().length + ' 字';
+        }
+
+        function autoSaveBuffer() {
+            const content = document.getElementById('buffer-practice').value;
+            localStorage.setItem('lesson10_buffer', content);
+        }
+
+        document.getElementById('buffer-practice').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSaveBuffer, 2000);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_buffer');
+            if (saved) {
+                document.getElementById('buffer-practice').value = saved;
+                updateCharCount3();
+            }
+        });
+
+        // === AI 点评 ===
+        async function submitBufferReview() {
+            const textarea = document.getElementById('buffer-practice');
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback3');
+            const btn = document.getElementById('ai-btn3');
+
+            if (!content) {
+                alert('请先写下你的"缓冲"内容！');
+                return;
+            }
+
+            if (content.length < 15) {
+                alert('请写得更具体一些，至少 15 个字。');
+                return;
+            }
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生的写作练习进行点评。
+
+练习题目：在"妈妈的话"和"我的反应"之间插入一段"缓冲"（心理揣测或插叙），让对话更有层次。
+
+原对话：
+妈妈推门进来，大声说："都几点了，作业还没写完？"
+[学生插入的缓冲]
+我赶紧低下头，加快了写字的速度。
+
+学生写的缓冲内容：
+${content}
+
+请从以下角度点评：
+1. 缓冲是否合理？是否自然地将妈妈的话和"我"的反应连接起来？
+2. 缓冲中是否包含了心理揣测、插叙或情绪描写？具体是什么？
+3. 这段缓冲是否让对话变得更有层次、更有张力？
+4. 如果有改进空间，请给出具体修改建议或修改示例。
+
+点评要求：
+- 语气温和、鼓励性强，先肯定优点再指出不足`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在点评你的缓冲描写，请稍候……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                autoSaveBuffer();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message + '<br><br>请检查网络连接和 API Key 设置后重试。';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+    </script>
+</body>
+</html>

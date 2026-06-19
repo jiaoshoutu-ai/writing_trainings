@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节四：总结与作业 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover { color: #f59e0b; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .roadmap-card {
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            border: 2px solid;
+        }
+        .roadmap-card-1 {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .roadmap-card-2 {
+            background: #faf5ff;
+            border-color: #a855f7;
+        }
+        .roadmap-card-3 {
+            background: #fff7ed;
+            border-color: #f97316;
+        }
+
+        .roadmap-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            margin-bottom: 12px;
+        }
+        .roadmap-card-1 .roadmap-num { background: #3b82f6; }
+        .roadmap-card-2 .roadmap-num { background: #a855f7; }
+        .roadmap-card-3 .roadmap-num { background: #f97316; }
+
+        .roadmap-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .roadmap-card-1 .roadmap-title { color: #1e40af; }
+        .roadmap-card-2 .roadmap-title { color: #6b21a8; }
+        .roadmap-card-3 .roadmap-title { color: #9a3412; }
+
+        .roadmap-desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .highlight-box h3 {
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .highlight-box p {
+            color: #78350f;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        .formula-box h3 {
+            color: white;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .formula-box .formula {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 2;
+            letter-spacing: 2px;
+        }
+        .formula-box .formula-desc {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 8px;
+            line-height: 1.8;
+        }
+
+        .detail-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border-left: 5px solid;
+        }
+        .detail-card-1 { border-color: #3b82f6; }
+        .detail-card-2 { border-color: #a855f7; }
+        .detail-card-3 { border-color: #f97316; }
+
+        .detail-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .detail-card-1 h4 { color: #1e40af; }
+        .detail-card-2 h4 { color: #6b21a8; }
+        .detail-card-3 h4 { color: #9a3412; }
+
+        .detail-card ul {
+            padding-left: 20px;
+            color: #475569;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .homework-card {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .homework-card h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .homework-card .requirement-list {
+            color: #78350f;
+            font-size: 14px;
+            line-height: 2;
+            padding-left: 20px;
+        }
+        .homework-card .requirement-list li { margin-bottom: 4px; }
+
+        .homework-textarea {
+            width: 100%;
+            min-height: 350px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .homework-textarea:focus { border-color: #f59e0b; }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .ai-btn:hover { background: #d97706; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show    { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+        .model-essay {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+            display: none;
+        }
+        .model-essay.show { display: block; }
+        .model-essay h4 {
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .model-essay .essay-text {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 2;
+            color: #14532d;
+        }
+        .model-essay .essay-notes {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #166534;
+            line-height: 1.8;
+        }
+        .model-essay .essay-notes span {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+        .note-stroke1 { background: #dbeafe; color: #1e40af; }
+        .note-stroke2 { background: #f3e8ff; color: #6b21a8; }
+        .note-stroke3 { background: #ffedd5; color: #9a3412; }
+        .note-buffer { background: #fef3c7; color: #92400e; }
+        .note-other  { background: #fce7f3; color: #9d174d; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10-3.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="10-5.html" style="color: #f59e0b;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节四：总结与作业</span>
+            <h1>从"兵器库"到"三笔法"</h1>
+        </div>
+
+        <!-- 学习路径回顾 -->
+        <div class="content-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                本课学习路径
+            </h2>
+
+            <div class="roadmap">
+                <div class="roadmap-card roadmap-card-1">
+                    <div class="roadmap-num">1</div>
+                    <div class="roadmap-title">兵器库</div>
+                    <div class="roadmap-desc">认识人物描写的八种武器，建立写作工具箱</div>
+                </div>
+                <div class="roadmap-card roadmap-card-2">
+                    <div class="roadmap-num">2</div>
+                    <div class="roadmap-title">兵器库进阶</div>
+                    <div class="roadmap-desc">聚焦动作和语言，学习分解动作、缓冲带、人物结构</div>
+                </div>
+                <div class="roadmap-card roadmap-card-3">
+                    <div class="roadmap-num">3</div>
+                    <div class="roadmap-title">三笔勾勒法</div>
+                    <div class="roadmap-desc">精选三件武器，三笔画出人物的骨头、名片和呼吸</div>
+                </div>
+            </div>
+
+            <!-- 环节一回顾 -->
+            <div class="detail-card detail-card-1">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="#3b82f6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    环节一回顾：人物描写的兵器库
+                </h4>
+                <ul>
+                    <li>人物描写有<strong>八种方法</strong>：概括介绍、侧面烘托、外貌、神态、动作、语言、心理、细节</li>
+                    <li>外貌描写要按顺序观察，抓住<strong>独特特征</strong>，眼睛是最重要的"窗户"</li>
+                    <li>观察是写作的第一步——没有日常观察，就不可能有生动的描写</li>
+                </ul>
+            </div>
+
+            <!-- 环节二回顾 -->
+            <div class="detail-card detail-card-2">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="#a855f7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    环节二回顾：兵器库进阶
+                </h4>
+                <ul>
+                    <li>动作描写三要点：<strong>抓标志性动作、抓细小动作、分解连续动作</strong></li>
+                    <li>语言描写要加"缓冲"——在对话和反应之间插入心理揣测、插叙或情绪描写</li>
+                    <li>写人结构可套用"老薛"模式：概括→外貌→关系→事件→侧面烘托→<strong>另一面性格</strong></li>
+                </ul>
+            </div>
+
+            <!-- 环节三回顾 -->
+            <div class="detail-card detail-card-3">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="#f97316" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    环节三回顾：三笔勾勒法
+                </h4>
+                <ul>
+                    <li><strong>第一笔·形体：</strong>身材 + 比喻——放大一个特征，写出它的比喻</li>
+                    <li><strong>第二笔·符号：</strong>特征物件 + 故事感——锁定一个物件，写出它与主人的故事</li>
+                    <li><strong>第三笔·姿态：</strong>习惯动作 + 节奏——捕捉重复动作，写出频率与节奏</li>
+                </ul>
+            </div>
+
+            <!-- 核心公式 -->
+            <div class="formula-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    三笔勾勒法公式
+                </h3>
+                <div class="formula">
+                    形体（比喻） + 符号（故事感） + 姿态（节奏）
+                </div>
+                <div class="formula-desc">
+                    三笔下去，人物就有了骨头、有了名片、有了呼吸。<br>
+                    不再"说"一个人是什么样，而是"画"出一个人让读者看见。
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 24px; margin-bottom: 0;">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    记住
+                </h3>
+                <p>
+                    视频给了你八种武器，但考场不是兵器展。三笔勾勒法，就是从八种武器里精选三件，集中发力。以后写亲情、写成长、写任何文章，你笔下的人都能直接从纸上走出来。
+                </p>
+            </div>
+        </div>
+
+        <!-- 大作业 -->
+        <div class="content-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                大作业：用三笔勾勒法写一个人
+            </h2>
+
+            <div class="homework-card">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    作业要求
+                </h4>
+                <ul class="requirement-list">
+                    <li>选一个你<strong>身边的人</strong>（家人、老师、同学、邻居……）</li>
+                    <li>开头用<strong>三笔勾勒</strong>：形体（比喻）→ 符号（故事感）→ 姿态（节奏），三笔自然衔接</li>
+                    <li>中间用<strong>一件具体事件</strong>展现人物的主要性格（就像"老薛"那样）</li>
+                    <li>加入至少一处<strong>语言描写</strong>，用上"缓冲"技巧（在对话和反应之间插入揣测或插叙）</li>
+                    <li>结尾用一两句话展现人物的<strong>另一面</strong>，让人物立体丰满</li>
+                    <li>全文 <strong>200-300 字</strong></li>
+                </ul>
+            </div>
+
+            <textarea
+                class="homework-textarea"
+                id="homework-input"
+                placeholder="三笔勾勒（形体 + 符号 + 姿态）：
+_________________________
+
+具体事件：
+_________________________
+
+语言描写（带缓冲）：
+_________________________
+
+另一面性格：
+_________________________"
+                oninput="updateCharCount()"
+            ></textarea>
+            <div class="char-count" id="char-count">0 字</div>
+
+            <div class="btn-row">
+                <button class="ai-btn" onclick="submitHomeworkReview()" id="ai-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    AI 点评
+                </button>
+            </div>
+            <div class="ai-feedback" id="ai-feedback"></div>
+
+            <div class="model-essay" id="model-essay">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    范文参考：我的数学老师
+                </h4>
+                <div class="essay-text">
+                    李老师的背影像一座沉默的山，西装永远大一号，风一吹就鼓起来，像一面旗。<br><br>
+                    他的口袋里永远插着三支笔——红笔、蓝笔、黑笔，像士兵一样整齐排列。每次掏笔前，他总要先在胸口摸一下，仿佛在确认它们还在。<br><br>
+                    那天我数学考了 58 分，他把我叫到办公室。我以为暴风雨要来了。他却推了推眼镜，慢慢说："你上次月考，最后一道大题是全年级唯一做对的。"<br>
+                    我愣住了。他顿了顿，又补了一句："你不是不会，你是慌了。"<br><br>
+                    后来我才知道，他每天放学后都在办公室待到天黑，桌上那杯茶永远是凉的——他总忘了喝。<br>
+                    有一次我路过办公室，听见他在电话里跟女儿说："爸爸今晚一定早点回来。"<br>
+                    那语气，跟他在讲台上判若两人。
+                </div>
+                <div class="essay-notes">
+                    <p style="margin-bottom: 8px;"><strong>技法拆解：</strong></p>
+                    <p><span class="note-stroke1">一笔·形体</span> 背影像山，西装像旗——用比喻放大身材特征</p>
+                    <p><span class="note-stroke2">二笔·符号</span> 口袋三支笔——标志性物件，写出"士兵"的故事感</p>
+                    <p><span class="note-stroke3">三笔·姿态</span> 掏笔前先摸胸口——重复性小动作，写出节奏</p>
+                    <p><span class="note-buffer">语言缓冲</span> 老师的话和"我愣住了"之间，插入"他顿了顿"——揣测和停顿制造张力</p>
+                    <p><span class="note-other">另一面</span> 跟女儿说话的温柔语气——展现严厉老师背后的父亲角色</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="10-3.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：三笔勾勒法
+            </a>
+            <a href="10-5.html" class="btn btn-amber">
+                下一环节：素材积累与转化
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('homework-input');
+            document.getElementById('char-count').textContent = textarea.value.trim().length + ' 字';
+        }
+
+        function autoSave() {
+            const content = document.getElementById('homework-input').value;
+            localStorage.setItem('lesson10_homework', content);
+        }
+
+        document.getElementById('homework-input').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave, 2000);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_homework');
+            if (saved) {
+                document.getElementById('homework-input').value = saved;
+                updateCharCount();
+            }
+        });
+
+        async function submitHomeworkReview() {
+            const textarea = document.getElementById('homework-input');
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback');
+            const btn = document.getElementById('ai-btn');
+
+            if (!content) {
+                alert('请先完成你的大作业！');
+                return;
+            }
+
+            if (content.length < 50) {
+                alert('请写得更具体一些，至少 50 个字。');
+                return;
+            }
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生用"三笔勾勒法"完成的人物速写大作业进行综合点评。
+
+本次课程学习了：
+- 三笔勾勒法：形体（身材+比喻）、符号（特征物件+故事感）、姿态（习惯动作+节奏）
+- 动作分解、语言描写"缓冲"技巧
+- 写人结构：概括→外貌→关系→事件→侧面烘托→另一面性格
+
+作业要求：
+1. 开头用三笔勾勒（形体/符号/姿态自然衔接）
+2. 中间用一件具体事件展现性格
+3. 加入语言描写（用缓冲技巧）
+4. 结尾展现人物另一面
+
+学生写的内容：
+${content}
+
+请从以下维度综合点评：
+1. 三笔勾勒是否到位？形体比喻是否生动？符号是否有故事感？姿态是否有节奏？
+2. 具体事件是否有效展现了人物性格？
+3. 语言描写是否用了"缓冲"技巧？对话是否有层次？
+4. 是否展现了人物的另一面，让人物立体？
+5. 整体结构是否完整？三笔、事件、语言、另一面是否自然衔接？
+
+点评要求：
+- 语气温和、鼓励性强，先总体肯定，再逐项点评
+- 给出 1-2 条最关键的改进建议，并给出修改示例`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在综合点评你的大作业……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 综合点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                document.getElementById('model-essay').classList.add('show');
+                autoSave();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+    </script>
+</body>
+</html>

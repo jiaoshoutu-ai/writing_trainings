@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节五：素材积累与转化 - 人物速写——三笔勾勒法</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .nav-header {
+            background: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-header a:hover { color: #f59e0b; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .tag-amber { background: #fef3c7; color: #b45309; }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f172a;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .material-card {
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 2px solid;
+        }
+        .material-card-1 {
+            background: #fefce8;
+            border-color: #eab308;
+        }
+        .material-card-2 {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .material-card-3 {
+            background: #faf5ff;
+            border-color: #a855f7;
+        }
+        .material-card-4 {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+        .material-card-5 {
+            background: #fff7ed;
+            border-color: #f97316;
+        }
+
+        .material-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .material-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .material-card-1 .material-icon { background: #eab308; }
+        .material-card-2 .material-icon { background: #3b82f6; }
+        .material-card-3 .material-icon { background: #a855f7; }
+        .material-card-4 .material-icon { background: #22c55e; }
+        .material-card-5 .material-icon { background: #f97316; }
+
+        .material-title {
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .material-card-1 .material-title { color: #92400e; }
+        .material-card-2 .material-title { color: #1e40af; }
+        .material-card-3 .material-title { color: #6b21a8; }
+        .material-card-4 .material-title { color: #166534; }
+        .material-card-5 .material-title { color: #9a3412; }
+
+        .material-source {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .quote-block {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 2;
+            margin-bottom: 16px;
+            border-left: 4px solid;
+        }
+        .material-card-1 .quote-block { border-color: #eab308; color: #78350f; }
+        .material-card-2 .quote-block { border-color: #3b82f6; color: #1e3a8a; }
+        .material-card-3 .quote-block { border-color: #a855f7; color: #581c87; }
+        .material-card-4 .quote-block { border-color: #22c55e; color: #14532d; }
+        .material-card-5 .quote-block { border-color: #f97316; color: #7c2d12; }
+
+        .extract-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .extract-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .extract-label {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .extract-label.technique { color: #16a34a; }
+        .extract-label.transform { color: #dc2626; }
+        .extract-item p {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .practice-section { margin-top: 24px; }
+        .practice-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .practice-textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .practice-textarea:focus { border-color: #f59e0b; }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .ai-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .ai-btn:hover { background: #d97706; }
+        .ai-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ai-feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            display: none;
+        }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show    { background: #fffbeb; border: 2px solid #f59e0b; color: #78350f; display: block; }
+        .ai-feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-amber {
+            background: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .btn-amber:hover { background: #d97706; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            .extract-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10-4.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十</span>
+            <div class="lesson-subtitle">人物速写——三笔勾勒法</div>
+        </div>
+        <a href="../index.html" style="color: #f59e0b;">
+            回到首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-amber">环节五：素材积累</span>
+            <h1>素材积累与转化</h1>
+        </div>
+
+        <div class="content-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                经典人物描写素材与转化
+            </h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 24px;">
+                读经典不只是"欣赏"，更要学会"偷师"。下面是三个经典人物描写片段，每个都标注了<strong>技法提取</strong>和<strong>你的转化</strong>——看看大师怎么画人，你再怎么用到自己的作文里。
+            </p>
+
+            <!-- 素材一 -->
+            <div class="material-card material-card-1">
+                <div class="material-header">
+                    <div class="material-icon">📖</div>
+                    <div>
+                        <div class="material-title">素材一：鲁迅《故乡》——杨二嫂</div>
+                        <div class="material-source">"圆规"的比喻，让她成为文学史上最难忘的配角之一</div>
+                    </div>
+                </div>
+                <div class="quote-block">
+                    我吃了一吓，赶忙抬起头，却见一个凸颧骨，薄嘴唇，五十岁上下的女人站在我面前，两手搭在髀间，没有系裙，张着两脚，正像一个画图仪器里细脚伶仃的圆规。
+                </div>
+                <div class="extract-box">
+                    <div class="extract-item">
+                        <div class="extract-label technique">🔍 技法提取</div>
+                        <p>用"圆规"这个比喻，把<strong>站姿</strong>（张着两脚）和<strong>身材</strong>（细脚伶仃）一笔画出来，还暗含了尖刻的性格。</p>
+                    </div>
+                    <div class="extract-item">
+                        <div class="extract-label transform">✏️ 你的转化</div>
+                        <p>写一个<strong>瘦高的人</strong>→ 不要写"他又高又瘦"，找一个你熟悉的物件来比喻："他站在队伍里，像一根被风吹歪的电线杆。"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 素材二 -->
+            <div class="material-card material-card-2">
+                <div class="material-header">
+                    <div class="material-icon">📖</div>
+                    <div>
+                        <div class="material-title">素材二：朱自清《背影》——父亲</div>
+                        <div class="material-source">动作分解的教科书级示范</div>
+                    </div>
+                </div>
+                <div class="quote-block">
+                    我看见他戴着黑布小帽，穿着黑布大马褂，深青布棉袍，蹒跚地走到铁道边，慢慢探身下去……他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。
+                </div>
+                <div class="extract-box">
+                    <div class="extract-item">
+                        <div class="extract-label technique">🔍 技法提取</div>
+                        <p>把"父亲爬过铁道"拆成<strong>一步步慢镜头</strong>：走→探身→攀→缩→倾。每个动作前面都加了修饰（蹒跚、慢慢、努力）。</p>
+                    </div>
+                    <div class="extract-item">
+                        <div class="extract-label transform">✏️ 你的转化</div>
+                        <p>写<strong>妈妈做菜</strong>→ 不要写"妈妈在厨房做饭"，拆解动作："她弯下腰，从篮子里拣出一把青菜，在水龙头下一片一片地冲洗，指甲缝里嵌着泥。"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 素材三 -->
+            <div class="material-card material-card-3">
+                <div class="material-header">
+                    <div class="material-icon">📖</div>
+                    <div>
+                        <div class="material-title">素材三：老舍《骆驼祥子》——祥子</div>
+                        <div class="material-source">用身体特征写性格，一个"铁扇面"写出整个人</div>
+                    </div>
+                </div>
+                <div class="quote-block">
+                    他没有什么模样，使他可爱的是脸上的精神。头不很大，圆眼，肉鼻子，两条眉很短很粗，头上永远剃得发亮。腮上没有多余的肉，脖子可是几乎与头一边儿粗；脸上永远红扑扑的，特别亮的是颧骨与右耳之间一块不小的疤——小时候在树下睡觉，被驴啃了一口。
+                </div>
+                <div class="extract-box">
+                    <div class="extract-item">
+                        <div class="extract-label technique">🔍 技法提取</div>
+                        <p>从脸到头到脖子，<strong>按顺序观察</strong>。最妙的是那块疤——一个<strong>有故事的物件</strong>（疤），让人物立刻有了来历。</p>
+                    </div>
+                    <div class="extract-item">
+                        <div class="extract-label transform">✏️ 你的转化</div>
+                        <p>写<strong>一个同学</strong>→ 按从上到下的顺序观察，找他身上一个"有故事的痕迹"：手腕上的一道旧疤、膝盖上永远洗不掉的一块淤青、校服袖口磨出的毛边。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 素材四 -->
+            <div class="material-card material-card-4">
+                <div class="material-header">
+                    <div class="material-icon">✍️</div>
+                    <div>
+                        <div class="material-title">素材四：优秀范文——爷爷的手</div>
+                        <div class="material-source">五官+神态：用一张脸写尽岁月的痕迹</div>
+                    </div>
+                </div>
+                <div class="quote-block">
+                    爷爷坐在门口的小板凳上，眼睛眯成两条缝，像是永远在笑，又像是永远在躲避阳光。他的眉毛已经花白，左边那根特别长，总是不安分地翘着，像一根忘了拔掉的白线头。笑起来的时候，整张脸都在动——眼睛先弯，嘴角再翘，最后连耳朵都好像往上提了提。
+                </div>
+                <div class="extract-box">
+                    <div class="extract-item">
+                        <div class="extract-label technique">🔍 技法提取</div>
+                        <p>写五官按<strong>从上到下</strong>（眼睛→眉毛→嘴角→耳朵），用了一个<strong>比喻</strong>（白线头）和一个<strong>动态顺序</strong>（眼睛先弯→嘴角再翘→耳朵最后动），把笑写"活"了。</p>
+                    </div>
+                    <div class="extract-item">
+                        <div class="extract-label transform">✏️ 你的转化</div>
+                        <p>写<strong>一个人的笑</strong>→ 不要写"他笑得很开心"，把笑的"过程"拆开：先动哪里？再动哪里？给一个五官特征加上比喻："他的门牙中间有一条缝，笑起来像两扇没关严的门。"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 素材五 -->
+            <div class="material-card material-card-5">
+                <div class="material-header">
+                    <div class="material-icon">✍️</div>
+                    <div>
+                        <div class="material-title">素材五：优秀范文——操场上的体育老师</div>
+                        <div class="material-source">身材+动作：用动态画面代替静态描述</div>
+                    </div>
+                </div>
+                <div class="quote-block">
+                    体育老师站在跑道尽头，两条腿叉开，像在地上生了根。他吹哨子的时候，腮帮子鼓得像塞了两个乒乓球，脖子上的青筋一根根暴起来。吹完哨子，他习惯性地把哨子在手心里磕两下，甩掉口水，再别回胸前的口袋里——整套动作行云流水，一天要重复几十遍。
+                </div>
+                <div class="extract-box">
+                    <div class="extract-item">
+                        <div class="extract-label technique">🔍 技法提取</div>
+                        <p>写身材用了<strong>比喻</strong>（像生了根），写动作用了<strong>分解</strong>（吹哨→腮帮鼓→青筋暴→磕哨子→甩→别回口袋），写习惯用了<strong>频率</strong>（一天重复几十遍）。</p>
+                    </div>
+                    <div class="extract-item">
+                        <div class="extract-label transform">✏️ 你的转化</div>
+                        <p>写<strong>一个在做事的家人</strong>→ 选一个反复做的动作（爸爸看报纸、奶奶择菜），把它拆成 3-4 步，加上一个身体部位的比喻，最后写出"每天重复"的节奏感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 转化练习 -->
+        <div class="content-section practice-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                素材转化练习
+            </h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">
+                从上面素材中<strong>任选一个</strong>，模仿它的技法，写一个你身边的人。不要照抄原文，用它的<strong>方法</strong>来写你的<strong>素材</strong>。
+            </p>
+
+            <textarea
+                class="practice-textarea"
+                id="transform-input"
+                placeholder="我模仿的是素材_____（填数字），写的是__________（填人物）
+
+我的描写：
+_________________________
+_________________________
+_________________________"
+                oninput="updateCharCount()"
+            ></textarea>
+            <div class="char-count" id="char-count">0 字</div>
+
+            <div class="btn-row">
+                <button class="ai-btn" onclick="submitTransformReview()" id="ai-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    AI 点评
+                </button>
+            </div>
+            <div class="ai-feedback" id="ai-feedback"></div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="10-4.html" class="btn btn-amber">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：总结与作业
+            </a>
+            <a href="../index.html" class="btn btn-amber">
+                回到首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('transform-input');
+            document.getElementById('char-count').textContent = textarea.value.trim().length + ' 字';
+        }
+
+        function autoSave() {
+            const content = document.getElementById('transform-input').value;
+            localStorage.setItem('lesson10_transform', content);
+        }
+
+        document.getElementById('transform-input').addEventListener('input', function() {
+            clearTimeout(this._saveTimer);
+            this._saveTimer = setTimeout(autoSave, 2000);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('lesson10_transform');
+            if (saved) {
+                document.getElementById('transform-input').value = saved;
+                updateCharCount();
+            }
+        });
+
+        async function submitTransformReview() {
+            const textarea = document.getElementById('transform-input');
+            const content = textarea.value.trim();
+            const feedbackDiv = document.getElementById('ai-feedback');
+            const btn = document.getElementById('ai-btn');
+
+            if (!content) {
+                alert('请先完成你的转化练习！');
+                return;
+            }
+
+            if (content.length < 20) {
+                alert('请写得更具体一些，至少 20 个字。');
+                return;
+            }
+
+            const prompt = `请作为一名上海初中语文名师，对下面学生的"素材转化"练习进行点评。
+
+本次提供了三个经典素材：
+素材一：鲁迅《故乡》杨二嫂——用"圆规"比喻站姿和身材
+素材二：朱自清《背影》父亲——动作分解慢镜头（走→探→攀→缩→倾）
+素材三：老舍《骆驼祥子》祥子——按顺序观察外貌 + 一个有故事的疤
+
+学生需要模仿其中一个素材的技法，写一个自己身边的人。
+
+学生写的内容：
+${content}
+
+请从以下角度点评：
+1. 是否成功模仿了所选素材的技法？具体哪里用得好？
+2. 转化是否自然？有没有把技法"化用"到自己的素材中，而不是生硬照搬？
+3. 人物描写是否生动？读者能否"看见"这个人？
+
+点评要求：
+- 语气温和、鼓励性强，先肯定再建议
+- 如果学生转化得不够到位，给出具体的改进示例`;
+
+            const originalBtnHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            feedbackDiv.className = 'ai-feedback loading';
+            feedbackDiv.innerHTML = '🤖 AI 正在点评你的素材转化……';
+
+            try {
+                const feedback = await chat(prompt, '你是一位经验丰富的上海初中语文名师，擅长指导学生写作。');
+                feedbackDiv.className = 'ai-feedback show';
+                feedbackDiv.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + feedback.replace(/\n/g, '<br>');
+                autoSave();
+            } catch (error) {
+                feedbackDiv.className = 'ai-feedback error';
+                feedbackDiv.innerHTML = '<strong>❌ 点评失败</strong><br>' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+            }
+        }
+    </script>
+</body>
+</html>
