@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节五：素材积累与转化 - 心理描写的三重门</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f1f5f9; color: #334155; min-height: 100vh; line-height: 1.6; }
+        .nav-header { background: white; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .nav-header a { display: flex; align-items: center; gap: 8px; color: #64748b; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-header a:hover { color: #0d9488; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .section-tag { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .tag-teal { background: #ccfbf1; color: #0f766e; }
+        h1 { font-size: 2.2em; font-weight: 900; color: #0f172a; margin-bottom: 10px; text-align: center; }
+        h2 { display: flex; align-items: center; gap: 12px; color: #0f172a; margin-bottom: 20px; font-size: 1.4em; }
+        .content-section { background: white; border-radius: 24px; padding: 32px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .material-card { border-radius: 20px; padding: 28px; margin-bottom: 24px; border: 2px solid; }
+        .material-card-1 { background: #fefce8; border-color: #eab308; }
+        .material-card-2 { background: #eff6ff; border-color: #3b82f6; }
+        .material-card-3 { background: #faf5ff; border-color: #a855f7; }
+        .material-card-4 { background: #f0fdf4; border-color: #22c55e; }
+        .material-card-5 { background: #fff7ed; border-color: #f97316; }
+        .material-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .material-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .material-card-1 .material-icon { background: #eab308; }
+        .material-card-2 .material-icon { background: #3b82f6; }
+        .material-card-3 .material-icon { background: #a855f7; }
+        .material-card-4 .material-icon { background: #22c55e; }
+        .material-card-5 .material-icon { background: #f97316; }
+        .material-title { font-weight: bold; font-size: 17px; }
+        .material-card-1 .material-title { color: #92400e; }
+        .material-card-2 .material-title { color: #1e40af; }
+        .material-card-3 .material-title { color: #6b21a8; }
+        .material-card-4 .material-title { color: #166534; }
+        .material-card-5 .material-title { color: #9a3412; }
+        .material-source { font-size: 13px; color: #64748b; }
+        .quote-block { background: white; border-radius: 12px; padding: 20px; font-size: 15px; line-height: 2; margin-bottom: 16px; border-left: 4px solid; }
+        .material-card-1 .quote-block { border-color: #eab308; color: #78350f; }
+        .material-card-2 .quote-block { border-color: #3b82f6; color: #1e3a8a; }
+        .material-card-3 .quote-block { border-color: #a855f7; color: #581c87; }
+        .material-card-4 .quote-block { border-color: #22c55e; color: #14532d; }
+        .material-card-5 .quote-block { border-color: #f97316; color: #7c2d12; }
+        .extract-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .extract-item { background: white; border-radius: 12px; padding: 16px; }
+        .extract-label { font-size: 12px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .extract-label.technique { color: #16a34a; }
+        .extract-label.transform { color: #dc2626; }
+        .extract-item p { font-size: 14px; color: #475569; line-height: 1.8; }
+        .practice-section { margin-top: 24px; }
+        .practice-textarea { width: 100%; min-height: 250px; padding: 16px; border: 2px solid #e2e8f0; border-radius: 16px; font-size: 15px; line-height: 1.8; resize: vertical; outline: none; font-family: inherit; }
+        .practice-textarea:focus { border-color: #14b8a6; }
+        .char-count { text-align: right; font-size: 12px; color: #94a3b8; margin-top: 8px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; }
+        .btn-teal { background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .btn-teal:hover { background: #0d9488; }
+        .btn-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+        .btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .ai-btn:hover { background: #0d9488; }
+        .ai-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-feedback { margin-top: 20px; padding: 20px; border-radius: 16px; font-size: 15px; line-height: 1.8; display: none; }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show { background: #f0fdfa; border: 2px solid #14b8a6; color: #115e59; display: block; }
+        .ai-feedback.error { background: #fee2e2; color: #991b1b; display: block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .nav-buttons { display: flex; justify-content: center; gap: 16px; margin: 40px 0; padding: 30px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        @media (max-width: 768px) { h1 { font-size: 1.6em; } .extract-box { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="11-4.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十一</span>
+            <div class="lesson-subtitle">心理描写的三重门</div>
+        </div>
+        <a href="../index.html" style="color: #14b8a6;">
+            回到首页
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-teal">环节五：素材积累</span>
+            <h1>素材积累与转化</h1>
+        </div>
+
+        <div class="content-section">
+            <h2><svg width="24" height="24" fill="none" stroke="#14b8a6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>经典心理描写素材与转化</h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 24px;">读经典不只是"欣赏"，更要学会"偷师"。下面是五个经典心理描写片段，每个都标注了<strong>技法提取</strong>和<strong>你的转化</strong>。</p>
+
+            <!-- 素材一 -->
+            <div class="material-card material-card-1">
+                <div class="material-header"><div class="material-icon">📖</div><div><div class="material-title">素材一：都德《最后一课》——小弗朗士</div><div class="material-source">内心独白的经典范本</div></div></div>
+                <div class="quote-block">我正想着这些的时候，忽然听见老师叫我的名字。轮到我背书了。天啊，如果我能把那条出名难学的分词用法从头到尾说出来，声音响亮，口齿清楚，又没有一点儿错误，那么任何代价我都愿意拿出来的。但是开头几个字我就弄糊涂了，我只好站在那里摇摇晃晃，心里挺难受，头也不敢抬起来。</div>
+                <div class="extract-box">
+                    <div class="extract-item"><div class="extract-label technique">🔍 技法提取</div><p>用<strong>内心独白</strong>直接写心理："天啊""任何代价我都愿意"——这是最真实的心声，没有"我想""我觉得"的套话。</p></div>
+                    <div class="extract-item"><div class="extract-label transform">✏️ 你的转化</div><p>写<strong>被老师点名时的心理</strong>→ 不要写"我很紧张"，直接写心声："别叫我。千万别叫我。我什么都没准备。完了，他在看名单了。"</p></div>
+                </div>
+            </div>
+
+            <!-- 素材二 -->
+            <div class="material-card material-card-2">
+                <div class="material-header"><div class="material-icon">📖</div><div><div class="material-title">素材二：莫言《透明的红萝卜》——黑孩</div><div class="material-source">动作折射心理的教科书</div></div></div>
+                <div class="quote-block">黑孩的眼睛里水光潋滟，他用力地忍着，没让眼泪流出来。他用牙齿咬住嘴唇，直到尝到了一股咸味儿。他的两只手在裤兜里攥成了拳头，指甲掐进了肉里，但他感觉不到疼。</div>
+                <div class="extract-box">
+                    <div class="extract-item"><div class="extract-label technique">🔍 技法提取</div><p>不写"黑孩很伤心"，而是用<strong>身体动作</strong>：咬嘴唇、攥拳头、指甲掐肉——身体的"叛变"比任何形容词都有力。</p></div>
+                    <div class="extract-item"><div class="extract-label transform">✏️ 你的转化</div><p>写<strong>忍住不哭时</strong>→ 不要写"我很难过"，写身体："我的鼻子一酸，眼眶发热，我抬头看天花板，使劲眨眼睛，想把眼泪倒回去。"</p></div>
+                </div>
+            </div>
+
+            <!-- 素材三 -->
+            <div class="material-card material-card-3">
+                <div class="material-header"><div class="material-icon">📖</div><div><div class="material-title">素材三：鲁迅《社戏》——看戏前的期待</div><div class="material-source">环境烘托心理的典范</div></div></div>
+                <div class="quote-block">这一天我不钓虾，东西也少吃。母亲很为难，没有法子想。到晚饭时候，外祖母也终于觉察了，并且说我应当不高兴，他们太怠慢，是待客的礼数里从来所没有的。吃饭之后，看过戏的少年们也都聚拢来了，高高兴兴的来讲戏。只有我不开口；他们都叹息而且表同情。</div>
+                <div class="extract-box">
+                    <div class="extract-item"><div class="extract-label technique">🔍 技法提取</div><p>用<strong>行为反常</strong>折射心理：不钓虾、少吃东西、不开口——通过"反常"写心理，比直接说"我很失望"高级得多。</p></div>
+                    <div class="extract-item"><div class="extract-label transform">✏️ 你的转化</div><p>写<strong>失望时的反常</strong>→ 不要写"我很失望"，写反常行为："平时最爱的菜，我一口都没动。妈妈问我怎么了，我只说了两个字：'没事。'"</p></div>
+                </div>
+            </div>
+
+            <!-- 素材四 -->
+            <div class="material-card material-card-4">
+                <div class="material-header"><div class="material-icon">✍️</div><div><div class="material-title">素材四：优秀范文——等成绩的那个下午</div><div class="material-source">三重门合体的示范</div></div></div>
+                <div class="quote-block">成绩还没出来。我一遍又一遍地刷新网页，每一次刷新前，心跳都漏一拍。万一是那个数字呢？万一不是呢？我的手指在鼠标上僵硬地蜷着，手心在桌面上印出湿漉漉的掌印。窗外的天不知道什么时候阴了下来，电脑屏幕的蓝光映在脸上，像把我整个人都泡在了一个冰冷的水缸里。</div>
+                <div class="extract-box">
+                    <div class="extract-item"><div class="extract-label technique">🔍 技法提取</div><p><strong>三重门自然衔接</strong>：内心独白（万一……）→动作折射（手指僵硬、手心出汗）→环境烘托（天阴了、蓝光像水缸）。</p></div>
+                    <div class="extract-item"><div class="extract-label transform">✏️ 你的转化</div><p>写<strong>等待结果时的焦虑</strong>→ 三重门组合：心声（万一……）→身体（手指动作）→环境（屏幕光、窗外的变化）。</p></div>
+                </div>
+            </div>
+
+            <!-- 素材五 -->
+            <div class="material-card material-card-5">
+                <div class="material-header"><div class="material-icon">✍️</div><div><div class="material-title">素材五：优秀范文——收到道歉信的那一刻</div><div class="material-source">心理转折的写法</div></div></div>
+                <div class="quote-block">信封是淡蓝色的，上面只有三个字："对不起。"我盯着这三个字看了很久。是她写的？她什么时候把信塞进我书包的？我拆开信封，手指在发抖——不是因为冷，是因为心里有一团东西在往上涌。读着读着，鼻子酸了。窗外的夕阳正好打在信纸上，把那三个字照得暖洋洋的，好像连太阳都在替她说话。</div>
+                <div class="extract-box">
+                    <div class="extract-item"><div class="extract-label technique">🔍 技法提取</div><p>心理<strong>从冷到暖的转折</strong>：内心独白（疑问）→动作折射（手抖）→环境烘托（夕阳照暖），环境跟着心理一起变化。</p></div>
+                    <div class="extract-item"><div class="extract-label transform">✏️ 你的转化</div><p>写<strong>从生气到原谅的心理转折</strong>→ 环境跟着心理变：开头冷色调→中间内心挣扎→结尾暖色调，让太阳"替她说话"。</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 转化练习 -->
+        <div class="content-section practice-section" style="margin-top: 30px;">
+            <h2><svg width="24" height="24" fill="none" stroke="#14b8a6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>素材转化练习</h2>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">从上面素材中<strong>任选一个</strong>，模仿它的技法，写一个你经历过的心理场景。不要照抄，用它的<strong>方法</strong>来写你的<strong>感受</strong>。</p>
+            <textarea class="practice-textarea" id="transform-input" placeholder="我模仿的是素材_____（填数字），写的心理场景是__________
+
+我的描写：
+_________________________
+_________________________
+_________________________" oninput="updateCharCount()"></textarea>
+            <div class="char-count" id="char-count">0 字</div>
+            <div class="btn-row">
+                <button class="ai-btn" onclick="submitTransformReview()" id="ai-btn">AI 点评</button>
+            </div>
+            <div class="ai-feedback" id="ai-feedback"></div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="11-4.html" class="btn btn-teal">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：总结与作业
+            </a>
+            <a href="../index.html" class="btn btn-teal">
+                回到首页
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() { document.getElementById('char-count').textContent = document.getElementById('transform-input').value.trim().length + ' 字'; }
+        function autoSave() { localStorage.setItem('lesson11_transform', document.getElementById('transform-input').value); }
+        document.getElementById('transform-input').addEventListener('input', function() { clearTimeout(this._st); this._st = setTimeout(autoSave, 2000); });
+        window.addEventListener('DOMContentLoaded', function() { const s = localStorage.getItem('lesson11_transform'); if (s) { document.getElementById('transform-input').value = s; updateCharCount(); } });
+        async function submitTransformReview() {
+            const content = document.getElementById('transform-input').value.trim();
+            const fb = document.getElementById('ai-feedback'), btn = document.getElementById('ai-btn');
+            if (!content) { alert('请先完成转化练习！'); return; }
+            if (content.length < 20) { alert('至少 20 个字。'); return; }
+            const prompt = `作为上海初中语文名师，点评学生"素材转化"练习。学生需模仿五个心理描写素材之一的技法，写自己的心理场景。\n学生内容：\n${content}\n\n点评：1.是否成功模仿了所选素材的技法？2.转化是否自然？3.心理描写是否生动？语气温和鼓励。`;
+            const orig = btn.innerHTML; btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            fb.className = 'ai-feedback loading'; fb.innerHTML = '🤖 AI 正在点评……';
+            try {
+                const r = await chat(prompt, '你是上海初中语文名师。');
+                fb.className = 'ai-feedback show'; fb.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + r.replace(/\n/g, '<br>');
+                autoSave();
+            } catch(e) { fb.className = 'ai-feedback error'; fb.innerHTML = '<strong>❌ 点评失败</strong><br>' + e.message; }
+            finally { btn.disabled = false; btn.innerHTML = orig; }
+        }
+    </script>
+</body>
+</html>

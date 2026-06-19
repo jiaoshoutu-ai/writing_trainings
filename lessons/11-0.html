@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节零：复习导入 - 心理描写的三重门</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f1f5f9; color: #334155; min-height: 100vh; line-height: 1.6;
+        }
+        .nav-header {
+            background: white; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-header a { display: flex; align-items: center; gap: 8px; color: #64748b; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-header a:hover { color: #0d9488; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .section-tag { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .tag-teal { background: #ccfbf1; color: #0f766e; }
+        h1 { font-size: 2.2em; font-weight: 900; color: #0f172a; margin-bottom: 10px; text-align: center; }
+        .content-section {
+            background: white; border-radius: 24px; padding: 32px; margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .challenge-box {
+            background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+            border: 2px solid #14b8a6; border-radius: 20px; padding: 28px; margin-bottom: 24px;
+        }
+        .challenge-box h3 { color: #0f766e; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .challenge-question {
+            background: white; padding: 20px; border-radius: 12px; font-size: 18px;
+            color: #115e59; font-weight: bold; line-height: 1.8; border-left: 4px solid #14b8a6;
+        }
+        .challenge-rule { display: inline-block; background: #fee2e2; color: #dc2626; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: bold; margin-left: 4px; }
+        .practice-textarea {
+            width: 100%; min-height: 200px; padding: 20px; border: 2px solid #e2e8f0;
+            border-radius: 16px; font-size: 16px; line-height: 1.8; resize: vertical; outline: none;
+            transition: border-color 0.3s; font-family: inherit;
+        }
+        .practice-textarea:focus { border-color: #14b8a6; }
+        .char-count { text-align: right; font-size: 12px; color: #94a3b8; margin-top: 8px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; }
+        .btn-teal { background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .btn-teal:hover { background: #0d9488; }
+        .btn-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-feedback { margin-top: 16px; padding: 20px; border-radius: 16px; font-size: 15px; line-height: 1.8; display: none; }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show { background: #f0fdfa; border: 2px solid #14b8a6; color: #115e59; display: block; }
+        .ai-feedback.error { background: #fee2e2; color: #991b1b; display: block; }
+        .recap-section {
+            background: white; border-radius: 24px; padding: 32px; margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: none;
+        }
+        .recap-section.show { display: block; }
+        .recap-section h2 { display: flex; align-items: center; gap: 12px; color: #0f172a; margin-bottom: 24px; }
+        .recap-cards { display: grid; gap: 16px; }
+        .recap-card { border-radius: 16px; padding: 24px; border-left: 5px solid; }
+        .recap-card-10 { background: #fffbeb; border-color: #f59e0b; }
+        .recap-card-title { font-weight: bold; font-size: 16px; color: #92400e; }
+        .recap-card p { font-size: 14px; color: #475569; line-height: 1.8; }
+        .recap-card .highlight { font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 13px; background: #fef3c7; color: #b45309; }
+        .tip-box { background: #f0fdfa; border: 2px solid #14b8a6; border-radius: 16px; padding: 20px; margin-top: 24px; }
+        .tip-box h4 { color: #0f766e; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .tip-box p { color: #115e59; font-size: 14px; line-height: 1.8; }
+        .nav-buttons { display: flex; justify-content: center; gap: 16px; margin: 40px 0; padding: 30px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { h1 { font-size: 1.6em; } }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            首页
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十一</span>
+            <div class="lesson-subtitle">心理描写的三重门</div>
+        </div>
+        <a href="11-1.html" style="color: #14b8a6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-teal">环节零：复习导入</span>
+            <h1>温故知新</h1>
+        </div>
+
+        <!-- 挑战题目 -->
+        <div class="content-section">
+            <div class="challenge-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    写作挑战
+                </h3>
+                <div class="challenge-question">
+                    如果让你写一个人<strong>"很紧张"</strong>，但不能出现<span class="challenge-rule">"紧张"</span>两个字，你会怎么写？
+                </div>
+                <p style="color: #0f766e; font-size: 14px; margin-top: 16px;">
+                    💡 <strong>提示：</strong>想想紧张的人身体有什么反应？心里在想什么？周围的环境在他的眼里变成了什么样？
+                </p>
+            </div>
+
+            <textarea class="practice-textarea" id="writing-input" placeholder="在这里写下你的答案……
+（提示：手心出汗？心跳加速？脑子里在想什么？眼前的景象有没有变形？）" oninput="updateCharCount()"></textarea>
+            <div class="char-count" id="char-count">0 字</div>
+
+            <div class="btn-row">
+                <button class="btn btn-teal" onclick="submitForReview()" id="submit-btn">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    提交，让 AI 点评
+                </button>
+            </div>
+            <div class="ai-feedback" id="ai-feedback"></div>
+        </div>
+
+        <!-- 课程回顾 -->
+        <div class="recap-section" id="recap-section">
+            <h2>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                温故知新：回顾课程十的"三笔勾勒法"
+            </h2>
+            <div class="recap-cards">
+                <div class="recap-card recap-card-10">
+                    <div class="recap-card-title">课程十回顾：三笔勾勒法</div>
+                    <p>
+                        上节课我们学会了用<span class="highlight">三笔</span>画人物：<br>
+                        <strong>第一笔·形体</strong>——身材 + 比喻，放大一个特征<br>
+                        <strong>第二笔·符号</strong>——特征物件 + 故事感，写出视觉名片<br>
+                        <strong>第三笔·姿态</strong>——习惯动作 + 节奏，写出人物的呼吸<br><br>
+                        三笔勾勒法解决了"怎么写人"的问题。但有一个问题还没解决：<strong>怎么写出人物的内心世界？</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="tip-box">
+                <h4>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    本周预告
+                </h4>
+                <p>
+                    这周，我们要走进人物描写的更深一层——<strong>心理描写的三重门</strong>。<br>
+                    从"内心独白"到"动作折射"再到"环境烘托"，三层递进，让你笔下的人物不仅有外貌，还有心跳。
+                </p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn btn-teal">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                返回首页
+            </a>
+            <a href="11-1.html" class="btn btn-teal">
+                下一步：心理描写的兵器库
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCharCount() {
+            const t = document.getElementById('writing-input');
+            document.getElementById('char-count').textContent = t.value.trim().length + ' 字';
+        }
+        function autoSave() { localStorage.setItem('lesson11_warmup', document.getElementById('writing-input').value); }
+        document.getElementById('writing-input').addEventListener('input', function() {
+            clearTimeout(this._saveTimer); this._saveTimer = setTimeout(autoSave, 2000);
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            const s = localStorage.getItem('lesson11_warmup');
+            if (s) { document.getElementById('writing-input').value = s; updateCharCount(); }
+        });
+        async function submitForReview() {
+            const content = document.getElementById('writing-input').value.trim();
+            const fb = document.getElementById('ai-feedback'), btn = document.getElementById('submit-btn');
+            if (!content) { alert('请先写下你的答案！'); return; }
+            if (content.length < 15) { alert('请写得更具体一些，至少 15 个字。'); return; }
+            const prompt = `请作为上海初中语文名师，对学生写作练习进行点评。题目：描写一个人"很紧张"，不能出现"紧张"二字。学生内容：\n${content}\n\n请从三个维度点评：\n1.【内心独白】是否通过人物内心想法展现紧张？\n2.【动作折射】是否通过身体反应、动作细节展现紧张？\n3.【环境烘托】是否通过环境描写强化紧张氛围？\n要求：语气温和鼓励，每个维度点评+建议，最后给出修改示例。`;
+            const orig = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            fb.className = 'ai-feedback loading'; fb.innerHTML = '🤖 AI 正在点评，请稍候……';
+            try {
+                const r = await chat(prompt, '你是上海初中语文名师，擅长指导学生写作。');
+                fb.className = 'ai-feedback show'; fb.innerHTML = '<strong>🤖 AI 名师点评</strong><br><br>' + r.replace(/\n/g, '<br>');
+                document.getElementById('recap-section').classList.add('show');
+                document.getElementById('recap-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                autoSave();
+            } catch(e) {
+                fb.className = 'ai-feedback error'; fb.innerHTML = '<strong>❌ 点评失败</strong><br>' + e.message;
+            } finally { btn.disabled = false; btn.innerHTML = orig; }
+        }
+    </script>
+</body>
+</html>

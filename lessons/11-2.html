@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节二：心理描写进阶 - 心理描写的三重门</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f1f5f9; color: #334155; min-height: 100vh; line-height: 1.6; }
+        .nav-header { background: white; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .nav-header a { display: flex; align-items: center; gap: 8px; color: #64748b; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-header a:hover { color: #0d9488; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .section-tag { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .tag-teal { background: #ccfbf1; color: #0f766e; }
+        h1 { font-size: 2.2em; font-weight: 900; color: #0f172a; margin-bottom: 10px; text-align: center; }
+        .content-section { background: white; border-radius: 24px; padding: 32px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .preview-box { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border: 2px solid #14b8a6; border-radius: 20px; padding: 28px; margin-bottom: 24px; }
+        .preview-box h3 { color: #0f766e; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .preview-box ol { padding-left: 24px; color: #115e59; font-size: 15px; line-height: 2; }
+        .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 24px; border-radius: 16px; overflow: hidden; background: #0f172a; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-fallback { text-align: center; color: #64748b; margin-bottom: 24px; font-size: 14px; }
+        .video-fallback a { color: #14b8a6; text-decoration: none; }
+        details { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px; padding: 4px 20px; margin-bottom: 12px; transition: all 0.3s; }
+        details[open] { border-color: #14b8a6; background: #f0fdfa; }
+        summary { padding: 16px 0; font-size: 16px; font-weight: bold; color: #0f766e; cursor: pointer; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "▶"; display: inline-block; font-size: 12px; transition: transform 0.3s; color: #14b8a6; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .details-content { padding: 0 0 20px 0; font-size: 15px; color: #475569; line-height: 2; }
+        .details-content p { margin-bottom: 8px; }
+        .practice-section { margin-top: 24px; }
+        .practice-section h3 { display: flex; align-items: center; gap: 10px; color: #0f172a; margin-bottom: 20px; }
+        .practice-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 20px; padding: 28px; margin-bottom: 24px; }
+        .practice-card h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: #0f172a; }
+        .practice-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px; }
+        .practice-table thead th { background: #14b8a6; color: white; padding: 12px 16px; text-align: center; font-weight: bold; }
+        .practice-table thead th:first-child { border-radius: 10px 0 0 0; }
+        .practice-table thead th:last-child { border-radius: 0 10px 0 0; }
+        .practice-table tbody td { padding: 10px 12px; border-bottom: 1px solid #ccfbf1; vertical-align: top; }
+        .practice-table tbody tr:nth-child(even) { background: #f0fdfa; }
+        .practice-table .col-scene { font-weight: bold; color: #0f766e; width: 180px; text-align: center; }
+        .practice-table .col-example { color: #64748b; font-size: 13px; }
+        .practice-input { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; line-height: 1.8; outline: none; font-family: inherit; resize: vertical; min-height: 60px; }
+        .practice-input:focus { border-color: #14b8a6; }
+        .practice-textarea { width: 100%; min-height: 150px; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; line-height: 1.8; resize: vertical; outline: none; font-family: inherit; }
+        .practice-textarea:focus { border-color: #14b8a6; }
+        .char-count { text-align: right; font-size: 12px; color: #94a3b8; margin-top: 8px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; }
+        .btn-teal { background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .btn-teal:hover { background: #0d9488; }
+        .btn-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .ai-btn:hover { background: #0d9488; }
+        .ai-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-feedback { margin-top: 16px; padding: 20px; border-radius: 16px; font-size: 15px; line-height: 1.8; display: none; }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show { background: #f0fdfa; border: 2px solid #14b8a6; color: #115e59; display: block; }
+        .ai-feedback.error { background: #fee2e2; color: #991b1b; display: block; }
+        .ref-details { margin-top: 16px; }
+        .ref-details details { background: #fefce8; border-color: #facc15; }
+        .ref-details summary { color: #92400e; }
+        .nav-buttons { display: flex; justify-content: center; gap: 16px; margin: 40px 0; padding: 30px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { h1 { font-size: 1.6em; } }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="11-1.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十一</span>
+            <div class="lesson-subtitle">心理描写的三重门</div>
+        </div>
+        <a href="11-3.html" style="color: #14b8a6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-teal">环节二：视频学习</span>
+            <h1>心理描写进阶</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="preview-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看前提示
+                </h3>
+                <p style="color: #0f766e; font-size: 15px; margin-bottom: 16px;">上一个视频建立了心理描写的"兵器库"。这个视频将聚焦两个高阶技巧——<strong>内心独白</strong>和<strong>环境烘托</strong>的进阶写法。请带着这些问题观看：</p>
+                <ol>
+                    <li>怎样让内心独白不变成"我想……我想……"的流水账？</li>
+                    <li>环境描写怎样从"天气 = 心情"升级到"环境 = 内心的镜子"？</li>
+                    <li>范文《等》用了什么结构，让心理层层递进？</li>
+                </ol>
+            </div>
+
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=REPLACE_ME&high_quality=1" allowfullscreen></iframe>
+            </div>
+            <p class="video-fallback">如果视频无法播放，请<a href="#" target="_blank">点击这里</a>在 B站观看。</p>
+
+            <div style="margin-bottom: 24px;">
+                <h3 style="display: flex; align-items: center; gap: 10px; color: #0f172a; margin-bottom: 20px;">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看后梳理
+                </h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">点击下方卡片，查看视频核心要点：</p>
+
+                <details>
+                    <summary>💭 内心独白的三个进阶技巧</summary>
+                    <div class="details-content">
+                        <p><strong>用短句制造心跳感：</strong>不要写长段落，用短句、断句，模仿心跳的节奏。比如："完了。怎么办。她会怎么说。我不敢抬头。"</p>
+                        <p><strong>写矛盾心理：</strong>真实的内心往往是纠结的——"去，还是不去？说，还是不说？"把两股力量都写出来。</p>
+                        <p><strong>用"心理时间"代替"物理时间"：</strong>等待的三分钟，在心里可以写成"像一个世纪那么长"。内心的感受可以扭曲时间。</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌿 环境烘托的升级：从"配乐"到"镜子"</summary>
+                    <div class="details-content">
+                        <p><strong>初级（配乐式）：</strong>开心=晴天，悲伤=下雨——这是最简单直接的环境烘托。</p>
+                        <p><strong>进阶（镜子式）：</strong>环境不是背景，而是<strong>内心的一面镜子</strong>。紧张时，钟表的滴答声被放大；伤心时，窗外热闹的街景反而显得讽刺。环境与心理可以<strong>反差</strong>，也可以<strong>共鸣</strong>。</p>
+                        <p><strong>高级（互动式）：</strong>人物与环境产生互动——"风吹过来，好像也在催我快点做决定。"</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>📖 范文《等》的结构密码</summary>
+                    <div class="details-content">
+                        <p>这篇文章的心理描写结构，可以直接套用：</p>
+                        <ol>
+                            <li><strong>起：</strong>交代等待的起因，初步心理状态（平静→焦躁）</li>
+                            <li><strong>承：</strong>内心独白升级——从简单的想法变成纠结、反复</li>
+                            <li><strong>转：</strong>环境开始"变形"——钟表变慢、声音变响、光线变暗</li>
+                            <li><strong>合：</strong>心理到达顶点后释放，环境恢复"正常"</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>✍️ 可以积累的心理描写词汇</summary>
+                    <div class="details-content">
+                        <p><strong>写紧张：</strong>心提到了嗓子眼、手心沁出细密的汗珠、呼吸变得短促、耳膜里全是自己的心跳声</p>
+                        <p><strong>写期待：</strong>眼睛死死盯着门口、每一次脚步声都让心跳漏一拍、手指不自觉地绞在一起</p>
+                        <p><strong>写失落：</strong>整个人像被抽空了气的气球、周围的声音都变得很远、脚步像灌了铅</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 两个巩固练习 -->
+            <div class="practice-section">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    两个巩固练习
+                </h3>
+
+                <!-- 练习一 -->
+                <div class="practice-card">
+                    <h4>练习一：内心独白实验室</h4>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">把下面的"概括心理"升级成内心的真实声音，用短句、断句写出心跳感。</p>
+                    <table class="practice-table">
+                        <thead><tr><th>概括心理</th><th>你的升级版内心独白</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-scene">他很犹豫要不要举手回答问题。</td>
+                                <td class="col-example">示例：这道题我会。要不要举手？万一答错了呢？可是老师正好看过来——算了，再等等。</td>
+                            </tr>
+                            <tr>
+                                <td class="col-scene">公布成绩前，她非常紧张。</td>
+                                <td><textarea class="practice-input" id="mono-1" placeholder="她的内心：_________________________" oninput="autoSaveMono()"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="col-scene">收到惊喜礼物，他不敢相信。</td>
+                                <td><textarea class="practice-input" id="mono-2" placeholder="他的内心：_________________________" oninput="autoSaveMono()"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ref-details">
+                        <details><summary>完成后再查看参考</summary>
+                            <div class="details-content">
+                                <p><strong>公布成绩前：</strong>老师翻开成绩单了。第一张。第二张。第三张——是我的。别念。别念出来。求你了。我闭上眼睛。只听见自己的心跳。"88分。"——什么？才88？不对，等等，88好像……还行？</p>
+                                <p><strong>收到惊喜礼物：</strong>这是……给我的？不可能吧。今天不是我生日。她把盒子往我手里一塞。我摸着包装纸，手指有点发抖。打开。快打开。可是万一弄坏了包装怎么办——管它呢。</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- 练习二 -->
+                <div class="practice-card">
+                    <h4>练习二：环境烘托升级训练</h4>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">下面有一段心理描写，但缺少环境烘托。请在指定位置插入一段环境描写，让环境成为内心的"镜子"。</p>
+                    <div style="background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <p style="color: #991b1b; font-size: 14px; margin-bottom: 4px;"><strong>原版：</strong></p>
+                        <p style="color: #7f1d1d; font-size: 15px; line-height: 2; margin: 0;">我一个人坐在空荡荡的教室里，等着妈妈来接我。十分钟过去了，她还没来。我开始着急了。又过了十分钟，她还是没来。</p>
+                    </div>
+                    <p style="color: #475569; font-size: 14px; margin-bottom: 12px;"><strong>你的升级版</strong>（在心理变化处插入环境描写）：</p>
+                    <textarea class="practice-textarea" id="env-practice" placeholder="我一个人坐在空荡荡的教室里，等着妈妈来接我。
+（插入环境描写——安静时教室是什么样？）
+十分钟过去了，她还没来。
+（插入环境描写——着急时环境有什么变化？）
+又过了十分钟，她还是没来。
+（插入环境描写——极度焦虑时环境变成了什么样？）" oninput="updateCharCount2()"></textarea>
+                    <div class="char-count" id="char-count2">0 字</div>
+                    <div class="btn-row">
+                        <button class="ai-btn" onclick="submitEnvReview()" id="ai-btn2">AI 点评</button>
+                    </div>
+                    <div class="ai-feedback" id="ai-feedback2"></div>
+                    <div class="ref-details">
+                        <details><summary>完成后再查看参考</summary>
+                            <div class="details-content">
+                                <p>我一个人坐在空荡荡的教室里，等着妈妈来接我。<strong>夕阳从窗户斜进来，把我的影子拉得很长很长，像一个被遗忘的问号。走廊里偶尔传来脚步声，又渐渐远去。</strong></p>
+                                <p>十分钟过去了，她还没来。<strong>我开始数墙上的钟——滴答，滴答。每一声都像在敲我的脑门。窗外的天色暗了一格，像有人把世界调低了亮度。</strong></p>
+                                <p>又过了十分钟，她还是没来。<strong>走廊彻底安静了，连脚步声都没有了。整个世界只剩下我和这间教室，以及越来越响的心跳声。我突然觉得，自己好像被全世界遗忘了。</strong></p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="11-1.html" class="btn btn-teal">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：心理描写的兵器库
+            </a>
+            <a href="11-3.html" class="btn btn-teal">
+                下一环节：三重门技法
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function autoSaveMono() {
+            const d = { m1: document.getElementById('mono-1').value, m2: document.getElementById('mono-2').value };
+            localStorage.setItem('lesson11_mono', JSON.stringify(d));
+        }
+        ['mono-1','mono-2'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(this._st); this._st = setTimeout(autoSaveMono, 2000);
+            });
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            const s = localStorage.getItem('lesson11_mono');
+            if (s) { const d = JSON.parse(s); if (d.m1) document.getElementById('mono-1').value = d.m1; if (d.m2) document.getElementById('mono-2').value = d.m2; }
+        });
+        function updateCharCount2() {
+            document.getElementById('char-count2').textContent = document.getElementById('env-practice').value.trim().length + ' 字';
+        }
+        function autoSaveEnv() { localStorage.setItem('lesson11_env', document.getElementById('env-practice').value); }
+        document.getElementById('env-practice').addEventListener('input', function() {
+            clearTimeout(this._st); this._st = setTimeout(autoSaveEnv, 2000);
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            const s = localStorage.getItem('lesson11_env');
+            if (s) { document.getElementById('env-practice').value = s; updateCharCount2(); }
+        });
+        // Ensure second DOMContentLoaded doesn't override
+        async function submitEnvReview() {
+            const content = document.getElementById('env-practice').value.trim();
+            const fb = document.getElementById('ai-feedback2'), btn = document.getElementById('ai-btn2');
+            if (!content) { alert('请先完成练习！'); return; }
+            const prompt = `作为上海初中语文名师，点评学生环境烘托练习。原场景：一个人在教室等妈妈，越来越着急。学生插入的环境描写：\n${content}\n\n点评：1.环境是否随心理变化而递进？2.环境描写是否成为内心的"镜子"？3.是否避免了简单的"开心=晴天"式写法？语气温和鼓励。`;
+            const orig = btn.innerHTML; btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            fb.className = 'ai-feedback loading'; fb.innerHTML = '🤖 AI 正在点评……';
+            try {
+                const r = await chat(prompt, '你是上海初中语文名师。');
+                fb.className = 'ai-feedback show'; fb.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + r.replace(/\n/g, '<br>');
+                autoSaveEnv();
+            } catch(e) { fb.className = 'ai-feedback error'; fb.innerHTML = '<strong>❌ 点评失败</strong><br>' + e.message; }
+            finally { btn.disabled = false; btn.innerHTML = orig; }
+        }
+    </script>
+</body>
+</html>

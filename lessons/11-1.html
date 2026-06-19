@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环节一：心理描写的兵器库 - 心理描写的三重门</title>
+    <script src="../writing-assistant.browser.js?v=2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #f1f5f9; color: #334155; min-height: 100vh; line-height: 1.6; }
+        .nav-header { background: white; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .nav-header a { display: flex; align-items: center; gap: 8px; color: #64748b; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-header a:hover { color: #0d9488; }
+        .lesson-title { font-weight: bold; color: #0f172a; }
+        .lesson-subtitle { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .section-tag { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .tag-teal { background: #ccfbf1; color: #0f766e; }
+        h1 { font-size: 2.2em; font-weight: 900; color: #0f172a; margin-bottom: 10px; text-align: center; }
+        .content-section { background: white; border-radius: 24px; padding: 32px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .preview-box { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); border: 2px solid #14b8a6; border-radius: 20px; padding: 28px; margin-bottom: 24px; }
+        .preview-box h3 { color: #0f766e; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .preview-box ol { padding-left: 24px; color: #115e59; font-size: 15px; line-height: 2; }
+        .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 24px; border-radius: 16px; overflow: hidden; background: #0f172a; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-fallback { text-align: center; color: #64748b; margin-bottom: 24px; font-size: 14px; }
+        .video-fallback a { color: #14b8a6; text-decoration: none; }
+        details { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px; padding: 4px 20px; margin-bottom: 12px; transition: all 0.3s; }
+        details[open] { border-color: #14b8a6; background: #f0fdfa; }
+        summary { padding: 16px 0; font-size: 16px; font-weight: bold; color: #0f766e; cursor: pointer; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "▶"; display: inline-block; font-size: 12px; transition: transform 0.3s; color: #14b8a6; }
+        details[open] summary::before { transform: rotate(90deg); }
+        .details-content { padding: 0 0 20px 0; font-size: 15px; color: #475569; line-height: 2; }
+        .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .method-item { background: white; padding: 12px 16px; border-radius: 10px; text-align: center; font-weight: 500; color: #0f766e; border: 1px solid #ccfbf1; }
+        .think-box { background: #fefce8; border: 2px solid #facc15; border-radius: 16px; padding: 24px; margin-top: 24px; }
+        .think-box p { color: #854d0e; font-size: 16px; line-height: 1.8; }
+        .practice-section { margin-top: 24px; }
+        .practice-card { background: #f8fafc; border-radius: 20px; padding: 28px; margin-bottom: 24px; border: 2px solid #e2e8f0; }
+        .practice-card h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: #0f172a; }
+        .practice-textarea { width: 100%; min-height: 180px; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; line-height: 1.8; resize: vertical; outline: none; font-family: inherit; }
+        .practice-textarea:focus { border-color: #14b8a6; }
+        .char-count { text-align: right; font-size: 12px; color: #94a3b8; margin-top: 8px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; }
+        .btn-teal { background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .btn-teal:hover { background: #0d9488; }
+        .btn-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; transition: all 0.3s; background: #14b8a6; color: white; box-shadow: 0 4px 15px rgba(20,184,166,0.4); }
+        .ai-btn:hover { background: #0d9488; }
+        .ai-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .ai-feedback { margin-top: 16px; padding: 20px; border-radius: 16px; font-size: 15px; line-height: 1.8; display: none; }
+        .ai-feedback.loading { background: #fef3c7; color: #92400e; display: block; }
+        .ai-feedback.show { background: #f0fdfa; border: 2px solid #14b8a6; color: #115e59; display: block; }
+        .ai-feedback.error { background: #fee2e2; color: #991b1b; display: block; }
+        .nav-buttons { display: flex; justify-content: center; gap: 16px; margin: 40px 0; padding: 30px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { h1 { font-size: 1.6em; } .method-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="11-0.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            上一环节
+        </a>
+        <div style="text-align: center;">
+            <span class="lesson-title">课程十一</span>
+            <div class="lesson-subtitle">心理描写的三重门</div>
+        </div>
+        <a href="11-2.html" style="color: #14b8a6;">
+            下一环节
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-tag tag-teal">环节一：视频学习</span>
+            <h1>心理描写的兵器库</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="preview-box">
+                <h3>
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看前提示
+                </h3>
+                <p style="color: #0f766e; font-size: 15px; margin-bottom: 16px;">视频是心理描写的"兵器库"，带着这些问题去观看：</p>
+                <ol>
+                    <li>心理描写有哪几种主要方法？</li>
+                    <li>什么是"内心独白"？它和"自言自语"有什么区别？</li>
+                    <li>怎样通过环境描写来折射人物的心理？</li>
+                </ol>
+            </div>
+
+            <div class="video-wrapper">
+                <iframe src="https://player.bilibili.com/player.html?bvid=REPLACE_ME&high_quality=1" allowfullscreen></iframe>
+            </div>
+            <p class="video-fallback">如果视频无法播放，请<a href="#" target="_blank">点击这里</a>在 B站观看。</p>
+
+            <div style="margin-bottom: 24px;">
+                <h3 style="display: flex; align-items: center; gap: 10px; color: #0f172a; margin-bottom: 20px;">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    看后梳理
+                </h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">点击下方卡片，查看视频核心要点：</p>
+
+                <details>
+                    <summary>🧠 心理描写的五种方法</summary>
+                    <div class="details-content">
+                        <div class="method-grid">
+                            <div class="method-item">内心独白 · 直接倾诉</div>
+                            <div class="method-item">动作折射 · 神态暗示</div>
+                            <div class="method-item">环境烘托 · 情景交融</div>
+                            <div class="method-item">梦境幻觉 · 潜意识流露</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>💭 内心独白怎么写才不假？</summary>
+                    <div class="details-content">
+                        <p>用第一人称，写"我"的真实想法</p>
+                        <p>不要写"我想……"，直接写想法本身</p>
+                        <p>可以写矛盾、犹豫、反复——真实的心理往往是纠结的</p>
+                        <p>短句比长句更有冲击力，像心跳一样有节奏</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌿 环境怎么烘托心理？</summary>
+                    <div class="details-content">
+                        <p>开心时——阳光明媚，鸟语花香</p>
+                        <p>悲伤时——阴雨绵绵，落叶飘零</p>
+                        <p>紧张时——钟表滴答声被放大，周围的嘈杂变得刺耳</p>
+                        <p>核心：<strong>不是环境变了，是看环境的人的心变了</strong></p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="think-box">
+                <p>💡 <strong>思考：</strong>视频给了五种心理描写方法，但写文章时不可能全用一遍。有没有一种方法，只用<strong>三重门</strong>，就能让读者走进人物的内心世界？</p>
+            </div>
+
+            <!-- 小练习 -->
+            <div class="practice-section">
+                <h3 style="display: flex; align-items: center; gap: 10px; color: #0f172a; margin-bottom: 20px;">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    小练习：心理描写初体验
+                </h3>
+
+                <div class="practice-card">
+                    <h4>场景：考试卷子发下来了，你考了满分</h4>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">请用三种不同的方法写"开心"，每种 1-2 句话：</p>
+                    <p style="color: #0f766e; font-size: 13px; font-weight: bold; margin-bottom: 8px;">方法一：内心独白（直接写心里的想法）</p>
+                    <textarea class="practice-textarea" id="practice-a" placeholder="我心里想：_________________________" oninput="autoSavePractice()" style="min-height: 60px; margin-bottom: 12px;"></textarea>
+                    <p style="color: #0f766e; font-size: 13px; font-weight: bold; margin-bottom: 8px;">方法二：动作折射（写身体反应或动作）</p>
+                    <textarea class="practice-textarea" id="practice-b" placeholder="我的手_________________________" oninput="autoSavePractice()" style="min-height: 60px; margin-bottom: 12px;"></textarea>
+                    <p style="color: #0f766e; font-size: 13px; font-weight: bold; margin-bottom: 8px;">方法三：环境烘托（写周围环境的变化）</p>
+                    <textarea class="practice-textarea" id="practice-c" placeholder="窗外的阳光_________________________" oninput="autoSavePractice()" style="min-height: 60px;"></textarea>
+                    <div class="btn-row">
+                        <button class="ai-btn" onclick="submitPracticeReview()" id="ai-btn">AI 点评</button>
+                    </div>
+                    <div class="ai-feedback" id="ai-feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="11-0.html" class="btn btn-teal">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                上一环节：复习导入
+            </a>
+            <a href="11-2.html" class="btn btn-teal">
+                下一环节：心理描写进阶
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function autoSavePractice() {
+            const d = { a: document.getElementById('practice-a').value, b: document.getElementById('practice-b').value, c: document.getElementById('practice-c').value };
+            localStorage.setItem('lesson11_practice1', JSON.stringify(d));
+        }
+        ['practice-a','practice-b','practice-c'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(this._st); this._st = setTimeout(autoSavePractice, 2000);
+            });
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            const s = localStorage.getItem('lesson11_practice1');
+            if (s) { const d = JSON.parse(s); if (d.a) document.getElementById('practice-a').value = d.a; if (d.b) document.getElementById('practice-b').value = d.b; if (d.c) document.getElementById('practice-c').value = d.c; }
+        });
+        async function submitPracticeReview() {
+            const a = document.getElementById('practice-a').value.trim(), b = document.getElementById('practice-b').value.trim(), c = document.getElementById('practice-c').value.trim();
+            const fb = document.getElementById('ai-feedback'), btn = document.getElementById('ai-btn');
+            if (!a || !b || !c) { alert('请把三种方法都写完！'); return; }
+            const content = `内心独白：${a}\n动作折射：${b}\n环境烘托：${c}`;
+            const prompt = `作为上海初中语文名师，点评学生用三种方法写"开心"的练习。\n学生内容：\n${content}\n\n点评：1.内心独白是否真实自然？2.动作折射是否具体？3.环境烘托是否恰当？语气温和鼓励。`;
+            const orig = btn.innerHTML; btn.disabled = true;
+            btn.innerHTML = '<svg style="animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 4px;" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> 点评中...';
+            fb.className = 'ai-feedback loading'; fb.innerHTML = '🤖 AI 正在点评……';
+            try {
+                const r = await chat(prompt, '你是上海初中语文名师。');
+                fb.className = 'ai-feedback show'; fb.innerHTML = '<strong>🤖 AI 点评</strong><br><br>' + r.replace(/\n/g, '<br>');
+                autoSavePractice();
+            } catch(e) { fb.className = 'ai-feedback error'; fb.innerHTML = '<strong>❌ 点评失败</strong><br>' + e.message; }
+            finally { btn.disabled = false; btn.innerHTML = orig; }
+        }
+    </script>
+</body>
+</html>
